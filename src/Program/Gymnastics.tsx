@@ -33,7 +33,7 @@ const Gymnastics = () => {
     // Gymnastics programs data
     const programs = [
         {
-            title: "Weekend Training (All Ages)",
+            title: "Weekend Training (Ages 3-17)",
             description: "Fundamental movement skills and physical literacy in a fun, safe environment",
             features: ["Basic Movement Skills", "Balance & Coordination", "Social Development", "Body Awareness"],
             icon: <IconHeartHandshake className="text-bright-sun-400" size={24} />,
@@ -79,7 +79,7 @@ const Gymnastics = () => {
             certification: "National Team Athlete",
             experience: "10+ Years",
             specialty: "Acrobatics & Fitness",
-            image: `${process.env.PUBLIC_URL}/athletes/Sharif.PNG`
+            image: `${process.env.PUBLIC_URL}/athletes/Dushime.jpg`
         },
         {
             name: "Coach ABAYISENGA Paremonique",
@@ -120,11 +120,11 @@ const Gymnastics = () => {
 
     // Core Values
     const coreValues = [
-        { name: "Discipline", icon: <IconShield className="text-bright-sun-400" size={24} />, description: "Commitment to consistent practice and excellence" },
-        { name: "Friendship", icon: <IconFriends className="text-bright-sun-400" size={24} />, description: "Building supportive relationships through sport" },
-        { name: "Teamwork", icon: <IconHeartHandshake className="text-bright-sun-400" size={24} />, description: "Collaborating for shared success and growth" },
-        { name: "Respect", icon: <IconLeaf className="text-bright-sun-400" size={24} />, description: "Valuing coaches, teammates, and the sport" },
-        { name: "Excellence", icon: <IconTrophy className="text-bright-sun-400" size={24} />, description: "Striving for personal and team best" }
+        { name: "Discipline", icon: <IconShield className="text-bright-sun-400" size={24} /> },
+        { name: "Friendship", icon: <IconFriends className="text-bright-sun-400" size={24} />, description: "" },
+        { name: "Teamwork", icon: <IconHeartHandshake className="text-bright-sun-400" size={24} />, description: "" },
+        { name: "Respect", icon: <IconLeaf className="text-bright-sun-400" size={24} />, description: "" },
+        { name: "Excellence", icon: <IconTrophy className="text-bright-sun-400" size={24} />, description: "" }
     ];
 
     return (

@@ -149,7 +149,7 @@ const Contact = () => {
                                             type="text"
                                             required
                                             className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
-                                            placeholder="John Doe"
+                                            placeholder="Kayitare Prince"
                                         />
                                     </div>
                                     <div>
@@ -161,7 +161,7 @@ const Contact = () => {
                                             type="email"
                                             required
                                             className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
-                                            placeholder="john@example.com"
+                                            placeholder="prince@gmail.com"
                                         />
                                     </div>
                                 </div>

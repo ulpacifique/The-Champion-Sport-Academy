@@ -1,4 +1,4 @@
-// src/Pages/Karate.tsx
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -34,7 +34,7 @@ const Karate = () => {
     // Karate programs data
     const programs = [
         {
-            title: "Weekend Training (All Ages)",
+            title: "Weekend Training (Ages 3–17)",
             description: "Intensive weekend sessions focusing on technique, fitness, and sparring",
             features: ["Basic & Advanced Techniques", "Conditioning", "Sparring Sessions", "Kata Training"],
             icon: <IconShield className="text-bright-sun-400" size={24} />,
@@ -83,7 +83,7 @@ const Karate = () => {
             experience: "39+ Medals Won",
             specialty: "High-Performance Kumite",
             description: "Bronze medalist at Commonwealth Championship and FERWAKA certified coach.",
-            image: `${process.env.PUBLIC_URL}/athletes/Sharif.PNG`
+            image: `${process.env.PUBLIC_URL}/athletes/sharif.WEBP`
         },
         {
             name: "Sensei Khalif",
@@ -259,9 +259,10 @@ const Karate = () => {
                                 </div>
                                 <div className="relative">
                                     <img
-                                        src="https://images.unsplash.com/photo-1627483262769-04d0a1401487?auto=format&fit=crop&w=800&h=600"
-                                        alt="Karate training"
+                                        src={`${process.env.PUBLIC_URL}/athletes/karate.png`}
+                                        alt="Karate"
                                         className="rounded-2xl shadow-2xl"
+
                                     />
                                     <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 p-6 rounded-2xl shadow-xl">
                                         <div className="text-3xl font-bold text-gray-900">20+</div>
