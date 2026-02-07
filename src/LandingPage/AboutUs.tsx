@@ -415,7 +415,7 @@ const AboutUs = () => {
           <div className="mt-12 text-gray-500 text-sm">
             <div className="flex items-center justify-center space-x-2">
               <IconClock size={16} />
-              <span>Open Monday to Saturday • 9 AM - 6 PM</span>
+              <span>Open  Saturday to Sunday • 9 AM - 6 PM</span>
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import Partners from "../LandingPage/Partners";
 import SportsDisciplines from "../LandingPage/SportsDisciplines";
 
 import AboutUs from "../LandingPage/AboutUs";
-import OurServices from "../LandingPage/OurServices";
 
 const HomePage = () => {
     return (
@@ -26,9 +25,6 @@ const HomePage = () => {
             </section>
             <section id="aboutUs" className="scroll-mt-24">
                 <AboutUs />
-            </section>
-            <section id="our-services" className="scroll-mt-24">
-                <OurServices />
             </section>
 
             <section id="footer" className="scroll-mt-24">
