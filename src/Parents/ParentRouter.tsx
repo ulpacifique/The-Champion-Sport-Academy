@@ -24,7 +24,7 @@ const ParentRouter = () => {
             const data = response.data.map((child: any) => ({
                 ...child,
                 name: child.childName, // Align with UI expectation
-                progress: child.progress || 0 // Default progress if missing
+                progress: child.averageProgress || 0 // Use averageProgress from backend
             }));
             setChildList(data);
             if (data.length > 0 && !selectedChild) {

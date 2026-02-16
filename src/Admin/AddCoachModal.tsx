@@ -6,9 +6,10 @@ interface AddCoachModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSubmit: (data: any) => Promise<void>;
+    initialData?: any; // Added for edit mode
 }
 
-const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit, initialData }) => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -22,6 +23,35 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
     });
 
     const [sportInput, setSportInput] = useState('');
+
+    React.useEffect(() => {
+        if (initialData) {
+            setFormData({
+                firstName: initialData.firstName || '',
+                lastName: initialData.lastName || '',
+                email: initialData.email || '',
+                phoneNumber: initialData.phoneNumber || '',
+                password: '', // Don't pre-fill password
+                qualifications: initialData.qualifications || '',
+                yearsOfExperience: initialData.yearsOfExperience?.toString() || '',
+                specialization: initialData.specialization || '',
+                sports: initialData.sports ? initialData.sports.map((s: any) => typeof s === 'string' ? s : s.name || s.sport?.name) : []
+            });
+        } else {
+            // Reset form for new addition
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phoneNumber: '',
+                password: '',
+                qualifications: '',
+                yearsOfExperience: '',
+                specialization: '',
+                sports: []
+            });
+        }
+    }, [initialData, isOpen]);
 
     if (!isOpen) return null;
 
@@ -79,7 +109,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
             <div className="bg-gray-800 border border-gray-700 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div className="flex justify-between items-center p-6 border-b border-gray-700">
-                    <h2 className="text-2xl font-bold text-white">Add New Coach</h2>
+                    <h2 className="text-2xl font-bold text-white">{initialData ? 'Edit Coach' : 'Add New Coach'}</h2>
                     <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
                         <IconX size={24} />
                     </button>
@@ -129,6 +159,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
                                     placeholder="coach@example.com"
                                     required
+                                    disabled={!!initialData} // Email usually shouldn't change as it's login
                                 />
                             </div>
                         </div>
@@ -148,15 +179,15 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                             </div>
                         </div>
                         <div>
-                            <label className="block text-gray-400 text-sm mb-2">Password</label>
+                            <label className="block text-gray-400 text-sm mb-2">Password {initialData && '(Leave blank to keep same)'}</label>
                             <input
                                 type="password"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
                                 className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
-                                placeholder="******"
-                                required
+                                placeholder={initialData ? "******" : "******"}
+                                required={!initialData}
                             />
                         </div>
                         <div>
@@ -244,7 +275,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                             type="submit"
                             className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-600 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-500/20 transition-all transform hover:-translate-y-0.5"
                         >
-                            Save Coach
+                            {initialData ? 'Update Coach' : 'Save Coach'}
                         </button>
                     </div>
                 </form>

@@ -35,11 +35,23 @@ const Events = () => {
   };
 
   // Helper function to get full thumbnail URL
-  const getThumbnailUrl = (url: string | undefined) => {
-    if (!url) return null;
-    if (url.startsWith('http')) return url;
-    if (url.startsWith('/')) return `http://localhost:8081${url}`;
-    return `http://localhost:8081/uploads/thumbnails/${url}`;
+  const getThumbnailUrl = (video: Video) => {
+    if (video.thumbnailUrl) {
+      if (video.thumbnailUrl.startsWith('http')) return video.thumbnailUrl;
+      if (video.thumbnailUrl.startsWith('/')) return `http://localhost:8081${video.thumbnailUrl}`;
+      return `http://localhost:8081/uploads/thumbnails/${video.thumbnailUrl}`;
+    }
+
+    // Fallback to YouTube thumbnail if no custom thumbnail
+    if (video.videoUrl && (video.videoUrl.includes('youtube.com') || video.videoUrl.includes('youtu.be'))) {
+      const videoId = video.videoUrl.includes('v=')
+        ? video.videoUrl.split('v=')[1].split('&')[0]
+        : video.videoUrl.split('/').pop();
+      // Return null if we can't extract an ID, forcing fallbacks elsewhere
+      return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null;
+    }
+
+    return null;
   };
 
   if (loading) {
@@ -87,7 +99,7 @@ const Events = () => {
         {/* Videos Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {videos.map((video) => {
-            const thumbnailUrl = getThumbnailUrl(video.thumbnailUrl);
+            const thumbnailUrl = getThumbnailUrl(video);
 
             return (
               <div key={video.id} className="bg-cerulean-blue-800 rounded-xl overflow-hidden shadow-lg">

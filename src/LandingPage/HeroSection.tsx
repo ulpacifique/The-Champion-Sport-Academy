@@ -1,163 +1,133 @@
 import { useState, useEffect, useRef } from "react";
-import { IconSearch } from "@tabler/icons-react";
-import { TextInput } from "@mantine/core";
+import { IconSparkles } from "@tabler/icons-react";
 import AuthPages from "../Page/AuthPages";
-import { useLocation } from "react-router-dom";
-
 
 const HeroSection = () => {
-    // Array of sports images for carousel
-    const sportsImages = [
-        "/sports/GIFTSTUDIO-1.jpg",
-        "/sports/GIFTSTUDIO(1)-1.jpg",
-        "/sports/GIFTSTUDIO(1).jpg",
-        "/sports/GIFTSTUDIO(166).jpg",
-        "/sports/GIFTSTUDIO(167).jpg",
-        "/sports/GIFTSTUDIO(169).jpg"
-    ];
-
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [animate, setAnimate] = useState(false);
-    const [showAuthModal, setShowAuthModal] = useState(false); // Add auth modal state
+    const [showAuthModal, setShowAuthModal] = useState(false);
     const heroRef = useRef<HTMLDivElement>(null);
 
-
-    const location = useLocation();
-    const [isAuthPage, setIsAuthPage] = useState(false);
     // Trigger animation when component mounts
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
-    // Auto-rotate images every 3 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) =>
-                prevIndex === sportsImages.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, [sportsImages.length]);
-
-    // For manual navigation
-    const goToNextImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === sportsImages.length - 1 ? 0 : prevIndex + 1
-        );
-    };
-
-    const goToPrevImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? sportsImages.length - 1 : prevIndex - 1
-        );
-    };
-
-    // Split text into words for animation
-    const titleWords = ["We are ", "The", "Champions", "for", "Life"];
-
     return (
         <>
-            <div ref={heroRef} className="relative flex items-center px-10 py-32 min-h-[85vh] overflow-hidden">
-                {/* Background Image with Gradient Overlay */}
+            <div ref={heroRef} className="relative flex items-center px-4 sm:px-6 md:px-10 py-16 sm:py-24 md:py-32 min-h-[90vh] md:min-h-[85vh] overflow-hidden">
+                {/* Mobile-Optimized Background Image with Enhanced Gradient Overlay */}
                 <div
                     className="absolute inset-0 z-0"
                     style={{
                         backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'center center',
+                        backgroundAttachment: 'fixed', // Creates parallax effect on mobile
                     }}
                 >
-                    {/* Gradient Overlay: Dark on left, transparent on right */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-blue-950 via-cerulean-blue-950/90 to-transparent"></div>
+                    {/* Darker gradient for better text readability on mobile */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-blue-950 via-cerulean-blue-950/95 to-cerulean-blue-950/70 md:to-cerulean-blue-950/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cerulean-blue-950/40 to-cerulean-blue-950/80"></div>
                 </div>
 
-                {/* Content Section */}
-                <div className="relative z-10 flex flex-col w-full md:w-[60%] gap-8">
-                    {/* Welcome Label */}
-                    <div className={`px-4 py-1 bg-bright-sun-400/20 w-fit rounded-full border border-bright-sun-400/30 text-bright-sun-400 font-semibold text-sm tracking-wider uppercase mb-2 animate-fade-in ${animate ? 'active' : ''}`}>
-                        Welcome to The Champion Sport Academy
+                {/* Animated decorative elements - hidden on mobile for performance */}
+                <div className="hidden md:block absolute top-20 right-20 w-72 h-72 bg-bright-sun-400/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="hidden md:block absolute bottom-20 right-40 w-96 h-96 bg-cerulean-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+                {/* Content Section - Full width on mobile */}
+                <div className="relative z-10 flex flex-col w-full md:w-[65%] gap-6 md:gap-8">
+                    {/* Welcome Badge with Icon */}
+                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-400/20 to-bright-sun-500/10 w-fit rounded-full border border-bright-sun-400/40 text-bright-sun-400 font-semibold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
+                        <div className="flex items-center gap-1.5 md:gap-2">
+                            <IconSparkles size={14} className="animate-pulse" />
+                            <span className="whitespace-nowrap">Welcome to The Champion Sport Academy</span>
+                        </div>
                     </div>
 
-                    {/* Animated Title */}
-                    <div className="text-5xl md:text-7xl font-bold leading-tight text-white drop-shadow-lg">
-                        {["Building", "Champions", "For", "Life"].map((word, index) => (
-                            <span
-                                key={index}
-                                className={`inline-block mr-3 animate-word ${animate ? 'active' : ''}`}
-                                style={{
-                                    animationDelay: `${index * 150}ms`,
-                                    color: word.toLowerCase() === 'champions'
-                                        ? '#ffbe20'  // bright-sun-400
-                                        : 'white'
-                                }}
-                            >
-                                {word}
-                            </span>
-                        ))}
+                    {/* Mobile-optimized Title with adjusted sizes */}
+                    <div className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight drop-shadow-2xl">
+                        <div className="flex flex-wrap gap-x-2 md:gap-x-4">
+                            {["Building", "Champions", "For", "Life"].map((word, index) => (
+                                <span
+                                    key={index}
+                                    className={`inline-block animate-word ${animate ? 'active' : ''}`}
+                                    style={{
+                                        animationDelay: `${index * 150}ms`,
+                                    }}
+                                >
+                                    {word.toLowerCase() === 'champions' ? (
+                                        <span className="bg-gradient-to-r from-bright-sun-400 via-bright-sun-500 to-bright-sun-400 bg-clip-text text-transparent animate-gradient">
+                                            {word}
+                                        </span>
+                                    ) : (
+                                        <span className="text-white">{word}</span>
+                                    )}
+                                </span>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Animated Subtitle */}
-                    <div className="text-xl text-gray-200 max-w-2xl leading-relaxed">
+                    {/* Enhanced Subtitle */}
+                    <div className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
                         <p className={`fade-in-text ${animate ? 'active' : ''}`}
                             style={{ animationDelay: '1200ms' }}>
                             Where passion meets discipline. Join Rwanda's premier sports academy dedicated to nurturing talent, character, and physical excellence in every athlete.
                         </p>
                     </div>
 
-                    {/* Values List */}
-                    <div className={`flex flex-wrap gap-x-8 gap-y-3 mt-2 text-cerulean-blue-200 font-medium ${animate ? 'fade-in' : ''}`}
+                    {/* Enhanced Values List - Stack on mobile, row on larger screens */}
+                    <div className={`flex flex-wrap gap-4 sm:gap-x-10 sm:gap-y-4 mt-2 md:mt-4 ${animate ? 'fade-in' : ''}`}
                         style={{ animationDelay: '1500ms' }}>
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-bright-sun-400"></span> Discipline
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-bright-sun-400"></span> Friendship
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-bright-sun-400"></span> Respect
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-bright-sun-400"></span> Excellence
-                        </div>
+                        {['Discipline', 'Friendship', 'Respect', 'Excellence'].map((value, idx) => (
+                            <div
+                                key={value}
+                                className="group flex items-center gap-2 md:gap-3 text-cerulean-blue-200 font-semibold hover:text-white transition-colors cursor-default"
+                                style={{ animationDelay: `${1500 + idx * 100}ms` }}
+                            >
+                                <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 group-hover:scale-125 transition-transform shadow-lg shadow-bright-sun-400/50"></span>
+                                <span className="text-sm sm:text-base">{value}</span>
+                            </div>
+                        ))}
                     </div>
 
-                    {/* Search/Filter Section */}
-                    <div className={`flex flex-wrap gap-3 mt-6 p-2 bg-cerulean-blue-900/50 backdrop-blur-sm border border-cerulean-blue-700/50 rounded-xl w-fit ${animate ? 'fade-in' : ''}`}
+                    {/* Feature Highlights Section - Stack vertically on mobile */}
+                    <div className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8 md:mt-12 pt-6 sm:pt-8 border-t border-white/10 ${animate ? 'fade-in' : ''}`}
                         style={{ animationDelay: '1800ms' }}>
-                        <TextInput
-                            className="bg-transparent [&_input]:bg-transparent [&_input]:border-none [&_input]:text-white min-w-[200px]"
-                            variant="unstyled"
-                            placeholder="Find your sport..."
-                            leftSection={<IconSearch size={18} className="text-gray-400" />}
-                        />
-                        <div className={`animated-button flex items-center justify-center bg-bright-sun-400 text-cerulean-blue-950 font-bold rounded-lg px-6 py-2.5 hover:bg-bright-sun-500 cursor-pointer transition-all hover:scale-105 active:scale-95 ${animate ? 'active' : ''}`}
-                            style={{ animationDelay: '2000ms' }}>
-                            Explore Programmes
+                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
+                                <span className="text-lg sm:text-xl">🥇</span>
+                            </div>
+                            <div className="min-w-0">
+                                <div className="text-white font-semibold text-sm sm:text-base truncate">Elite Training</div>
+                                <div className="text-xs text-gray-400 truncate">World-class facilities</div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Stats */}
-                    <div className={`flex gap-12 mt-8 pt-8 border-t border-white/10 ${animate ? 'fade-in' : ''}`}
-                        style={{ animationDelay: '2200ms' }}>
-                        <div>
-                            <div className="text-4xl font-bold text-white mb-1">500+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Athletes</div>
+                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
+                                <span className="text-lg sm:text-xl">👨‍🏫</span>
+                            </div>
+                            <div className="min-w-0">
+                                <div className="text-white font-semibold text-sm sm:text-base truncate">Expert Coaches</div>
+                                <div className="text-xs text-gray-400 truncate">Certified professionals</div>
+                            </div>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold text-white mb-1">20+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Years Exp.</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-white mb-1">15+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Sports</div>
+
+                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
+                                <span className="text-lg sm:text-xl">🌍</span>
+                            </div>
+                            <div className="min-w-0">
+                                <div className="text-white font-semibold text-sm sm:text-base truncate">Global Network</div>
+                                <div className="text-xs text-gray-400 truncate">International partnerships</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Auth Modal Overlay - ADD THIS */}
+            {/* Auth Modal Overlay */}
             {showAuthModal && (
                 <AuthPages onClose={() => setShowAuthModal(false)} />
             )}

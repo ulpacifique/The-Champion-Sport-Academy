@@ -16,6 +16,11 @@ const parentAPI = {
     getRecipients: () => api.get('/messages/recipients'),
     sendMessage: (messageData: any) => api.post('/messages', messageData),
 
+    // Dashboard Stats
+    getDashboardStats: (childId?: number) => api.get('/dashboard/parent/stats', {
+        params: childId ? { childId } : {}
+    }),
+
     // Profile (Placeholder for now)
     updateProfile: (profileData: any) => api.put('/users/profile', profileData),
 };

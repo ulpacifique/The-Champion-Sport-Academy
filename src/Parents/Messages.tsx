@@ -5,7 +5,8 @@ import {
     IconUser,
     IconCheck,
     IconArrowLeft,
-    IconMessage
+    IconMessage,
+    IconTrash
 } from "@tabler/icons-react";
 import parentAPI from "../Services/ParentApi";
 import { messageAPI } from "../Services/Api";
@@ -44,7 +45,7 @@ const Messages = () => {
                 role: Number(chat.senderId) === currentUserId ? (chat.receiverRole || "Staff") : (chat.senderRole || "Staff"),
                 lastMessage: chat.content,
                 time: new Date(chat.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                unread: chat.read ? 0 : 1,
+                unread: (!chat.read && Number(chat.receiverId) === currentUserId) ? 1 : 0,
             }));
             const uniqueChats = Array.from(new Map(chatsData.map((item: any) => [item.id, item])).values());
             setChats(uniqueChats);
@@ -116,6 +117,22 @@ const Messages = () => {
                 fetchMessages();
             } catch (error) {
                 console.error("Failed to send", error);
+            }
+        }
+    };
+
+    const handleDeleteChat = async () => {
+        if (!selectedChat) return;
+
+        if (window.confirm("Are you sure you want to delete this entire conversation? This action cannot be undone.")) {
+            try {
+                await messageAPI.deleteConversation(selectedChat);
+                setSelectedChat(null);
+                setShowChatList(true);
+                fetchChats();
+            } catch (error) {
+                console.error("Failed to delete chat", error);
+                alert("Failed to delete conversation. Please try again.");
             }
         }
     };
@@ -229,10 +246,17 @@ const Messages = () => {
                                 <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
                                     <IconUser size={20} className="text-white" />
                                 </div>
-                                <div className="min-w-0">
+                                <div className="min-w-0 flex-1">
                                     <div className="text-white font-bold text-sm sm:text-base truncate">{activeContact?.name}</div>
                                     <div className="text-gray-400 text-xs">{activeContact?.role} • Online</div>
                                 </div>
+                                <button
+                                    onClick={handleDeleteChat}
+                                    className="p-2 text-gray-400 hover:text-red-400 transition-colors"
+                                    title="Delete Conversation"
+                                >
+                                    <IconTrash size={20} />
+                                </button>
                             </div>
 
                             {/* Messages Area */}

@@ -1,6 +1,6 @@
 // app/pages/AdminVideoPage.tsx
 import { useState, useEffect } from 'react';
-import { videoAPI } from '../Services/Api';
+import { videoAPI, ASSET_BASE_URL } from '../Services/Api';
 
 interface Video {
   id: number;
@@ -21,27 +21,47 @@ const AdminVideoPage = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingVideo, setEditingVideo] = useState<Video | null>(null);
-  
+  const [uploadProgress, setUploadProgress] = useState(0);
+
   // Form state
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     duration: '',
     category: '',
+    videoUrl: '',
+    thumbnailUrl: '', // Added for auto-fetched thumbnail
   });
-  
+
   // File state
-  const [videoFile, setVideoFile] = useState<File | null>(null);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
-  const [videoPreview, setVideoPreview] = useState<string>('');
-  const [thumbnailPreview, setThumbnailPreview] = useState<string>('');
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
+  const [isFetchingMeta, setIsFetchingMeta] = useState(false);
 
   // Load videos and categories
   useEffect(() => {
     fetchVideos();
     fetchCategories();
   }, []);
+
+  // Auto-fetch YouTube Metadata
+  useEffect(() => {
+    const fetchYouTubeMeta = async () => {
+      if (!formData.videoUrl) return;
+
+      // Simple regex to check if it looks like a YouTube URL
+      if (formData.videoUrl.includes('youtube.com') || formData.videoUrl.includes('youtu.be')) {
+        // Only fetch if title is empty or we just pasted the URL (simplification: fetch if valid URL)
+        // But we don't want to overwrite if user is editing manually? 
+        // Let's fetch if title is empty OR if we trigger it explicitly.
+        // For now, let's do it on blur or via a button. 
+        // Better UX: Debounce or just check when valid.
+
+        // Actually, let's just use a separate function we call onBlur or optional button.
+        // But user asked for "adding only URL ... all retrieved".
+      }
+    };
+  }, [formData.videoUrl]);
 
   const fetchVideos = async () => {
     try {
@@ -63,6 +83,38 @@ const AdminVideoPage = () => {
     }
   };
 
+  const handleUrlBlur = async () => {
+    if (!formData.videoUrl) return;
+    // User said "all retrieved", implying auto-fill. 
+    // We will aggressive fetch now as per user request.
+    // if (formData.title) return;
+
+    setIsFetchingMeta(true);
+    try {
+      // Using noembed for easy metadata fetching without API key
+      const response = await fetch(`https://noembed.com/embed?url=${formData.videoUrl}`);
+      const data = await response.json();
+
+      if (data.title) {
+        setFormData(prev => ({
+          ...prev,
+          title: data.title,
+          thumbnailUrl: data.thumbnail_url || '',
+          // content_id or author_name could be used for description if needed
+        }));
+
+        // Set preview
+        if (data.thumbnail_url && !thumbnailFile) {
+          setThumbnailPreview(data.thumbnail_url);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch YouTube metadata", error);
+    } finally {
+      setIsFetchingMeta(false);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -71,56 +123,39 @@ const AdminVideoPage = () => {
     }));
   };
 
-  const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Check file size (max 500MB)
-      if (file.size > 500 * 1024 * 1024) {
-        alert('Video file is too large. Maximum size is 500MB.');
-        return;
-      }
-      
-      // Check file type
-      if (!file.type.startsWith('video/')) {
-        alert('Please select a video file.');
-        return;
-      }
-      
-      setVideoFile(file);
-      
-      // Create preview URL for video thumbnail
-      const videoURL = URL.createObjectURL(file);
-      setVideoPreview(videoURL);
-    }
-  };
 
-  
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!videoFile && !editingVideo) {
-      alert('Please select a video file.');
+
+    if (!formData.videoUrl && !editingVideo) {
+      alert('Please enter a YouTube Video URL.');
       return;
     }
-    
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('title', formData.title);
       formDataToSend.append('description', formData.description);
-      formDataToSend.append('duration', formData.duration);
+      // Duration might need to be fetched from YouTube API or manually entered, 
+      // for now we'll keep it if it's there or empty. 
+      // If the backend requires it, we might need a duration input or extract it.
+      formDataToSend.append('duration', formData.duration || '0:00');
       formDataToSend.append('category', formData.category);
-      
-      if (videoFile) {
-        formDataToSend.append('videoFile', videoFile);
+      formDataToSend.append('videoUrl', formData.videoUrl);
+
+      if (formData.thumbnailUrl) {
+        formDataToSend.append('thumbnailUrl', formData.thumbnailUrl);
       }
-      
+
       if (thumbnailFile) {
         formDataToSend.append('thumbnailFile', thumbnailFile);
       }
-      
+
       setUploadProgress(10);
-      
+
       if (editingVideo) {
         // Update existing video
         await videoAPI.updateVideo(editingVideo.id, formDataToSend);
@@ -130,17 +165,17 @@ const AdminVideoPage = () => {
         // Create new video
         await videoAPI.createVideo(formDataToSend);
         setUploadProgress(100);
-        alert('Video uploaded successfully!');
+        alert('Video added successfully!');
       }
-      
+
       // Reset form
       resetForm();
       fetchVideos();
       fetchCategories();
-      
-    } catch (error) {
+
+    } catch (error: any) {
       console.error('Error saving video:', error);
-      alert('Error saving video. Please try again.');
+      alert(`Error saving video: ${error.response?.data?.message || error.message || 'Unknown error'}`);
       setUploadProgress(0);
     }
   };
@@ -152,13 +187,15 @@ const AdminVideoPage = () => {
       description: video.description || '',
       duration: video.duration,
       category: video.category,
+      videoUrl: video.videoUrl || '',
+      thumbnailUrl: video.thumbnailUrl || '',
     });
-    
+
     // Set previews from existing files
     if (video.thumbnailUrl) {
-      setThumbnailPreview(`http://localhost:8081${video.thumbnailUrl}`);
+      setThumbnailPreview(`${ASSET_BASE_URL}${video.thumbnailUrl}`);
     }
-    
+
     setShowForm(true);
   };
 
@@ -181,19 +218,14 @@ const AdminVideoPage = () => {
       description: '',
       duration: '',
       category: '',
+      videoUrl: '',
+      thumbnailUrl: '',
     });
-    setVideoFile(null);
     setThumbnailFile(null);
-    setVideoPreview('');
     setThumbnailPreview('');
     setUploadProgress(0);
     setShowForm(false);
     setEditingVideo(null);
-    
-    // Clean up preview URLs
-    if (videoPreview) {
-      URL.revokeObjectURL(videoPreview);
-    }
   };
 
   const formatDate = (dateString: string) => {
@@ -242,7 +274,7 @@ const AdminVideoPage = () => {
             <h2 className="text-xl font-bold mb-4">
               {editingVideo ? 'Edit Video' : 'Upload New Video'}
             </h2>
-            
+
             {/* Upload Progress Bar */}
             {uploadProgress > 0 && uploadProgress < 100 && (
               <div className="mb-6">
@@ -251,15 +283,40 @@ const AdminVideoPage = () => {
                   <span>{uploadProgress}%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}
                   ></div>
                 </div>
               </div>
             )}
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* YouTube URL - Primary Input */}
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <label className="block text-sm font-medium text-blue-900 mb-1">
+                  YouTube Video URL *
+                </label>
+                <input
+                  type="url"
+                  name="videoUrl"
+                  value={formData.videoUrl}
+                  onChange={handleInputChange}
+                  onBlur={handleUrlBlur}
+                  placeholder="Paste YouTube link here (e.g. https://www.youtube.com/watch?v=...)"
+                  className="w-full px-4 py-2 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  autoFocus
+                  required
+                />
+                <div className="flex justify-between mt-2">
+                  <p className="text-sm text-blue-700">
+                    <span className="font-semibold">Tip:</span> Paste the link and click anywhere else to automatically fill Title and Thumbnail.
+                  </p>
+                  {isFetchingMeta && <span className="text-sm font-semibold text-blue-600 animate-pulse">Fetching details...</span>}
+                </div>
+              </div>
+
               {/* Basic Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -275,7 +332,7 @@ const AdminVideoPage = () => {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Category *
@@ -297,6 +354,8 @@ const AdminVideoPage = () => {
                 </div>
               </div>
 
+
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Description
@@ -311,79 +370,68 @@ const AdminVideoPage = () => {
                 />
               </div>
 
-              
-
-              {/* File Upload Section */}
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Video File *
-                    <span className="text-gray-500 text-sm ml-2">
-                      (Max 500MB, MP4, AVI, MOV, etc.)
-                    </span>
-                  </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
-                    <div className="space-y-1 text-center">
-                      <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      <div className="flex text-sm text-gray-600">
-                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
-                          <span>{videoFile ? 'Change video file' : 'Select video file'}</span>
-                          <input
-                            type="file"
-                            accept="video/*"
-                            onChange={handleVideoFileChange}
-                            className="sr-only"
-                            required={!editingVideo}
-                          />
-                        </label>
-                        <p className="pl-1">or drag and drop</p>
-                      </div>
-                      <p className="text-xs text-gray-500">
-                        MP4, AVI, MOV up to 500MB
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {videoFile && (
-                    <div className="mt-2 p-3 bg-blue-50 rounded-lg">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{videoFile.name}</p>
-                          <p className="text-sm text-gray-500">{formatFileSize(videoFile.size)}</p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setVideoFile(null);
-                            setVideoPreview('');
+              {/* Thumbnail Upload Section (Kept as File Upload) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Thumbnail Image
+                  <span className="text-gray-500 text-sm ml-2">
+                    (Optional, Max 5MB)
+                  </span>
+                </label>
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
+                  <div className="space-y-1 text-center">
+                    <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <div className="flex text-sm text-gray-600">
+                      <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
+                        <span>{thumbnailFile ? 'Change thumbnail' : 'Upload thumbnail'}</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          // onChange handler to be implemented/verified if it exists or needs creation
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              setThumbnailFile(file);
+                              setThumbnailPreview(URL.createObjectURL(file));
+                            }
                           }}
-                          className="text-red-600 hover:text-red-900"
-                        >
-                          Remove
-                        </button>
-                      </div>
+                          className="sr-only"
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
                     </div>
-                  )}
-                  
-                  {videoPreview && (
-                    <div className="mt-4">
-                      <video 
-                        src={videoPreview} 
-                        controls 
-                        className="w-full rounded-lg max-h-64"
-                        preload="metadata"
-                      />
-                    </div>
-                  )}
+                    <p className="text-xs text-gray-500">
+                      PNG, JPG, GIF up to 5MB
+                    </p>
+                  </div>
                 </div>
 
-                
+                {thumbnailPreview && (
+                  <div className="mt-4">
+                    <img
+                      src={thumbnailPreview}
+                      alt="Thumbnail preview"
+                      className="w-full max-w-xs rounded-lg shadow-md"
+                    />
+                    {thumbnailFile && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setThumbnailFile(null);
+                          setThumbnailPreview('');
+                        }}
+                        className="mt-2 text-sm text-red-600 hover:text-red-900"
+                      >
+                        Remove Thumbnail
+                      </button>
+                    )}
                   </div>
-                  
-               
+                )}
+              </div>
 
+              {/* Form Actions */}
               <div className="flex justify-end space-x-4 pt-4 border-t">
                 <button
                   type="button"
@@ -395,21 +443,22 @@ const AdminVideoPage = () => {
                 <button
                   type="submit"
                   className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={uploadProgress > 0 && uploadProgress < 100}
+                  disabled={loading}
                 >
-                  {editingVideo ? 'Update Video' : 'Upload Video'}
+                  {editingVideo ? 'Update Video' : 'Add Video'}
                 </button>
               </div>
             </form>
           </div>
         )}
 
+
         {/* Videos List */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
             <h3 className="text-lg font-medium text-gray-900">Uploaded Videos ({videos.length})</h3>
           </div>
-          
+
           {videos.length === 0 ? (
             <div className="text-center py-12">
               <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,7 +491,7 @@ const AdminVideoPage = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Category
                     </th>
-                    
+
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Views
                     </th>
@@ -460,7 +509,7 @@ const AdminVideoPage = () => {
                       <td className="px-6 py-4">
                         <div className="flex items-center">
                           <div className="h-16 w-28 flex-shrink-0 bg-gray-200 rounded overflow-hidden">
-                            
+
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
@@ -500,7 +549,7 @@ const AdminVideoPage = () => {
                           Delete
                         </button>
                         <a
-                          href={`http://localhost:8080${video.videoUrl}`}
+                          href={video.videoUrl.startsWith('http') ? video.videoUrl : `${ASSET_BASE_URL}${video.videoUrl}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-green-600 hover:text-green-900"

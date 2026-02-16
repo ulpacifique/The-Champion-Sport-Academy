@@ -1,11 +1,19 @@
 // app/services/api.ts
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8081/api';
+// Production/Development API URL
+const isProduction = process.env.NODE_ENV === 'production';
+export const API_BASE_URL = isProduction
+  ? 'https://your-production-url.com/api' // Update this for production
+  : 'http://localhost:5000/api';
+
+export const ASSET_BASE_URL = isProduction
+  ? 'https://your-production-url.com'
+  : 'http://localhost:5000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true,
+  withCredentials: true, // Required for sessions
   headers: {
     'Content-Type': 'application/json',
   },
@@ -82,10 +90,12 @@ export const coachAPI = {
   createCoach: (data: any) => api.post('/coaches', data),
   getDashboardStats: () => api.get('/coaches/dashboard/stats'),
   getMyAthletes: () => api.get('/coaches/my/athletes'),
+  updateCoach: (id: number, data: any) => api.put(`/coaches/${id}`, data),
+  deleteCoach: (id: number) => api.delete(`/coaches/${id}`),
 };
 
 export const managerAPI = {
-  getDashboardStats: () => api.get('/manager/dashboard/stats'),
+  getDashboardStats: () => api.get('/dashboard/stats'),
 };
 
 // Program API
@@ -100,20 +110,26 @@ export const programAPI = {
 
 // Message API
 export const messageAPI = {
+  getChats: () => api.get('/messages/chats'),
+  getMessages: (partnerId: number) => api.get(`/messages/conversation/${partnerId}`),
+  getConversation: (partnerId: number) => api.get(`/messages/conversation/${partnerId}`), // Alias for getMessages
   getRecipients: () => api.get('/messages/recipients'),
-  sendMessage: (data: any) => api.post('/messages', data),
-  getRecentChats: () => api.get('/messages/chats'),
-  getConversation: (otherUserId: number) => api.get(`/messages/conversation/${otherUserId}`),
-  markAsRead: (id: number) => api.put(`/messages/${id}/read`),
+  sendMessage: (data: { content: string, receiverId: number }) => api.post('/messages', data),
+  markAsRead: (messageId: number) => api.put(`/messages/mark-read/${messageId}`),
+  deleteConversation: (partnerId: number) => api.delete(`/messages/conversation/${partnerId}`),
   getUnreadCount: async () => {
-    const response = await api.get('/messages/chats');
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const currentUserId = Number(user.id);
+    try {
+      const response = await api.get('/messages/chats');
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const currentUserId = Number(user.id);
 
-    // Only count messages where current user is the receiver AND message is unread
-    return response.data.filter((chat: any) =>
-      !chat.read && Number(chat.receiverId) === currentUserId
-    ).length;
+      // Only count messages where current user is the receiver AND message is unread
+      return response.data.filter((chat: any) =>
+        !chat.read && Number(chat.receiverId) === currentUserId
+      ).length;
+    } catch (error) {
+      return 0;
+    }
   }
 };
 
@@ -124,6 +140,19 @@ export const eventAPI = {
   createEvent: (data: any) => api.post('/events', data),
   updateEvent: (id: number, data: any) => api.put(`/events/${id}`, data),
   deleteEvent: (id: number) => api.delete(`/events/${id}`),
+};
+
+
+// Payment API
+export const paymentAPI = {
+  getAllPayments: (filters?: any) => api.get('/payments', { params: filters }),
+  recordPayment: (data: any) => api.post('/payments', data),
+  updateStatus: (id: number, status: string) => api.put(`/payments/${id}/status`, null, { params: { status } }),
+  getMyChildrenPayments: () => api.get('/payments/my-children'),
+  exportPayments: () => api.get('/payments/export', { responseType: 'blob' }),
+  importPayments: (formData: FormData) => api.post('/payments/import', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
 };
 
 export default api;

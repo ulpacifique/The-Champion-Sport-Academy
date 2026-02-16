@@ -26,6 +26,7 @@ import {
 } from '@tabler/icons-react';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';
+import { ASSET_BASE_URL } from '../Services/Api';
 
 const Gymnastics = () => {
     const [activeTab, setActiveTab] = useState('about');
@@ -545,7 +546,7 @@ const Gymnastics = () => {
                                     {galleryImages.map((image, index) => (
                                         <div key={index} className="group relative overflow-hidden rounded-2xl cursor-pointer">
                                             <img
-                                                src={image.imageUrl?.startsWith('/') ? 'http://localhost:8081' + image.imageUrl : image.imageUrl}
+                                                src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
                                                 alt={image.title}
                                                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                                                 onError={(e) => {

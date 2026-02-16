@@ -1,0 +1,331 @@
+// backend/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  COACH
+  MANAGER
+  PARENT
+}
+
+enum RegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  ACTIVE
+  INACTIVE
+}
+
+enum ProgramStatus {
+  ACTIVE
+  INACTIVE
+  FULL
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  MOBILE_MONEY
+  BANK_TRANSFER
+  CARD
+}
+
+model User {
+  id           BigInt    @id @default(autoincrement())
+  email        String    @unique @db.VarChar(255)
+  password     String    @db.VarChar(255)
+  firstName    String    @map("first_name") @db.VarChar(255)
+  lastName     String    @map("last_name") @db.VarChar(255)
+  phoneNumber  String    @unique @map("phone_number") @db.VarChar(255)
+  role         String    @db.VarChar(255) // Keep as String to match DB, can cast in code
+  address      String?   @db.VarChar(255)
+  active       Boolean   @default(true)
+  createdAt    DateTime? @map("created_at") @db.Timestamp(6)
+  updatedAt    DateTime? @map("updated_at") @db.Timestamp(6)
+  otpCode      String?   @map("otp_code") @db.VarChar(6)
+  otpExpiresAt DateTime? @map("otp_expires_at") @db.Timestamp(6)
+
+  children     Child[]
+  coach        Coach?
+  messagesSent     Message[] @relation("SenderToMessage")
+  messagesReceived Message[] @relation("ReceiverToMessage")
+
+  @@map("users")
+}
+
+model Coach {
+  id                BigInt    @id @map("user_id")
+  user              User      @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  qualifications   String?   @db.VarChar(255)
+  yearsOfExperience Int?      @map("years_of_experience")
+  specialization    String?   @db.VarChar(255)
+  salary            Float?
+
+  sports            coach_sports[]
+  programs          Program[]
+  attendances       Attendance[]
+  salaries          CoachSalary[]
+
+  @@map("coaches")
+}
+
+model CoachSalary {
+  id             BigInt        @id @default(autoincrement())
+  coach          Coach         @relation(fields: [coachId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  coachId        BigInt        @map("coach_id")
+  amount         Decimal       @db.Decimal(38, 2)
+  salaryMonth    String        @map("salary_month") @db.VarChar(7) // format YYYY-MM
+  paymentDate    DateTime?     @map("payment_date") @db.Date
+  status         String?       @db.VarChar(255)
+  paymentMethod  String?       @map("payment_method") @db.VarChar(255)
+  notes          String?       @db.VarChar(500)
+  createdAt      DateTime?     @map("created_at") @db.Timestamp(6)
+
+  @@map("coach_salaries")
+}
+
+model Child {
+  id                   BigInt             @id @default(autoincrement())
+  childName            String             @map("child_name") @db.VarChar(255)
+  childId              String             @unique @map("child_id") @db.VarChar(255)
+  age                  Int
+  dateOfBirth          DateTime?          @map("date_of_birth") @db.Date
+  gender               String             @db.VarChar(255)
+  
+  parent               User?              @relation(fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentId             BigInt?            @map("parent_id")
+  
+  parentName           String?            @map("parent_name") @db.VarChar(255)
+  parentPhone          String?            @map("parent_phone") @db.VarChar(255)
+  parentEmail          String?            @map("parent_email") @db.VarChar(255)
+  
+  registrationStatus   String?            @map("registration_status") @db.VarChar(255)
+  registrationDate     DateTime?          @map("registration_date") @db.Date
+  
+  schoolName           String?            @map("school_name") @db.VarChar(255)
+  gradeLevel           String?            @map("grade_level") @db.VarChar(255)
+  
+  medicalConditions    String?            @map("medical_conditions") @db.VarChar(255)
+  allergies            String?            @db.VarChar(255)
+  emergencyContactName String?            @map("emergency_contact_name") @db.VarChar(255)
+  emergencyContactPhone String?           @map("emergency_contact_phone") @db.VarChar(255)
+  
+  belt                 String?            @db.VarChar(255)
+  level                String?            @db.VarChar(255)
+
+  essentialSports      child_essential_sports[]
+  optionalSports       child_optional_sports[]
+  programs             child_programs[]
+  
+  payments             Payment[]
+  attendances          Attendance[]
+  progressRecords      ChildProgress[]
+
+  @@map("children")
+}
+
+model Sport {
+  id           BigInt   @id @default(autoincrement())
+  name         String   @unique @db.VarChar(255)
+  description  String?  @db.VarChar(255)
+  icon         String?  @db.VarChar(255)
+  active       Boolean  @default(true)
+  
+  coaches      coach_sports[]
+  essentialFor child_essential_sports[]
+  optionalFor  child_optional_sports[]
+  programs     Program[]
+
+  @@map("sports")
+}
+
+model Program {
+  id                  BigInt        @id @default(autoincrement())
+  name                String        @db.VarChar(255)
+  description         String?       @db.VarChar(255)
+  sport               Sport         @relation(fields: [sportId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sportId             BigInt        @map("sport_id")
+  coach               Coach?        @relation(fields: [coachId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  coachId             BigInt?       @map("coach_id")
+  ageGroup            String?       @map("age_group") @db.VarChar(255)
+  skillLevel          String?       @map("skill_level") @db.VarChar(255)
+  maxParticipants     Int?          @map("max_participants")
+  currentParticipants Int           @default(0) @map("current_participants")
+  monthlyFee          Decimal?      @map("monthly_fee") @db.Decimal(38, 2)
+  startDate           DateTime?     @map("start_date") @db.Date
+  endDate             DateTime?     @map("end_date") @db.Date
+  scheduleDays        String?       @map("schedule_days") @db.VarChar(255)
+  startTime           DateTime?     @map("start_time") @db.Time(6)
+  endTime             DateTime?     @map("end_time") @db.Time(6)
+  status              String?       @db.VarChar(255)
+
+  children            child_programs[]
+  attendances         Attendance[]
+  payments            Payment[]
+
+  @@map("programs")
+}
+
+model Attendance {
+  id             BigInt   @id @default(autoincrement())
+  child          Child    @relation(fields: [childId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  childId        BigInt   @map("child_id")
+  coach          Coach?   @relation(fields: [coachId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  coachId        BigInt?  @map("coach_id")
+  program        Program  @relation(fields: [programId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  programId      BigInt   @map("program_id")
+  attendanceDate DateTime @map("attendance_date") @db.Date
+  present        Boolean  @default(false)
+  notes          String?  @db.VarChar(500)
+  createdAt      DateTime? @map("created_at") @db.Timestamp(6)
+  updatedAt      DateTime? @map("updated_at") @db.Timestamp(6)
+
+  @@map("attendances")
+}
+
+model Payment {
+  id             BigInt        @id @default(autoincrement())
+  invoiceNumber  String?       @unique @map("invoice_number") @db.VarChar(255)
+  child          Child         @relation(fields: [childId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  childId        BigInt        @map("child_id")
+  program        Program?      @relation(fields: [programId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  programId      BigInt?       @map("program_id")
+  amount         Decimal?      @db.Decimal(38, 2)
+  paymentDate    DateTime?     @map("payment_date") @db.Date
+  dueDate        DateTime?     @map("due_date") @db.Date
+  status         String?       @db.VarChar(255)
+  paymentMethod  String?       @map("payment_method") @db.VarChar(255)
+  transactionId  String?       @map("transaction_id") @db.VarChar(255)
+  notes          String?       @db.VarChar(255)
+  createdAt      DateTime?     @map("created_at") @db.Timestamp(6)
+
+  @@map("payments")
+}
+
+model Video {
+  id           BigInt    @id @default(autoincrement())
+  title        String    @db.VarChar(255)
+  description  String?
+  videoUrl     String    @map("video_url") @db.VarChar(255)
+  thumbnailUrl String?   @map("thumbnail_url") @db.VarChar(255)
+  duration     String    @db.VarChar(255)
+  category     String    @db.VarChar(255)
+  views        Int?      @default(0)
+  createdAt    DateTime? @map("created_at") @db.Timestamp(6)
+  isActive     Boolean?  @map("is_active") @default(true)
+
+  @@map("videos")
+}
+
+model Gallery {
+  id           BigInt    @id @default(autoincrement())
+  title        String?   @db.VarChar(255)
+  imageUrl     String?   @map("image_url") @db.VarChar(255)
+  category     String?   @db.VarChar(255)
+  description  String?   @db.VarChar(1000)
+  createdAt    DateTime? @map("upload_date") @db.Timestamp(6)
+  uploadedBy   String?   @map("uploaded_by") @db.VarChar(255)
+
+  @@map("gallery")
+}
+
+model AcademyEvent {
+  id          BigInt    @id @default(autoincrement())
+  active      Boolean   @default(true)
+  title       String    @db.VarChar(255)
+  description String?
+  eventDate   DateTime  @map("date") @db.Date
+  location    String?   @db.VarChar(255)
+  time        DateTime? @db.Time(6)
+  sport       String?   @db.VarChar(255)
+  type        String    @db.VarChar(255)
+
+  @@map("academy_events")
+}
+
+model Message {
+  id         BigInt    @id @default(autoincrement())
+  senderId   BigInt    @map("sender_id")
+  receiverId BigInt?   @map("receiver_id")
+  content    String    @db.VarChar(1000)
+  read       Boolean   @default(false)
+  sentAt     DateTime? @map("sent_at") @db.Timestamp(6)
+  readAt     DateTime? @map("read_at") @db.Timestamp(6)
+  attachmentUrl String? @map("attachment_url") @db.VarChar(255)
+  receiverGroup String? @map("receiver_group") @db.VarChar(255)
+
+  sender     User      @relation("SenderToMessage", fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  receiver   User?     @relation("ReceiverToMessage", fields: [receiverId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("messages")
+}
+
+model ChildProgress {
+  id          BigInt    @id @default(autoincrement())
+  childId     BigInt    @map("child_id")
+  child       Child     @relation(fields: [childId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skillName   String    @map("skill_name") @db.VarChar(255)
+  sportName   String    @map("sport_name") @db.VarChar(255)
+  percentage  Int
+  notes       String?   @db.VarChar(255)
+  lastUpdated DateTime? @map("last_updated") @db.Timestamp(6)
+  updatedBy   String?   @map("updated_by") @db.VarChar(255)
+
+  @@map("child_progress")
+}
+
+// Join tables for Many-to-Many
+model child_essential_sports {
+  child_id BigInt
+  sport_id BigInt
+  child    Child  @relation(fields: [child_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sport    Sport  @relation(fields: [sport_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@id([child_id, sport_id])
+}
+
+model child_optional_sports {
+  child_id BigInt
+  sport_id BigInt
+  child    Child  @relation(fields: [child_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sport    Sport  @relation(fields: [sport_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@id([child_id, sport_id])
+}
+
+model child_programs {
+  child_id   BigInt
+  program_id BigInt
+  child      Child   @relation(fields: [child_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  program    Program @relation(fields: [program_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@id([child_id, program_id])
+}
+
+model coach_sports {
+  coach_id BigInt
+  sport_id BigInt
+  coach    Coach  @relation(fields: [coach_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sport    Sport  @relation(fields: [sport_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  @@id([coach_id, sport_id])
+}
+
+model Session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@map("session")
+}

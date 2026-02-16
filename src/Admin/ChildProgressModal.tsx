@@ -27,7 +27,10 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
     const [loading, setLoading] = useState(false);
     const [newSkillName, setNewSkillName] = useState('');
     const [newSportName, setNewSportName] = useState('');
+
     const [isAddingSport, setIsAddingSport] = useState(false);
+    const [hasChanges, setHasChanges] = useState(false);
+    const [saving, setSaving] = useState(false);
 
     // Dynamic list of sports derived from defaults + data
     const [availableSports, setAvailableSports] = useState<string[]>(['Gymnastics', 'Karate']);
@@ -41,8 +44,10 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
     const fetchProgress = async () => {
         setLoading(true);
         try {
+            console.log("Fetching progress for childId:", childId);
             const response = await progressAPI.getProgressByChild(childId);
             const data = response.data;
+            console.log("Fetched progress data:", data);
             setProgressData(data);
 
             // Extract unique sports from data and add to available sports if not already there
@@ -68,19 +73,55 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
         };
     };
 
-    const handleUpdate = async (skill: string, percentage: number, notes?: string) => {
+    const handleUpdate = (skill: string, percentage: number, notes?: string) => {
         const current = getSkillProgress(skill);
+
+        // Don't update if nothing changed
+        if (current.percentage === percentage && current.notes === notes) return;
+
         const updated = { ...current, percentage, notes };
 
-        // Optimistic update
+        // Local state update only
         const otherRecords = progressData.filter(p => !(p.sportName === activeTab && p.skillName === skill));
         setProgressData([...otherRecords, updated]);
+        setHasChanges(true);
+    };
 
+    const saveChanges = async () => {
+        if (!hasChanges) return;
+        setSaving(true);
+        console.log("Starting save process...");
         try {
-            await progressAPI.updateProgress(updated);
-        } catch (error) {
-            console.error("Failed to update progress", error);
-            fetchProgress();
+            const recordsToSave = progressData;
+            console.log(`Saving ${recordsToSave.length} records...`);
+
+            // Execute updates sequentially to avoid potential race conditions
+            for (const record of recordsToSave) {
+                // Explicitly construct payload to ensure data integrity
+                const payload = {
+                    id: record.id,
+                    childId: childId, // Force use of current prop childId
+                    sportName: record.sportName,
+                    skillName: record.skillName,
+                    percentage: record.percentage,
+                    notes: record.notes
+                };
+
+                await progressAPI.updateProgress(payload);
+            }
+
+            // Re-fetch to ensure sync with database
+            await fetchProgress();
+
+            setHasChanges(false);
+            // Show success notification
+            alert("Progress saved successfully!");
+        } catch (error: any) {
+            console.error("Failed to save progress", error);
+            // Show error notification
+            alert(`Failed to save progress: ${error.message || "Unknown error"}`);
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -303,16 +344,42 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
 
                 {/* Footer */}
                 <div className="flex-shrink-0 p-4 bg-cerulean-blue-950 border-t border-cerulean-blue-800 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
-                    <div className="flex items-center space-x-2 text-green-400 text-sm font-bold animate-pulse">
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
-                        <span>AUTOSAVE ACTIVE</span>
+                    <div className="flex items-center space-x-2">
+                        {hasChanges ? (
+                            <span className="text-yellow-400 text-sm font-bold animate-pulse">
+                                ● Unsaved Changes
+                            </span>
+                        ) : (
+                            <span className="text-gray-500 text-sm">
+                                No changes pending
+                            </span>
+                        )}
                     </div>
-                    <button
-                        onClick={onClose}
-                        className="px-8 py-2.5 bg-gray-700 text-white font-bold rounded-xl hover:bg-gray-600 active:scale-95 transition-all shadow-md"
-                    >
-                        Finish & Close
-                    </button>
+                    <div className="flex space-x-3">
+                        <button
+                            onClick={onClose}
+                            className="px-6 py-2.5 text-gray-300 hover:text-white font-medium transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={saveChanges}
+                            disabled={!hasChanges || saving}
+                            className={`px-8 py-2.5 font-bold rounded-xl transition-all shadow-md flex items-center space-x-2 ${hasChanges
+                                ? 'bg-bright-sun-400 text-gray-900 hover:brightness-110 active:scale-95'
+                                : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                                }`}
+                        >
+                            {saving ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
+                                    <span>Saving...</span>
+                                </>
+                            ) : (
+                                <span>Save Changes</span>
+                            )}
+                        </button>
+                    </div>
                 </div>
 
             </div>

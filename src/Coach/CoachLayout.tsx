@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     IconLayoutDashboard,
     IconUsers,
@@ -8,146 +8,208 @@ import {
     IconMenu2,
     IconX,
     IconBell,
-    IconUser
+    IconUser,
+    IconSettings,
+    IconHelp
 } from '@tabler/icons-react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../Slices/UserSlice';
+import Header from '../Header/Header';
+import { messageAPI } from '../Services/Api';
+
 const CoachLayout = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [unreadMessages, setUnreadMessages] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const fetchUnread = async () => {
+            try {
+                const count = await messageAPI.getUnreadCount();
+                setUnreadMessages(count);
+            } catch (err) {
+                console.error("Failed to fetch unread count", err);
+            }
+        };
+
+        fetchUnread();
+        const interval = setInterval(fetchUnread, 30000);
+        return () => clearInterval(interval);
+    }, []);
 
     const handleLogout = () => {
         dispatch(removeUser());
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         navigate('/login');
     };
 
     const navItems = [
-        { path: '/coach/dashboard', label: 'Dashboard', icon: IconLayoutDashboard },
-        { path: '/coach/athletes', label: 'My Athletes', icon: IconUsers },
-        { path: '/coach/schedule', label: 'My Schedule', icon: IconCalendarEvent },
-        { path: '/coach/messages', label: 'Messages', icon: IconMessage },
+        { path: '/coach/dashboard', label: 'Dashboard', icon: IconLayoutDashboard, id: 'dashboard' },
+        { path: '/coach/athletes', label: 'My Athletes', icon: IconUsers, id: 'athletes' },
+        { path: '/coach/schedule', label: 'My Schedule', icon: IconCalendarEvent, id: 'schedule' },
+        { path: '/coach/messages', label: 'Messages', icon: IconMessage, id: 'messages', badge: unreadMessages > 0 ? unreadMessages : undefined },
     ];
 
-    return (
-        <div className="flex bg-gray-900 min-h-screen relative text-gray-100 font-sans">
-            
-            {/* Mobile Overlay */}
-            {isSidebarOpen && (
-                <div
-                    className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-sm transition-opacity"
-                    onClick={() => setIsSidebarOpen(false)}
-                />
-            )}
+    const bottomItems = [
+        { path: '/coach/support', label: 'Help & Support', icon: IconHelp, id: 'support' },
+        { path: '/coach/settings', label: 'Profile & Settings', icon: IconSettings, id: 'settings' },
+    ];
 
-            {/* Sidebar */}
-            <aside className={`
-                fixed top-0 left-0 z-50 h-full w-64 bg-gray-800 border-r border-gray-700
-                transform transition-transform duration-300 ease-in-out
-                ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                lg:translate-x-0 lg:static flex flex-col shadow-2xl
-            `}>
-                {/* Logo Area */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-700 bg-gray-800/50">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 rounded-xl flex items-center justify-center shadow-lg shadow-bright-sun-900/20">
-                            <span className="text-gray-900 font-bold text-xl">C</span>
+    const activeItem = [...navItems, ...bottomItems].find(item => location.pathname.includes(item.path)) || navItems[0];
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-cerulean-blue-950">
+            {/* Global Header */}
+            <Header />
+
+            {/* Mobile Header Toggle */}
+            <div className="lg:hidden bg-gray-800 p-4 flex items-center justify-between">
+                <div className="text-white font-bold text-xl">CSA Coach</div>
+                <button
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    className="text-white"
+                >
+                    {isSidebarOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+                </button>
+            </div>
+
+            <div className="flex">
+                {/* Sidebar */}
+                <aside className={`
+                    ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+                    fixed lg:static w-64 min-h-[calc(100vh-96px)] bg-gray-800/90 backdrop-blur-sm z-40
+                    transition-transform duration-300 ease-in-out
+                    border-r border-gray-700 flex flex-col shadow-2xl
+                `}>
+                    {/* Panel Label */}
+                    <div className="p-6 border-b border-gray-700">
+                        <div className="text-white text-2xl font-bold text-center">
+                            Coach <span className="text-bright-sun-400">Panel</span>
                         </div>
-                        <div>
-                            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                                Coach Panel
-                            </span>
-                            <div className="text-xs text-bright-sun-400 font-medium tracking-wide">CHAMPION ACADEMY</div>
+                        <div className="text-gray-400 text-sm text-center mt-1 uppercase tracking-widest text-[10px]">
+                            Champion Sports Academy
                         </div>
                     </div>
-                    <button
-                        onClick={() => setIsSidebarOpen(false)}
-                        className="lg:hidden text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-gray-700"
-                    >
-                        <IconX size={24} />
-                    </button>
-                </div>
 
-                {/* Navigation */}
-                <nav className="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
-                    <div className="space-y-1.5">
-                        <div className="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                            Menu
-                        </div>
+                    {/* Navigation */}
+                    <nav className="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar space-y-2">
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.path}
                                 to={item.path}
-                                onClick={() => setIsSidebarOpen(false)}
+                                onClick={() => window.innerWidth < 1024 && setIsSidebarOpen(false)}
                                 className={({ isActive }) => `
-                                    flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group
+                                    flex items-center justify-between p-3 rounded-xl transition-all duration-200 group
                                     ${isActive
-                                        ? 'bg-gradient-to-r from-bright-sun-500 to-bright-sun-600 text-gray-900 font-bold shadow-lg shadow-bright-sun-900/20'
+                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400 shadow-lg'
                                         : 'text-gray-400 hover:bg-gray-700/50 hover:text-white'
                                     }
                                 `}
                             >
-                                <item.icon size={20} className="stroke-[2.5]" />
-                                <span className="text-sm">{item.label}</span>
+                                <div className="flex items-center gap-3">
+                                    <item.icon size={20} className="stroke-[2]" />
+                                    <span className="text-sm font-medium">{item.label}</span>
+                                </div>
+                                {item.badge && (
+                                    <span className="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+                                        {item.badge}
+                                    </span>
+                                )}
                             </NavLink>
                         ))}
-                    </div>
-                </nav>
 
-                {/* User Profile & Logout */}
-                <div className="p-4 border-t border-gray-700 bg-gray-800/80">
-                    <button
-                        onClick={handleLogout}
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200 group"
-                    >
-                        <IconLogout size={20} className="group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-sm font-semibold">Sign Out</span>
-                    </button>
-                </div>
-            </aside>
+                        <div className="pt-4 pb-2">
+                            <div className="border-t border-gray-700/50 mx-2"></div>
+                        </div>
 
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-                {/* Header */}
-                <header className="h-16 bg-gray-800/50 backdrop-blur-md border-b border-gray-700 flex items-center justify-between px-4 lg:px-8 z-30 sticky top-0">
-                    <div className="flex items-center gap-4">
+                        {bottomItems.map((item) => (
+                            <NavLink
+                                key={item.path}
+                                to={item.path}
+                                onClick={() => window.innerWidth < 1024 && setIsSidebarOpen(false)}
+                                className={({ isActive }) => `
+                                    flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group
+                                    ${isActive
+                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                        : 'text-gray-400 hover:bg-gray-700/50 hover:text-white'
+                                    }
+                                `}
+                            >
+                                <item.icon size={20} stroke={2} />
+                                <span className="text-sm font-medium">{item.label}</span>
+                            </NavLink>
+                        ))}
+                    </nav>
+
+                    {/* Bottom Logout */}
+                    <div className="p-4 border-t border-gray-700 bg-gray-800/80">
                         <button
-                            onClick={() => setIsSidebarOpen(true)}
-                            className="lg:hidden p-2 text-gray-400 hover:text-white hover:bg-gray-700/50 rounded-lg transition-colors"
+                            onClick={handleLogout}
+                            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200 group border border-red-400/10"
                         >
-                            <IconMenu2 size={24} />
+                            <IconLogout size={20} className="group-hover:-translate-x-1 transition-transform" />
+                            <span className="text-sm font-semibold">Sign Out</span>
                         </button>
-                        <h1 className="text-lg lg:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 truncate">
-                            Dashboard
-                        </h1>
                     </div>
+                </aside>
 
-                    <div className="flex items-center gap-3 lg:gap-4">
-                        <button className="relative p-2 text-gray-400 hover:text-white hover:bg-gray-700/50 rounded-lg transition-all hover:scale-105">
-                            <IconBell size={20} />
-                            <span className="absolute top-2 right-2.5 w-2 h-2 bg-bright-sun-500 rounded-full animate-pulse border-2 border-gray-800"></span>
-                        </button>
-                        <div className="h-8 w-[1px] bg-gray-700 mx-1"></div>
-                        <div className="flex items-center gap-3 pl-1">
-                            <div className="text-right hidden sm:block">
-                                <div className="text-sm font-bold text-white">Coach</div>
-                                <div className="text-xs text-gray-400">Head Coach</div>
+                {/* Main Content Area */}
+                <div className="flex-1 p-4 lg:p-8 min-w-0">
+                    {/* Top Bar Section (Matches Manager Style) */}
+                    <div className="mb-8 animate-fade-in">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            <div>
+                                <h1 className="text-3xl font-bold text-white tracking-tight">
+                                    {activeItem.label}
+                                </h1>
+                                <p className="text-gray-400 mt-1 text-sm">
+                                    {activeItem.id === 'dashboard' ? "Welcome back, Coach! Here's your overview." :
+                                        activeItem.id === 'athletes' ? "Manage and track your students' progress." :
+                                            "Champion Sports Academy Personnel Portal"}
+                                </p>
                             </div>
-                            <div className="w-9 h-9 bg-gray-700 rounded-full border-2 border-gray-600 flex items-center justify-center overflow-hidden">
-                                <IconUser size={20} className="text-gray-300" />
+
+                            <div className="flex items-center space-x-6">
+                                {/* Notifications */}
+                                <button className="relative text-gray-300 hover:text-white p-2.5 hover:bg-gray-700/50 rounded-xl bg-gray-800/40 border border-gray-700/40 shadow-sm transition-all hover:scale-105">
+                                    <IconBell size={22} />
+                                    <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-bright-sun-500 rounded-full border-2 border-gray-900 animate-pulse"></span>
+                                </button>
+
+                                {/* User Profile */}
+                                <div className="flex items-center space-x-4 p-2 pl-4 hover:bg-gray-700/50 rounded-2xl transition-all border border-transparent hover:border-gray-700/50 cursor-pointer group">
+                                    <div className="text-right hidden sm:block">
+                                        <div className="text-white font-bold text-sm group-hover:text-bright-sun-400 transition-colors">Head Coach</div>
+                                        <div className="text-gray-400 text-xs uppercase tracking-tighter">Verified Coach</div>
+                                    </div>
+                                    <div className="w-12 h-12 bg-bright-sun-400/20 rounded-2xl flex items-center justify-center border-2 border-bright-sun-400/30 group-hover:border-bright-sun-400 transition-all transform group-hover:rotate-3 shadow-lg shadow-bright-sun-900/10">
+                                        <span className="text-bright-sun-400 font-black text-xl">C</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </header>
 
-                {/* Page Content */}
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900/50 p-4 lg:p-8 scroll-smooth">
-                    <div className="max-w-7xl mx-auto animate-fade-in">
-                        <Outlet />
-                    </div>
-                </main>
+                    {/* Content Backdrop */}
+                    <main className="bg-gray-800/30 backdrop-blur-md rounded-3xl border border-gray-700/40 p-6 lg:p-8 min-h-[60vh] shadow-xl">
+                        <div className="max-w-7xl mx-auto">
+                            <Outlet />
+                        </div>
+                    </main>
+                </div>
             </div>
+
+            {/* Mobile Overlay */}
+            {isSidebarOpen && (
+                <div
+                    className="lg:hidden fixed inset-0 bg-black/60 z-30 transition-opacity backdrop-blur-sm"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
         </div>
     );
 };

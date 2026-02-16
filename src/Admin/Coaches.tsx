@@ -20,6 +20,8 @@ const Coaches = () => {
     const [loading, setLoading] = useState(true);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+    const [editingCoach, setEditingCoach] = useState<Coach | null>(null);
+
     useEffect(() => {
         fetchCoaches();
     }, []);
@@ -37,22 +39,58 @@ const Coaches = () => {
 
     const handleAddCoach = async (coachData: any) => {
         try {
-            await coachAPI.createCoach(coachData);
-            notifications.show({
-                title: 'Success',
-                message: 'Coach added successfully',
-                color: 'green',
-            });
+            if (editingCoach) {
+                await coachAPI.updateCoach(editingCoach.id, coachData);
+                notifications.show({
+                    title: 'Success',
+                    message: 'Coach updated successfully',
+                    color: 'green',
+                });
+            } else {
+                await coachAPI.createCoach(coachData);
+                notifications.show({
+                    title: 'Success',
+                    message: 'Coach added successfully',
+                    color: 'green',
+                });
+            }
             setIsAddModalOpen(false);
-            fetchCoaches(); // Refresh list
+            setEditingCoach(null);
+            fetchCoaches();
         } catch (error: any) {
-            console.error("Failed to create coach", error);
-            const errorMessage = error.response?.data?.message || error.response?.data || "Failed to create coach";
+            console.error("Failed to save coach", error);
+            const errorMessage = error.response?.data?.message || error.response?.data || "Failed to save coach";
             notifications.show({
                 title: 'Error',
                 message: typeof errorMessage === 'string' ? errorMessage : 'Check your inputs and try again',
                 color: 'red',
             });
+        }
+    };
+
+    const handleEdit = (coach: Coach) => {
+        setEditingCoach(coach);
+        setIsAddModalOpen(true);
+    };
+
+    const handleRemove = async (id: number) => {
+        if (window.confirm('Are you sure you want to remove this coach? This action cannot be undone.')) {
+            try {
+                await coachAPI.deleteCoach(id);
+                notifications.show({
+                    title: 'Success',
+                    message: 'Coach removed successfully',
+                    color: 'green',
+                });
+                fetchCoaches();
+            } catch (error: any) {
+                console.error("Failed to delete coach", error);
+                notifications.show({
+                    title: 'Error',
+                    message: 'Failed to delete coach',
+                    color: 'red',
+                });
+            }
         }
     };
 
@@ -70,7 +108,10 @@ const Coaches = () => {
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-white">Coaches Management</h2>
                 <button
-                    onClick={() => setIsAddModalOpen(true)}
+                    onClick={() => {
+                        setEditingCoach(null);
+                        setIsAddModalOpen(true);
+                    }}
                     className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
                 >
                     Add New Coach
@@ -139,11 +180,17 @@ const Coaches = () => {
                                         <td className="p-4">
                                             <div className="flex flex-wrap gap-1">
                                                 {coach.sports && coach.sports.length > 0 ? (
-                                                    coach.sports.map((sport, idx) => (
+                                                    coach.sports.map((sportItem: any, idx) => (
                                                         <span key={idx} className="text-white text-xs bg-gray-700 px-2 py-0.5 rounded">
-                                                            {sport}
+                                                            {typeof sportItem === 'string'
+                                                                ? sportItem
+                                                                : sportItem?.sport?.name || sportItem?.name || 'Unknown'}
                                                         </span>
                                                     ))
+                                                ) : coach.specialization ? (
+                                                    <span className="text-white text-xs bg-gray-700 px-2 py-0.5 rounded">
+                                                        {coach.specialization}
+                                                    </span>
                                                 ) : (
                                                     <span className="text-gray-500 italic">None</span>
                                                 )}
@@ -166,9 +213,19 @@ const Coaches = () => {
                                         </td>
                                         <td className="p-4">
                                             <div className="flex space-x-2">
-                                                <button className="text-blue-400 hover:text-blue-300 px-3 py-1 bg-blue-500/10 rounded">View</button>
-                                                <button className="text-bright-sun-400 hover:text-bright-sun-300 px-3 py-1 bg-bright-sun-400/10 rounded">Edit</button>
-                                                <button className="text-red-400 hover:text-red-300 px-3 py-1 bg-red-500/10 rounded">Remove</button>
+                                                <button
+                                                    onClick={() => handleEdit(coach)}
+                                                    className="text-blue-400 hover:text-blue-300 px-3 py-1 bg-blue-500/10 rounded"
+                                                >
+                                                    View / Edit
+                                                </button>
+                                                {/* <button className="text-bright-sun-400 hover:text-bright-sun-300 px-3 py-1 bg-bright-sun-400/10 rounded">Edit</button> */}
+                                                <button
+                                                    onClick={() => handleRemove(coach.id)}
+                                                    className="text-red-400 hover:text-red-300 px-3 py-1 bg-red-500/10 rounded"
+                                                >
+                                                    Remove
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -181,8 +238,12 @@ const Coaches = () => {
 
             <AddCoachModal
                 isOpen={isAddModalOpen}
-                onClose={() => setIsAddModalOpen(false)}
+                onClose={() => {
+                    setIsAddModalOpen(false);
+                    setEditingCoach(null);
+                }}
                 onSubmit={handleAddCoach}
+                initialData={editingCoach}
             />
         </div>
     );

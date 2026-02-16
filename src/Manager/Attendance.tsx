@@ -8,7 +8,10 @@ import {
     IconUsers,
     IconDownload,
     IconFilter,
-    IconCalendar
+    IconCalendar,
+    IconSun,
+    IconMoon,
+    IconPaw
 } from "@tabler/icons-react";
 import * as AttendanceService from "../Services/AttendanceService";
 import { AttendanceDTO } from "../Services/AttendanceService";
@@ -30,51 +33,47 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
     const [selectedClass, setSelectedClass] = useState("all");
     const [sportFilter, setSportFilter] = useState("all");
     const [isLoading, setIsLoading] = useState(false);
+    const [session, setSession] = useState<"morning" | "afternoon">("morning");
+    const [holidayMode, setHolidayMode] = useState(false);
 
-    // Initialize/Fetch attendance data
+    const isWeekend = (dateString: string) => {
+        const d = new Date(dateString);
+        const day = d.getDay();
+        return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
+    };
+
+    const isDateDisabled = !holidayMode && !isWeekend(date);
+
+    // Fetch attendance data
     useEffect(() => {
         const fetchAttendance = async () => {
+            if (isDateDisabled) return;
+
             setIsLoading(true);
             try {
+                // Fetch for the current date/session/context
+                // In a real app, we'd fetch children for the selected program/date
+                // and coaches for the selected date
+
                 if (attendanceType === "children") {
-                    // For children, we might need to fetch by program or iterate.
-                    // Ideally, we fetch by Program if selected, or all.
-                    // Since the current props provide all children, let's fetch for the current date?
-                    // The backend API `getAttendanceByProgram` requires a programId.
-                    // If we have children from diverse programs, we might need to fetch differently or loop.
-                    // For now, let's reset to default 'absent' and then overlay fetched data if available.
+                    // Initialize with defaults if not already set (to preserve marks when switching tabs)
+                    setChildrenAttendance(prev => {
+                        const next = { ...prev };
+                        children.forEach(child => {
+                            if (!next[child.id]) next[child.id] = "absent";
+                        });
+                        return next;
+                    });
 
-                    // Default state
-                    const initial: AttendanceState = {};
-                    children.forEach(child => initial[child.id] = "absent"); // Default to absent
-
-                    // FETCH: We need an endpoint to get all attendance for a date or loop through programs.
-                    // Assuming children prop is filtered list or we just want to load what we have.
-                    // Optimization: add `getAttendanceByDate` to backend later or iterate children.
-
-                    // Simple approach for now:
-                    // If we had a program context, we'd use it.
-                    // Let's iterate distinct programs from children list to fetch attendance?
-                    // Or just use defaults for "New" entry and assume past dates are read-only or fetched differently.
-                    // Let's stick to Local State defaults for now as "New" sheet daily.
-
-                    // WAIT, we CAN fetch by child individually but that's too many requests.
-                    // Let's assume we are marking NEW attendance for today.
-                    // If we change date, we should try to load.
-
-                    // For demo purposes, we'll keep local state default, but we should clear it on date change.
-                    setChildrenAttendance(initial);
-
+                    // TODO: Fetch from backend once we have the right endpoint for bulk fetch by date
                 } else {
-                    // Coaches
-                    const initial: AttendanceState = {};
-                    coaches.forEach(coach => initial[coach.id] = "present"); // Default to present
-                    setCoachesAttendance(initial);
-
-                    // Try to fetch coach attendance for this date
-                    // We don't have a "getAllCoachAttendance(date)" endpoint yet.
-                    // We have `getAttendanceByCoach`. 
-                    // Let's skip complex fetching for now and focus on SAVING.
+                    setCoachesAttendance(prev => {
+                        const next = { ...prev };
+                        coaches.forEach(coach => {
+                            if (!next[coach.id]) next[coach.id] = "present";
+                        });
+                        return next;
+                    });
                 }
             } catch (error) {
                 console.error("Error fetching attendance", error);
@@ -84,7 +83,13 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
         };
 
         fetchAttendance();
-    }, [date, children, coaches, attendanceType]);
+    }, [date, children, coaches, attendanceType, isDateDisabled]);
+
+    // Reset local changes when DATE or SESSION changes (since it's a new context)
+    useEffect(() => {
+        setChildrenAttendance({});
+        setCoachesAttendance({});
+    }, [date, session]);
 
     const handleChildAttendance = (childId: number, status: "present" | "absent" | "late") => {
         setChildrenAttendance(prev => ({
@@ -187,7 +192,9 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
 
     // Filter children based on class and sport
     const filteredChildren = children.filter(child => {
-        const matchesClass = selectedClass === "all" || true;
+        const matchesClass = selectedClass === "all" ||
+            (child.programId?.toString() === selectedClass) ||
+            (child.sport?.toLowerCase() + "-" + (child.belt || child.level)?.toLowerCase() === selectedClass);
         const matchesSport = sportFilter === "all" || child.sport === sportFilter;
         return matchesClass && matchesSport;
     });
@@ -222,7 +229,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
 
             {/* Attendance Controls */}
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     <div>
                         <label className="block text-gray-300 text-sm mb-2">Date</label>
                         <input
@@ -257,61 +264,92 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                         </div>
                     </div>
 
-                    {attendanceType === "children" && (
-                        <>
-                            <div>
-                                <label className="block text-gray-300 text-sm mb-2">Class</label>
-                                <select
-                                    value={selectedClass}
-                                    onChange={(e) => setSelectedClass(e.target.value)}
-                                    className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
-                                >
-                                    <option value="all">All Classes</option>
-                                    <option value="karate-beginners">Karate Beginners</option>
-                                    <option value="karate-intermediate">Karate Intermediate</option>
-                                    <option value="gymnastics-beginners">Gymnastics Beginners</option>
-                                    <option value="gymnastics-advanced">Gymnastics Advanced</option>
-                                </select>
-                            </div>
+                    <div>
+                        <label className="block text-gray-300 text-sm mb-2">Session</label>
+                        <div className="flex bg-gray-700/50 p-1 rounded-lg">
+                            <button
+                                onClick={() => setSession("morning")}
+                                className={`flex-1 flex items-center justify-center py-1.5 px-2 rounded-md transition-all ${session === "morning"
+                                    ? 'bg-bright-sun-400 text-gray-900 font-bold shadow-sm'
+                                    : 'text-gray-400 hover:text-white'
+                                    }`}
+                            >
+                                <IconSun size={16} className="mr-2" />
+                                <span className="text-[10px] xl:text-xs">10am - 12pm</span>
+                            </button>
+                            <button
+                                onClick={() => setSession("afternoon")}
+                                className={`flex-1 flex items-center justify-center py-1.5 px-2 rounded-md transition-all ${session === "afternoon"
+                                    ? 'bg-bright-sun-400 text-gray-900 font-bold shadow-sm'
+                                    : 'text-gray-400 hover:text-white'
+                                    }`}
+                            >
+                                <IconMoon size={16} className="mr-2" />
+                                <span className="text-[10px] xl:text-xs">3pm - 5pm</span>
+                            </button>
+                        </div>
+                    </div>
 
-                            <div>
-                                <label className="block text-gray-300 text-sm mb-2">Sport</label>
-                                <select
-                                    value={sportFilter}
-                                    onChange={(e) => setSportFilter(e.target.value)}
-                                    className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
-                                >
-                                    <option value="all">All Sports</option>
-                                    <option value="Karate">Karate</option>
-                                    <option value="Gymnastics">Gymnastics</option>
-                                </select>
-                            </div>
-                        </>
+                    {attendanceType === "children" && (
+                        <div>
+                            <label className="block text-gray-300 text-sm mb-2">Class</label>
+                            <select
+                                value={selectedClass}
+                                onChange={(e) => setSelectedClass(e.target.value)}
+                                className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            >
+                                <option value="all">All Classes</option>
+                                <option value="karate-beginners">Karate Beginners</option>
+                                <option value="karate-intermediate">Karate Intermediate</option>
+                                <option value="gymnastics-beginners">Gymnastics Beginners</option>
+                                <option value="gymnastics-advanced">Gymnastics Advanced</option>
+                            </select>
+                        </div>
                     )}
+
+                    <div className="flex flex-col justify-end">
+                        <button
+                            onClick={() => setHolidayMode(!holidayMode)}
+                            className={`w-full py-2 rounded-lg border transition-all flex items-center justify-center space-x-2 ${holidayMode
+                                ? 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+                                : 'bg-gray-700/50 text-gray-400 border-gray-600 hover:border-gray-500'
+                                }`}
+                        >
+                            <IconPaw size={20} />
+                            <span className="font-medium text-sm">Holiday Mode: {holidayMode ? 'ON' : 'OFF'}</span>
+                        </button>
+                    </div>
                 </div>
+
+                {isDateDisabled && (
+                    <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center space-x-3 text-red-400">
+                        <IconX size={20} />
+                        <p className="text-sm">Attendance can only be marked on weekends (Sat/Sun) unless Holiday Mode is enabled.</p>
+                    </div>
+                )}
 
                 {/* Quick Actions */}
                 <div className="flex space-x-4 mt-6">
                     <button
                         onClick={handleMarkAllPresent}
-                        className="px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/30 rounded-lg hover:bg-green-500/30 transition-colors flex items-center space-x-2"
-                        disabled={isLoading}
+                        className={`px-4 py-2 bg-green-500/20 text-green-400 border border-green-500/30 rounded-lg hover:bg-green-500/30 transition-colors flex items-center space-x-2 ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={isLoading || isDateDisabled}
                     >
                         <IconCheck size={20} />
                         <span>Mark All Present</span>
                     </button>
                     <button
                         onClick={handleMarkAllAbsent}
-                        className="px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg hover:bg-red-500/30 transition-colors flex items-center space-x-2"
-                        disabled={isLoading}
+                        className={`px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg hover:bg-red-500/30 transition-colors flex items-center space-x-2 ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={isLoading || isDateDisabled}
                     >
                         <IconX size={20} />
                         <span>Mark All Absent</span>
                     </button>
                     <button
                         onClick={handleSaveAttendance}
-                        disabled={isLoading}
-                        className={`px-6 py-2 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                        disabled={isLoading || isDateDisabled}
+                        className={`px-6 py-2 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all ${isLoading || isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                     >
                         {isLoading ? 'Saving...' : 'Save Attendance'}
@@ -366,7 +404,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <div key={child.id} className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700/50 rounded-xl">
                                 <div className="flex items-center space-x-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${childrenAttendance[child.id] === "present" ? 'bg-green-500/20' :
-                                            childrenAttendance[child.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
+                                        childrenAttendance[child.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
                                         }`}>
                                         {childrenAttendance[child.id] === "present" ? (
                                             <IconCheck className="text-green-400" size={20} />
@@ -387,7 +425,8 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                 <div className="flex space-x-2">
                                     <button
                                         onClick={() => handleChildAttendance(child.id, "present")}
-                                        className={`px-4 py-2 rounded-lg transition-colors ${childrenAttendance[child.id] === "present"
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${childrenAttendance[child.id] === "present"
                                             ? 'bg-green-500 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
@@ -396,7 +435,8 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                     </button>
                                     <button
                                         onClick={() => handleChildAttendance(child.id, "absent")}
-                                        className={`px-4 py-2 rounded-lg transition-colors ${childrenAttendance[child.id] === "absent"
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${childrenAttendance[child.id] === "absent"
                                             ? 'bg-red-500 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
@@ -405,7 +445,8 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                     </button>
                                     <button
                                         onClick={() => handleChildAttendance(child.id, "late")}
-                                        className={`px-4 py-2 rounded-lg transition-colors ${childrenAttendance[child.id] === "late"
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${childrenAttendance[child.id] === "late"
                                             ? 'bg-yellow-500 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
@@ -422,7 +463,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <div key={coach.id} className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700/50 rounded-xl">
                                 <div className="flex items-center space-x-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${coachesAttendance[coach.id] === "present" ? 'bg-green-500/20' :
-                                            coachesAttendance[coach.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
+                                        coachesAttendance[coach.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
                                         }`}>
                                         {coachesAttendance[coach.id] === "present" ? (
                                             <IconCheck className="text-green-400" size={20} />
@@ -446,7 +487,8 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                 <div className="flex space-x-2">
                                     <button
                                         onClick={() => handleCoachAttendance(coach.id, "present")}
-                                        className={`px-4 py-2 rounded-lg transition-colors ${coachesAttendance[coach.id] === "present"
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${coachesAttendance[coach.id] === "present"
                                             ? 'bg-green-500 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
@@ -455,15 +497,23 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                     </button>
                                     <button
                                         onClick={() => handleCoachAttendance(coach.id, "absent")}
-                                        className={`px-4 py-2 rounded-lg transition-colors ${coachesAttendance[coach.id] === "absent"
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${coachesAttendance[coach.id] === "absent"
                                             ? 'bg-red-500 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
                                     >
                                         Absent
                                     </button>
-                                    <button className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors">
-                                        View Details
+                                    <button
+                                        onClick={() => handleCoachAttendance(coach.id, "late")}
+                                        disabled={isDateDisabled}
+                                        className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${coachesAttendance[coach.id] === "late"
+                                            ? 'bg-yellow-500 text-white'
+                                            : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
+                                            }`}
+                                    >
+                                        Late
                                     </button>
                                 </div>
                             </div>
@@ -516,8 +566,8 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                         <td className="py-3 px-4 text-white">{coach.attendance.total}</td>
                                         <td className="py-3 px-4">
                                             <span className={`px-2 py-1 rounded-full text-xs ${rate >= 90 ? 'bg-green-500/20 text-green-400' :
-                                                    rate >= 80 ? 'bg-yellow-500/20 text-yellow-400' :
-                                                        'bg-red-500/20 text-red-400'
+                                                rate >= 80 ? 'bg-yellow-500/20 text-yellow-400' :
+                                                    'bg-red-500/20 text-red-400'
                                                 }`}>
                                                 {rate}%
                                             </span>
@@ -532,7 +582,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                     </table>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

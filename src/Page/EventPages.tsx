@@ -25,7 +25,7 @@ const EventPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Fetch videos and categories from backend
   useEffect(() => {
     fetchVideos();
@@ -57,9 +57,23 @@ const EventPage = () => {
   };
 
   // Filter videos based on category
-  const filteredVideos = selectedCategory === "All" 
-    ? videos 
+  const filteredVideos = selectedCategory === "All"
+    ? videos
     : videos.filter(video => video.category === selectedCategory);
+
+  const getEmbedUrl = (url: string) => {
+    let videoId = '';
+
+    if (url.includes('youtu.be/')) {
+      videoId = url.split('youtu.be/')[1].split('?')[0];
+    } else if (url.includes('v=')) {
+      videoId = url.split('v=')[1].split('&')[0];
+    } else if (url.includes('embed/')) {
+      return url; // Already an embed URL
+    }
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1` : url;
+  };
 
   const openVideoModal = (video: Video) => {
     setSelectedVideo(video);
@@ -80,14 +94,14 @@ const EventPage = () => {
   if (loading) {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
-        <Header/>
+        <Header />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
             <p className="text-white mt-4">Loading videos...</p>
           </div>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
@@ -96,7 +110,7 @@ const EventPage = () => {
   if (error) {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
-        <Header/>
+        <Header />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
             <div className="text-red-400 mb-4">
@@ -114,7 +128,7 @@ const EventPage = () => {
             </button>
           </div>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
@@ -123,8 +137,8 @@ const EventPage = () => {
   if (videos.length === 0) {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
-        <Header/>
-        
+        <Header />
+
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
@@ -154,16 +168,16 @@ const EventPage = () => {
             </div>
           </div>
         </main>
-        
-        <Footer/>
+
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
-      <Header/>
-      
+      <Header />
+
       <main className="py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -183,11 +197,10 @@ const EventPage = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-5 py-2 rounded-full transition-colors duration-300 ${
-                    selectedCategory === category
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-cerulean-blue-800 text-gray-300 hover:bg-cerulean-blue-700'
-                  }`}
+                  className={`px-5 py-2 rounded-full transition-colors duration-300 ${selectedCategory === category
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-cerulean-blue-800 text-gray-300 hover:bg-cerulean-blue-700'
+                    }`}
                 >
                   {category}
                 </button>
@@ -198,16 +211,16 @@ const EventPage = () => {
           {/* Videos Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredVideos.map((video) => (
-              <div 
+              <div
                 key={video.id}
                 className="bg-cerulean-blue-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 onClick={() => openVideoModal(video)}
               >
-                  {/* Video Thumbnail */}
+                {/* Video Thumbnail */}
                 <div className="relative pt-[56.25%] bg-cerulean-blue-800">
                   {video.thumbnailUrl ? (
-                    <img 
-                      src={video.thumbnailUrl.startsWith('http') ? video.thumbnailUrl : `http://localhost:8081${video.thumbnailUrl}`} 
+                    <img
+                      src={video.thumbnailUrl.startsWith('http') ? video.thumbnailUrl : `http://localhost:8081${video.thumbnailUrl}`}
                       alt={video.title}
                       className="absolute top-0 left-0 w-full h-full object-cover"
                       onError={(e) => {
@@ -241,7 +254,7 @@ const EventPage = () => {
                     </span>
                   </div>
                 </div>
-                
+
                 {/* Video Info */}
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
@@ -249,11 +262,11 @@ const EventPage = () => {
                       {video.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-gray-300 mb-4 line-clamp-2">
                     {video.description}
                   </p>
-                  
+
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400 text-sm">
                       {new Date(video.createdAt).toLocaleDateString()}
@@ -298,35 +311,46 @@ const EventPage = () => {
       {isModalOpen && selectedVideo && (
         <>
           {/* Backdrop */}
-          <div 
+          <div
             className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
             onClick={closeVideoModal}
           >
-            <div 
+            <div
               className="bg-cerulean-blue-900 rounded-2xl w-full max-w-4xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Video Player */}
               <div className="relative pt-[56.25%] bg-black">
-                <video
-                  controls
-                  autoPlay
-                  className="absolute top-0 left-0 w-full h-full"
-                  poster={selectedVideo.thumbnailUrl ? (selectedVideo.thumbnailUrl.startsWith('http') ? selectedVideo.thumbnailUrl : `http://localhost:8081${selectedVideo.thumbnailUrl}`) : undefined}
-                >
-                  <source src={selectedVideo.videoUrl.startsWith('http') ? selectedVideo.videoUrl : `http://localhost:8081${selectedVideo.videoUrl}`} />
-                  Your browser does not support the video tag.
-                </video>
+                {selectedVideo.videoUrl.includes('youtube.com') || selectedVideo.videoUrl.includes('youtu.be') ? (
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={getEmbedUrl(selectedVideo.videoUrl)}
+                    title={selectedVideo.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <video
+                    controls
+                    autoPlay
+                    className="absolute top-0 left-0 w-full h-full"
+                    poster={selectedVideo.thumbnailUrl ? (selectedVideo.thumbnailUrl.startsWith('http') ? selectedVideo.thumbnailUrl : `http://localhost:8081${selectedVideo.thumbnailUrl}`) : undefined}
+                  >
+                    <source src={selectedVideo.videoUrl.startsWith('http') ? selectedVideo.videoUrl : `http://localhost:8081${selectedVideo.videoUrl}`} />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
                 <button
                   onClick={closeVideoModal}
-                  className="absolute top-4 right-4 bg-black/70 text-white p-2 rounded-full hover:bg-black/90 transition-colors"
+                  className="absolute top-4 right-4 bg-black/70 text-white p-2 rounded-full hover:bg-black/90 transition-colors z-10"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
-              
+
               {/* Video Details */}
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
@@ -350,11 +374,11 @@ const EventPage = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-300 mb-6">
                   {selectedVideo.description}
                 </p>
-                
+
                 <div className="flex justify-end">
                   <button
                     onClick={closeVideoModal}
@@ -368,8 +392,8 @@ const EventPage = () => {
           </div>
         </>
       )}
-      
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };

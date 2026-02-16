@@ -16,45 +16,45 @@ import { managerAPI } from "../Services/Api";
 
 // Define TypeScript interfaces
 interface CoachAttendance {
-  id?: number;
-  name: string;
-  sport: string;
-  rate: number;
-  present: number;
-  total: number;
+    id?: number;
+    name: string;
+    sport: string;
+    rate: number;
+    present: number;
+    total: number;
 }
 
 interface DashboardStats {
-  totalChildren: number;
-  activeCoaches: number;
-  pendingRegistrations: number;
-  totalRevenue: number;
-  attendanceRate: number;
-  coachAttendance: CoachAttendance[];
+    totalChildren: number;
+    activeCoaches: number;
+    pendingRegistrations: number;
+    totalRevenue: number;
+    attendanceRate: number;
+    coachAttendance: CoachAttendance[];
 }
 
 interface RecentActivity {
-  id: number;
-  action: string;
-  user: string;
-  time: string;
+    id: number;
+    action: string;
+    user: string;
+    time: string;
 }
 
 interface UpcomingTask {
-  id: number;
-  task: string;
-  priority: 'high' | 'medium' | 'low';
-  due: string;
+    id: number;
+    task: string;
+    priority: 'high' | 'medium' | 'low';
+    due: string;
 }
 
 interface StatItem {
-  title: string;
-  value: string;
-  change: string;
-  trend: 'up' | 'down';
-  icon: React.ReactNode;
-  color: string;
-  borderColor: string;
+    title: string;
+    value: string;
+    change: string;
+    trend: 'up' | 'down';
+    icon: React.ReactNode;
+    color: string;
+    borderColor: string;
 }
 
 const ManagerDashboard = () => {
@@ -105,7 +105,7 @@ const ManagerDashboard = () => {
     const stats: StatItem[] = [
         {
             title: "Total Children",
-            value: statsData.totalChildren.toLocaleString(),
+            value: (statsData.totalChildren || 0).toLocaleString(),
             change: "+3",
             trend: "up",
             icon: <IconUsers className="text-blue-400" size={24} />,
@@ -132,7 +132,7 @@ const ManagerDashboard = () => {
         },
         {
             title: "Monthly Revenue",
-            value: `RWF ${statsData.totalRevenue.toLocaleString()}`,
+            value: `RWF ${(statsData.totalRevenue || 0).toLocaleString()}`,
             change: "+15%",
             trend: "up",
             icon: <IconCash className="text-yellow-400" size={24} />,

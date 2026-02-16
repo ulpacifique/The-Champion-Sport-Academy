@@ -14,7 +14,8 @@ import {
     IconBell,
     IconHelp,
     IconClipboardCheck,
-    IconChartBar
+    IconChartBar,
+    IconCreditCard
 } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { messageAPI } from "../Services/Api";
@@ -55,6 +56,7 @@ const ManagerLayout = ({
         { id: "coaches", label: "Coaches", icon: <IconUserCheck size={20} /> },
         { id: "attendance", label: "Attendance", icon: <IconClipboardCheck size={20} /> },
         { id: "salaries", label: "Salaries", icon: <IconCash size={20} /> },
+        { id: "payments", label: "Payments", icon: <IconCreditCard size={20} /> },
         { id: "messages", label: "Messages", icon: <IconMessage size={20} />, badge: unreadMessages > 0 ? unreadMessages : undefined },
         { id: "reports", label: "Reports", icon: <IconChartBar size={20} /> },
     ];

@@ -4,7 +4,7 @@ import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import ForgotPassword from "./Auth/ForgotPassword";
 
-const API_BASE_URL = "http://localhost:8081/api";
+import { API_BASE_URL } from "../Services/Api";
 
 const AuthPages = ({ onClose }: { onClose?: () => void }) => {
     const [currentPage, setCurrentPage] = useState<"login" | "register" | "forgot">("login");

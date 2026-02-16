@@ -3,11 +3,13 @@ import {
     IconPhoto,
     IconUpload,
     IconTrash,
-    IconPencil,
+    IconFilter,
     IconSearch,
-    IconFilter
+    IconPlus,
+    IconCheck
 } from '@tabler/icons-react';
 import { galleryAPI, GalleryItem } from '../api/galleryAPI';
+import { ASSET_BASE_URL } from '../Services/Api';
 
 const GalleryManagement = () => {
     const [images, setImages] = useState<GalleryItem[]>([]);
@@ -233,7 +235,7 @@ const GalleryManagement = () => {
                         <div key={image.id} className="bg-white rounded-xl shadow-lg overflow-hidden group">
                             <div className="relative h-48 overflow-hidden">
                                 <img
-                                    src={'http://localhost:8081' + image.imageUrl} // Ensure full URL if using local storage
+                                    src={`${ASSET_BASE_URL}${image.imageUrl}`} // Ensure full URL if using local storage
                                     alt={image.title}
                                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />

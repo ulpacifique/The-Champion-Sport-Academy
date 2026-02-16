@@ -1,9 +1,9 @@
 // src/Manager/CoachManagement.tsx
 import { useState } from "react";
-import { 
-    IconPlus, 
-    IconEdit, 
-    IconTrash, 
+import {
+    IconPlus,
+    IconEdit,
+    IconTrash,
     IconUserPlus,
     IconCheck,
     IconX,
@@ -71,11 +71,11 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
     const handleUpdateCoach = () => {
         if (!editingCoach) return;
 
-        const updatedCoaches = coaches.map(coach => 
-            coach.id === editingCoach.id 
-                ? { 
-                    ...coach, 
-                    ...formData, 
+        const updatedCoaches = coaches.map(coach =>
+            coach.id === editingCoach.id
+                ? {
+                    ...coach,
+                    ...formData,
                     salary: parseInt(formData.salary)
                 }
                 : coach
@@ -196,7 +196,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="text"
                                 value={formData.name}
-                                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="Coach's full name"
                             />
@@ -206,7 +206,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <label className="block text-gray-300 text-sm mb-2">Sport *</label>
                             <select
                                 value={formData.sport}
-                                onChange={(e) => setFormData({...formData, sport: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
                             >
                                 <option value="Karate">Karate</option>
@@ -219,7 +219,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="text"
                                 value={formData.experience}
-                                onChange={(e) => setFormData({...formData, experience: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="e.g., 5 years"
                             />
@@ -230,7 +230,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="number"
                                 value={formData.salary}
-                                onChange={(e) => setFormData({...formData, salary: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="Enter salary amount"
                             />
@@ -241,7 +241,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="email"
                                 value={formData.email}
-                                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="coach@example.com"
                             />
@@ -252,7 +252,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="tel"
                                 value={formData.phone}
-                                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="+1234567890"
                             />
@@ -263,7 +263,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="text"
                                 value={formData.qualification}
-                                onChange={(e) => setFormData({...formData, qualification: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="Certifications and qualifications"
                             />
@@ -274,7 +274,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="text"
                                 value={formData.address}
-                                onChange={(e) => setFormData({...formData, address: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
                                 placeholder="Full address"
                             />
@@ -285,7 +285,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <input
                                 type="date"
                                 value={formData.hireDate}
-                                onChange={(e) => setFormData({...formData, hireDate: e.target.value})}
+                                onChange={(e) => setFormData({ ...formData, hireDate: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
                             />
                         </div>
@@ -318,7 +318,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                 <h3 className="text-xl font-semibold text-white mb-6">
                     Coaches ({filteredCoaches.length})
                 </h3>
-                
+
                 {filteredCoaches.length === 0 ? (
                     <div className="text-center py-8">
                         <IconUserPlus className="mx-auto text-gray-500" size={48} />
@@ -360,10 +360,10 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                         <span className="text-gray-400">Experience:</span>
                                         <span className="text-white font-medium">{coach.experience}</span>
                                     </div>
-                                    
+
                                     <div className="flex items-center justify-between">
                                         <span className="text-gray-400">Monthly Salary:</span>
-                                        <span className="text-white font-medium">RWF {coach.salary.toLocaleString()}</span>
+                                        <span className="text-white font-medium">RWF {(coach.salary || 0).toLocaleString()}</span>
                                     </div>
 
                                     <div className="flex items-center justify-between">
@@ -372,11 +372,10 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                             <span className="text-white font-medium">
                                                 {coach.attendance.present}/{coach.attendance.total} days
                                             </span>
-                                            <span className={`text-xs px-2 py-1 rounded-full ${
-                                                coach.attendance.total > 0 && (coach.attendance.present / coach.attendance.total) >= 0.9 
-                                                    ? 'bg-green-500/20 text-green-400' 
+                                            <span className={`text-xs px-2 py-1 rounded-full ${coach.attendance.total > 0 && (coach.attendance.present / coach.attendance.total) >= 0.9
+                                                    ? 'bg-green-500/20 text-green-400'
                                                     : 'bg-yellow-500/20 text-yellow-400'
-                                            }`}>
+                                                }`}>
                                                 {coach.attendance.total > 0 ? Math.round((coach.attendance.present / coach.attendance.total) * 100) : 0}%
                                             </span>
                                         </div>
@@ -434,19 +433,18 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                         </thead>
                         <tbody>
                             {coaches.map((coach) => {
-                                const attendanceRate = coach.attendance.total > 0 
+                                const attendanceRate = coach.attendance.total > 0
                                     ? Math.round((coach.attendance.present / coach.attendance.total) * 100)
                                     : 0;
-                                
+
                                 return (
                                     <tr key={coach.id} className="border-b border-gray-700/30 hover:bg-gray-700/20">
                                         <td className="py-3 px-4 text-white font-medium">{coach.name}</td>
                                         <td className="py-3 px-4">
-                                            <span className={`px-2 py-1 rounded-full text-xs ${
-                                                coach.sport === "Karate" 
-                                                    ? 'bg-blue-500/20 text-blue-400' 
+                                            <span className={`px-2 py-1 rounded-full text-xs ${coach.sport === "Karate"
+                                                    ? 'bg-blue-500/20 text-blue-400'
                                                     : 'bg-purple-500/20 text-purple-400'
-                                            }`}>
+                                                }`}>
                                                 {coach.sport}
                                             </span>
                                         </td>
@@ -455,20 +453,18 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                         <td className="py-3 px-4">
                                             <div className="flex items-center space-x-2">
                                                 <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
-                                                    <div 
-                                                        className={`h-full ${
-                                                            attendanceRate >= 90 ? 'bg-green-500' :
-                                                            attendanceRate >= 80 ? 'bg-yellow-500' :
-                                                            'bg-red-500'
-                                                        }`}
+                                                    <div
+                                                        className={`h-full ${attendanceRate >= 90 ? 'bg-green-500' :
+                                                                attendanceRate >= 80 ? 'bg-yellow-500' :
+                                                                    'bg-red-500'
+                                                            }`}
                                                         style={{ width: `${attendanceRate}%` }}
                                                     ></div>
                                                 </div>
-                                                <span className={`text-sm ${
-                                                    attendanceRate >= 90 ? 'text-green-400' :
-                                                    attendanceRate >= 80 ? 'text-yellow-400' :
-                                                    'text-red-400'
-                                                }`}>
+                                                <span className={`text-sm ${attendanceRate >= 90 ? 'text-green-400' :
+                                                        attendanceRate >= 80 ? 'text-yellow-400' :
+                                                            'text-red-400'
+                                                    }`}>
                                                     {attendanceRate}%
                                                 </span>
                                             </div>

@@ -4,6 +4,7 @@ import ChildManagement from "./ChildManagement";
 import CoachManagement from "./CoachManagement";
 import Attendance from "./Attendance";
 import SalaryManagement from "./SalaryManagement";
+import PaymentManagement from "./PaymentManagement";
 import Messages from "./Messages";
 import ProfileSettings from "./ProfileSettings";
 import HelpSupport from "./HelpSupport";
@@ -29,33 +30,35 @@ const ManagerRouter = () => {
             ]);
 
             // Map Children DTO to UI Model
-            // UI expects: { id, name, age, sport, belt/level, programId ... }
-            const mappedChildren = childrenRes.data.map((child: any) => ({
+            const mappedChildren = (childrenRes.data || []).map((child: any) => ({
                 ...child,
                 name: child.childName,
-                // Simple mapping for sport/program. Real app needs sport lists.
-                sport: "Karate", // Default or derived from sportIds
-                programId: child.programIds && child.programIds.length > 0 ? child.programIds[0] : null // Take first program
+                // Extract sport name from essential sports if available
+                sport: child.essentialSports && child.essentialSports.length > 0
+                    ? (child.essentialSports[0].sport?.name || "General")
+                    : "General",
+                programId: child.programs && child.programs.length > 0 ? child.programs[0].id.toString() : null
             }));
 
             // Map Coaches DTO to UI Model
-            // UI expects: { id, name, sport, experience, salary, attendance: { present, total } }
-            const mappedCoaches = coachesRes.data.map((coach: any) => ({
+            const mappedCoaches = (coachesRes.data || []).map((coach: any) => ({
                 ...coach,
-                name: coach.firstName + " " + coach.lastName,
-                sport: coach.sports && coach.sports.length > 0 ? coach.sports[0] : "General",
+                name: coach.user ? `${coach.user.firstName} ${coach.user.lastName}` : "Unnamed Coach",
+                sport: coach.sports && coach.sports.length > 0 ? (coach.sports[0].sport?.name || "General") : "General",
                 attendance: { present: 0, total: 0 } // Default stats to prevent crash
             }));
 
             setChildren(mappedChildren);
             setCoaches(mappedCoaches);
 
-            // Fetch pending if needed (ManagerApi has getPendingRegistrations)
+            // Fetch pending if needed
             const pendingRes = await managerAPI.getPendingRegistrations();
-            const mappedPending = pendingRes.data.map((child: any) => ({
+            const mappedPending = (pendingRes.data || []).map((child: any) => ({
                 ...child,
                 name: child.childName,
-                sport: "Karate"
+                sport: child.essentialSports && child.essentialSports.length > 0
+                    ? (child.essentialSports[0].sport?.name || "General")
+                    : "General",
             }));
             setNewRegistrations(mappedPending);
 
@@ -90,8 +93,9 @@ const ManagerRouter = () => {
             case "salaries":
                 return <SalaryManagement
                     coaches={coaches}
-                    setCoaches={setCoaches}
                 />;
+            case "payments":
+                return <PaymentManagement />;
             case "messages":
                 return <Messages />;
             case "settings":

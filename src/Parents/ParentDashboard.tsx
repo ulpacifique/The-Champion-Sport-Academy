@@ -14,6 +14,7 @@ import {
 } from "@tabler/icons-react";
 import ChildProgressModal from "../Admin/ChildProgressModal";
 import { eventAPI } from "../Services/Api";
+import parentAPI from "../Services/ParentApi";
 
 interface ParentDashboardProps {
     selectedChild: any;
@@ -23,10 +24,22 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
     const [isProgressModalOpen, setIsProgressModalOpen] = useState(false);
     const [events, setEvents] = useState<any[]>([]);
     const [announcements, setAnnouncements] = useState<any[]>([]);
+    const [dashboardStats, setDashboardStats] = useState<any>({
+        classesThisWeek: 0,
+        achievements: 0,
+        recentActivities: []
+    });
+    const [isLoadingStats, setIsLoadingStats] = useState(false);
 
     useEffect(() => {
         fetchDynamicContent();
     }, []);
+
+    useEffect(() => {
+        if (selectedChild?.id) {
+            fetchDashboardStats();
+        }
+    }, [selectedChild]);
 
     const fetchDynamicContent = async () => {
         try {
@@ -38,6 +51,19 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
             setAnnouncements(announcementsRes.data);
         } catch (error) {
             console.error("Failed to fetch dashboard content", error);
+        }
+    };
+
+    const fetchDashboardStats = async () => {
+        if (!selectedChild?.id) return;
+        setIsLoadingStats(true);
+        try {
+            const response = await parentAPI.getDashboardStats(selectedChild.id);
+            setDashboardStats(response.data);
+        } catch (error) {
+            console.error("Failed to fetch dashboard stats", error);
+        } finally {
+            setIsLoadingStats(false);
         }
     };
 
@@ -62,8 +88,8 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         },
         {
             title: "Classes This Week",
-            value: "3",
-            change: "Next: Tomorrow 4PM",
+            value: isLoadingStats ? "..." : String(dashboardStats.classesThisWeek || 0),
+            change: "Attendance tracked",
             trend: "neutral",
             icon: <IconCalendarEvent className="text-blue-400" size={24} />,
             color: "from-blue-500/20 to-blue-600/20",
@@ -71,8 +97,8 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         },
         {
             title: "Achievements",
-            value: "5",
-            change: "2 new this month",
+            value: isLoadingStats ? "..." : String(dashboardStats.achievements || 0),
+            change: "Skills mastered",
             trend: "up",
             icon: <IconStar className="text-purple-400" size={24} />,
             color: "from-purple-500/20 to-purple-600/20",
@@ -80,12 +106,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         },
     ];
 
-    const recentActivities = [
-        { id: 1, title: "Karate Class", description: "Completed advanced katas", time: "2 hours ago", type: "class" },
-        { id: 2, title: "Progress Updated", description: "Coach updated your child's progress", time: "1 day ago", type: "progress" },
-        { id: 3, title: "Payment Received", description: "Monthly fee received", time: "2 days ago", type: "payment" },
-        { id: 4, title: "New Achievement", description: "Earned 'Balance Master' badge", time: "3 days ago", type: "achievement" },
-    ];
+    const recentActivities = dashboardStats.recentActivities || [];
 
     const quickActions = [
         {

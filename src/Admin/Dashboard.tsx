@@ -17,7 +17,10 @@ const Dashboard = () => {
         ongoingPrograms: 0,
         monthlyRevenue: 0,
         athleteGrowth: "+0%",
-        revenueGrowth: "+0%"
+        revenueGrowth: "+0%",
+        revenueChart: [],
+        recentActivities: [],
+        upcomingEvents: []
     });
 
     useEffect(() => {
@@ -27,6 +30,7 @@ const Dashboard = () => {
     const fetchStats = async () => {
         try {
             const response = await dashboardAPI.getStats();
+            console.log("Dashboard stats:", response.data);
             setStatsData(response.data);
         } catch (error) {
             console.error("Failed to fetch dashboard stats", error);
@@ -37,8 +41,8 @@ const Dashboard = () => {
     const stats = [
         {
             title: "Total Athletes",
-            value: statsData.totalAthletes.toString(),
-            change: statsData.athleteGrowth,
+            value: (statsData.totalAthletes ?? 0).toString(),
+            change: statsData.athleteGrowth ?? "+0%",
             trend: "up",
             icon: <IconUsers className="text-blue-400" size={24} />,
             color: "from-blue-500/20 to-blue-600/20",
@@ -46,7 +50,7 @@ const Dashboard = () => {
         },
         {
             title: "Active Coaches",
-            value: statsData.activeCoaches.toString(),
+            value: (statsData.activeCoaches ?? 0).toString(),
             change: "+0",
             trend: "up",
             icon: <IconUsers className="text-green-400" size={24} />,
@@ -55,7 +59,7 @@ const Dashboard = () => {
         },
         {
             title: "Ongoing Programs",
-            value: statsData.ongoingPrograms.toString(),
+            value: (statsData.ongoingPrograms ?? 0).toString(),
             change: "+0",
             trend: "down",
             icon: <IconCalendarEvent className="text-purple-400" size={24} />,
@@ -64,8 +68,8 @@ const Dashboard = () => {
         },
         {
             title: "Monthly Revenue",
-            value: `RWF ${statsData.monthlyRevenue.toLocaleString()}`,
-            change: statsData.revenueGrowth,
+            value: `RWF ${(statsData.monthlyRevenue ?? 0).toLocaleString()}`,
+            change: statsData.revenueGrowth ?? "+0%",
             trend: "up",
             icon: <IconCash className="text-yellow-400" size={24} />,
             color: "from-yellow-500/20 to-yellow-600/20",
@@ -73,22 +77,11 @@ const Dashboard = () => {
         },
     ];
 
-    // Recent Activities
-    const activities = [
-        { id: 1, athlete: "John Doe", action: "joined Soccer Program", time: "2 hours ago" },
-        { id: 2, athlete: "Sarah Smith", action: "completed payment", time: "4 hours ago" },
-        { id: 3, athlete: "Mike Johnson", action: "upgraded to Elite Training", time: "1 day ago" },
-        { id: 4, athlete: "Emma Wilson", action: "registered for Athletics", time: "2 days ago" },
-        { id: 5, athlete: "David Brown", action: "renewed membership", time: "3 days ago" },
-    ];
+    // Recent Activities (from Backend)
+    const activities = statsData.recentActivities || [];
 
-    // Upcoming Events
-    const upcomingEvents = [
-        { id: 1, title: "Soccer Tournament", date: "Jan 15, 2024", participants: 45 },
-        { id: 2, title: "Basketball Clinic", date: "Jan 20, 2024", participants: 30 },
-        { id: 3, title: "Swimming Competition", date: "Jan 25, 2024", participants: 28 },
-        { id: 4, title: "Parent-Coach Meeting", date: "Jan 30, 2024", participants: 60 },
-    ];
+    // Upcoming Events (from Backend)
+    const upcomingEvents = statsData.upcomingEvents || [];
 
     return (
         <div className="space-y-8">
@@ -132,29 +125,23 @@ const Dashboard = () => {
                         <IconTrendingUp className="text-bright-sun-400" size={24} />
                     </div>
 
-                    {/* Simple Chart - Replace with actual chart library */}
+                    {/* Dynamic Revenue Chart */}
                     <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <span className="text-gray-400">Jan</span>
-                            <div className="w-3/4 bg-gray-700 rounded-full h-2">
-                                <div className="bg-bright-sun-400 h-2 rounded-full" style={{ width: "70%" }}></div>
+                        {(statsData.revenueChart || []).map((data: any, index) => (
+                            <div key={index} className="flex items-center justify-between">
+                                <span className="text-gray-400 w-8">{data.month}</span>
+                                <div className="flex-1 mx-4 bg-gray-700 rounded-full h-2">
+                                    <div
+                                        className="bg-bright-sun-400 h-2 rounded-full transition-all duration-500"
+                                        style={{ width: `${Math.min((data.revenue / 500000) * 100, 100)}%` }} // Simple scaling
+                                    ></div>
+                                </div>
+                                <span className="text-white w-24 text-right">RWF {data.revenue.toLocaleString()}</span>
                             </div>
-                            <span className="text-white">rwf300,500</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <span className="text-gray-400">Feb</span>
-                            <div className="w-3/4 bg-gray-700 rounded-full h-2">
-                                <div className="bg-bright-sun-400 h-2 rounded-full" style={{ width: "85%" }}></div>
-                            </div>
-                            <span className="text-white">rwf400,250</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <span className="text-gray-400">Mar</span>
-                            <div className="w-3/4 bg-gray-700 rounded-full h-2">
-                                <div className="bg-bright-sun-400 h-2 rounded-full" style={{ width: "60%" }}></div>
-                            </div>
-                            <span className="text-white">rwf300,000</span>
-                        </div>
+                        ))}
+                        {(!statsData.revenueChart || statsData.revenueChart.length === 0) && (
+                            <p className="text-gray-400 text-center py-4">No revenue data available</p>
+                        )}
                     </div>
                 </div>
 
@@ -166,15 +153,18 @@ const Dashboard = () => {
                     </div>
 
                     <div className="space-y-4">
-                        {activities.map((activity) => (
-                            <div key={activity.id} className="flex items-center justify-between p-3 hover:bg-gray-700/30 rounded-lg transition-colors">
-                                <div>
-                                    <span className="text-white font-medium">{activity.athlete}</span>
-                                    <span className="text-gray-400 ml-2">{activity.action}</span>
+                        {activities.length > 0 ? (
+                            activities.map((activity: any) => (
+                                <div key={activity.id} className="flex items-center justify-between p-3 hover:bg-gray-700/30 rounded-lg transition-colors">
+                                    <div>
+                                        <span className="text-white font-medium text-sm">{activity.description}</span>
+                                    </div>
+                                    <span className="text-gray-500 text-xs">{activity.time}</span>
                                 </div>
-                                <span className="text-gray-500 text-sm">{activity.time}</span>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-center text-gray-500 py-4">No recent activities</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -189,18 +179,22 @@ const Dashboard = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {upcomingEvents.map((event) => (
-                        <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-colors">
-                            <h4 className="text-white font-semibold mb-2">{event.title}</h4>
-                            <div className="flex items-center text-gray-400 text-sm mb-3">
-                                <IconCalendarEvent size={16} className="mr-2" />
-                                {event.date}
+                    {upcomingEvents.length > 0 ? (
+                        upcomingEvents.map((event: any) => (
+                            <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-colors">
+                                <h4 className="text-white font-semibold mb-2">{event.title}</h4>
+                                <div className="flex items-center text-gray-400 text-sm mb-3">
+                                    <IconCalendarEvent size={16} className="mr-2" />
+                                    {event.date}
+                                </div>
+                                {/* <div className="text-bright-sun-400 text-sm">
+                                    {event.participants} participants
+                                </div> */}
                             </div>
-                            <div className="text-bright-sun-400 text-sm">
-                                {event.participants} participants
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <div className="col-span-full text-center text-gray-500 py-4">No upcoming events</div>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../Services/Api';
 
-const API_URL = process.env.NODE_ENV === 'production'
-    ? 'https://your-springboot-api.onrender.com/api/gallery'
-    : 'http://localhost:8081/api/gallery';
+const API_URL = `${API_BASE_URL}/gallery`;
 
 export interface GalleryItem {
     id: number;
@@ -30,7 +29,7 @@ export const galleryAPI = {
     },
 
     uploadImage: async (formData: FormData) => {
-        const response = await axios.post(`${API_URL}/admin/upload`, formData, {
+        const response = await axios.post(`${API_URL}/upload`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -40,7 +39,7 @@ export const galleryAPI = {
     },
 
     deleteImage: async (id: number) => {
-        await axios.delete(`${API_URL}/admin/${id}`, {
+        await axios.delete(`${API_URL}/${id}`, {
             withCredentials: true
         });
     }

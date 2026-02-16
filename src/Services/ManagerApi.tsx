@@ -22,11 +22,9 @@ const managerAPI = {
     getAttendanceReport: (month: string) => api.get('/attendance/report', { params: { month } }),
 
     // Salary Management
-    getSalaryData: (month: string) => api.get('/manager/salaries', { params: { month } }),
-    updateSalary: (coachId: number, salaryData: any) => api.put(`/manager/salaries/${coachId}`, salaryData),
-    processSalary: (coachId: number, month: string) => api.post(`/manager/salaries/${coachId}/process`, { month }),
-    addBonus: (coachId: number, bonusData: any) => api.post(`/manager/salaries/${coachId}/bonus`, bonusData),
-    addDeduction: (coachId: number, deductionData: any) => api.post(`/manager/salaries/${coachId}/deduction`, deductionData),
+    getSalaryData: (month?: string) => api.get('/salaries', { params: { month } }),
+    recordSalary: (data: any) => api.post('/salaries/record', data),
+    exportSalaries: (month?: string) => api.get('/salaries/export', { params: { month }, responseType: 'blob' }),
 
     // Messages
     getRecentChats: () => api.get('/messages/chats'),
