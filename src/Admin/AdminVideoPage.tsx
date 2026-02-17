@@ -44,24 +44,6 @@ const AdminVideoPage = () => {
     fetchCategories();
   }, []);
 
-  // Auto-fetch YouTube Metadata
-  useEffect(() => {
-    const fetchYouTubeMeta = async () => {
-      if (!formData.videoUrl) return;
-
-      // Simple regex to check if it looks like a YouTube URL
-      if (formData.videoUrl.includes('youtube.com') || formData.videoUrl.includes('youtu.be')) {
-        // Only fetch if title is empty or we just pasted the URL (simplification: fetch if valid URL)
-        // But we don't want to overwrite if user is editing manually? 
-        // Let's fetch if title is empty OR if we trigger it explicitly.
-        // For now, let's do it on blur or via a button. 
-        // Better UX: Debounce or just check when valid.
-
-        // Actually, let's just use a separate function we call onBlur or optional button.
-        // But user asked for "adding only URL ... all retrieved".
-      }
-    };
-  }, [formData.videoUrl]);
 
   const fetchVideos = async () => {
     try {
@@ -232,13 +214,6 @@ const AdminVideoPage = () => {
     return new Date(dateString).toLocaleDateString();
   };
 
-  const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
 
   if (loading) {
     return (

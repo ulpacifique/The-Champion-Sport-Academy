@@ -5,7 +5,6 @@ import {
     IconUsers,
     IconAward,
     IconCalendar,
-    IconClock,
     IconMapPin,
     IconChevronRight,
     IconStar,
@@ -13,15 +12,12 @@ import {
     IconShield,
     IconMedal,
     IconTarget,
-    IconHeartbeat,
     IconLeaf,
     IconBolt,
     IconPhoto,
     IconFriends,
     IconHeartHandshake,
     IconTrophy,
-    IconSchool,
-    IconBrain,
     IconBell
 } from '@tabler/icons-react';
 import Header from '../Header/Header';

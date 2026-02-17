@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconX, IconUser, IconTrophy, IconCalendar, IconClock, IconCurrencyDollar } from '@tabler/icons-react';
+import { IconX, IconTrophy, IconCalendar, IconCurrencyDollar } from '@tabler/icons-react';
 
 interface AddProgramModalProps {
     isOpen: boolean;

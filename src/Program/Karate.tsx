@@ -5,25 +5,19 @@ import {
     IconUsers,
     IconAward,
     IconCalendar,
-    IconClock,
     IconMapPin,
     IconChevronRight,
     IconStar,
     IconCheck,
     IconShield,
     IconMedal,
-    IconTarget,
-    IconHeartbeat,
     IconLeaf,
     IconBolt,
     IconPhoto,
     IconFriends,
     IconHeartHandshake,
     IconTrophy,
-    IconSchool,
-    IconBrain,
     IconBell,
-    IconSwords
 } from '@tabler/icons-react';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';

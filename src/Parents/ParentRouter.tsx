@@ -1,6 +1,6 @@
 import ProfileSettings from "./ProfileSettings";
 import ParentLayout from "./ParentLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import ParentDashboard from "./ParentDashboard";
 import ProgressTracking from "./ProgressTracking";
 import Messages from "./Messages";
@@ -13,12 +13,7 @@ const ParentRouter = () => {
     const [childList, setChildList] = useState<any[]>([]); // Renamed from children to childList
     const [selectedChild, setSelectedChild] = useState<any>(null);
 
-    // Load children data
-    useEffect(() => {
-        fetchChildren();
-    }, []);
-
-    const fetchChildren = async () => {
+    const fetchChildren = useCallback(async () => {
         try {
             const response = await parentAPI.getChildren();
             const data = response.data.map((child: any) => ({
@@ -33,7 +28,12 @@ const ParentRouter = () => {
         } catch (error) {
             console.error("Failed to fetch children", error);
         }
-    };
+    }, [selectedChild]);
+
+    // Load children data
+    useEffect(() => {
+        fetchChildren();
+    }, [fetchChildren]);
 
     const renderContent = () => {
         switch (activeSection) {

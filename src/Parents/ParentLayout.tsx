@@ -34,7 +34,7 @@ const ParentLayout = ({
     childrenList // Updated prop name
 }: ParentLayoutProps) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [notificationCount, setNotificationCount] = useState(2);
+    const [notificationCount] = useState(2);
     const [showChildDropdown, setShowChildDropdown] = useState(false);
     const [unreadMessages, setUnreadMessages] = useState(0);
 

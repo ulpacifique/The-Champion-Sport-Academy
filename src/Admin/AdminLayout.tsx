@@ -31,7 +31,7 @@ const AdminLayout = ({
     setActiveSection = () => { }     // Default function
 }: AdminLayoutProps) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [notificationCount, setNotificationCount] = useState(3);
+    const [notificationCount] = useState(3);
     const [unreadMessages, setUnreadMessages] = useState(0);
 
     useEffect(() => {

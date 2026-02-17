@@ -1,12 +1,11 @@
 // src/Parent/ProgressTracking.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     IconChartLine,
     IconCalendarStats,
     IconTarget,
     IconTrendingUp,
-    IconDownload,
-    IconFilter
+    IconDownload
 } from "@tabler/icons-react";
 import parentAPI from "../Services/ParentApi";
 
@@ -17,18 +16,11 @@ interface ProgressTrackingProps {
 }
 
 const ProgressTracking = ({ selectedChild, children, setSelectedChild }: ProgressTrackingProps) => {
-    const [timeRange, setTimeRange] = useState("month");
     const [activeSport, setActiveSport] = useState<string>("");
     const [skills, setSkills] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        if (selectedChild?.id) {
-            fetchProgress();
-        }
-    }, [selectedChild]);
-
-    const fetchProgress = async () => {
+    const fetchProgress = useCallback(async () => {
         setIsLoading(true);
         try {
             const response = await parentAPI.getChildProgress(selectedChild.id);
@@ -57,7 +49,13 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [selectedChild?.id, activeSport]);
+
+    useEffect(() => {
+        if (selectedChild?.id) {
+            fetchProgress();
+        }
+    }, [selectedChild, fetchProgress]);
 
     const sports = Array.from(new Set(skills.map(s => s.sport)));
     const filteredSkills = skills.filter(s => s.sport === activeSport || !activeSport);
