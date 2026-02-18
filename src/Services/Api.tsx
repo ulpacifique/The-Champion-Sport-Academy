@@ -1,24 +1,26 @@
 // app/services/api.ts
 import axios from 'axios';
 
-// Production/Development API URL
-const isProduction = process.env.NODE_ENV === 'production';
-export const API_BASE_URL = isProduction
-  ? 'https://your-production-url.com/api' // Update this for production
+// Use environment variable with fallback
+export const API_BASE_URL = process.env.REACT_APP_API_URL
+  ? `${process.env.REACT_APP_API_URL}/api`
   : 'http://localhost:5000/api';
 
-export const ASSET_BASE_URL = isProduction
-  ? 'https://your-production-url.com'
+export const ASSET_BASE_URL = process.env.REACT_APP_API_URL
+  ? process.env.REACT_APP_API_URL
   : 'http://localhost:5000';
+
+console.log('🚀 API Base URL:', API_BASE_URL); // For debugging
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // Required for sessions
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// ... rest of your code stays exactly the same
 // Video API calls with file upload
 export const videoAPI = {
   // Get all videos
