@@ -65,7 +65,7 @@ model User {
   messagesSent     Message[] @relation("SenderToMessage")
   messagesReceived Message[] @relation("ReceiverToMessage")
 
-  @@map("users")
+  @@map("user")
 }
 
 model Coach {
