@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     IconTrendingUp,
     IconTrophy,
@@ -31,17 +31,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
     });
     const [isLoadingStats, setIsLoadingStats] = useState(false);
 
-    useEffect(() => {
-        fetchDynamicContent();
-    }, []);
-
-    useEffect(() => {
-        if (selectedChild?.id) {
-            fetchDashboardStats();
-        }
-    }, [selectedChild]);
-
-    const fetchDynamicContent = async () => {
+    const fetchDynamicContent = useCallback(async () => {
         try {
             const [eventsRes, announcementsRes] = await Promise.all([
                 eventAPI.getEventsByType('EVENT'),
@@ -52,9 +42,9 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         } catch (error) {
             console.error("Failed to fetch dashboard content", error);
         }
-    };
+    }, []);
 
-    const fetchDashboardStats = async () => {
+    const fetchDashboardStats = useCallback(async () => {
         if (!selectedChild?.id) return;
         setIsLoadingStats(true);
         try {
@@ -65,7 +55,17 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         } finally {
             setIsLoadingStats(false);
         }
-    };
+    }, [selectedChild?.id]);
+
+    useEffect(() => {
+        fetchDynamicContent();
+    }, [fetchDynamicContent]);
+
+    useEffect(() => {
+        if (selectedChild?.id) {
+            fetchDashboardStats();
+        }
+    }, [selectedChild?.id, fetchDashboardStats]);
 
     const stats = [
         {
@@ -106,7 +106,6 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
         },
     ];
 
-    const recentActivities = dashboardStats.recentActivities || [];
 
     const quickActions = [
         {

@@ -62,8 +62,6 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
         }
     ];
 
-    // Get the current sport object based on form selection
-    const currentSport = sports.find(s => s.name === formData.sport);
 
     const handleAddChild = async () => {
         if (!formData.name || !formData.age || !formData.sport || !formData.gender) {

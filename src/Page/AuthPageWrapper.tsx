@@ -1,29 +1,18 @@
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import AuthPages from "./AuthPages"; 
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthPages from "./AuthPages";
 import HeroSection from "../LandingPage/HeroSection";
 
 const AuthPageWrapper = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(true);
-
-    // Determine which page to show based on URL
-    const getInitialPage = () => {
-        const path = location.pathname;
-        if (path.includes('/register')) return 'register';
-        if (path.includes('/forgot-password')) return 'forgot';
-        return 'login'; // default for /login and /auth
-    };
 
     const handleClose = () => {
-        setIsOpen(false);
         navigate('/'); // Redirect to home when closed
     };
 
     // Open modal on mount
     useEffect(() => {
-        setIsOpen(true);
+        // Modal is managed by the wrapper visibility
     }, []);
 
     return (

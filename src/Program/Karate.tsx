@@ -1,30 +1,30 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    IconUsers,
-    IconAward,
     IconCalendar,
     IconMapPin,
-    IconChevronRight,
     IconStar,
     IconCheck,
     IconShield,
-    IconMedal,
     IconLeaf,
-    IconBolt,
-    IconPhoto,
     IconFriends,
     IconHeartHandshake,
     IconTrophy,
-    IconBell,
 } from '@tabler/icons-react';
+import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
 
 const Karate = () => {
-    const [activeTab, setActiveTab] = useState('about');
+    // Animation variants
+    const fadeInUp = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6 }
+    };
+
 
     // Karate programs data
     const programs = [
@@ -34,7 +34,7 @@ const Karate = () => {
             features: ["Basic & Advanced Techniques", "Conditioning", "Sparring Sessions", "Kata Training"],
             icon: <IconShield className="text-bright-sun-400" size={24} />,
             schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${process.env.PUBLIC_URL}/athletes/Karate.JPG`
+            image: `${process.env.PUBLIC_URL} /athletes/Karate.JPG`
         },
         {
             title: "Private Home Classes",
@@ -42,7 +42,7 @@ const Karate = () => {
             features: ["Personalized Attention", "Flexible Scheduling", "Rapid Progress", "Focused Training"],
             icon: <IconStar className="text-bright-sun-400" size={24} />,
             schedule: "Mon - Fri: Available by appointment",
-            image: `${process.env.PUBLIC_URL}/athletes/Class.jpg`
+            image: `${process.env.PUBLIC_URL} /athletes/Class.jpg`
         },
         {
             title: "Competition Team",
@@ -50,7 +50,7 @@ const Karate = () => {
             features: ["Elite Coaching", "Strategy Tactics", "Team Building", "Tournament Support"],
             icon: <IconTrophy className="text-bright-sun-400" size={24} />,
             schedule: "Selected Weekends & Camps",
-            image: `${process.env.PUBLIC_URL}/athletes/competion.jpg`
+            image: `${process.env.PUBLIC_URL} /athletes/competion.jpg`
         }
     ];
 
@@ -62,7 +62,7 @@ const Karate = () => {
             experience: "30+ Years Experience",
             specialty: "Master Coach & Leadership",
             description: "Founder of The Champion Sport Academy and Former Head Coach of Rwanda Karate National Team.",
-            image: `${process.env.PUBLIC_URL}/athletes/Noel.jpg`
+            image: `${process.env.PUBLIC_URL} /athletes/Noel.jpg`
         },
         {
             name: "Sensei ABAYISENGA Paremonique",
@@ -70,7 +70,7 @@ const Karate = () => {
             experience: "12+ Years Experience",
             specialty: "Kata & Child Development",
             description: "National medalist and certified coach passionate about holistic athlete development.",
-            image: `${process.env.PUBLIC_URL}/athletes/palmonique.jpg`
+            image: `${process.env.PUBLIC_URL} /athletes/palmonique.jpg`
         },
         {
             name: "Sensei DUSHIME SHARIFU",
@@ -78,7 +78,7 @@ const Karate = () => {
             experience: "39+ Medals Won",
             specialty: "High-Performance Kumite",
             description: "Bronze medalist at Commonwealth Championship and FERWAKA certified coach.",
-            image: `${process.env.PUBLIC_URL}/athletes/sharif.WEBP`
+            image: `${process.env.PUBLIC_URL} /athletes/sharif.WEBP`
         },
         {
             name: "Sensei Khalif",
@@ -86,7 +86,7 @@ const Karate = () => {
             experience: "Expert Trainer",
             specialty: "Youth Development",
             description: "Dedicated instructor focused on building discipline and technical excellence.",
-            image: `${process.env.PUBLIC_URL}/athletes/Khalif.PNG`
+            image: `${process.env.PUBLIC_URL} /athletes/Khalif.PNG`
         }
     ];
 
@@ -97,13 +97,11 @@ const Karate = () => {
     useEffect(() => {
         const fetchGallery = async () => {
             try {
-                // Fetch both specifically tagged karate photos and general photos
                 const [karatePhotos, generalPhotos] = await Promise.all([
                     galleryAPI.getImagesByCategory('KARATE'),
                     galleryAPI.getImagesByCategory('GENERAL')
                 ]);
 
-                // Combine and sort by upload date (newest first)
                 const allPhotos = [...karatePhotos, ...generalPhotos]
                     .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime());
 
@@ -128,508 +126,320 @@ const Karate = () => {
     ];
 
     return (
-        <div className="bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900 text-white">
+        <div className="bg-cerulean-blue-950 text-white selection:bg-bright-sun-400 selection:text-gray-900 custom-scrollbar">
             <Header />
+
             {/* Hero Section */}
-            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-cerulean-blue-900/50 to-cerulean-blue-800/30 z-0"></div>
+            <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-cerulean-blue-950/20 to-transparent z-10"></div>
                 <div
-                    className="absolute inset-0 opacity-10 z-0"
+                    className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
+                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Karate.JPG)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
                 ></div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span className="inline-flex items-center px-4 py-2 bg-bright-sun-400/20 text-bright-sun-400 rounded-full text-sm font-medium mb-4">
-                                <IconAward className="mr-2" size={16} />
-                                20+ Years Experience
-                            </span>
-                            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                                Master the Art of <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 to-bright-sun-300">Karate</span>
-                            </h1>
-                            <p className="text-xl text-gray-300 mb-8">
-                                At <span className="font-bold text-bright-sun-400">The Champions Sports Academy</span>,
-                                we bring <span className="font-bold text-bright-sun-400">20+ years</span> of
-                                experience in teaching traditional and modern karate. Our certified instructors have trained
-                                thousands of students, from beginners to national champions.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <Link
-                                    to="/register"
-                                    className="px-8 py-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
-                                >
-                                    Start Your Journey Today
-                                </Link>
-                                <button className="px-8 py-4 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white font-semibold hover:bg-cerulean-blue-700/50 transition-all duration-300 text-center">
-                                    Book a Free Trial Class
-                                </button>
-                            </div>
-                        </div>
+                <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <h1 className="text-5xl md:text-8xl font-black mb-6 leading-tight uppercase tracking-tighter">
+                            Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 via-bright-sun-300 to-bright-sun-500">The Champions Karate</span>
+                        </h1>
+                    </motion.div>
+                </div>
+            </section>
 
-                        <div className="relative">
-                            <div className="bg-gradient-to-br from-cerulean-blue-800/30 to-cerulean-blue-700/20 rounded-2xl p-8 backdrop-blur-sm border border-cerulean-blue-700/50">
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconUsers className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">500+</div>
-                                        <div className="text-gray-300">Active Students</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconAward className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">100+</div>
-                                        <div className="text-gray-300">Black Belts</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconMedal className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">50+</div>
-                                        <div className="text-gray-300">Tournament Wins</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconCalendar className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">20+</div>
-                                        <div className="text-gray-300">Years Experience</div>
-                                    </div>
+            <main>
+                {/* Philosophy Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-bright-sun-400/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            {...fadeInUp}
+                            className="grid lg:grid-cols-2 gap-16 items-center"
+                        >
+                            <div className="relative order-2 lg:order-1">
+                                <div className="absolute -inset-4 bg-gradient-to-tr from-bright-sun-400 to-transparent opacity-20 blur-2xl rounded-3xl"></div>
+                                <img
+                                    src={`${process.env.PUBLIC_URL} /athletes/karate.png`}
+                                    alt="Karate Philosophy"
+                                    className="rounded-3xl shadow-2xl relative z-10 border border-white/10"
+                                />
+                                <div className="absolute -bottom-10 -right-10 bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 p-8 rounded-3xl shadow-2xl z-20 hidden md:block">
+                                    <div className="text-4xl font-black text-gray-900 italic">20+</div>
+                                    <div className="text-gray-900/80 font-bold leading-tight">Years of<br />Dedication</div>
                                 </div>
                             </div>
+                            <div className="order-1 lg:order-2">
+                                <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Karate <span className="text-bright-sun-400 italic">Philosophy</span></h2>
+                                <p className="text-lg text-gray-300 mb-10 leading-relaxed">
+                                    Karate at <span className="text-white font-semibold">The Champions Sports Academy</span> is a balanced journey of physical prowess and mental fortitude. We cultivate more than just combat skills—we build foundations for life.
+                                </p>
+                                <div className="grid gap-6">
+                                    {[
+                                        "Traditional Japanese basics with modern execution",
+                                        "Character development & peak physical conditioning",
+                                        "Elite tournament preparation & competition spirit",
+                                        "Safe, inclusive environment for all skill levels"
+                                    ].map((item, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: i * 0.1 }}
+                                            className="flex items-start bg-white/5 p-4 rounded-2xl border border-white/5"
+                                        >
+                                            <div className="w-8 h-8 rounded-lg bg-bright-sun-400/20 flex items-center justify-center mr-4 shrink-0">
+                                                <IconCheck className="text-bright-sun-400" size={18} />
+                                            </div>
+                                            <span className="text-gray-200 font-medium">{item}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* Programs Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 ">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            {...fadeInUp}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-4xl md:text-6xl font-black mb-6">World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 to-bright-sun-500">Programs</span></h2>
+                            <p className="text-xl text-gray-400 max-w-3xl mx-auto">Precision-engineered training for every stage of development.</p>
+                        </motion.div>
+
+                        <div className="space-y-32">
+                            {programs.map((program, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-20`}
+                                >
+                                    {/* Image side */}
+                                    <div className="w-full lg:w-1/2 group">
+                                        <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-2xl border border-white/5">
+                                            <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/60 to-transparent"></div>
+                                            <div className="absolute top-8 left-8 bg-bright-sun-400 text-gray-900 p-5 rounded-3xl shadow-2xl scale-110">
+                                                {program.icon}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Text side */}
+                                    <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
+                                        <div className="text-bright-sun-400 font-black text-sm uppercase tracking-[0.3em] mb-4">Program {index + 1}</div>
+                                        <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">{program.title}</h3>
+                                        <p className="text-xl text-gray-400 mb-8 leading-relaxed max-w-xl">{program.description}</p>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 w-full max-w-lg">
+                                            {program.features.map((f, i) => (
+                                                <div key={i} className="flex items-center text-gray-300">
+                                                    <IconCheck className="text-bright-sun-400 mr-3 shrink-0" size={18} />
+                                                    <span className="font-medium text-lg">{f}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row items-center gap-6 w-full">
+                                            <div className="flex items-center text-sm text-bright-sun-400 font-bold uppercase tracking-widest bg-white/5 py-3 px-6 rounded-2xl border border-white/10">
+                                                <IconCalendar className="mr-3" size={18} />
+                                                {program.schedule}
+                                            </div>
+                                            <Link
+                                                to="/register"
+                                                className="px-8 py-4 bg-bright-sun-400 text-gray-900 rounded-2xl font-black transition-all hover:scale-105 hover:shadow-[0_20px_40px_rgba(250,204,21,0.2)] text-center w-full sm:w-auto"
+                                            >
+                                                Join Program
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Tabs Navigation */}
-            <section className="py-8 px-4 md:px-8 lg:px-16 border-b border-cerulean-blue-800">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {['about', 'programs', 'instructors', 'values', 'schedule', 'gallery'].map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab
-                                    ? 'bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900'
-                                    : 'bg-cerulean-blue-800/50 text-gray-300 hover:bg-cerulean-blue-700/50'
-                                    }`}
-                            >
-                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                            </button>
-                        ))}
+                {/* Instructors Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 relative">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            {...fadeInUp}
+                            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+                        >
+                            <div>
+                                <h2 className="text-4xl md:text-5xl font-black mb-4">The <span className="text-bright-sun-400 italic">Masters</span></h2>
+                                <p className="text-gray-400 text-lg max-w-xl">Learn directly from elite coaches who have shaped the national karate landscape for decades.</p>
+                            </div>
+                        </motion.div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {instructors.map((instructor, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="group relative h-[450px] rounded-3xl overflow-hidden border border-white/10"
+                                >
+                                    <img src={instructor.image} alt={instructor.name} className="w-full h-full object-cover transition-all duration-500 scale-105 group-hover:scale-100" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-cerulean-blue-950/20 to-transparent transition-opacity duration-300"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        <div className="text-bright-sun-400 font-bold text-xs uppercase tracking-widest mb-2 px-2 py-1 bg-cerulean-blue-900/80 inline-block rounded-md border border-bright-sun-400/20">
+                                            {instructor.rank}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2 leading-tight">{instructor.name}</h3>
+                                        <div className="text-gray-400 text-xs mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            {instructor.description.substring(0, 100)}...
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Main Content */}
-            <section className="py-16 px-4 md:px-8 lg:px-16">
-                <div className="max-w-7xl mx-auto">
+                {/* Core Values */}
+                <section className="py-24 bg-cerulean-blue-950 px-4 md:px-8 lg:px-16 text-white">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-5 gap-8">
+                            {coreValues.map((value, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="flex flex-col items-center text-center p-8 bg-gray-900/5 rounded-3xl border border-gray-900/10 hover:bg-cerulean-blue-900 transition-colors"
+                                >
+                                    <div className="w-16 h-16 bg-gray-900 text-bright-sun-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
+                                        {value.icon}
+                                    </div>
+                                    <h3 className="text-xl font-black mb-3">{value.name}</h3>
+                                    <p className="text-sm font-medium text-gray-200 leading-relaxed">{value.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                    {/* About Section */}
-                    {activeTab === 'about' && (
-                        <div className="space-y-16">
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 className="text-4xl font-bold mb-6 text-white">Our Karate Philosophy</h2>
-                                    <p className="text-lg text-gray-300 mb-6">
-                                        For over <span className="font-bold text-bright-sun-400">20 years</span>, The Champions Sports Academy
-                                        has been a leader in karate education. We believe karate is more than just martial arts—it's
-                                        a way of life that builds character, discipline, and confidence.
-                                    </p>
-                                    <div className="space-y-4">
-                                        {[
-                                            "Traditional Japanese karate techniques with 20+ years of refinement",
-                                            "Modern self-defense applications for real-world situations",
-                                            "Character development and discipline for all ages",
-                                            "Physical fitness and mental focus training",
-                                            "Tournament preparation and competition excellence",
-                                            "Belt ranking system with regular gradings and ceremonies"
-                                        ].map((item, index) => (
-                                            <div key={index} className="flex items-center">
-                                                <IconCheck className="text-bright-sun-400 mr-3" size={20} />
-                                                <span className="text-gray-300">{item}</span>
+                {/* Schedule & Location */}
+                <section className="py-24 px-4 md:px-8 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-16">
+                            <motion.div {...fadeInUp}>
+                                <h2 className="text-4xl font-bold mb-8">Access the <span className="text-bright-sun-400">Dojo</span></h2>
+                                <div className="space-y-4">
+                                    {[
+                                        { day: "Weekdays", time: "By Appointment", label: "Private Classes" },
+                                        { day: "Saturday", time: "10:00 - 12:00 / 15:00 - 17:00", label: "Weekend Intensive" },
+                                        { day: "Sunday", time: "10:00 - 12:00 / 15:00 - 17:00", label: "Competition Prep" }
+                                    ].map((s, i) => (
+                                        <div key={i} className="flex items-center justify-between p-6 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                                            <div>
+                                                <div className="font-bold text-white text-lg">{s.day}</div>
+                                                <div className="text-xs text-gray-400 font-medium uppercase tracking-wider">{s.label}</div>
+                                            </div>
+                                            <div className="text-bright-sun-400 font-black text-right">{s.time}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+
+                            <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
+                                <div className="h-full bg-cerulean-blue-900/50 rounded-3xl p-10 border border-white/10 flex flex-col justify-center">
+                                    <div className="flex items-start mb-10">
+                                        <div className="w-12 h-12 bg-bright-sun-400 rounded-2xl flex items-center justify-center mr-6 shadow-lg shadow-bright-sun-400/20">
+                                            <IconMapPin className="text-gray-900" size={24} />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2 italic">Headquarters</h3>
+                                            <p className="text-gray-400 text-lg">Kigali, Rwanda<br />Professional Grade Karate Training Facility</p>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {["Pro Tatami Mats", "Full Sparring Gear", "Safety Monitored", "Parent Zones"].map((feat, i) => (
+                                            <div key={i} className="flex items-center text-sm font-medium text-gray-300 bg-white/5 px-4 py-3 rounded-xl">
+                                                <IconCheck className="text-bright-sun-400 mr-2 shrink-0" size={16} />
+                                                {feat}
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                                <div className="relative">
-                                    <img
-                                        src={`${process.env.PUBLIC_URL}/athletes/karate.png`}
-                                        alt="Karate"
-                                        className="rounded-2xl shadow-2xl"
-
-                                    />
-                                    <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 p-6 rounded-2xl shadow-xl">
-                                        <div className="text-3xl font-bold text-gray-900">20+</div>
-                                        <div className="text-gray-800/90">Years of Excellence</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Benefits Section */}
-                            <div>
-                                <h3 className="text-3xl font-bold mb-8 text-center text-white">Benefits of Learning Karate</h3>
-                                <div className="grid md:grid-cols-3 gap-8">
-                                    <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6 hover:border-bright-sun-400/30 transition-colors hover:scale-[1.02]">
-                                        <IconShield className="text-bright-sun-400 mb-4" size={32} />
-                                        <h4 className="text-xl font-semibold mb-3 text-white">Self-Defense Skills</h4>
-                                        <p className="text-gray-400">Learn practical self-defense techniques that can be applied in real-life situations, taught by experts with 20+ years experience.</p>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6 hover:border-bright-sun-400/30 transition-colors hover:scale-[1.02]">
-                                        <IconLeaf className="text-bright-sun-400 mb-4" size={32} />
-                                        <h4 className="text-xl font-semibold mb-3 text-white">Discipline & Focus</h4>
-                                        <p className="text-gray-400">Develop mental discipline, concentration, and focus that translates to all areas of life - school, work, and personal goals.</p>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6 hover:border-bright-sun-400/30 transition-colors hover:scale-[1.02]">
-                                        <IconBolt className="text-bright-sun-400 mb-4" size={32} />
-                                        <h4 className="text-xl font-semibold mb-3 text-white">Physical Fitness</h4>
-                                        <p className="text-gray-400">Improve strength, flexibility, coordination, and overall physical health through structured training programs.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            </motion.div>
                         </div>
-                    )}
+                    </div>
+                </section>
 
-                    {/* Programs Section */}
-                    {activeTab === 'programs' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Our Karate Programs</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    Tailored programs for all ages and skill levels, taught by our experienced instructors with 20+ years of combined expertise
-                                </p>
+                {/* Gallery */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 bg-white/[0.02] border-t border-white/5">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-black mb-4 italic">Action <span className="text-bright-sun-400 Not-italic">Gallery</span></h2>
+                            <p className="text-gray-400 text-lg">Visual proof of our commitment to excellence.</p>
+                        </div>
+
+                        {loadingGallery ? (
+                            <div className="flex flex-col items-center py-20">
+                                <motion.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                    className="w-10 h-10 border-4 border-bright-sun-400 border-t-transparent rounded-full mb-4"
+                                />
+                                <p className="text-white/50 animate-pulse font-medium">Curating our best moments...</p>
                             </div>
-
-                            <div className="space-y-12">
-                                {programs.map((program, index) => (
-                                    <div key={index} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-                                        <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                                            <img
-                                                src={program.image}
-                                                alt={program.title}
-                                                className="rounded-2xl shadow-xl w-full h-64 object-cover"
-                                            />
+                        ) : (
+                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                {galleryImages.map((image, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        whileHover={{ scale: 0.98 }}
+                                        className={`group relative overflow-hidden rounded-2xl aspect-square border border-white/10 ${idx % 3 === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+                                    >
+                                        <img
+                                            src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
+                                            alt={image.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1565992441121-4367c2967103?w=600"; }}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all p-4 flex flex-col justify-end">
+                                            <p className="text-xs font-bold text-white truncate">{image.title}</p>
                                         </div>
-                                        <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                                            <div className="flex items-center mb-4">
-                                                {program.icon}
-                                                <h3 className="text-2xl font-bold ml-3 text-white">{program.title}</h3>
-                                            </div>
-                                            <p className="text-gray-300 mb-6">{program.description}</p>
-
-                                            <div className="mb-6">
-                                                <h4 className="font-semibold mb-3 text-bright-sun-400">Program Features:</h4>
-                                                <ul className="space-y-2">
-                                                    {program.features.map((feature, idx) => (
-                                                        <li key={idx} className="flex items-center text-gray-300">
-                                                            <IconChevronRight className="text-bright-sun-400 mr-2" size={16} />
-                                                            {feature}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-
-                                            <div className="pt-6 border-t border-cerulean-blue-700/50">
-                                                <div className="flex items-center text-gray-400 mb-4">
-                                                    <IconCalendar className="mr-2" size={18} />
-                                                    <span>{program.schedule}</span>
-                                                </div>
-                                                <button className="w-full px-4 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all">
-                                                    Enroll Now
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
-                        </div>
-                    )}
-
-                    {/* Instructors Section */}
-                    {activeTab === 'instructors' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Meet Our Master Instructors</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    Learn from the best with our team of certified karate instructors, each with decades of experience
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-8">
-                                {instructors.map((instructor, index) => (
-                                    <div key={index} className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl overflow-hidden hover:border-bright-sun-400/30 transition-all duration-300 hover:scale-[1.02]">
-                                        <div className="h-64 relative overflow-hidden">
-                                            <img
-                                                src={instructor.image}
-                                                alt={instructor.name}
-                                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                            />
-                                            <div className="absolute top-4 right-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 px-3 py-1 rounded-full text-sm font-semibold text-gray-900">
-                                                {instructor.rank}
-                                            </div>
-                                        </div>
-                                        <div className="p-6">
-                                            <h3 className="text-2xl font-bold mb-2 text-white">{instructor.name}</h3>
-                                            <div className="flex items-center text-gray-400 mb-4">
-                                                <IconStar className="text-bright-sun-400 mr-1" size={16} />
-                                                <span className="text-sm">{instructor.experience} Teaching Experience</span>
-                                            </div>
-                                            <p className="text-gray-300 mb-4">Specialty: {instructor.specialty}</p>
-                                            <p className="text-bright-sun-400 text-sm mb-6">Part of our 20+ year legacy of excellence</p>
-                                            <button className="w-full px-4 py-3 bg-cerulean-blue-700/50 border border-cerulean-blue-600 rounded-lg font-semibold text-white hover:bg-cerulean-blue-600/50 transition-colors">
-                                                View Full Profile
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Core Values Section */}
-                    {activeTab === 'values' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Our Core Values</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    At The Champions Sports Academy, we believe sport is more than competition. It is an educational and social force that shapes healthier individuals and stronger communities.
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-                                {coreValues.map((value, index) => (
-                                    <div key={index} className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6 text-center hover:border-bright-sun-400/30 transition-colors hover:scale-[1.05]">
-                                        <div className="mb-4 flex justify-center">{value.icon}</div>
-                                        <h3 className="text-xl font-bold mb-2 text-white">{value.name}</h3>
-                                        <p className="text-gray-400 text-sm">{value.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Commitment Section */}
-                            <div className="bg-gradient-to-r from-cerulean-blue-800/30 to-cerulean-blue-900/30 border border-bright-sun-400/20 rounded-2xl p-8">
-                                <h3 className="text-2xl font-bold mb-6 text-center text-white">Our Commitment</h3>
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div>
-                                        <h4 className="text-xl font-semibold mb-4 text-bright-sun-400">Sport, Health & Well-Being</h4>
-                                        <p className="text-gray-300">
-                                            Sport is a powerful tool for health promotion and social well-being. Our programmes and workshops address physical activity for health and active lifestyles, mental well-being through sport participation, values-based education and positive behavior development, and community engagement and inclusion.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-semibold mb-4 text-bright-sun-400">Professional Standards</h4>
-                                        <p className="text-gray-300">
-                                            We are committed to professionalism, safeguarding, inclusion, and long-term impact. Our values-driven approach ensures every participant receives quality education and support in a safe, inclusive environment that promotes lifelong well-being.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Schedule Section */}
-                    {activeTab === 'schedule' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Class Schedule & Location</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    Flexible class timings designed for optimal learning and development at our state-of-the-art dojo facility
-                                </p>
-                            </div>
-
-                            <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-8">
-                                <div className="grid lg:grid-cols-2 gap-8">
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-6 text-white">Weekly Schedule</h3>
-                                        <div className="space-y-4">
-                                            {[
-                                                { day: "Monday - Friday", time: "Available by Appointment", classes: "Home Classes (Individual/Group)" },
-                                                { day: "Saturday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
-                                                { day: "Saturday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" },
-                                                { day: "Sunday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
-                                                { day: "Sunday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" }
-                                            ].map((slot, index) => (
-                                                <div key={index} className="flex items-center justify-between p-4 bg-cerulean-blue-800/50 rounded-lg hover:bg-cerulean-blue-700/50 transition-colors">
-                                                    <div>
-                                                        <div className="font-semibold text-white">{slot.day}</div>
-                                                        <div className="text-sm text-gray-400">{slot.classes}</div>
-                                                    </div>
-                                                    <div className="text-bright-sun-400 font-semibold">{slot.time}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-6 text-white">Our World-Class Dojo</h3>
-                                        <div className="space-y-6">
-                                            <div className="flex items-start">
-                                                <IconMapPin className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">The Champions Sports Academy</h4>
-                                                    <p className="text-gray-400">State-of-the-art Karate Dojo</p>
-                                                    <p className="text-gray-400">Kigali, Rwanda</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start">
-                                                <IconBell className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">Premium Facilities</h4>
-                                                    <ul className="text-gray-400 space-y-1">
-                                                        <li>• Professional tatami mats</li>
-                                                        <li>• Complete training equipment</li>
-                                                        <li>• Safety-certified training area</li>
-                                                        <li>• Parent observation areas</li>
-                                                        <li>• Changing rooms & showers</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start">
-                                                <IconShield className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">Safety First</h4>
-                                                    <ul className="text-gray-400 space-y-1">
-                                                        <li>• Certified safety equipment</li>
-                                                        <li>• First-aid trained staff</li>
-                                                        <li>• Small coach-to-student ratios</li>
-                                                        <li>• Age-appropriate training</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Gallery Section */}
-                    {activeTab === 'gallery' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <IconPhoto className="text-bright-sun-400 mx-auto mb-4" size={48} />
-                                <h2 className="text-4xl font-bold mb-4 text-white">Our Karate Gallery</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    A visual journey through our karate programmes, training sessions, and achievements at The Champions Sports Academy
-                                </p>
-                            </div>
-
-                            {loadingGallery ? (
-                                <div className="col-span-full text-center py-12">
-                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bright-sun-400 mx-auto mb-4"></div>
-                                    <p className="text-gray-300">Loading gallery...</p>
-                                </div>
-                            ) : (
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {galleryImages.map((image, index) => (
-                                        <div key={index} className="group relative overflow-hidden rounded-2xl cursor-pointer">
-                                            <img
-                                                src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
-                                                alt={image.title}
-                                                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                                                onError={(e) => {
-                                                    // Fallback if image fails to load
-                                                    e.currentTarget.src = "https://images.unsplash.com/photo-1565992441121-4367c2967103?w=600&h=400&fit=crop";
-                                                }}
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                                <h3 className="text-xl font-bold text-white mb-2">{image.title}</h3>
-                                                <p className="text-gray-300">{image.description}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-
-                                    {galleryImages.length === 0 && (
-                                        <div className="col-span-full text-center py-12 bg-cerulean-blue-800/30 rounded-xl border border-cerulean-blue-700/50">
-                                            <IconPhoto size={48} className="text-gray-500 mx-auto mb-3" />
-                                            <p className="text-gray-400">No photos available yet</p>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-r from-cerulean-blue-800/30 to-cerulean-blue-900/30 border-t border-b border-cerulean-blue-800">
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full mb-6 text-gray-900">
-                        <IconAward className="mr-2" size={24} />
-                        <span className="font-semibold">20+ Years of Excellence</span>
+                        )}
                     </div>
-                    <h2 className="text-4xl font-bold mb-6 text-white">Become a Champion for Life</h2>
-                    <p className="text-xl text-gray-300 mb-8">
-                        Whether you are a parent, athlete, coach, partner, or institution, we invite you to be part of a community that believes in developing Champions for Life through values-driven sport and physical literacy programmes.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/register"
-                            className="px-8 py-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                        >
-                            Register for Programmes
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className="px-8 py-4 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white font-semibold hover:bg-cerulean-blue-700/50 transition-all duration-300"
-                        >
-                            Contact Our Team
-                        </Link>
-                    </div>
-                    <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Values-driven education</span>
-                        </div>
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Certified professional coaches</span>
-                        </div>
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Safe & inclusive environment</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Testimonials */}
-            <section className="py-16 px-4 md:px-8 lg:px-16">
-                <div className="max-w-4xl mx-auto">
-                    <h3 className="text-3xl font-bold mb-12 text-center text-white">Developing Champions for Life</h3>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6">
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full flex items-center justify-center font-bold text-xl text-gray-900">
-                                    MK
-                                </div>
-                                <div className="ml-4">
-                                    <div className="font-semibold text-white">Michael K.</div>
-                                    <div className="text-gray-400 text-sm">Black Belt, 5 years training</div>
-                                </div>
-                            </div>
-                            <p className="text-gray-300 italic">
-                                "Training at Champions Academy for 5 years transformed my life. The 20+ years of experience really shows in their teaching methods."
-                            </p>
+                {/* Final CTA */}
+                <section className="py-24 px-4 md:px-8 lg:px-16">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="max-w-5xl mx-auto bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 rounded-[3rem] p-12 md:p-20 text-center text-gray-900 shadow-[0_40px_100px_rgba(250,204,21,0.2)] relative overflow-hidden group"
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
+                        <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">Ready to Become a<br />World Champion?</h2>
+                        <p className="text-xl font-bold mb-12 text-cerulean-blue-950/80 max-w-2xl mx-auto">Join the 20+ year legacy of excellence. Secure your future in the martial arts with The Champions Karate.</p>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center italic">
+                            <Link to="/register" className="px-10 py-5 bg-cerulean-blue-950 text-white rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl">Register Now</Link>
+                            <Link to="/contact" className="px-10 py-5 bg-white/20 backdrop-blur-md rounded-2xl font-black text-xl hover:bg-white/30 transition-all border border-cerulean-blue-900/10">Contact Masters</Link>
                         </div>
-                        <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6">
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full flex items-center justify-center font-bold text-xl text-gray-900">
-                                    SJ
-                                </div>
-                                <div className="ml-4">
-                                    <div className="font-semibold text-white">Sarah J.</div>
-                                    <div className="text-gray-400 text-sm">Parent of 2 students</div>
-                                </div>
-                            </div>
-                            <p className="text-gray-300 italic">
-                                "My kids have grown so much in confidence and discipline. The 20-year legacy of this academy is truly impressive."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                    </motion.div>
+                </section>
+            </main>
         </div>
     );
 };

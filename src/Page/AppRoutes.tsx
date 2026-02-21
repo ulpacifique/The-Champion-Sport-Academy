@@ -2,7 +2,6 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './HomePage';
 import AdminRouter from '../Admin/AdminRouter';
-import AuthPages from './AuthPages';
 import SportsDisciplines from '../LandingPage/SportsDisciplines';
 import Contact from '../LandingPage/contact';
 import Footer from '../Footer/Footer';

@@ -49,7 +49,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
         } finally {
             setIsLoading(false);
         }
-    }, [selectedChild?.id, activeSport]);
+    }, [selectedChild?.id, selectedChild?.sport, activeSport]);
 
     useEffect(() => {
         if (selectedChild?.id) {

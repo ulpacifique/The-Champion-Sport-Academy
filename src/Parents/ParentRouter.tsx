@@ -18,22 +18,26 @@ const ParentRouter = () => {
             const response = await parentAPI.getChildren();
             const data = response.data.map((child: any) => ({
                 ...child,
-                name: child.childName, // Align with UI expectation
-                progress: child.averageProgress || 0 // Use averageProgress from backend
+                name: child.childName,
+                progress: child.averageProgress || 0
             }));
             setChildList(data);
-            if (data.length > 0 && !selectedChild) {
-                setSelectedChild(data[0]);
-            }
         } catch (error) {
             console.error("Failed to fetch children", error);
         }
-    }, [selectedChild]);
+    }, []);
 
     // Load children data
     useEffect(() => {
         fetchChildren();
     }, [fetchChildren]);
+
+    // Initial child selection
+    useEffect(() => {
+        if (childList.length > 0 && !selectedChild) {
+            setSelectedChild(childList[0]);
+        }
+    }, [childList, selectedChild]);
 
     const renderContent = () => {
         switch (activeSection) {

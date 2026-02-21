@@ -125,7 +125,7 @@ export const register = async (req: Request, res: Response) => {
         }
 
         res.status(201).json({
-            id: user.id,
+            id: Number(user.id),
             email: user.email,
             role: user.role,
             firstName: user.firstName,
@@ -152,7 +152,7 @@ export const login = async (req: Request, res: Response) => {
         (req.session as any).role = user.role;
 
         res.json({
-            id: user.id,
+            id: Number(user.id),
             email: user.email,
             role: user.role,
             firstName: user.firstName,
@@ -185,7 +185,7 @@ export const me = async (req: Request, res: Response) => {
         if (!user) return res.status(404).json({ message: 'User not found' });
 
         res.json({
-            id: user.id,
+            id: Number(user.id),
             email: user.email,
             role: user.role,
             firstName: user.firstName,

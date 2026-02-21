@@ -2,14 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global scrollbar styling - Forced Blue Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  /* Slightly wider for better visibility */
+}
+
+::-webkit-scrollbar-track {
+  background: #192552 !important;
+  /* Deep Cerulean Blue 950 */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4282ef !important;
+  /* Cerulean Blue 500 */
+  border-radius: 10px;
+  border: 3px solid #192552 !important;
+  /* Matches track for a floating effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #65a4f5 !important;
+  /* Cerulean Blue 400 */
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4282ef #192552 !important;
+}
+
+/* Ensure the scrollbar area doesn't remain white */
+html,
+body {
+  scrollbar-gutter: stable;
+  background-color: #192552;
+}
+
+@layer base {
+  /* Rest of base styles if any */
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -17,15 +66,17 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
+    background: #192552 !important;
+    border: none;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(156, 163, 175, 0.3);
+    background: #4282ef !important;
     border-radius: 10px;
+    border: 2px solid #192552 !important;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 163, 175, 0.5);
+    background: #65a4f5 !important;
   }
 }

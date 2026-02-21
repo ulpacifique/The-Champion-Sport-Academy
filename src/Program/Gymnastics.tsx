@@ -1,31 +1,37 @@
-// src/Pages/Gymnastics.tsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    IconUsers,
-    IconAward,
     IconCalendar,
     IconMapPin,
-    IconChevronRight,
     IconStar,
     IconCheck,
     IconShield,
-    IconMedal,
-    IconTarget,
     IconLeaf,
-    IconBolt,
-    IconPhoto,
     IconFriends,
     IconHeartHandshake,
     IconTrophy,
+    IconAward,
+    IconChevronRight,
+    IconTarget,
+    IconBolt,
+    IconPhoto,
+    IconUsers,
+    IconMedal,
     IconBell
 } from '@tabler/icons-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
 
 const Gymnastics = () => {
-    const [activeTab, setActiveTab] = useState('about');
+    // Animation variants
+    const fadeInUp = {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.6 }
+    };
 
     // Gymnastics programs data
     const programs = [
@@ -125,13 +131,14 @@ const Gymnastics = () => {
     ];
 
     return (
-        <div className="bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900 text-white">
+        <div className="bg-cerulean-blue-950 text-white selection:bg-bright-sun-400 selection:text-gray-900 custom-scrollbar">
             <Header />
+
             {/* Hero Section */}
-            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-cerulean-blue-900/50 to-cerulean-blue-800/30 z-0"></div>
+            <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-cerulean-blue-950/20 to-transparent z-10"></div>
                 <div
-                    className="absolute inset-0 opacity-10 z-0"
+                    className="absolute inset-0 z-0"
                     style={{
                         backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
                         backgroundSize: 'cover',
@@ -139,515 +146,342 @@ const Gymnastics = () => {
                     }}
                 ></div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span className="inline-flex items-center px-4 py-2 bg-bright-sun-400/20 text-bright-sun-400 rounded-full text-sm font-medium mb-4">
-                                <IconAward className="mr-2" size={16} />
-                                The Champions Sports Academy
-                            </span>
-                            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 to-bright-sun-300">The Champions</span>Gymnastics
-                            </h1>
-                            <p className="text-xl text-gray-300 mb-8">
-                                At The Champions Sports Academy, we are a leading values-driven sport and physical literacy institution dedicated to the holistic development of children, young people, and coaches. We provide inclusive, safe, and structured gymnastics programmes that promote excellence, health, and lifelong well-being through sport.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <Link
-                                    to="/register"
-                                    className="px-8 py-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
-                                >
-                                    Start Your Journey
-                                </Link>
-                                <button className="px-8 py-4 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white font-semibold hover:bg-cerulean-blue-700/50 transition-all duration-300 text-center">
-                                    Book a Trial Class
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="relative">
-                            <div className="bg-gradient-to-br from-cerulean-blue-800/30 to-cerulean-blue-700/20 rounded-2xl p-8 backdrop-blur-sm border border-cerulean-blue-700/50">
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconUsers className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">300+</div>
-                                        <div className="text-gray-300">Gymnastics Students</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconAward className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">50+</div>
-                                        <div className="text-gray-300">Competition Medals</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconMedal className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">15+</div>
-                                        <div className="text-gray-300">Certified Coaches</div>
-                                    </div>
-                                    <div className="bg-cerulean-blue-800/50 p-6 rounded-xl border border-cerulean-blue-700/50 hover:border-bright-sun-400/30 transition-colors">
-                                        <IconCalendar className="text-bright-sun-400 mb-3" size={32} />
-                                        <div className="text-3xl font-bold text-white">100%</div>
-                                        <div className="text-gray-300">Safe & Inclusive</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <h1 className="text-5xl md:text-8xl font-black mb-6 leading-tight uppercase tracking-tighter">
+                            Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 via-bright-sun-300 to-bright-sun-500">The Champions Gymnastics</span>
+                        </h1>
+                    </motion.div>
                 </div>
             </section>
 
-            {/* Tabs Navigation */}
-            <section className="py-8 px-4 md:px-8 lg:px-16 border-b border-cerulean-blue-800">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {['about', 'programs', 'coaches', 'values', 'schedule', 'gallery'].map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab
-                                    ? 'bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900'
-                                    : 'bg-cerulean-blue-800/50 text-gray-300 hover:bg-cerulean-blue-700/50'
-                                    }`}
-                            >
-                                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Main Content */}
-            <section className="py-16 px-4 md:px-8 lg:px-16">
-                <div className="max-w-7xl mx-auto">
-
-                    {/* About Section */}
-                    {activeTab === 'about' && (
-                        <div className="space-y-16">
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 className="text-4xl font-bold mb-6 text-white">Who We Are</h2>
-                                    <p className="text-lg text-gray-300 mb-6">
-                                        The Champions Sports Academy is a leading values-driven sport and physical literacy institution dedicated to the holistic development of children, young people, and coaches. We provide inclusive, safe, and structured sport programmes that promote excellence, health, and lifelong well-being through sport.
-                                    </p>
-                                    <p className="text-lg text-gray-300 mb-6">
-                                        Founded on strong educational and ethical foundations, the Academy integrates sport performance, physical literacy, and character development to support participants across all stages of growth.
-                                    </p>
-                                    <div className="space-y-4">
-                                        {[
-                                            "Values-driven sport and physical literacy institution",
-                                            "Holistic development of children, youth, and coaches",
-                                            "Inclusive, safe, and structured programmes",
-                                            "Educational and ethical foundations",
-                                            "Sport performance and character development integration"
-                                        ].map((item, index) => (
-                                            <div key={index} className="flex items-center">
-                                                <IconCheck className="text-bright-sun-400 mr-3" size={20} />
-                                                <span className="text-gray-300">{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="relative">
-                                    <img
-                                        src={`${process.env.PUBLIC_URL}/athletes/Instruction.jpg`}
-                                        alt="Gymnastics training"
-                                        className="rounded-2xl shadow-2xl"
-                                    />
-                                    <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 p-6 rounded-2xl shadow-xl">
-                                        <div className="text-3xl font-bold text-gray-900">Champions</div>
-                                        <div className="text-gray-800/90">for Life</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Vision & Mission */}
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="bg-gradient-to-br from-cerulean-blue-800/30 to-cerulean-blue-900/30 border border-bright-sun-400/20 rounded-2xl p-8">
-                                    <IconTarget className="text-bright-sun-400 mb-4" size={32} />
-                                    <h3 className="text-2xl font-bold mb-4 text-white">Our Vision</h3>
-                                    <p className="text-gray-300">
-                                        To become a global hub of inclusive sport and physical literacy that promotes excellence, health, and lifelong well-being.
-                                    </p>
-                                </div>
-                                <div className="bg-gradient-to-br from-cerulean-blue-800/30 to-cerulean-blue-900/30 border border-bright-sun-400/20 rounded-2xl p-8">
-                                    <IconBolt className="text-bright-sun-400 mb-4" size={32} />
-                                    <h3 className="text-2xl font-bold mb-4 text-white">Our Mission</h3>
-                                    <p className="text-gray-300">
-                                        To empower people through inclusive sport, physical literacy, and values-based education programmes that promote excellence, health, and lifelong well-being.
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* What We Do */}
-                            <div>
-                                <h3 className="text-3xl font-bold mb-8 text-center text-white">What We Do</h3>
-                                <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-8">
-                                    <p className="text-lg text-gray-300 mb-6">
-                                        The Champions Sports Academy delivers professionally designed programmes aligned with international best practices in sport development, coaching education, and well-being.
-                                    </p>
-                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {[
-                                            "Children's sport and physical literacy programmes",
-                                            "Athlete development pathways",
-                                            "Sport coaching education and certification",
-                                            "Sport events organization and management",
-                                            "Sport, health, and well-being workshops"
-                                        ].map((item, index) => (
-                                            <div key={index} className="flex items-start">
-                                                <IconChevronRight className="text-bright-sun-400 mr-3 mt-1" size={20} />
-                                                <span className="text-gray-300">{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Programs Section */}
-                    {activeTab === 'programs' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Children & Youth Programmes (Ages 3–17)</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    Our age-appropriate programmes focus on fundamental movement skills and physical literacy, safe and enjoyable introduction to sport, long-term athlete development principles, and positive values, confidence, and social skills.
+            <main>
+                {/* About Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-bright-sun-400/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <motion.div {...fadeInUp}>
+                                <h2 className="text-4xl md:text-5xl font-black mb-8">
+                                    Developing <span className="text-bright-sun-400">Champions</span> For Life
+                                </h2>
+                                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                                    The Champions Sports Academy is a leading values-driven institution dedicated to the holistic development of children and youth through the power of gymnastics.
                                 </p>
-                            </div>
+                                <div className="space-y-4 mb-10">
+                                    {[
+                                        "Inclusive & safe training environment",
+                                        "Focus on physical literacy & movement",
+                                        "Educational and ethical foundations",
+                                        "Character development & discipline"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center text-gray-200">
+                                            <div className="w-6 h-6 rounded-full bg-bright-sun-400/20 flex items-center justify-center mr-3 border border-bright-sun-400/30">
+                                                <IconCheck size={14} className="text-bright-sun-400" />
+                                            </div>
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-10">
+                                    <div>
+                                        <div className="text-3xl font-black text-white mb-2">300+</div>
+                                        <div className="text-sm text-gray-400 uppercase tracking-widest font-bold">Students</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-3xl font-black text-white mb-2">15+</div>
+                                        <div className="text-sm text-gray-400 uppercase tracking-widest font-bold">Expert Coaches</div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                className="relative"
+                            >
+                                <div className="absolute -inset-4 bg-bright-sun-400/20 rounded-3xl blur-2xl"></div>
+                                <img
+                                    src={`${process.env.PUBLIC_URL}/athletes/Instruction.jpg`}
+                                    alt="Gymnastics training"
+                                    className="relative rounded-3xl border border-white/10 shadow-2xl z-10"
+                                />
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
 
-                            <div className="space-y-12">
-                                {programs.map((program, index) => (
-                                    <div key={index} className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-                                        <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                {/* Programs Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            {...fadeInUp}
+                            className="text-center mb-20"
+                        >
+                            <h2 className="text-4xl md:text-5xl font-black mb-6">World-Class <span className="text-bright-sun-400">Programs</span></h2>
+                            <p className="text-xl text-gray-400 max-w-2xl mx-auto">Age-appropriate training designed for long-term development</p>
+                        </motion.div>
+
+                        <div className="space-y-32">
+                            {programs.map((program, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 items-center`}
+                                >
+                                    <div className="flex-1 relative group">
+                                        <div className="absolute -inset-4 bg-bright-sun-400/10 rounded-3xl blur-xl group-hover:bg-bright-sun-400/20 transition-all"></div>
+                                        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
                                             <img
                                                 src={program.image}
                                                 alt={program.title}
-                                                className="rounded-2xl shadow-xl w-full h-64 object-cover"
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
-                                        </div>
-                                        <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                                            <div className="flex items-center mb-4">
-                                                {program.icon}
-                                                <h3 className="text-2xl font-bold ml-3 text-white">{program.title}</h3>
-                                            </div>
-                                            <p className="text-gray-300 mb-6">{program.description}</p>
-
-                                            <div className="mb-6">
-                                                <h4 className="font-semibold mb-3 text-bright-sun-400">Program Features:</h4>
-                                                <ul className="space-y-2">
-                                                    {program.features.map((feature, idx) => (
-                                                        <li key={idx} className="flex items-center text-gray-300">
-                                                            <IconChevronRight className="text-bright-sun-400 mr-2" size={16} />
-                                                            {feature}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-
-                                            <div className="pt-6 border-t border-cerulean-blue-700/50">
-                                                <p className="text-gray-300 mb-4">
-                                                    Through gymnastics activities, children develop strong physical foundations while learning life skills that extend beyond sport.
-                                                </p>
-                                                <div className="flex items-center text-gray-400 mb-4">
-                                                    <IconCalendar className="mr-2" size={18} />
-                                                    <span>{program.schedule}</span>
-                                                </div>
-                                                <button className="w-full px-4 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all">
-                                                    Enroll Now
-                                                </button>
-                                            </div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-transparent to-transparent opacity-60"></div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
 
-                    {/* Coaches Section */}
-                    {activeTab === 'coaches' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Coaching Education & Capacity Building</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    We are committed to raising the standard of coaching through structured coaching certification courses, continuous professional development workshops, Safe Sport and athlete well-being education, and mentorship and leadership development for coaches.
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-8">
-                                {coaches.map((coach, index) => (
-                                    <div key={index} className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl overflow-hidden hover:border-bright-sun-400/30 transition-all duration-300 hover:scale-[1.02]">
-                                        <div className="h-64 relative overflow-hidden">
-                                            <img
-                                                src={coach.image}
-                                                alt={coach.name}
-                                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                            />
-                                            <div className="absolute top-4 right-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 px-3 py-1 rounded-full text-sm font-semibold text-gray-900">
-                                                {coach.certification}
-                                            </div>
+                                    <div className="flex-1 space-y-8">
+                                        <div className="inline-flex p-4 rounded-2xl bg-bright-sun-400/10 border border-bright-sun-400/20 text-bright-sun-400">
+                                            {program.icon}
                                         </div>
-                                        <div className="p-6">
-                                            <h3 className="text-2xl font-bold mb-2 text-white">{coach.name}</h3>
-                                            <div className="flex items-center text-gray-400 mb-4">
-                                                <IconStar className="text-bright-sun-400 mr-1" size={16} />
-                                                <span className="text-sm">{coach.experience} Experience</span>
-                                            </div>
-                                            <p className="text-gray-300 mb-4">Specialty: {coach.specialty}</p>
-                                            <p className="text-bright-sun-400 text-sm mb-6">
-                                                Our approach ensures coaches are technically competent, ethically grounded, and equipped to support athletes holistically.
-                                            </p>
-                                            <button className="w-full px-4 py-3 bg-cerulean-blue-700/50 border border-cerulean-blue-600 rounded-lg font-semibold text-white hover:bg-cerulean-blue-600/50 transition-colors">
-                                                View Coach Profile
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Core Values Section */}
-                    {activeTab === 'values' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Our Core Values</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    At The Champions Sports Academy, we believe sport is more than competition. It is an educational and social force that shapes healthier individuals and stronger communities.
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-                                {coreValues.map((value, index) => (
-                                    <div key={index} className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6 text-center hover:border-bright-sun-400/30 transition-colors hover:scale-[1.05]">
-                                        <div className="mb-4 flex justify-center">{value.icon}</div>
-                                        <h3 className="text-xl font-bold mb-2 text-white">{value.name}</h3>
-                                        <p className="text-gray-400 text-sm">{value.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Commitment Section */}
-                            <div className="bg-gradient-to-r from-cerulean-blue-800/30 to-cerulean-blue-900/30 border border-bright-sun-400/20 rounded-2xl p-8">
-                                <h3 className="text-2xl font-bold mb-6 text-center text-white">Our Commitment</h3>
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div>
-                                        <h4 className="text-xl font-semibold mb-4 text-bright-sun-400">Sport, Health & Well-Being</h4>
-                                        <p className="text-gray-300">
-                                            Sport is a powerful tool for health promotion and social well-being. Our programmes and workshops address physical activity for health and active lifestyles, mental well-being through sport participation, values-based education and positive behavior development, and community engagement and inclusion.
+                                        <h3 className="text-3xl font-black uppercase tracking-tight">{program.title}</h3>
+                                        <p className="text-xl text-gray-300 leading-relaxed italic border-l-4 border-bright-sun-400 pl-6">
+                                            "{program.description}"
                                         </p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-semibold mb-4 text-bright-sun-400">Professional Standards</h4>
-                                        <p className="text-gray-300">
-                                            We are committed to professionalism, safeguarding, inclusion, and long-term impact. Our values-driven approach ensures every participant receives quality education and support in a safe, inclusive environment that promotes lifelong well-being.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Schedule Section */}
-                    {activeTab === 'schedule' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl font-bold mb-4 text-white">Class Schedule & Location</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    Flexible class timings designed for optimal learning and development at our state-of-the-art gymnastics facility
-                                </p>
-                            </div>
-
-                            <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-8">
-                                <div className="grid lg:grid-cols-2 gap-8">
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-6 text-white">Weekly Schedule</h3>
-                                        <div className="space-y-4">
-                                            {[
-                                                { day: "Monday - Friday", time: "Available by Appointment", classes: "Home Classes (Individual/Group)" },
-                                                { day: "Saturday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
-                                                { day: "Saturday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" },
-                                                { day: "Sunday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
-                                                { day: "Sunday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" }
-                                            ].map((item, index) => (
-                                                <div key={index} className="flex items-center justify-between p-4 bg-cerulean-blue-800/50 rounded-lg hover:bg-cerulean-blue-700/50 transition-colors">
-                                                    <div>
-                                                        <div className="font-semibold text-white">{item.day}</div>
-                                                        <div className="text-sm text-gray-400">{item.classes}</div>
-                                                    </div>
-                                                    <div className="text-bright-sun-400 font-semibold">{item.time}</div>
-                                                </div>
+                                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            {program.features.map((feature, i) => (
+                                                <li key={i} className="flex items-center gap-3 text-gray-400 group">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-bright-sun-400 group-hover:scale-150 transition-transform"></span>
+                                                    {feature}
+                                                </li>
                                             ))}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h3 className="text-2xl font-bold mb-6 text-white">Our World-Class Facility</h3>
-                                        <div className="space-y-6">
-                                            <div className="flex items-start">
-                                                <IconMapPin className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">The Champions Sports Academy</h4>
-                                                    <p className="text-gray-400">State-of-the-art Gymnastics Center</p>
-                                                    <p className="text-gray-400">Kigali, Rwanda</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start">
-                                                <IconBell className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">Premium Facilities</h4>
-                                                    <ul className="text-gray-400 space-y-1">
-                                                        <li>• Olympic-standard equipment</li>
-                                                        <li>• Professional sprung floors</li>
-                                                        <li>• Safety-certified apparatus</li>
-                                                        <li>• Parent observation areas</li>
-                                                        <li>• Changing rooms & showers</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start">
-                                                <IconShield className="text-bright-sun-400 mr-3 mt-1" size={24} />
-                                                <div>
-                                                    <h4 className="font-semibold mb-2 text-white">Safety First</h4>
-                                                    <ul className="text-gray-400 space-y-1">
-                                                        <li>• Certified safety equipment</li>
-                                                        <li>• First-aid trained staff</li>
-                                                        <li>• Small coach-to-student ratios</li>
-                                                        <li>• Age-appropriate training</li>
-                                                    </ul>
-                                                </div>
+                                        </ul>
+                                        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-6">
+                                            <div className="flex items-center gap-3 text-gray-400">
+                                                <IconCalendar className="text-bright-sun-400" />
+                                                <span className="text-sm font-medium">{program.schedule}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </motion.div>
+                            ))}
                         </div>
-                    )}
+                    </div>
+                </section>
 
-                    {/* Gallery Section */}
-                    {activeTab === 'gallery' && (
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <IconPhoto className="text-bright-sun-400 mx-auto mb-4" size={48} />
-                                <h2 className="text-4xl font-bold mb-4 text-white">Our Gymnastics Gallery</h2>
-                                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                                    A visual journey through our gymnastics programmes, training sessions, and achievements at The Champions Sports Academy
-                                </p>
-                            </div>
+                {/* Coaches Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 bg-white/[0.02]">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            {...fadeInUp}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-4xl md:text-5xl font-black mb-6">Expert <span className="text-bright-sun-400">Instructors</span></h2>
+                            <p className="text-xl text-gray-400">Learning from the national and international masters</p>
+                        </motion.div>
 
-                            {loadingGallery ? (
-                                <div className="col-span-full text-center py-12">
-                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bright-sun-400 mx-auto mb-4"></div>
-                                    <p className="text-gray-300">Loading gallery...</p>
-                                </div>
-                            ) : (
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {galleryImages.map((image, index) => (
-                                        <div key={index} className="group relative overflow-hidden rounded-2xl cursor-pointer">
-                                            <img
-                                                src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
-                                                alt={image.title}
-                                                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                                                onError={(e) => {
-                                                    // Fallback if image fails to load
-                                                    e.currentTarget.src = "https://images.unsplash.com/photo-1577223625818-75bc1f2ac0e5?w=600&h=400&fit=crop";
-                                                }}
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                                <h3 className="text-xl font-bold text-white mb-2">{image.title}</h3>
-                                                <p className="text-gray-300">{image.description}</p>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {coaches.map((coach, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="group relative"
+                                >
+                                    <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 mb-6 shadow-2xl">
+                                        <img
+                                            src={coach.image}
+                                            alt={coach.name}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
+                                        <div className="absolute bottom-6 left-6 right-6">
+                                            <div className="text-xs font-bold text-bright-sun-400 uppercase tracking-widest mb-1">{coach.certification}</div>
+                                            <div className="text-xl font-black text-white">{coach.name}</div>
+                                        </div>
+                                    </div>
+                                    <div className="px-2">
+                                        <div className="text-sm text-gray-400 font-medium">{coach.specialty}</div>
+                                        <div className="text-xs text-bright-sun-400/60 font-bold uppercase mt-1">{coach.experience} Experience</div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Core Values */}
+                <section className="py-24 bg-cerulean-blue-950 px-4 md:px-8 lg:px-16 text-white">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-5 gap-8">
+                            {coreValues.map((value, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="flex flex-col items-center text-center p-8 bg-gray-900/5 rounded-3xl border border-gray-900/10 hover:bg-cerulean-blue-900 transition-colors"
+                                >
+                                    <div className="w-16 h-16 bg-gray-900 text-bright-sun-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
+                                        {value.icon}
+                                    </div>
+                                    <h3 className="text-xl font-black mb-3">{value.name}</h3>
+                                    <p className="text-sm font-medium text-gray-200 leading-relaxed">{value.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Schedule & Location */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-16">
+                            <motion.div {...fadeInUp}>
+                                <h2 className="text-4xl font-black mb-8 italic uppercase tracking-tighter">Schedule & <span className="text-bright-sun-400">Place</span></h2>
+                                <div className="space-y-4">
+                                    {[
+                                        { day: "Monday - Friday", time: "Available by Appointment", classes: "Home Classes (Individual/Group)" },
+                                        { day: "Saturday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
+                                        { day: "Saturday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" },
+                                        { day: "Sunday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning Session)" },
+                                        { day: "Sunday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon Session)" }
+                                    ].map((s, i) => (
+                                        <div key={i} className="flex justify-between items-center p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-bright-sun-400/30 transition-all group">
+                                            <div>
+                                                <div className="text-lg font-bold text-white group-hover:text-bright-sun-400 transition-colors">{s.day}</div>
+                                                <div className="text-sm text-gray-500 font-bold uppercase">{s.classes}</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-lg font-black text-bright-sun-400">{s.time}</div>
                                             </div>
                                         </div>
                                     ))}
+                                </div>
+                            </motion.div>
 
-                                    {galleryImages.length === 0 && (
-                                        <div className="col-span-full text-center py-12 bg-cerulean-blue-800/30 rounded-xl border border-cerulean-blue-700/50">
-                                            <IconPhoto size={48} className="text-gray-500 mx-auto mb-3" />
-                                            <p className="text-gray-400">No photos available yet</p>
+                            <motion.div {...fadeInUp} className="space-y-12">
+                                <div>
+                                    <h3 className="text-2xl font-black mb-6 flex items-center gap-3">
+                                        <IconMapPin className="text-bright-sun-400" /> LOCATION
+                                    </h3>
+                                    <div className="p-8 rounded-3xl bg-bright-sun-400 text-gray-900 shadow-2xl">
+                                        <div className="text-2xl font-black mb-2">The Champions Sport Academy</div>
+                                        <div className="text-lg font-bold opacity-80 mb-6 uppercase tracking-wider">Kigali, Rwanda</div>
+                                        <Link
+                                            to="/contact"
+                                            className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-xl font-bold hover:scale-105 transition-transform"
+                                        >
+                                            Get Directions <IconChevronRight size={18} className="ml-1" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5">
+                                        <IconAward className="text-bright-sun-400 mb-3" />
+                                        <div className="font-black text-white uppercase text-sm mb-1">Elite Facility</div>
+                                        <div className="text-xs text-gray-500 font-medium">Olympic-standard equipment</div>
+                                    </div>
+                                    <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5">
+                                        <IconShield className="text-bright-sun-400 mb-3" />
+                                        <div className="font-black text-white uppercase text-sm mb-1">Safety First</div>
+                                        <div className="text-xs text-gray-500 font-medium">Safe Sport Certified</div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Gallery Section */}
+                <section className="py-24 px-4 md:px-8 lg:px-16 bg-white/[0.02]">
+                    <div className="max-w-7xl mx-auto text-center mb-16 px-4">
+                        <motion.div {...fadeInUp}>
+                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 italic">
+                                Action <span className="text-bright-sun-400">Gallery</span>
+                            </h2>
+                            <p className="text-gray-400 font-medium uppercase tracking-widest">Witness the Excellence</p>
+                        </motion.div>
+                    </div>
+
+                    <div className="max-w-[1600px] mx-auto">
+                        {loadingGallery ? (
+                            <div className="flex justify-center py-20">
+                                <div className="w-12 h-12 border-4 border-bright-sun-400 border-t-transparent rounded-full animate-spin"></div>
+                            </div>
+                        ) : (
+                            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 px-4">
+                                {galleryImages.map((image, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: i * 0.05 }}
+                                        viewport={{ once: true }}
+                                        className="relative group rounded-3xl overflow-hidden cursor-pointer"
+                                    >
+                                        <img
+                                            src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
+                                            alt={image.title}
+                                            className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "https://images.unsplash.com/photo-1517836357463-d25dfeac0348?w=800&q=80";
+                                            }}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 text-left">
+                                            <h4 className="text-white font-black text-xl mb-1">{image.title}</h4>
+                                            <p className="text-bright-sun-400 text-sm font-bold uppercase">{image.category || 'Gymnastics'}</p>
                                         </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-r from-cerulean-blue-800/30 to-cerulean-blue-900/30 border-t border-b border-cerulean-blue-800">
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full mb-6 text-gray-900">
-                        <IconHeartHandshake className="mr-2" size={24} />
-                        <span className="font-semibold">Join Our Community</span>
-                    </div>
-                    <h2 className="text-4xl font-bold mb-6 text-white">Become a Champion for Life</h2>
-                    <p className="text-xl text-gray-300 mb-8">
-                        Whether you are a parent, athlete, coach, partner, or institution, we invite you to be part of a community that believes in developing Champions for Life through values-driven sport and physical literacy programmes.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/register"
-                            className="px-8 py-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 rounded-lg font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                        >
-                            Register for Programmes
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className="px-8 py-4 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white font-semibold hover:bg-cerulean-blue-700/50 transition-all duration-300"
-                        >
-                            Contact Our Team
-                        </Link>
-                    </div>
-                    <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Values-driven education</span>
-                        </div>
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Certified professional coaches</span>
-                        </div>
-                        <div className="flex items-center justify-center text-gray-400">
-                            <IconCheck className="text-bright-sun-400 mr-2" size={20} />
-                            <span>Safe & inclusive environment</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials */}
-            <section className="py-16 px-4 md:px-8 lg:px-16">
-                <div className="max-w-4xl mx-auto">
-                    <h3 className="text-3xl font-bold mb-12 text-center text-white">Developing Champions for Life</h3>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6">
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full flex items-center justify-center font-bold text-xl text-gray-900">
-                                    AW
-                                </div>
-                                <div className="ml-4">
-                                    <div className="font-semibold text-white">Anna W.</div>
-                                    <div className="text-gray-400 text-sm">Parent of gymnast, 3 years</div>
-                                </div>
+                                    </motion.div>
+                                ))}
                             </div>
-                            <p className="text-gray-300 italic">
-                                "The values-based approach at Champions Academy has helped my daughter grow not just as a gymnast, but as a confident, disciplined young person. The holistic development is truly remarkable."
-                            </p>
-                        </div>
-                        <div className="bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 rounded-2xl p-6">
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 rounded-full flex items-center justify-center font-bold text-xl text-gray-900">
-                                    TC
-                                </div>
-                                <div className="ml-4">
-                                    <div className="font-semibold text-white">Thomas C.</div>
-                                    <div className="text-gray-400 text-sm">Advanced Gymnastics Student</div>
-                                </div>
-                            </div>
-                            <p className="text-gray-300 italic">
-                                "Training here has transformed my approach to sport and life. The focus on physical literacy and character development has made me a better athlete and person. Truly champions for life!"
-                            </p>
-                        </div>
+                        )}
                     </div>
-                </div>
-            </section>
+                </section>
+
+                {/* CTA Section */}
+                <section className="py-32 px-4 md:px-8 lg:px-16 text-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bright-sun-400/5 to-transparent"></div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="relative z-10 max-w-4xl mx-auto"
+                    >
+                        <h2 className="text-5xl md:text-7xl font-black mb-8 leading-none tracking-tighter uppercase italic">
+                            READY TO BECOME <br />
+                            <span className="text-bright-sun-400">A CHAMPION?</span>
+                        </h2>
+                        <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+                            Join Rwanda's elite gymnastics academy and start your journey towards excellence today.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                            <Link
+                                to="/register"
+                                className="px-12 py-5 bg-bright-sun-400 text-gray-900 rounded-2xl font-black text-xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(250,204,21,0.2)]"
+                            >
+                                REGISTER NOW
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="px-12 py-5 bg-white/5 backdrop-blur-md border border-white/20 text-white rounded-2xl font-black text-xl hover:bg-white/10 transition-all"
+                            >
+                                CONTACT US
+                            </Link>
+                        </div>
+                    </motion.div>
+                </section>
+            </main>
         </div>
     );
 };
