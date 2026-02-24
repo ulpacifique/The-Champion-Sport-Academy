@@ -4,7 +4,6 @@ import {
     IconDashboard,
     IconUsers,
     IconUserCheck,
-    IconCalendarEvent,
     IconCash,
     IconMessage,
     IconSettings,
@@ -32,7 +31,6 @@ const ManagerLayout = ({
     setActiveSection
 }: ManagerLayoutProps) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [notificationCount, setNotificationCount] = useState(5);
     const [unreadMessages, setUnreadMessages] = useState(0);
 
     useEffect(() => {
@@ -199,11 +197,6 @@ const ManagerLayout = ({
                                 {/* Notification Bell */}
                                 <button className="relative text-gray-300 hover:text-white p-2 hover:bg-gray-700/50 rounded-lg">
                                     <IconBell size={24} />
-                                    {notificationCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                                            {notificationCount}
-                                        </span>
-                                    )}
                                 </button>
 
                                 {/* User Profile */}

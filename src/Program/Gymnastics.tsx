@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
     IconCalendar,
     IconMapPin,
-    IconStar,
     IconCheck,
     IconShield,
     IconLeaf,
@@ -11,15 +10,9 @@ import {
     IconHeartHandshake,
     IconTrophy,
     IconAward,
-    IconChevronRight,
-    IconTarget,
-    IconBolt,
-    IconPhoto,
-    IconUsers,
-    IconMedal,
-    IconBell
+    IconChevronRight
 } from '@tabler/icons-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';

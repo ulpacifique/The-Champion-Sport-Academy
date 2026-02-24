@@ -2,7 +2,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import HeroSection from "../LandingPage/HeroSection";
 import Partners from "../LandingPage/Partners";
-import SportsDisciplines from "../LandingPage/SportsDisciplines";
 
 import AboutUs from "../LandingPage/AboutUs";
 

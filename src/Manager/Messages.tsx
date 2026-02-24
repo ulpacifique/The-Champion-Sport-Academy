@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
     IconSearch,
     IconSend,
@@ -20,21 +20,16 @@ const Messages = () => {
     const [recipients, setRecipients] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        fetchChats();
-        fetchRecipients();
-    }, []);
-
-    const fetchRecipients = async () => {
+    const fetchRecipients = useCallback(async () => {
         try {
             const response = await managerAPI.getRecipients();
             setRecipients(response.data);
         } catch (error) {
             console.error("Failed to fetch recipients", error);
         }
-    };
+    }, []);
 
-    const fetchChats = async () => {
+    const fetchChats = useCallback(async () => {
         try {
             const response = await managerAPI.getRecentChats();
             const currentUserId = getCurrentUserId();
@@ -51,9 +46,9 @@ const Messages = () => {
         } catch (error) {
             console.error("Failed to fetch chats", error);
         }
-    };
+    }, []);
 
-    const fetchMessages = async () => {
+    const fetchMessages = useCallback(async () => {
         if (!selectedChat) return;
         try {
             const response = await managerAPI.getConversation(selectedChat);
@@ -83,7 +78,12 @@ const Messages = () => {
         } catch (error) {
             console.error(error);
         }
-    };
+    }, [selectedChat]);
+
+    useEffect(() => {
+        fetchChats();
+        fetchRecipients();
+    }, [fetchChats, fetchRecipients]);
 
     const getCurrentUserId = () => {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -102,7 +102,7 @@ const Messages = () => {
             const interval = setInterval(() => fetchMessages(), 5000);
             return () => clearInterval(interval);
         }
-    }, [selectedChat]);
+    }, [selectedChat, fetchMessages]);
 
     const handleSendMessage = async () => {
         if (message.trim() && selectedChat) {

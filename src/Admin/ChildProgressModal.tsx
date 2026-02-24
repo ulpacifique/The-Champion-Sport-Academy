@@ -35,13 +35,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
     // Dynamic list of sports derived from defaults + data
     const [availableSports, setAvailableSports] = useState<string[]>(['Gymnastics', 'Karate']);
 
-    useEffect(() => {
-        if (isOpen && childId) {
-            fetchProgress();
-        }
-    }, [isOpen, childId]);
-
-    const fetchProgress = async () => {
+    const fetchProgress = React.useCallback(async () => {
         setLoading(true);
         try {
             console.log("Fetching progress for childId:", childId);
@@ -61,7 +55,13 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
         } finally {
             setLoading(false);
         }
-    };
+    }, [childId]);
+
+    useEffect(() => {
+        if (isOpen && childId) {
+            fetchProgress();
+        }
+    }, [isOpen, childId, fetchProgress]);
 
     const getSkillProgress = (skill: string) => {
         return progressData.find(p => p.sportName === activeTab && p.skillName === skill) || {

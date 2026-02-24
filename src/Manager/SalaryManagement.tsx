@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     IconCash,
-    IconCheck,
     IconX,
     IconDownload,
     IconCalendarEvent,
@@ -30,11 +29,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
         notes: ""
     });
 
-    useEffect(() => {
-        fetchSalaryHistory();
-    }, [selectedMonth]);
-
-    const fetchSalaryHistory = async () => {
+    const fetchSalaryHistory = useCallback(async () => {
         setIsLoading(true);
         try {
             const res = await managerAPI.getSalaryData(selectedMonth);
@@ -44,7 +39,11 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [selectedMonth]);
+
+    useEffect(() => {
+        fetchSalaryHistory();
+    }, [fetchSalaryHistory]);
 
     const handleRecordSalary = async () => {
         if (!salaryRecord.coachId || !salaryRecord.amount) {

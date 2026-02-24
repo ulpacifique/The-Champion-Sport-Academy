@@ -3,10 +3,6 @@ import {
     IconPhoto,
     IconUpload,
     IconTrash,
-    IconFilter,
-    IconSearch,
-    IconPlus,
-    IconCheck
 } from '@tabler/icons-react';
 import { galleryAPI, GalleryItem } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';

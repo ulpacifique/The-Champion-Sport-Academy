@@ -8,7 +8,6 @@ import {
     IconCheck,
     IconX,
     IconSearch,
-    IconFilter,
     IconDownload
 } from "@tabler/icons-react";
 import managerAPI from "../Services/ManagerApi";

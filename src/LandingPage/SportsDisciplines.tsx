@@ -2,108 +2,18 @@ import { Carousel } from "@mantine/carousel";
 import { useState, useEffect } from "react";
 import { IconActivity, IconArrowLeft, IconArrowRight, IconMail, IconPhone, IconShield, IconUserCheck } from "@tabler/icons-react";
 import {
-    IconKarate,
-    IconGymnastics,
-    IconSchool,
     IconCertificate,
     IconCalendarEvent,
     IconShoppingCart,
-    IconBuilding,
     IconWorld,
     IconUsers,
     IconTrophy,
-    IconStar,
     IconMedal,
-    IconAward
+    IconAward,
+    IconSchool,
+    IconStar
 } from "@tabler/icons-react";
 
-const coreServices = [
-    {
-        title: "Sport & Physical Literacy Programmes",
-        description: "Karate, Gymnastics, Multi-Sport for Children & Youth (Ages 3-17)",
-        icon: IconActivity,
-        features: [
-            "Fundamental movement skills",
-            "Safe and enjoyable sport introduction",
-            "Long-term athlete development",
-            "Values, confidence & social skills"
-        ],
-        sports: ["Gymnastics", "Karate", "Multi-Sport"],
-        bgColor: "bg-blue-500/5",
-        borderColor: "border-blue-500/20",
-        glowColor: "shadow-blue-500/10",
-        iconColor: "text-blue-400"
-    },
-    {
-        title: "School-Based Sport & Education",
-        description: "Integrated physical education and values-based learning",
-        icon: IconSchool,
-        features: [
-            "Integrated physical education",
-            "Values-based learning",
-            "Extracurricular sport programs",
-            "School-community partnerships"
-        ],
-        bgColor: "bg-purple-500/5",
-        borderColor: "border-purple-500/20",
-        glowColor: "shadow-purple-500/10",
-        iconColor: "text-purple-400"
-    },
-    {
-        title: "Coach Education & Mentoring",
-        description: "Professional development and certification support",
-        icon: IconCertificate,
-        features: [
-            "Structured certification courses",
-            "Professional development workshops",
-            "Safe Sport & athlete well-being",
-            "Mentorship & leadership programs"
-        ],
-        focus: "Technically competent, ethically grounded coaches",
-        bgColor: "bg-bright-sun-300/5",
-        borderColor: "border-bright-sun-300/20",
-        glowColor: "shadow-bright-sun-300/10",
-        iconColor: "text-bright-sun-300"
-    },
-    {
-        title: "Events, Camps & Workshops",
-        description: "Sporting events, training camps, and well-being initiatives",
-        icon: IconCalendarEvent,
-        features: [
-            "Sport events and competitions",
-            "Training camps and intensive workshops",
-            "Health and well-being workshops",
-            "Community engagement"
-        ],
-        bgColor: "bg-green-500/5",
-        borderColor: "border-green-500/20",
-        glowColor: "shadow-green-500/10",
-        iconColor: "text-green-400"
-    },
-    {
-        title: "Sports Equipment Shop",
-        description: "Official uniforms and training materials",
-        icon: IconShoppingCart,
-        features: [
-            "Professional sports equipment",
-            "Official uniforms and apparel",
-            "Training materials",
-            "Community sport support"
-        ],
-        bgColor: "bg-orange-500/5",
-        borderColor: "border-orange-500/20",
-        glowColor: "shadow-orange-500/10",
-        iconColor: "text-orange-400"
-    }
-];
-
-// Statistics
-const stats = [
-    { value: "4,300+", label: "Children & Youth Reached", icon: IconUsers, color: "text-blue-400" },
-    { value: "600+", label: "Coaches Trained & Mentored", icon: IconUserCheck, color: "text-bright-sun-300" },
-    { value: "223+", label: "Medals Won", icon: IconMedal, color: "text-green-400" },
-    { value: "18", label: "Trophies Won", icon: IconTrophy, color: "text-purple-400" },
-];
 
 const SportsDisciplines = () => {
     const [animate, setAnimate] = useState(false);

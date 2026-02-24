@@ -8,7 +8,6 @@ import {
     IconMenu2,
     IconX,
     IconBell,
-    IconUser,
     IconSettings,
     IconHelp
 } from '@tabler/icons-react';

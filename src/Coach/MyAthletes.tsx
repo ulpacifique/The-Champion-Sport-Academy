@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IconSearch, IconFilter, IconChartBar, IconLoader2 } from '@tabler/icons-react';
+import { IconSearch, IconChartBar, IconLoader2 } from '@tabler/icons-react';
 import ChildProgressModal from '../Admin/ChildProgressModal';
 import { coachAPI } from '../Services/Api';
 

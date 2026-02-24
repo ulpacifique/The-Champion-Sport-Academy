@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
     IconSearch,
     IconSend,
@@ -20,21 +20,12 @@ const Messages = () => {
     const [recipients, setRecipients] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        fetchChats();
-        fetchRecipients();
+    const getCurrentUserId = useCallback(() => {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        return Number(user.id);
     }, []);
 
-    const fetchRecipients = async () => {
-        try {
-            const response = await messageAPI.getRecipients();
-            setRecipients(response.data);
-        } catch (error) {
-            console.error("Failed to fetch recipients", error);
-        }
-    };
-
-    const fetchChats = async () => {
+    const fetchChats = useCallback(async () => {
         try {
             const response = await messageAPI.getChats();
             const currentUserId = getCurrentUserId();
@@ -51,9 +42,23 @@ const Messages = () => {
         } catch (error) {
             console.error("Failed to fetch chats", error);
         }
-    };
+    }, [getCurrentUserId]);
 
-    const fetchConversation = async (otherUserId: number) => {
+    const fetchRecipients = useCallback(async () => {
+        try {
+            const response = await messageAPI.getRecipients();
+            setRecipients(response.data);
+        } catch (error) {
+            console.error("Failed to fetch recipients", error);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchChats();
+        fetchRecipients();
+    }, [fetchChats, fetchRecipients]);
+
+    const fetchConversation = useCallback(async (otherUserId: number) => {
         try {
             const response = await messageAPI.getConversation(otherUserId);
             const currentUserId = getCurrentUserId();
@@ -82,18 +87,7 @@ const Messages = () => {
         } catch (error) {
             console.error(error);
         }
-    };
-
-    const getCurrentUserId = () => {
-        const user = JSON.parse(localStorage.getItem('user') || '{}');
-        return Number(user.id);
-    };
-
-    useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        }
-    }, [messagesList]);
+    }, [getCurrentUserId]);
 
     useEffect(() => {
         if (selectedChat) {
@@ -101,7 +95,7 @@ const Messages = () => {
             const interval = setInterval(() => fetchConversation(selectedChat), 5000);
             return () => clearInterval(interval);
         }
-    }, [selectedChat]);
+    }, [selectedChat, fetchConversation]);
 
     const handleSendMessage = async () => {
         if (message.trim() && selectedChat) {

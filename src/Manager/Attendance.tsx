@@ -7,7 +7,6 @@ import {
     IconUserCheck,
     IconUsers,
     IconDownload,
-    IconFilter,
     IconCalendar,
     IconSun,
     IconMoon,
@@ -31,7 +30,6 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
     const [childrenAttendance, setChildrenAttendance] = useState<AttendanceState>({});
     const [coachesAttendance, setCoachesAttendance] = useState<AttendanceState>({});
     const [selectedClass, setSelectedClass] = useState("all");
-    const [sportFilter, setSportFilter] = useState("all");
     const [isLoading, setIsLoading] = useState(false);
     const [session, setSession] = useState<"morning" | "afternoon">("morning");
     const [holidayMode, setHolidayMode] = useState(false);
@@ -195,8 +193,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
         const matchesClass = selectedClass === "all" ||
             (child.programId?.toString() === selectedClass) ||
             (child.sport?.toLowerCase() + "-" + (child.belt || child.level)?.toLowerCase() === selectedClass);
-        const matchesSport = sportFilter === "all" || child.sport === sportFilter;
-        return matchesClass && matchesSport;
+        return matchesClass;
     });
 
     // Calculate stats (based on local state for current day view)

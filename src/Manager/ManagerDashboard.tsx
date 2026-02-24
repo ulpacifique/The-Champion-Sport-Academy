@@ -4,7 +4,6 @@ import {
     IconUsers,
     IconUserCheck,
     IconCash,
-    IconTrendingUp,
     IconCalendarEvent,
     IconChartBar,
     IconClipboardCheck,

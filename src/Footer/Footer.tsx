@@ -22,7 +22,7 @@ const Footer = () => {
                             {['Home', 'About Us', 'Programs', 'Contact'].map((item) => (
                                 <li key={item}>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="text-gray-400 hover:text-bright-sun-300 text-sm md:text-base transition-colors duration-200 block py-1"
                                     >
                                         {item}
@@ -39,7 +39,7 @@ const Footer = () => {
                             {['Gymnastics', 'Karate', 'Traditional Dance', 'Badminton'].map((sport) => (
                                 <li key={sport}>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="text-gray-400 hover:text-bright-sun-300 text-sm md:text-base transition-colors duration-200 block py-1"
                                     >
                                         {sport}

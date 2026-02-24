@@ -5,25 +5,15 @@ import {
   IconTarget,
   IconUsers,
   IconHeart,
-  IconSchool,
-  IconCertificate,
-  IconActivity,
   IconShield,
-  IconArrowRight,
-  IconCheck,
+  IconActivity,
   IconSparkles,
-  IconStar,
-  IconAward,
   IconMedal,
-  IconCalendarEvent,
   IconClock,
   IconUserCheck,
-  IconChartBar,
-  IconBrandWhatsapp,
-  IconPhone,
-  IconMail,
-  IconShoppingCart,
   IconArrowLeft,
+  IconArrowRight,
+  IconCertificate,
   IconWorld
 } from "@tabler/icons-react";
 
@@ -88,13 +78,6 @@ const AboutUs = () => {
     { value: "18", label: "Trophies Won", icon: IconTrophy, color: "text-purple-400" },
   ];
 
-  // Achievements
-  const achievements = [
-    { title: "National Champions", count: "15", icon: IconTrophy, color: "bg-gradient-to-br from-bright-sun-200/20 to-bright-sun-300/20" },
-    { title: "International Awards", count: "8", icon: IconAward, color: "bg-gradient-to-br from-blue-500/20 to-blue-600/20" },
-    { title: "Certified Coaches", count: "25+", icon: IconCertificate, color: "bg-gradient-to-br from-green-500/20 to-green-600/20" },
-    { title: "Community Events", count: "50+", icon: IconMedal, color: "bg-gradient-to-br from-purple-500/20 to-purple-600/20" },
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-r bg-cerulean-blue-950">

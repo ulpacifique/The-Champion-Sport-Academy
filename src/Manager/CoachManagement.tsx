@@ -8,9 +8,7 @@ import {
     IconCheck,
     IconX,
     IconSearch,
-    IconFilter,
-    IconCalendarEvent,
-    IconChartBar
+    IconCalendarEvent
 } from "@tabler/icons-react";
 
 interface CoachManagementProps {

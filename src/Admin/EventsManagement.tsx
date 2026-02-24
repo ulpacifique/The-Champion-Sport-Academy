@@ -5,7 +5,6 @@ import {
     IconPlus,
     IconEdit,
     IconTrash,
-    IconCheck,
     IconX,
     IconPhone,
     IconLocation,
