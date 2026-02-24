@@ -115,7 +115,7 @@ const PaymentManagement = () => {
                 <div className="flex flex-wrap gap-3">
                     <button
                         onClick={() => setShowModal(true)}
-                        className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                        className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                     >
                         <IconPlus size={20} />
                         <span>Record Payment</span>
@@ -168,7 +168,7 @@ const PaymentManagement = () => {
                             <input
                                 type="text"
                                 placeholder="Search payments..."
-                                className="pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400 w-full md:w-64"
+                                className="pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300 w-full md:w-64"
                             />
                         </div>
                         <button className="p-2 bg-gray-700/50 border border-gray-600 rounded-lg text-gray-300 hover:text-white transition-colors">
@@ -180,7 +180,7 @@ const PaymentManagement = () => {
                 <div className="overflow-x-auto">
                     {loading ? (
                         <div className="p-12 text-center">
-                            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-bright-sun-400 mb-4"></div>
+                            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-bright-sun-300 mb-4"></div>
                             <p className="text-gray-400">Loading payments...</p>
                         </div>
                     ) : (
@@ -219,10 +219,10 @@ const PaymentManagement = () => {
                                             </td>
                                             <td className="p-4">
                                                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${payment.status === "PAID"
-                                                        ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                                                        : payment.status === "PENDING"
-                                                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-                                                            : "bg-red-500/20 text-red-400 border border-red-500/30"
+                                                    ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                                                    : payment.status === "PENDING"
+                                                        ? "bg-bright-sun-300/20 text-bright-sun-300 border border-bright-sun-300/30"
+                                                        : "bg-red-500/20 text-red-400 border border-red-500/30"
                                                     }`}>
                                                     {payment.status}
                                                 </span>
@@ -250,7 +250,7 @@ const PaymentManagement = () => {
                     <h3 className="text-xl font-semibold text-white mb-4">Quick Guide</h3>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">
-                            <div className="mt-1 p-2 bg-bright-sun-400/10 rounded-lg text-bright-sun-400">
+                            <div className="mt-1 p-2 bg-bright-sun-300/10 rounded-lg text-bright-sun-300">
                                 <IconCreditCard size={18} />
                             </div>
                             <div>
@@ -285,7 +285,7 @@ const PaymentManagement = () => {
                                         <span className="text-white font-medium">RWF {total.toLocaleString()}</span>
                                     </div>
                                     <div className="w-full bg-gray-700/50 rounded-full h-1.5">
-                                        <div className="bg-bright-sun-400 h-1.5 rounded-full" style={{ width: `${percentage}%` }}></div>
+                                        <div className="bg-bright-sun-300 h-1.5 rounded-full" style={{ width: `${percentage}%` }}></div>
                                     </div>
                                 </div>
                             );
@@ -311,7 +311,7 @@ const PaymentManagement = () => {
                                     type="number"
                                     value={formData.childId}
                                     onChange={e => setFormData({ ...formData, childId: e.target.value })}
-                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400 outline-none transition-all"
+                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300 outline-none transition-all"
                                     required
                                     placeholder="e.g. 1024"
                                 />
@@ -324,7 +324,7 @@ const PaymentManagement = () => {
                                         type="number"
                                         value={formData.amount}
                                         onChange={e => setFormData({ ...formData, amount: e.target.value })}
-                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 pl-14 border border-gray-700 focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400 outline-none transition-all"
+                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 pl-14 border border-gray-700 focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300 outline-none transition-all"
                                         required
                                         placeholder="0.00"
                                     />
@@ -336,7 +336,7 @@ const PaymentManagement = () => {
                                     type="date"
                                     value={formData.paymentDate}
                                     onChange={e => setFormData({ ...formData, paymentDate: e.target.value })}
-                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400 outline-none transition-all"
+                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300 outline-none transition-all"
                                     required
                                 />
                             </div>
@@ -346,7 +346,7 @@ const PaymentManagement = () => {
                                     <select
                                         value={formData.status}
                                         onChange={e => setFormData({ ...formData, status: e.target.value })}
-                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-400 outline-none transition-all"
+                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-300 outline-none transition-all"
                                     >
                                         <option value="PAID">Paid</option>
                                         <option value="PENDING">Pending</option>
@@ -358,7 +358,7 @@ const PaymentManagement = () => {
                                     <select
                                         value={formData.paymentMethod}
                                         onChange={e => setFormData({ ...formData, paymentMethod: e.target.value })}
-                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-400 outline-none transition-all"
+                                        className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-300 outline-none transition-all"
                                     >
                                         <option value="MOBILE_MONEY">Mobile Money</option>
                                         <option value="BANK_TRANSFER">Bank Transfer</option>
@@ -372,7 +372,7 @@ const PaymentManagement = () => {
                                 <textarea
                                     value={formData.notes}
                                     onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400 outline-none transition-all"
+                                    className="w-full bg-gray-900/50 text-white rounded-xl p-3 border border-gray-700 focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300 outline-none transition-all"
                                     rows={3}
                                     placeholder="Additional info..."
                                 />
@@ -388,7 +388,7 @@ const PaymentManagement = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-bright-sun-400 text-gray-900 font-bold py-3 rounded-xl hover:bg-bright-sun-300 shadow-lg shadow-bright-sun-400/20 transition-colors"
+                                    className="flex-1 bg-bright-sun-300 text-gray-900 font-bold py-3 rounded-xl hover:bg-bright-sun-200 shadow-lg shadow-bright-sun-300/20 transition-colors"
                                 >
                                     Save Payment
                                 </button>

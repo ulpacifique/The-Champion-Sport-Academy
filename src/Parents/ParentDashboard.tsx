@@ -82,9 +82,9 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
             value: selectedChild?.belt || selectedChild?.level || "Beginner",
             change: "Next: Orange Belt",
             trend: "up",
-            icon: <IconTrophy className="text-yellow-400" size={24} />,
-            color: "from-yellow-500/20 to-yellow-600/20",
-            borderColor: "border-yellow-500/30"
+            icon: <IconTrophy className="text-bright-sun-300" size={24} />,
+            color: "from-bright-sun-200/20 to-bright-sun-300/20",
+            borderColor: "border-bright-sun-300/30"
         },
         {
             title: "Classes This Week",
@@ -110,9 +110,9 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
     const quickActions = [
         {
             title: "View Detailed Progress",
-            icon: <IconProgress className="text-bright-sun-400" size={24} />,
+            icon: <IconProgress className="text-bright-sun-300" size={24} />,
             action: () => setIsProgressModalOpen(true),
-            color: "bg-gradient-to-br from-bright-sun-400/20 to-bright-sun-500/20"
+            color: "bg-gradient-to-br from-bright-sun-200/20 to-bright-sun-300/20"
         },
         {
             title: "Watch Training Videos",
@@ -137,7 +137,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
     return (
         <div className="space-y-8">
             {/* Welcome Banner */}
-            <div className="bg-gradient-to-r from-bright-sun-400/20 to-cerulean-blue-500/20 border border-bright-sun-400/30 rounded-2xl p-6">
+            <div className="bg-gradient-to-r from-bright-sun-200/20 to-cerulean-blue-500/20 border border-bright-sun-200/30 rounded-2xl p-6">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <h2 className="text-2xl font-bold text-white">
@@ -181,7 +181,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
                     <button
                         key={index}
                         onClick={action.action}
-                        className={`${action.color} border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-all hover:scale-[1.02]`}
+                        className={`${action.color} border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-all hover:scale-[1.02]`}
                     >
                         <div className="flex items-center space-x-3">
                             {action.icon}
@@ -196,7 +196,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Academy Announcements</h3>
-                        <IconPhone className="text-bright-sun-400" size={24} />
+                        <IconPhone className="text-bright-sun-300" size={24} />
                     </div>
 
                     <div className="space-y-4">
@@ -204,9 +204,9 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
                             <p className="text-gray-500 text-center py-8">No new announcements</p>
                         ) : (
                             announcements.map((ann) => (
-                                <div key={ann.id} className="bg-yellow-500/5 border border-yellow-500/10 rounded-xl p-4">
+                                <div key={ann.id} className="bg-bright-sun-300/5 border border-bright-sun-300/10 rounded-xl p-4">
                                     <div className="flex justify-between items-start mb-2">
-                                        <h4 className="text-yellow-500 font-bold">{ann.title}</h4>
+                                        <h4 className="text-bright-sun-300 font-bold">{ann.title}</h4>
                                         <span className="text-gray-500 text-[10px] uppercase font-bold">{new Date(ann.date).toLocaleDateString()}</span>
                                     </div>
                                     <p className="text-gray-300 text-sm leading-relaxed">{ann.description}</p>
@@ -225,7 +225,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Upcoming Events</h3>
-                        <IconCalendarEvent className="text-bright-sun-400" size={24} />
+                        <IconCalendarEvent className="text-bright-sun-300" size={24} />
                     </div>
 
                     <div className="space-y-4">
@@ -233,7 +233,7 @@ const ParentDashboard = ({ selectedChild }: ParentDashboardProps) => {
                             <p className="text-gray-500 text-center py-8">No upcoming events</p>
                         ) : (
                             events.map((event) => (
-                                <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-colors">
+                                <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-colors">
                                     <div className="flex justify-between items-start">
                                         <div>
                                             <h4 className="text-white font-semibold mb-2">{event.title}</h4>

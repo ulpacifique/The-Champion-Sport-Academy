@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../Services/Api";
+import SportsDisciplines from "../LandingPage/SportsDisciplines";
 
 interface Video {
   id: number;
@@ -95,6 +96,7 @@ const EventPage = () => {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
         <Header />
+        <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
@@ -111,6 +113,7 @@ const EventPage = () => {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
         <Header />
+        <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
             <div className="text-red-400 mb-4">
@@ -138,7 +141,7 @@ const EventPage = () => {
     return (
       <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
         <Header />
-
+        <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
@@ -177,7 +180,7 @@ const EventPage = () => {
   return (
     <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
       <Header />
-
+      <SportsDisciplines />
       <main className="py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

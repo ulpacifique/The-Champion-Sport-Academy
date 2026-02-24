@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Carousel } from "@mantine/carousel";
 import {
   IconTrophy,
   IconTarget,
@@ -20,7 +21,10 @@ import {
   IconChartBar,
   IconBrandWhatsapp,
   IconPhone,
-  IconMail
+  IconMail,
+  IconShoppingCart,
+  IconArrowLeft,
+  IconWorld
 } from "@tabler/icons-react";
 
 const AboutUs = () => {
@@ -45,9 +49,9 @@ const AboutUs = () => {
       name: "Friendship",
       icon: IconUsers,
       description: "Building lasting relationships and sportsmanship",
-      color: "from-yellow-500/20 to-yellow-600/20",
-      borderColor: "border-yellow-500/30",
-      iconColor: "text-yellow-400"
+      color: "from-bright-sun-300/10 to-bright-sun-300/20",
+      borderColor: "border-bright-sun-300/30",
+      iconColor: "text-bright-sun-300"
     },
     {
       name: "Teamwork",
@@ -75,61 +79,18 @@ const AboutUs = () => {
     },
   ];
 
-  // What we do programs
-  const programs = [
-    {
-      title: "Children & Youth Programmes",
-      ageRange: "Ages 3–17",
-      icon: IconSchool,
-      features: [
-        "Fundamental movement skills & physical literacy",
-        "Safe and enjoyable sport introduction",
-        "Long-term athlete development",
-        "Values, confidence & social skills"
-      ],
-      sports: ["Gymnastics", "Karate"],
-      bgColor: "bg-gradient-to-br from-blue-500/10 to-blue-600/10",
-      borderColor: "border-blue-500/20"
-    },
-    {
-      title: "Coaching Education",
-      icon: IconCertificate,
-      features: [
-        "Structured certification courses",
-        "Professional development workshops",
-        "Safe Sport & athlete well-being",
-        "Mentorship & leadership programs"
-      ],
-      focus: "Technically competent, ethically grounded coaches",
-      bgColor: "bg-gradient-to-br from-yellow-500/10 to-yellow-600/10",
-      borderColor: "border-yellow-500/20"
-    },
-    {
-      title: "Sport, Health & Well-being",
-      icon: IconHeart,
-      features: [
-        "Physical activity for healthy lifestyles",
-        "Mental well-being through sport",
-        "Values-based education",
-        "Community engagement & inclusion"
-      ],
-      impact: "Healthier individuals, stronger communities",
-      bgColor: "bg-gradient-to-br from-green-500/10 to-green-600/10",
-      borderColor: "border-green-500/20"
-    }
-  ];
 
   // Statistics
   const stats = [
-    { value: "500+", label: "Active Students", icon: IconUsers, color: "text-blue-400" },
-    { value: "25+", label: "Certified Coaches", icon: IconUserCheck, color: "text-yellow-400" },
-    { value: "10+", label: "Years Experience", icon: IconCalendarEvent, color: "text-green-400" },
-    { value: "95%", label: "Satisfaction Rate", icon: IconChartBar, color: "text-purple-400" },
+    { value: "4,300+", label: "Children & Youth Reached and", value2: "10,000+", label2: "Indirect reached", icon: IconUsers, color: "text-blue-400" },
+    { value: "600+", label: "Coaches Trained & Mentored", icon: IconUserCheck, color: "text-bright-sun-300" },
+    { value: "223+", label: "Medals Won", icon: IconMedal, color: "text-green-400" },
+    { value: "18", label: "Trophies Won", icon: IconTrophy, color: "text-purple-400" },
   ];
 
   // Achievements
   const achievements = [
-    { title: "National Champions", count: "15", icon: IconTrophy, color: "bg-gradient-to-br from-yellow-500/20 to-yellow-600/20" },
+    { title: "National Champions", count: "15", icon: IconTrophy, color: "bg-gradient-to-br from-bright-sun-200/20 to-bright-sun-300/20" },
     { title: "International Awards", count: "8", icon: IconAward, color: "bg-gradient-to-br from-blue-500/20 to-blue-600/20" },
     { title: "Certified Coaches", count: "25+", icon: IconCertificate, color: "bg-gradient-to-br from-green-500/20 to-green-600/20" },
     { title: "Community Events", count: "50+", icon: IconMedal, color: "bg-gradient-to-br from-purple-500/20 to-purple-600/20" },
@@ -142,29 +103,72 @@ const AboutUs = () => {
         <div className="absolute inset-0 bg-gradient-to-r bg-cerulean-blue-950"></div>
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center space-x-2 bg-bright-sun-400/20 text-bright-sun-400 px-4 py-2 rounded-full border border-bright-sun-400/30 mb-6">
+            <div className="inline-flex items-center space-x-2 bg-bright-sun-300/20 text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-300/30 mb-6">
               <IconSparkles size={20} />
-              <span className="font-semibold">Champion Sports Academy</span>
+              <span className="font-semibold">Our History</span>
             </div>
 
-            <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              Developing
-              <span className="block text-bright-sun-400 mt-2">Champions for Life</span>
+            <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              Professional History
+              <span className="block text-bright-sun-300 mt-2">& Evolution</span>
             </h1>
 
-            <p className={`text-xl text-gray-300 mb-10 max-w-3xl mx-auto transition-all duration-1000 delay-300 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              A leading values-driven sport and physical literacy institution dedicated to the
-              holistic development of children, young people, and coaches.
-            </p>
+            <div className={`text-left space-y-8 text-gray-300 transition-all duration-1000 delay-300 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              <div className="bg-gray-800/30 border border-gray-700/50 p-8 rounded-2xl backdrop-blur-sm">
+                <h2 className="text-2xl font-bold text-white mb-4">Summary (2017–2026)</h2>
+                <p className="text-lg leading-relaxed">
+                  Founded in 2017 in Remera, Kigali, by Noel Nkuranyabahizi, <span className="text-bright-sun-300 font-semibold">The Champions Sports Academy Ltd</span> (CSA) began as a structured, values-based karate academy dedicated to empowering children and youth through sport. From the outset, the Academy positioned sport not merely as competition, but as a platform for discipline, character formation, leadership, and lifelong well-being.
+                </p>
+              </div>
 
-            <div className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-500 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <button className="px-8 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all hover:scale-105">
-                Explore Programs
-              </button>
-              <button className="px-8 py-3 bg-gray-800/50 border border-gray-700 text-white rounded-lg hover:bg-gray-700/50 transition-all hover:scale-105">
-                Meet Our Coaches
-              </button>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-800/20 border border-gray-700/30 p-6 rounded-xl hover:border-bright-sun-300/30 transition-colors">
+                  <h3 className="text-bright-sun-300 font-bold text-xl mb-3">2017–2020: Foundation and Identity</h3>
+                  <p className="text-sm leading-relaxed">
+                    During its foundational phase, CSA established strong operational and philosophical roots. The Academy launched its flagship initiatives, including the Champions Weekend Program and Best Holidays Sports for Children, expanding access to structured sport during weekends and school holidays. International engagement and collaboration with Olympic-related initiatives strengthened institutional credibility. This period defined CSA’s identity as a values-driven youth development academy grounded in long-term athlete development principles.
+                  </p>
+                </div>
+
+                <div className="bg-gray-800/20 border border-gray-700/30 p-6 rounded-xl hover:border-bright-sun-300/30 transition-colors">
+                  <h3 className="text-bright-sun-300 font-bold text-xl mb-3">2021–2022: Competitive Entry and Structural Expansion</h3>
+                  <p className="text-sm leading-relaxed">
+                    In 2021, CSA marked a key milestone with its first participation in the National Karate Competition. In 2022, the Academy formalized Senior and Junior Teams and expanded geographically with branches in Nyanza and Bugesera. Coaching professionalism was reinforced through international certification pathways, strengthening technical standards and governance capacity. This phase signified CSA’s transition from a grassroots initiative to a structured competitive institution.
+                  </p>
+                </div>
+
+                <div className="bg-gray-800/20 border border-gray-700/30 p-6 rounded-xl hover:border-bright-sun-300/30 transition-colors">
+                  <h3 className="text-bright-sun-300 font-bold text-xl mb-3">2023–2024: National Leadership and Multisport Transformation</h3>
+                  <p className="text-sm leading-relaxed">
+                    By 2023, CSA achieved recognition as the leading karate club in Rwanda and successfully placed athletes on the National Team. The Academy hosted the first National Karate Championship for Children and integrated gymnastics into its core programming, marking its evolution into a multisport development institution. In 2024, CSA consolidated its leadership role through the organization of major national events, including open championships, coaching trainings, and national children’s programmes.
+                  </p>
+                </div>
+
+                <div className="bg-gray-800/20 border border-gray-700/30 p-6 rounded-xl hover:border-bright-sun-300/30 transition-colors">
+                  <h3 className="text-bright-sun-300 font-bold text-xl mb-3">2025–2026: Strategic Consolidation and Future Orientation</h3>
+                  <p className="text-sm leading-relaxed">
+                    Between 2025 and 2026, CSA strengthened its long-term strategic direction through structured business planning, governance enhancement, and sustainability frameworks. The Academy positioned itself as both a professional sport enterprise and a social impact organization, aligning its development model with national sport policies and international sport governance principles.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-bright-sun-300/10 to-blue-500/10 border border-bright-sun-300/20 p-8 rounded-2xl">
+                <h3 className="text-white font-bold text-xl mb-4">Evolution Status by 2026</h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    "Karate performance pathways",
+                    "Gymnastics and physical literacy foundations",
+                    "Coaching education and national capacity-building",
+                    "Event organization and sport system contribution"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-3 text-gray-300">
+                      <div className="w-1.5 h-1.5 bg-bright-sun-300 rounded-full" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -175,7 +179,7 @@ const AboutUs = () => {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className={`bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 text-center backdrop-blur-sm transition-all duration-700 hover:border-bright-sun-400/30 hover:scale-[1.02] ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              className={`bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 text-center backdrop-blur-sm transition-all duration-700 hover:border-bright-sun-300/30 hover:scale-[1.02] ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
               style={{ animationDelay: `${300 + index * 200}ms` }}
             >
               <div className={`inline-flex items-center justify-center w-16 h-16 ${stat.color} bg-gray-800/50 rounded-2xl mb-4`}>
@@ -199,32 +203,32 @@ const AboutUs = () => {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">Our Vision</h2>
-                <div className="text-blue-400 text-sm">Global Excellence in Sports</div>
+
               </div>
             </div>
             <p className="text-gray-300 text-lg">
               To become a global hub of inclusive sport and physical literacy that promotes
               <span className="text-blue-400 font-semibold"> excellence, health, and lifelong well-being</span>
-              through world-class training and development programs.
+
             </p>
           </div>
 
           {/* Mission */}
-          <div className={`bg-gradient-to-br from-yellow-500/10 to-yellow-600/10 border border-yellow-500/20 rounded-2xl p-8 transition-all duration-700 delay-300 hover:border-yellow-400/30 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className={`bg-gradient-to-br from-bright-sun-300/10 to-bright-sun-400/10 border border-bright-sun-300/20 rounded-2xl p-8 transition-all duration-700 delay-300 hover:border-bright-sun-200/30 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <div className="flex items-center space-x-4 mb-6">
-              <div className="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center">
-                <IconTrophy className="text-yellow-400" size={32} />
+              <div className="w-16 h-16 bg-bright-sun-300/20 rounded-2xl flex items-center justify-center">
+                <IconTrophy className="text-bright-sun-300" size={32} />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">Our Mission</h2>
-                <div className="text-yellow-400 text-sm">Empowering Through Sport</div>
+
               </div>
             </div>
             <p className="text-gray-300 text-lg">
               To empower people through inclusive sport, physical literacy, and values-based
               education programmes that promote
-              <span className="text-yellow-400 font-semibold"> excellence, health, and lifelong well-being</span>
-              while building character and community.
+              <span className="text-bright-sun-300 font-semibold"> excellence, health, and </span>
+              lifelong well-being.
             </p>
           </div>
         </div>
@@ -256,160 +260,35 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* What We Do */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What We Do</h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Professionally designed programmes aligned with international best practices
-            in sport development, coaching education, and well-being.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {programs.map((program, index) => (
-            <div
-              key={program.title}
-              className={`${program.bgColor} border ${program.borderColor} rounded-2xl p-8 h-full transition-all duration-700 hover:shadow-2xl hover:scale-[1.02] ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-              style={{ animationDelay: `${700 + index * 300}ms` }}
-            >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-14 h-14 bg-gray-800/50 rounded-2xl flex items-center justify-center">
-                  <program.icon className="text-bright-sun-400" size={28} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">{program.title}</h3>
-                  {program.ageRange && (
-                    <div className="text-bright-sun-400 text-sm">{program.ageRange}</div>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-3 mb-6">
-                {program.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start space-x-3">
-                    <IconCheck className="text-green-400 mt-1 flex-shrink-0" size={18} />
-                    <span className="text-gray-300">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              {program.sports && (
-                <div className="mb-6">
-                  <div className="text-gray-400 text-sm mb-2">Sports Offered:</div>
-                  <div className="flex flex-wrap gap-2">
-                    {program.sports.map((sport) => (
-                      <span
-                        key={sport}
-                        className="px-3 py-1 bg-gray-800/50 border border-gray-700 text-gray-300 rounded-full text-sm"
-                      >
-                        {sport}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {program.focus && (
-                <div className="text-bright-sun-400 italic text-sm border-t border-gray-700/50 pt-4">
-                  {program.focus}
-                </div>
-              )}
-
-              {program.impact && (
-                <div className="text-green-400 italic text-sm border-t border-gray-700/50 pt-4">
-                  {program.impact}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Achievements */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Achievements</h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Milestones that reflect our commitment to excellence in sports education
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <div
-                key={achievement.title}
-                className={`${achievement.color} border border-gray-700/50 rounded-2xl p-6 text-center transition-all duration-500 hover:scale-[1.05] ${animate ? 'opacity-100' : 'opacity-0'}`}
-                style={{ animationDelay: `${1000 + index * 200}ms` }}
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-800/50 rounded-2xl mb-4">
-                  <achievement.icon className="text-white" size={32} />
-                </div>
-                <div className="text-4xl font-bold text-white mb-2">{achievement.count}</div>
-                <div className="text-gray-300">{achievement.title}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Our Commitment */}
-      <div className="container mx-auto px-4 py-16">
-        <div className={`bg-gradient-to-r from-gray-800/30 to-cerulean-blue-900/30 border border-gray-700/50 rounded-2xl p-12 text-center transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-bright-sun-400/20 rounded-2xl mb-6 border border-bright-sun-400/30">
-              <IconShield className="text-bright-sun-400" size={40} />
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Commitment</h2>
-
-            <p className="text-gray-300 text-lg mb-10">
-              At The Champions Sports Academy, we believe sport is more than competition.
-              It is an educational and social force that shapes healthier individuals and
-              stronger communities. We are committed to creating a safe, inclusive, and
-              empowering environment for every athlete.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {[
-                { name: 'Professionalism', icon: IconStar, color: 'bg-blue-600/20' },
-                { name: 'Safeguarding', icon: IconShield, color: 'bg-yellow-600/20' },
-                { name: 'Inclusion', icon: IconUsers, color: 'bg-green-600/20' },
-                { name: 'Excellence', icon: IconTrophy, color: 'bg-purple-600/20' }
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className={`${item.color} border border-gray-700/50 rounded-xl p-6 hover:scale-105 transition-all duration-300`}
-                >
-                  <item.icon className="text-white mb-3 mx-auto" size={24} />
-                  <div className="text-white font-semibold">{item.name}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* CTA Section */}
       <div className="container mx-auto px-4 py-16">
         <div className={`text-center transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Community</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Strategic Direction</h2>
 
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
-            Whether you are a parent, athlete, coach, partner, or institution,
-            we invite you to be part of a community that believes in developing
-            <span className="text-bright-sun-400 font-semibold"> Champions for Life</span>.
+            ------------------------
+            <span className="text-bright-sun-300 font-semibold"> Champions for Life</span>.
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Board Member</h2>
+
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+            ------------------------
+            <span className="text-bright-sun-300 font-semibold"> Champions for Life</span>.
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Management Team</h2>
+
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+            ------------------------
+            <span className="text-bright-sun-300 font-semibold"> Champions for Life</span>.
           </p>
 
           <div className="flex flex-wrap justify-center gap-6">
-            <button className="px-8 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all hover:scale-105 flex items-center space-x-2">
-              <span>Start Your Journey</span>
-              <IconArrowRight size={20} />
-            </button>
-            <button className="px-8 py-3 bg-gray-800/50 border border-gray-700 text-white rounded-lg hover:bg-gray-700/50 transition-all hover:scale-105">
-              Schedule a Visit
-            </button>
+
+            <IconArrowRight size={20} />
+
+
           </div>
 
           <div className="mt-12 text-gray-500 text-sm">
@@ -420,7 +299,115 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      {/* Partners Section */}
+      <div className="mt-16 relative overflow-hidden">
+        {/* Background gradient effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-300/5 via-transparent to-bright-sun-300/5 blur-3xl pointer-events-none" />
 
+        <div className="relative z-10">
+          <div className="text-4xl md:text-5xl text-center mb-4 font-bold">
+            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Our
+            </span>{" "}
+            <span className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 bg-clip-text text-transparent">
+              Partners
+            </span>
+
+          </div>
+
+          <div className="text-lg mb-12 mx-auto text-gray-400 text-center max-w-2xl px-4">
+            Collaborating with leading organizations to deliver world-class sports programs
+          </div>
+
+          <Carousel
+            slideSize="25%"
+            slideGap="xl"
+            loop
+            align="start"
+            className="focus-visible:[&_button]:!outline-none [&_button]:!bg-gradient-to-r [&_button]:!from-bright-sun-200 [&_button]:!to-bright-sun-300 [&_button]:!border-none [&_button]:hover:!opacity-90 [&_button]:!opacity-0 hover:[&_button]:!opacity-100 [&_button]:!transition-all [&_button]:!duration-300 [&_button]:!shadow-lg [&_button]:!shadow-bright-sun-200/20"
+            nextControlIcon={<IconArrowRight className="h-8 w-8" />}
+            previousControlIcon={<IconArrowLeft className="h-8 w-8" />}
+          >
+            {[
+              { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner", icon: "🥋", gradient: "from-red-500/20 to-red-600/20", border: "border-red-500/30" },
+              { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner", icon: "🤸", gradient: "from-blue-500/20 to-blue-600/20", border: "border-blue-500/30" },
+              { name: "RNOSC", type: "National Olympic Committee", icon: "🏅", gradient: "from-bright-sun-200/20 to-bright-sun-300/20", border: "border-bright-sun-300/30" },
+              { name: "Ministry of Sports", type: "Government Partner", icon: "🏛️", gradient: "from-blue-600/20 to-blue-700/20", border: "border-blue-600/30" },
+              { name: "National Olympic & Sports Academy", type: "National Partner", icon: "🎓", gradient: "from-green-600/20 to-green-700/20", border: "border-green-600/30" },
+              { name: "World Karate Federation (WKF)", type: "International Partner", icon: "🌍", gradient: "from-purple-500/20 to-purple-600/20", border: "border-purple-500/30" },
+              { name: "International Olympic Committee (IOC)", type: "International Partner", icon: "⚡", gradient: "from-green-500/20 to-green-600/20", border: "border-green-500/30" },
+              { name: "International Olympic Academy (IOA)", type: "International Partner", icon: "🏛️", gradient: "from-blue-400/20 to-blue-500/20", border: "border-blue-400/30" },
+              { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network", icon: "🤝", gradient: "from-orange-500/20 to-orange-600/20", border: "border-orange-500/30" },
+              { name: "USA Karate", type: "International Partner", icon: "🇺🇸", gradient: "from-red-600/20 to-red-700/20", border: "border-red-600/30" },
+              { name: "5280 Gymnastics", type: "International Partner", icon: "🤸‍♀️", gradient: "from-pink-500/20 to-pink-600/20", border: "border-pink-500/30" },
+              { name: "Gasore Serge Foundation", type: "Foundation", icon: "❤️", gradient: "from-pink-500/20 to-pink-600/20", border: "border-pink-500/30" },
+            ].map((partner, index) => (
+              <Carousel.Slide key={partner.name}>
+                <div
+                  className={`group relative flex flex-col items-center w-64 gap-4 border ${partner.border} bg-gradient-to-br ${partner.gradient} backdrop-blur-sm p-6 rounded-2xl hover:cursor-pointer transition-all duration-300 ease-out hover:scale-105 my-5 overflow-hidden animate-breathing`}
+                  style={{
+                    animationDelay: `${index * 0.5}s`
+                  }}
+                >
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Icon with subtle animation */}
+                  <div className="text-5xl transform group-hover:scale-110 transition-all duration-500 relative z-10">
+                    {partner.icon}
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10 space-y-2">
+                    <div className="text-white text-lg font-bold text-center group-hover:text-bright-sun-300 transition-colors duration-300">
+                      {partner.name}
+                    </div>
+                    <div className="text-sm text-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                      {partner.type}
+                    </div>
+                  </div>
+
+                  {/* Bottom accent line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-bright-sun-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </Carousel.Slide>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+
+      {/* Ecosystem Highlights */}
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
+          <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <IconUsers className="text-bright-sun-300" size={24} />
+          </div>
+          <div className="text-white text-xl font-semibold mb-2">Athlete Journey</div>
+          <div className="text-sm text-gray-400">
+            Physical Literacy → Skill Development → Competition
+          </div>
+        </div>
+
+        <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
+          <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <IconCertificate className="text-bright-sun-300" size={24} />
+          </div>
+          <div className="text-white text-xl font-semibold mb-2">Coach Development</div>
+          <div className="text-sm text-gray-400">
+            Certification → Mentoring → Professional Development
+          </div>
+        </div>
+
+        <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
+          <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <IconWorld className="text-bright-sun-300" size={24} />
+          </div>
+          <div className="text-white text-xl font-semibold mb-2">Global Network</div>
+          <div className="text-sm text-gray-400">
+            International standards and partnership opportunities
+          </div>
+        </div>
+      </div>
       {/* Footer Note */}
 
     </div>

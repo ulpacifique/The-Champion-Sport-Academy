@@ -8,10 +8,11 @@ const NavLinks = () => {
     // Mix of hash links for HomePage sections and route links for other pages
     const links = [
         // { name: "Home", url: "#home", type: "hash" },
-        { name: "Home", url: "/", type: "route" },
-        { name: "Events", url: "/events", type: "route" }, // New Events page link
+        { name: "Who We Are", url: "/", type: "route" },
+        { name: "What We Do", url: "/events", type: "route" }, // New Events page link
         { name: "Karate", url: "/karate", type: "route" },
         { name: "Gymnastics", url: "/gymnastics", type: "route" },
+        { name: "Our Founder", url: "/founder", type: "route" },
         { name: "Contact", url: "/contact", type: "route" },
     ];
 
@@ -67,8 +68,8 @@ const NavLinks = () => {
                                 key={index}
                                 onClick={() => handleHashLinkClick(link.url)}
                                 className={`${isHashActive(link.url)
-                                    ? "border-bright-sun-400 text-bright-sun-400"
-                                    : "border-transparent hover:text-bright-sun-400"
+                                    ? "border-bright-sun-300 text-bright-sun-300"
+                                    : "border-transparent hover:text-bright-sun-300"
                                     } border-t-[3px] h-full flex items-center transition-colors px-3`}
                             >
                                 {link.name}
@@ -81,8 +82,8 @@ const NavLinks = () => {
                                 to={link.url}
                                 onClick={handleRouteLinkClick}
                                 className={`${isRouteActive(link.url)
-                                    ? "border-bright-sun-400 text-bright-sun-400"
-                                    : "border-transparent hover:text-bright-sun-400"
+                                    ? "border-bright-sun-300 text-bright-sun-300"
+                                    : "border-transparent hover:text-bright-sun-300"
                                     } border-t-[3px] h-full flex items-center transition-colors px-3`}
                             >
                                 {link.name}
@@ -120,8 +121,8 @@ const NavLinks = () => {
                                             key={index}
                                             onClick={() => handleHashLinkClick(link.url)}
                                             className={`px-6 py-4 border-l-4 transition-colors text-left ${isHashActive(link.url)
-                                                ? "border-bright-sun-400 text-bright-sun-400 bg-cerulean-blue-900/50"
-                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-400"
+                                                ? "border-bright-sun-300 text-bright-sun-300 bg-cerulean-blue-900/50"
+                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-300"
                                                 }`}
                                         >
                                             {link.name}
@@ -134,8 +135,8 @@ const NavLinks = () => {
                                             to={link.url}
                                             onClick={handleRouteLinkClick}
                                             className={`px-6 py-4 border-l-4 transition-colors text-left ${isRouteActive(link.url)
-                                                ? "border-bright-sun-400 text-bright-sun-400 bg-cerulean-blue-900/50"
-                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-400"
+                                                ? "border-bright-sun-300 text-bright-sun-300 bg-cerulean-blue-900/50"
+                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-300"
                                                 }`}
                                         >
                                             {link.name}

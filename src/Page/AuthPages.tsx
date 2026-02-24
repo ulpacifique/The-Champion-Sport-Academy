@@ -120,9 +120,9 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
                 {/* Glass Card */}
                 <div className="relative bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden min-h-[500px]">
                     {/* Decorative Gradients */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-purple-500"></div>
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-yellow-500/10 rounded-full blur-3xl"></div>
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-bright-sun-100 via-bright-sun-200 to-bright-sun-300"></div>
+                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-bright-sun-300/10 rounded-full blur-3xl"></div>
+                    <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-bright-sun-200/10 rounded-full blur-3xl"></div>
 
                     {/* Content Area */}
                     <div className="p-8 relative z-10">

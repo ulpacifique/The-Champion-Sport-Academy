@@ -135,9 +135,9 @@ const ManagerDashboard = () => {
             value: `RWF ${(statsData.totalRevenue || 0).toLocaleString()}`,
             change: "+15%",
             trend: "up",
-            icon: <IconCash className="text-yellow-400" size={24} />,
-            color: "from-yellow-500/20 to-yellow-600/20",
-            borderColor: "border-yellow-500/30"
+            icon: <IconCash className="text-bright-sun-300" size={24} />,
+            color: "from-bright-sun-200/20 to-bright-sun-300/20",
+            borderColor: "border-bright-sun-300/30"
         },
     ];
 
@@ -168,7 +168,7 @@ const ManagerDashboard = () => {
                     <select
                         value={timeRange}
                         onChange={(e) => setTimeRange(e.target.value)}
-                        className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                        className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                     >
                         <option value="week">This Week</option>
                         <option value="month">This Month</option>
@@ -214,7 +214,7 @@ const ManagerDashboard = () => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Recent Activities</h3>
-                        <IconClipboardCheck className="text-bright-sun-400" size={24} />
+                        <IconClipboardCheck className="text-bright-sun-300" size={24} />
                     </div>
 
                     <div className="space-y-4">
@@ -234,23 +234,23 @@ const ManagerDashboard = () => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Upcoming Tasks</h3>
-                        <IconCalendarEvent className="text-bright-sun-400" size={24} />
+                        <IconCalendarEvent className="text-bright-sun-300" size={24} />
                     </div>
 
                     <div className="space-y-4">
                         {upcomingTasks.map((task: UpcomingTask) => (
-                            <div key={task.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-colors">
+                            <div key={task.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-colors">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h4 className="text-white font-semibold mb-2">{task.task}</h4>
                                         <div className="flex items-center space-x-3">
-                                            <span className={`text-xs px-2 py-1 rounded-full ${task.priority === 'high' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+                                            <span className={`text-xs px-2 py-1 rounded-full ${task.priority === 'high' ? 'bg-red-500/20 text-red-400' : 'bg-bright-sun-300/20 text-bright-sun-300'}`}>
                                                 {task.priority.toUpperCase()}
                                             </span>
                                             <span className="text-gray-400 text-sm">Due: {task.due}</span>
                                         </div>
                                     </div>
-                                    <button className="text-bright-sun-400 hover:text-bright-sun-300 text-sm font-medium">
+                                    <button className="text-bright-sun-300 hover:text-bright-sun-200 text-sm font-medium">
                                         Mark Complete
                                     </button>
                                 </div>
@@ -264,12 +264,12 @@ const ManagerDashboard = () => {
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="text-xl font-semibold text-white">Coach Attendance This Month</h3>
-                    <IconChartBar className="text-bright-sun-400" size={24} />
+                    <IconChartBar className="text-bright-sun-300" size={24} />
                 </div>
 
                 {loading ? (
                     <div className="text-center py-8">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bright-sun-400 mx-auto"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bright-sun-300 mx-auto"></div>
                         <p className="text-gray-400 mt-4">Loading coach attendance...</p>
                     </div>
                 ) : statsData.coachAttendance.length > 0 ? (
@@ -282,7 +282,7 @@ const ManagerDashboard = () => {
                                         <div className="text-gray-400 text-sm">{coach.sport} Coach</div>
                                     </div>
                                     <div className="text-right">
-                                        <div className={`text-lg font-bold ${coach.rate >= 90 ? 'text-green-400' : coach.rate >= 80 ? 'text-yellow-400' : 'text-red-400'}`}>
+                                        <div className={`text-lg font-bold ${coach.rate >= 90 ? 'text-green-400' : coach.rate >= 80 ? 'text-bright-sun-300' : 'text-red-400'}`}>
                                             {coach.rate}%
                                         </div>
                                         <div className="text-gray-400 text-sm">
@@ -299,7 +299,7 @@ const ManagerDashboard = () => {
 
                                 <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
                                     <div
-                                        className={`h-full ${coach.rate >= 90 ? 'bg-green-500' : coach.rate >= 80 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                                        className={`h-full ${coach.rate >= 90 ? 'bg-green-500' : coach.rate >= 80 ? 'bg-bright-sun-300' : 'bg-red-500'}`}
                                         style={{ width: `${coach.rate}%` }}
                                     ></div>
                                 </div>
@@ -347,7 +347,7 @@ const ManagerDashboard = () => {
                     <div className="text-white font-medium">Send Broadcast</div>
                     <div className="text-gray-400 text-sm mt-1">Message parents/coaches</div>
                 </button>
-                <button className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-xl p-4 hover:border-yellow-400 transition-all hover:scale-[1.02]">
+                <button className="bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 border border-bright-sun-200/30 rounded-xl p-4 hover:border-bright-sun-300 transition-all hover:scale-[1.02]">
                     <div className="text-white font-medium">Generate Report</div>
                     <div className="text-gray-400 text-sm mt-1">Monthly summary</div>
                 </button>

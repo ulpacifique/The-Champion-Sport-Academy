@@ -71,9 +71,9 @@ const Dashboard = () => {
             value: `RWF ${(statsData.monthlyRevenue ?? 0).toLocaleString()}`,
             change: statsData.revenueGrowth ?? "+0%",
             trend: "up",
-            icon: <IconCash className="text-yellow-400" size={24} />,
-            color: "from-yellow-500/20 to-yellow-600/20",
-            borderColor: "border-yellow-500/30"
+            icon: <IconCash className="text-bright-sun-300" size={24} />,
+            color: "from-bright-sun-300/20 to-bright-sun-400/20",
+            borderColor: "border-bright-sun-300/30"
         },
     ];
 
@@ -122,7 +122,7 @@ const Dashboard = () => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Revenue Overview</h3>
-                        <IconTrendingUp className="text-bright-sun-400" size={24} />
+                        <IconTrendingUp className="text-bright-sun-300" size={24} />
                     </div>
 
                     {/* Dynamic Revenue Chart */}
@@ -132,7 +132,7 @@ const Dashboard = () => {
                                 <span className="text-gray-400 w-8">{data.month}</span>
                                 <div className="flex-1 mx-4 bg-gray-700 rounded-full h-2">
                                     <div
-                                        className="bg-bright-sun-400 h-2 rounded-full transition-all duration-500"
+                                        className="bg-bright-sun-300 h-2 rounded-full transition-all duration-500"
                                         style={{ width: `${Math.min((data.revenue / 500000) * 100, 100)}%` }} // Simple scaling
                                     ></div>
                                 </div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-xl font-semibold text-white">Recent Activities</h3>
-                        <IconActivity className="text-bright-sun-400" size={24} />
+                        <IconActivity className="text-bright-sun-300" size={24} />
                     </div>
 
                     <div className="space-y-4">
@@ -173,7 +173,7 @@ const Dashboard = () => {
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="text-xl font-semibold text-white">Upcoming Events</h3>
-                    <button className="text-bright-sun-400 hover:text-bright-sun-300 transition-colors">
+                    <button className="text-bright-sun-300 hover:text-bright-sun-200 transition-colors">
                         View All →
                     </button>
                 </div>
@@ -181,7 +181,7 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {upcomingEvents.length > 0 ? (
                         upcomingEvents.map((event: any) => (
-                            <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-colors">
+                            <div key={event.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-colors">
                                 <h4 className="text-white font-semibold mb-2">{event.title}</h4>
                                 <div className="flex items-center text-gray-400 text-sm mb-3">
                                     <IconCalendarEvent size={16} className="mr-2" />

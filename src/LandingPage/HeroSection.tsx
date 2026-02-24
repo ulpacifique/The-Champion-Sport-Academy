@@ -32,13 +32,13 @@ const HeroSection = () => {
                 </div>
 
                 {/* Animated decorative elements - hidden on mobile for performance */}
-                <div className="hidden md:block absolute top-20 right-20 w-72 h-72 bg-bright-sun-400/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="hidden md:block absolute top-20 right-20 w-72 h-72 bg-bright-sun-300/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="hidden md:block absolute bottom-20 right-40 w-96 h-96 bg-cerulean-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
                 {/* Content Section - Full width on mobile */}
                 <div className="relative z-10 flex flex-col w-full md:w-[65%] gap-6 md:gap-8">
                     {/* Welcome Badge with Icon */}
-                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-400/20 to-bright-sun-500/10 w-fit rounded-full border border-bright-sun-400/40 text-bright-sun-400 font-semibold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
+                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/10 w-fit rounded-full border border-bright-sun-200/40 text-bright-sun-300 font-semibold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
                         <div className="flex items-center gap-1.5 md:gap-2">
                             <IconSparkles size={14} className="animate-pulse" />
                             <span className="whitespace-nowrap">Welcome to The Champion Sport Academy</span>
@@ -48,7 +48,7 @@ const HeroSection = () => {
                     {/* Mobile-optimized Title with adjusted sizes */}
                     <div className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight drop-shadow-2xl">
                         <div className="flex flex-wrap gap-x-2 md:gap-x-4">
-                            {["Building", "Champions", "For", "Life"].map((word, index) => (
+                            {["We Are The", "Champions", "For", "Life"].map((word, index) => (
                                 <span
                                     key={index}
                                     className={`inline-block animate-word ${animate ? 'active' : ''}`}
@@ -57,7 +57,7 @@ const HeroSection = () => {
                                     }}
                                 >
                                     {word.toLowerCase() === 'champions' ? (
-                                        <span className="bg-gradient-to-r from-bright-sun-400 via-bright-sun-500 to-bright-sun-400 bg-clip-text text-transparent animate-gradient">
+                                        <span className="bg-gradient-to-r from-bright-sun-200 via-bright-sun-300 to-bright-sun-200 bg-clip-text text-transparent animate-gradient">
                                             {word}
                                         </span>
                                     ) : (
@@ -72,58 +72,15 @@ const HeroSection = () => {
                     <div className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
                         <p className={`fade-in-text ${animate ? 'active' : ''}`}
                             style={{ animationDelay: '1200ms' }}>
-                            Where passion meets discipline. Join Rwanda's premier sports academy dedicated to nurturing talent, character, and physical excellence in every athlete.
+                            The Champions Sports Academy Ltd (CSA) is a professional, values-driven sport and physical literacy organization founded in 2017 in Kigali, Rwanda.
+                            The Academy operates as both a structured sport enterprise and a social impact institution, delivering high-quality sport and education services while contributing to national sport development.
                         </p>
                     </div>
 
-                    {/* Enhanced Values List - Stack on mobile, row on larger screens */}
-                    <div className={`flex flex-wrap gap-4 sm:gap-x-10 sm:gap-y-4 mt-2 md:mt-4 ${animate ? 'fade-in' : ''}`}
-                        style={{ animationDelay: '1500ms' }}>
-                        {['Discipline', 'Friendship', 'Respect', 'Excellence'].map((value, idx) => (
-                            <div
-                                key={value}
-                                className="group flex items-center gap-2 md:gap-3 text-cerulean-blue-200 font-semibold hover:text-white transition-colors cursor-default"
-                                style={{ animationDelay: `${1500 + idx * 100}ms` }}
-                            >
-                                <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 group-hover:scale-125 transition-transform shadow-lg shadow-bright-sun-400/50"></span>
-                                <span className="text-sm sm:text-base">{value}</span>
-                            </div>
-                        ))}
-                    </div>
+
 
                     {/* Feature Highlights Section - Stack vertically on mobile */}
-                    <div className={`flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8 md:mt-12 pt-6 sm:pt-8 border-t border-white/10 ${animate ? 'fade-in' : ''}`}
-                        style={{ animationDelay: '1800ms' }}>
-                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
-                                <span className="text-lg sm:text-xl">🥇</span>
-                            </div>
-                            <div className="min-w-0">
-                                <div className="text-white font-semibold text-sm sm:text-base truncate">Elite Training</div>
-                                <div className="text-xs text-gray-400 truncate">World-class facilities</div>
-                            </div>
-                        </div>
 
-                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
-                                <span className="text-lg sm:text-xl">👨‍🏫</span>
-                            </div>
-                            <div className="min-w-0">
-                                <div className="text-white font-semibold text-sm sm:text-base truncate">Expert Coaches</div>
-                                <div className="text-xs text-gray-400 truncate">Certified professionals</div>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-3 px-3 sm:px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-bright-sun-400/30 transition-colors w-full sm:w-auto">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-bright-sun-400/20 flex items-center justify-center flex-shrink-0">
-                                <span className="text-lg sm:text-xl">🌍</span>
-                            </div>
-                            <div className="min-w-0">
-                                <div className="text-white font-semibold text-sm sm:text-base truncate">Global Network</div>
-                                <div className="text-xs text-gray-400 truncate">International partnerships</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

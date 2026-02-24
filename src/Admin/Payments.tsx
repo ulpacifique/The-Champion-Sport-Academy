@@ -101,7 +101,7 @@ const Payments = () => {
                 <div className="flex space-x-3">
                     <button
                         onClick={() => setShowModal(true)}
-                        className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
+                        className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
                     >
                         Record Payment
                     </button>
@@ -144,7 +144,7 @@ const Payments = () => {
             <div className="bg-gray-800/50 rounded-xl border border-gray-700/50 overflow-hidden mb-8">
                 <div className="p-4 border-b border-gray-700/50 flex justify-between items-center">
                     <h3 className="text-xl font-semibold text-white">Recent Payments</h3>
-                    {/* <button className="text-bright-sun-400 hover:text-bright-sun-300">
+                    {/* <button className="text-bright-sun-300 hover:text-bright-sun-200">
                         View All →
                     </button> */}
                 </div>
@@ -247,15 +247,15 @@ const Payments = () => {
                 <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6">
                     <h3 className="text-xl font-semibold text-white mb-6">Quick Actions</h3>
                     <div className="space-y-4">
-                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-400/30 transition-colors">
+                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-300/30 transition-colors">
                             <div className="text-white font-medium">Send Payment Reminders</div>
                             <div className="text-gray-400 text-sm mt-1">Send reminders to parents with pending payments</div>
                         </button>
-                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-400/30 transition-colors">
+                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-300/30 transition-colors">
                             <div className="text-white font-medium">Generate Monthly Report</div>
                             <div className="text-gray-400 text-sm mt-1">Create and download monthly financial report</div>
                         </button>
-                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-400/30 transition-colors">
+                        <button className="w-full text-left p-4 bg-gray-700/30 border border-gray-600/50 rounded-xl hover:border-bright-sun-300/30 transition-colors">
                             <div className="text-white font-medium">View Outstanding Dues</div>
                             <div className="text-gray-400 text-sm mt-1">Check all pending payments and follow up</div>
                         </button>
@@ -276,7 +276,7 @@ const Payments = () => {
                                         type="number"
                                         value={formData.childId}
                                         onChange={e => setFormData({ ...formData, childId: e.target.value })}
-                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         required
                                         placeholder="Enter Child ID"
                                     />
@@ -287,7 +287,7 @@ const Payments = () => {
                                         type="number"
                                         value={formData.amount}
                                         onChange={e => setFormData({ ...formData, amount: e.target.value })}
-                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         required
                                         placeholder="e.g. 50000"
                                     />
@@ -298,7 +298,7 @@ const Payments = () => {
                                         type="date"
                                         value={formData.paymentDate}
                                         onChange={e => setFormData({ ...formData, paymentDate: e.target.value })}
-                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         required
                                     />
                                 </div>
@@ -308,7 +308,7 @@ const Payments = () => {
                                         <select
                                             value={formData.status}
                                             onChange={e => setFormData({ ...formData, status: e.target.value })}
-                                            className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                            className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         >
                                             <option value="PAID">Paid</option>
                                             <option value="PENDING">Pending</option>
@@ -320,7 +320,7 @@ const Payments = () => {
                                         <select
                                             value={formData.paymentMethod}
                                             onChange={e => setFormData({ ...formData, paymentMethod: e.target.value })}
-                                            className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                            className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         >
                                             <option value="MOBILE_MONEY">Mobile Money</option>
                                             <option value="BANK_TRANSFER">Bank Transfer</option>
@@ -334,7 +334,7 @@ const Payments = () => {
                                     <textarea
                                         value={formData.notes}
                                         onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-400 outline-none"
+                                        className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-bright-sun-300 outline-none"
                                         rows={3}
                                         placeholder="Optional notes..."
                                     />
@@ -350,7 +350,7 @@ const Payments = () => {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="flex-1 bg-bright-sun-400 text-gray-900 font-bold py-3 rounded-xl hover:bg-bright-sun-300 transition-colors"
+                                        className="flex-1 bg-bright-sun-300 text-gray-900 font-bold py-3 rounded-xl hover:bg-bright-sun-200 transition-colors"
                                     >
                                         Save Record
                                     </button>

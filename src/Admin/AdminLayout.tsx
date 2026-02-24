@@ -91,7 +91,7 @@ const AdminLayout = ({
                     {/* Logo */}
                     <div className="p-6 border-b border-gray-700">
                         <div className="text-white text-2xl font-bold text-center">
-                            CSA <span className="text-bright-sun-400">Admin</span>
+                            CSA <span className="text-bright-sun-300">Admin</span>
                         </div>
                         <div className="text-gray-400 text-sm text-center mt-1">
                             Champion Sports Academy
@@ -108,7 +108,7 @@ const AdminLayout = ({
                                     w-full flex items-center justify-between p-3 rounded-lg
                                     transition-all duration-200 relative
                                     ${activeSection === item.id  // Use the prop value
-                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                        ? 'bg-bright-sun-300/20 text-bright-sun-300 border-l-4 border-bright-sun-300'
                                         : 'text-gray-300 hover:bg-gray-700/50'
                                     }
                                 `}
@@ -137,7 +137,7 @@ const AdminLayout = ({
                                         w-full flex items-center space-x-3 p-3 rounded-lg
                                         transition-all duration-200
                                         ${activeSection === item.id  // Use the prop value
-                                            ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                            ? 'bg-bright-sun-300/20 text-bright-sun-300 border-l-4 border-bright-sun-300'
                                             : 'text-gray-300 hover:bg-gray-700/50'
                                         }
                                     `}
@@ -202,8 +202,8 @@ const AdminLayout = ({
                                         <div className="text-white font-medium">Admin User</div>
                                         <div className="text-gray-400 text-sm">Super Admin</div>
                                     </div>
-                                    <div className="w-12 h-12 bg-bright-sun-400/20 rounded-full flex items-center justify-center border-2 border-bright-sun-400/30">
-                                        <span className="text-bright-sun-400 font-bold text-lg">A</span>
+                                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center border-2 border-bright-sun-300/30">
+                                        <span className="text-bright-sun-300 font-bold text-lg">A</span>
                                     </div>
                                 </div>
                             </div>

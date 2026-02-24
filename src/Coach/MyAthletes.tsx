@@ -57,7 +57,7 @@ const MyAthletes = () => {
                             placeholder="Search athletes..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="bg-gray-800 border border-gray-700 text-white pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:border-bright-sun-500 w-full sm:w-64"
+                            className="bg-gray-800 border border-gray-700 text-white pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:border-bright-sun-300 w-full sm:w-64"
                         />
                     </div>
                 </div>
@@ -109,7 +109,7 @@ const MyAthletes = () => {
                                             <td className="px-6 py-4 text-right">
                                                 <button
                                                     onClick={() => handleOpenProgress(athlete)}
-                                                    className="text-bright-sun-400 hover:text-bright-sun-300 flex items-center gap-1 justify-end ml-auto"
+                                                    className="text-bright-sun-300 hover:text-bright-sun-200 flex items-center gap-1 justify-end ml-auto"
                                                 >
                                                     <IconChartBar size={18} />
                                                     <span>Progress</span>

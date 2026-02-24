@@ -108,11 +108,11 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                         type="month"
                         value={selectedMonth}
                         onChange={(e) => setSelectedMonth(e.target.value)}
-                        className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                        className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                     />
                     <button
                         onClick={() => setIsRecordModalOpen(true)}
-                        className="px-4 py-2 bg-bright-sun-400 text-gray-900 rounded-lg hover:bg-bright-sun-500 transition-colors flex items-center space-x-2 font-bold"
+                        className="px-4 py-2 bg-bright-sun-300 text-gray-900 rounded-lg hover:bg-bright-sun-200 transition-colors flex items-center space-x-2 font-bold"
                     >
                         <IconPlus size={20} />
                         <span>Record Salary</span>
@@ -129,16 +129,16 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-bright-sun-400/20 to-bright-sun-500/20 border border-bright-sun-400/30 rounded-2xl p-6">
+                <div className="bg-gradient-to-br from-bright-sun-300/20 to-bright-sun-300/20 border border-bright-sun-300/30 rounded-2xl p-6">
                     <div className="flex items-center space-x-3 mb-4">
-                        <IconCash className="text-bright-sun-400" size={24} />
+                        <IconCash className="text-bright-sun-300" size={24} />
                         <div>
                             <div className="text-white font-bold">Total Paid This Month</div>
                             <div className="text-gray-300 text-sm">{selectedMonth}</div>
                         </div>
                     </div>
                     <div className="text-3xl font-bold text-white">RWF {totalPaid.toLocaleString()}</div>
-                    <div className="text-bright-sun-400 text-sm mt-2">{salaryHistory.length} payments recorded</div>
+                    <div className="text-bright-sun-300 text-sm mt-2">{salaryHistory.length} payments recorded</div>
                 </div>
 
                 <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
@@ -215,7 +215,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                     <div className="bg-gray-800 border border-gray-700 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
                         <div className="p-6 border-b border-gray-700 flex justify-between items-center">
                             <h3 className="text-xl font-bold text-white flex items-center">
-                                <IconCreditCard className="mr-2 text-bright-sun-400" />
+                                <IconCreditCard className="mr-2 text-bright-sun-300" />
                                 Record Coach Salary
                             </h3>
                             <button onClick={() => setIsRecordModalOpen(false)} className="text-gray-400 hover:text-white">
@@ -227,7 +227,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-1">Select Coach</label>
                                 <select
-                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-400"
+                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-300"
                                     value={salaryRecord.coachId}
                                     onChange={(e) => {
                                         const coachId = e.target.value;
@@ -248,7 +248,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                                     <label className="block text-sm font-medium text-gray-400 mb-1">Month</label>
                                     <input
                                         type="month"
-                                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-400"
+                                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-300"
                                         value={salaryRecord.month}
                                         onChange={(e) => setSalaryRecord({ ...salaryRecord, month: e.target.value })}
                                     />
@@ -257,7 +257,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                                     <label className="block text-sm font-medium text-gray-400 mb-1">Amount (RWF)</label>
                                     <input
                                         type="number"
-                                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-400"
+                                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-300"
                                         value={salaryRecord.amount}
                                         onChange={(e) => setSalaryRecord({ ...salaryRecord, amount: e.target.value })}
                                         placeholder="Enter amount"
@@ -268,7 +268,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-1">Payment Method</label>
                                 <select
-                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-400"
+                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-300"
                                     value={salaryRecord.method}
                                     onChange={(e) => setSalaryRecord({ ...salaryRecord, method: e.target.value })}
                                 >
@@ -282,7 +282,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-1">Notes (Optional)</label>
                                 <textarea
-                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-400 h-20 resize-none"
+                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-bright-sun-300 h-20 resize-none"
                                     value={salaryRecord.notes}
                                     onChange={(e) => setSalaryRecord({ ...salaryRecord, notes: e.target.value })}
                                     placeholder="Add payment details, transaction ID, etc."
@@ -298,7 +298,7 @@ const SalaryManagement = ({ coaches }: SalaryManagementProps) => {
                                 </button>
                                 <button
                                     onClick={handleRecordSalary}
-                                    className="flex-1 py-3 bg-bright-sun-400 text-gray-900 font-bold rounded-xl hover:bg-bright-sun-500 transition-colors shadow-lg shadow-bright-sun-400/20"
+                                    className="flex-1 py-3 bg-bright-sun-300 text-gray-900 font-bold rounded-xl hover:bg-bright-sun-200 transition-colors shadow-lg shadow-bright-sun-200/20"
                                 >
                                     Confirm Salary
                                 </button>

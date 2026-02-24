@@ -105,7 +105,7 @@ const ParentLayout = ({
                     {/* Logo */}
                     <div className="p-6 border-b border-gray-700">
                         <div className="text-white text-2xl font-bold text-center">
-                            CSA <span className="text-bright-sun-400">Parent</span>
+                            CSA <span className="text-bright-sun-300">Parent</span>
                         </div>
                         <div className="text-gray-400 text-sm text-center mt-1">
                             Champion Sports Academy
@@ -120,7 +120,7 @@ const ParentLayout = ({
                                 className="w-full flex items-center justify-between p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700/70 transition-colors"
                             >
                                 <div className="flex items-center space-x-3">
-                                    <IconUserCircle className="text-bright-sun-400" size={24} />
+                                    <IconUserCircle className="text-bright-sun-300" size={24} />
                                     <div className="text-left">
                                         <div className="text-white font-medium text-sm">
                                             {selectedChild?.name || "Select Child"}
@@ -149,7 +149,7 @@ const ParentLayout = ({
                                                 <div className="text-gray-400 text-xs">{child.sport}</div>
                                             </div>
                                             {selectedChild?.id === child.id && (
-                                                <div className="w-2 h-2 bg-bright-sun-400 rounded-full"></div>
+                                                <div className="w-2 h-2 bg-bright-sun-300 rounded-full"></div>
                                             )}
                                         </button>
                                     ))}
@@ -159,7 +159,7 @@ const ParentLayout = ({
                                                 setActiveSection("children");
                                                 setShowChildDropdown(false);
                                             }}
-                                            className="w-full text-left p-3 hover:bg-gray-700/50 transition-colors text-bright-sun-400 text-sm"
+                                            className="w-full text-left p-3 hover:bg-gray-700/50 transition-colors text-bright-sun-300 text-sm"
                                         >
                                             + Add New Child
                                         </button>
@@ -179,7 +179,7 @@ const ParentLayout = ({
                                     w-full flex items-center justify-between p-3 rounded-lg
                                     transition-all duration-200 relative
                                     ${activeSection === item.id
-                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                        ? 'bg-bright-sun-300/20 text-bright-sun-300 border-l-4 border-bright-sun-300'
                                         : 'text-gray-300 hover:bg-gray-700/50'
                                     }
                                 `}
@@ -208,7 +208,7 @@ const ParentLayout = ({
                                         w-full flex items-center space-x-3 p-3 rounded-lg
                                         transition-all duration-200
                                         ${activeSection === item.id
-                                            ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                            ? 'bg-bright-sun-300/20 text-bright-sun-300 border-l-4 border-bright-sun-300'
                                             : 'text-gray-300 hover:bg-gray-700/50'
                                         }
                                     `}
@@ -286,8 +286,8 @@ const ParentLayout = ({
                                         <div className="text-white font-medium">Parent User</div>
                                         <div className="text-gray-400 text-sm">CSA Parent</div>
                                     </div>
-                                    <div className="w-12 h-12 bg-bright-sun-400/20 rounded-full flex items-center justify-center border-2 border-bright-sun-400/30">
-                                        <span className="text-bright-sun-400 font-bold text-lg">P</span>
+                                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center border-2 border-bright-sun-300/30">
+                                        <span className="text-bright-sun-300 font-bold text-lg">P</span>
                                     </div>
                                 </div>
                             </div>

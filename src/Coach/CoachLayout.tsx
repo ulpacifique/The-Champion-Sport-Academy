@@ -88,7 +88,7 @@ const CoachLayout = () => {
                     {/* Panel Label */}
                     <div className="p-6 border-b border-gray-700">
                         <div className="text-white text-2xl font-bold text-center">
-                            Coach <span className="text-bright-sun-400">Panel</span>
+                            Coach <span className="text-bright-sun-300">Panel</span>
                         </div>
                         <div className="text-gray-400 text-sm text-center mt-1 uppercase tracking-widest text-[10px]">
                             Champion Sports Academy
@@ -105,7 +105,7 @@ const CoachLayout = () => {
                                 className={({ isActive }) => `
                                     flex items-center justify-between p-3 rounded-xl transition-all duration-200 group
                                     ${isActive
-                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400 shadow-lg'
+                                        ? 'bg-bright-sun-300/20 text-bright-sun-300 border-l-4 border-bright-sun-300 shadow-lg'
                                         : 'text-gray-400 hover:bg-gray-700/50 hover:text-white'
                                     }
                                 `}
@@ -134,7 +134,7 @@ const CoachLayout = () => {
                                 className={({ isActive }) => `
                                     flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group
                                     ${isActive
-                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border-l-4 border-bright-sun-400'
+                                        ? "bg-gradient-to-r from-bright-sun-300 to-bright-sun-200 text-gray-900 shadow-lg shadow-bright-sun-300/20"
                                         : 'text-gray-400 hover:bg-gray-700/50 hover:text-white'
                                     }
                                 `}
@@ -177,17 +177,17 @@ const CoachLayout = () => {
                                 {/* Notifications */}
                                 <button className="relative text-gray-300 hover:text-white p-2.5 hover:bg-gray-700/50 rounded-xl bg-gray-800/40 border border-gray-700/40 shadow-sm transition-all hover:scale-105">
                                     <IconBell size={22} />
-                                    <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-bright-sun-500 rounded-full border-2 border-gray-900 animate-pulse"></span>
+                                    <span className="absolute top-2 right-2.5 w-2.5 h-2.5 bg-bright-sun-300 rounded-full border-2 border-gray-900 animate-pulse"></span>
                                 </button>
 
                                 {/* User Profile */}
                                 <div className="flex items-center space-x-4 p-2 pl-4 hover:bg-gray-700/50 rounded-2xl transition-all border border-transparent hover:border-gray-700/50 cursor-pointer group">
                                     <div className="text-right hidden sm:block">
-                                        <div className="text-white font-bold text-sm group-hover:text-bright-sun-400 transition-colors">Head Coach</div>
+                                        <div className="text-white font-bold text-sm group-hover:text-bright-sun-300 transition-colors">Head Coach</div>
                                         <div className="text-gray-400 text-xs uppercase tracking-tighter">Verified Coach</div>
                                     </div>
-                                    <div className="w-12 h-12 bg-bright-sun-400/20 rounded-2xl flex items-center justify-center border-2 border-bright-sun-400/30 group-hover:border-bright-sun-400 transition-all transform group-hover:rotate-3 shadow-lg shadow-bright-sun-900/10">
-                                        <span className="text-bright-sun-400 font-black text-xl">C</span>
+                                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-2xl flex items-center justify-center border-2 border-bright-sun-300/30 group-hover:border-bright-sun-300 transition-all transform group-hover:rotate-3 shadow-lg shadow-bright-sun-900/10">
+                                        <span className="text-bright-sun-300 font-black text-xl">C</span>
                                     </div>
                                 </div>
                             </div>

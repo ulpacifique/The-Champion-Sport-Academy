@@ -71,7 +71,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="e.g. Elite Soccer Academy"
                                     required
                                 />
@@ -85,7 +85,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                 name="sportName"
                                 value={formData.sportName}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                 placeholder="Soccer"
                                 required
                             />
@@ -98,7 +98,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                 name="ageGroup"
                                 value={formData.ageGroup}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                 placeholder="8-16 years"
                                 required
                             />
@@ -113,7 +113,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                     name="startDate"
                                     value={formData.startDate}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     required
                                 />
                             </div>
@@ -128,7 +128,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                     name="monthlyFee"
                                     value={formData.monthlyFee}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     required
                                 />
                             </div>
@@ -140,7 +140,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                                 name="description"
                                 value={formData.description}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none h-24 resize-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none h-24 resize-none"
                                 placeholder="Program details..."
                             />
                         </div>
@@ -157,7 +157,7 @@ const AddProgramModal: React.FC<AddProgramModalProps> = ({ isOpen, onClose, onSu
                         <button
                             type="submit"
                             disabled={loading}
-                            className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-600 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-500/20 transition-all transform hover:-translate-y-0.5 disabled:opacity-50"
+                            className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-300/20 transition-all transform hover:-translate-y-0.5 disabled:opacity-50"
                         >
                             {loading ? 'Creating...' : 'Create Program'}
                         </button>

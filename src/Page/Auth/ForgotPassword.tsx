@@ -118,7 +118,7 @@ const ForgotPassword = ({
             </button>
 
             <div className="text-center mb-8 mt-10">
-                <div className={`w-16 h-16 rounded-full mx-auto flex items-center justify-center shadow-lg mb-6 animate-pulse-slow ${step === 1 ? "bg-gradient-to-br from-blue-400 to-cyan-500 shadow-blue-500/30" : "bg-gradient-to-br from-yellow-400 to-orange-500 shadow-orange-500/30"
+                <div className={`w-16 h-16 rounded-full mx-auto flex items-center justify-center shadow-lg mb-6 animate-pulse-slow ${step === 1 ? "bg-gradient-to-br from-blue-400 to-cyan-500 shadow-blue-500/30" : "bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 shadow-bright-sun-200/30"
                     }`}>
                     {step === 1 ? <IconSend className="text-white w-8 h-8 ml-1" /> : <IconShieldCheck className="text-white w-8 h-8" />}
                 </div>
@@ -157,14 +157,14 @@ const ForgotPassword = ({
                         <div className="group">
                             <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">6-Digit OTP</label>
                             <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <IconShieldCheck className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
                                 <input
                                     type="text"
                                     maxLength={6}
                                     value={otp}
                                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                                    className="w-full pl-12 pr-4 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-yellow-400/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner tracking-[0.5em] font-bold text-center"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner tracking-[0.5em] font-bold text-center"
                                     placeholder="000000"
                                     disabled={loading}
                                 />
@@ -174,20 +174,20 @@ const ForgotPassword = ({
                         <div className="group">
                             <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">New Password</label>
                             <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <IconLock className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-yellow-400/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
                                     placeholder="*************"
                                     disabled={loading}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-3.5 text-blue-200/50 hover:text-yellow-300 z-10 transition-colors"
+                                    className="absolute right-4 top-3.5 text-blue-200/50 hover:text-bright-sun-200 z-10 transition-colors"
                                 >
                                     {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
                                 </button>
@@ -197,13 +197,13 @@ const ForgotPassword = ({
                         <div className="group">
                             <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">Confirm Password</label>
                             <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <IconLock className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-yellow-400/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
                                     placeholder="*************"
                                     disabled={loading}
                                 />
@@ -216,9 +216,8 @@ const ForgotPassword = ({
                     onClick={step === 1 ? handleRequestOTP : handleResetPassword}
                     disabled={loading}
                     className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transform hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:transform-none ${step === 1
-                            ? "bg-gradient-to-r from-blue-500 to-cyan-600 shadow-blue-500/25 hover:shadow-blue-500/40"
-                            : "bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 shadow-orange-500/25 hover:shadow-orange-500/40"
-                        }`}
+                        ? "bg-gradient-to-r from-blue-500 to-cyan-600 shadow-blue-500/25 hover:shadow-blue-500/40"
+                        : "bg-gradient-to-r from-bright-sun-100 via-bright-sun-200 to-bright-sun-300 shadow-bright-sun-300/25 hover:shadow-bright-sun-300/40"}`}
                 >
                     {loading ? (
                         <div className="flex items-center justify-center gap-2">

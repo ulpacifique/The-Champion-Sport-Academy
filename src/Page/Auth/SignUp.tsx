@@ -78,7 +78,7 @@ const SignUp = ({
             </button>
 
             <div className="text-center mb-8 mt-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-purple-500/30 mb-4 rotate-3 hover:rotate-6 transition-transform duration-500">
+                <div className="w-16 h-16 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-bright-sun-200/30 mb-4 rotate-3 hover:rotate-6 transition-transform duration-500">
                     <IconUser className="text-white w-8 h-8" />
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-2">Create Account</h2>
@@ -111,7 +111,7 @@ const SignUp = ({
                                 type="text"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
-                                className="w-full pl-11 pr-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-white/20 focus:border-purple-400/50 focus:bg-black/30 backdrop-blur-sm transition-all outline-none"
+                                className="w-full pl-11 pr-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-white/20 focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-sm transition-all outline-none"
                                 placeholder="Doe"
                             />
                         </div>
@@ -218,7 +218,7 @@ const SignUp = ({
                 <button
                     onClick={handleSubmit}
                     disabled={loading}
-                    className="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 mt-4 disabled:opacity-50 disabled:transform-none"
+                    className="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 shadow-lg shadow-bright-sun-200/25 hover:shadow-bright-sun-200/40 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 mt-4 disabled:opacity-50 disabled:transform-none"
                 >
                     {loading ? "Creating Account..." : "Create Account"}
                 </button>

@@ -38,11 +38,11 @@ const Contact = () => {
                 ></div>
 
                 <div className="relative z-10 max-w-7xl mx-auto text-center">
-                    <span className="inline-flex items-center px-4 py-2 bg-bright-sun-400/20 text-bright-sun-400 rounded-full text-sm font-medium mb-4">
+                    <span className="inline-flex items-center px-4 py-2 bg-bright-sun-300/20 text-bright-sun-300 rounded-full text-sm font-medium mb-4">
                         Get in Touch
                     </span>
                     <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                        Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-400 to-bright-sun-300">The Champions</span>
+                        Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-bright-sun-300 to-bright-sun-200">The Champions</span>
                     </h1>
                     <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                         Have questions about our programmes? Ready to start your champion journey?
@@ -70,31 +70,31 @@ const Contact = () => {
                                 {/* Email Contact */}
                                 <a
                                     href="mailto:niyonoel@gmail.com"
-                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-400/30 transition-all duration-300 hover:scale-[1.02]"
+                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-300/30 transition-all duration-300 hover:scale-[1.02]"
                                 >
-                                    <div className="p-3 bg-gradient-to-br from-bright-sun-400 to-bright-sun-500 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-400/20 transition-all">
+                                    <div className="p-3 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-200/20 transition-all">
                                         <IconMail className="h-6 w-6 text-gray-900" />
                                     </div>
                                     <div className="flex-1">
                                         <div className="text-gray-400 text-sm mb-1">Email Us</div>
                                         <div className="text-white font-semibold text-lg">niyonoel@gmail.com</div>
                                     </div>
-                                    <IconChevronRight className="h-5 w-5 text-bright-sun-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <IconChevronRight className="h-5 w-5 text-bright-sun-300 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </a>
 
                                 {/* Phone Contact */}
                                 <a
                                     href="tel:+250788876966"
-                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-400/30 transition-all duration-300 hover:scale-[1.02]"
+                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-300/30 transition-all duration-300 hover:scale-[1.02]"
                                 >
-                                    <div className="p-3 bg-gradient-to-br from-bright-sun-400 to-bright-sun-500 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-400/20 transition-all">
+                                    <div className="p-3 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-200/20 transition-all">
                                         <IconPhone className="h-6 w-6 text-gray-900" />
                                     </div>
                                     <div className="flex-1">
                                         <div className="text-gray-400 text-sm mb-1">Call Us</div>
                                         <div className="text-white font-semibold text-lg">+250 788 876 966</div>
                                     </div>
-                                    <IconChevronRight className="h-5 w-5 text-bright-sun-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <IconChevronRight className="h-5 w-5 text-bright-sun-300 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </a>
 
                                 {/* WhatsApp Contact */}
@@ -102,16 +102,16 @@ const Contact = () => {
                                     href="https://wa.me/250788876966"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-400/30 transition-all duration-300 hover:scale-[1.02]"
+                                    className="group flex items-center gap-4 rounded-xl bg-cerulean-blue-800/30 border border-cerulean-blue-700/50 p-6 hover:bg-cerulean-blue-700/30 hover:border-bright-sun-300/30 transition-all duration-300 hover:scale-[1.02]"
                                 >
-                                    <div className="p-3 bg-gradient-to-br from-bright-sun-400 to-bright-sun-500 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-400/20 transition-all">
+                                    <div className="p-3 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-lg group-hover:shadow-lg group-hover:shadow-bright-sun-200/20 transition-all">
                                         <IconBrandWhatsapp className="h-6 w-6 text-gray-900" />
                                     </div>
                                     <div className="flex-1">
                                         <div className="text-gray-400 text-sm mb-1">WhatsApp</div>
                                         <div className="text-white font-semibold text-lg">+250 788 876 966</div>
                                     </div>
-                                    <IconChevronRight className="h-5 w-5 text-bright-sun-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <IconChevronRight className="h-5 w-5 text-bright-sun-300 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </a>
                             </div>
 
@@ -120,11 +120,11 @@ const Contact = () => {
                                 <h3 className="text-xl font-bold mb-4 text-white">Visit Our Academy</h3>
                                 <div className="space-y-3">
                                     <div className="flex items-center text-gray-300">
-                                        <IconMapPin className="h-5 w-5 mr-3 text-bright-sun-400" />
+                                        <IconMapPin className="h-5 w-5 mr-3 text-bright-sun-300" />
                                         <span>The Champions Sports Academy, Kigali, Rwanda</span>
                                     </div>
                                     <div className="flex items-center text-gray-300">
-                                        <IconClock className="h-5 w-5 mr-3 text-bright-sun-400" />
+                                        <IconClock className="h-5 w-5 mr-3 text-bright-sun-300" />
                                         <span>Saturday - Sunday: 10:00 AM - 5:00 PM (Home Classes available Mon-Fri)</span>
                                     </div>
                                 </div>
@@ -142,25 +142,25 @@ const Contact = () => {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-300 mb-2">
-                                            <IconUser className="h-4 w-4 inline mr-2 text-bright-sun-400" />
+                                            <IconUser className="h-4 w-4 inline mr-2 text-bright-sun-300" />
                                             Full Name
                                         </label>
                                         <input
                                             type="text"
                                             required
-                                            className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
+                                            className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300"
                                             placeholder="Kayitare Prince"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-300 mb-2">
-                                            <IconMail className="h-4 w-4 inline mr-2 text-bright-sun-400" />
+                                            <IconMail className="h-4 w-4 inline mr-2 text-bright-sun-300" />
                                             Email Address
                                         </label>
                                         <input
                                             type="email"
                                             required
-                                            className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
+                                            className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300"
                                             placeholder="prince@gmail.com"
                                         />
                                     </div>
@@ -168,23 +168,23 @@ const Contact = () => {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        <IconPhone className="h-4 w-4 inline mr-2 text-bright-sun-400" />
+                                        <IconPhone className="h-4 w-4 inline mr-2 text-bright-sun-300" />
                                         Phone Number
                                     </label>
                                     <input
                                         type="tel"
-                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
+                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300"
                                         placeholder="+250 788 876 966"
                                     />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        <IconMessage className="h-4 w-4 inline mr-2 text-bright-sun-400" />
+                                        <IconMessage className="h-4 w-4 inline mr-2 text-bright-sun-300" />
                                         What Programme Are You Interested In?
                                     </label>
                                     <select
-                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
+                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white focus:outline-none focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300"
                                     >
                                         <option value="">Select a programme</option>
                                         <option value="gymnastics">Gymnastics</option>
@@ -197,20 +197,20 @@ const Contact = () => {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        <IconMessage className="h-4 w-4 inline mr-2 text-bright-sun-400" />
+                                        <IconMessage className="h-4 w-4 inline mr-2 text-bright-sun-300" />
                                         Your Message
                                     </label>
                                     <textarea
                                         rows={4}
                                         required
-                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 focus:ring-1 focus:ring-bright-sun-400"
+                                        className="w-full px-4 py-3 bg-cerulean-blue-800/50 border border-cerulean-blue-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 focus:ring-1 focus:ring-bright-sun-300"
                                         placeholder="Tell us about your goals and questions..."
                                     ></textarea>
                                 </div>
 
                                 <Button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all h-12 text-lg"
+                                    className="w-full bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-semibold hover:from-bright-sun-100 hover:to-bright-sun-200 transition-all h-12 text-lg"
                                 >
                                     <IconSend className="h-5 w-5 mr-2" />
                                     Send Message
@@ -263,7 +263,7 @@ const Contact = () => {
                         <Button
                             component="a"
                             href="/register"
-                            className="px-8 py-4 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-semibold hover:from-bright-sun-500 hover:to-bright-sun-600 transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
+                            className="px-8 py-4 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-semibold hover:from-bright-sun-100 hover:to-bright-sun-200 transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
                         >
                             Register Now
                         </Button>

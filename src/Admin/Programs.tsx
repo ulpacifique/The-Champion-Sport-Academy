@@ -58,7 +58,7 @@ const Programs = () => {
                 <div className="flex space-x-3">
                     <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
+                        className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
                     >
                         Create Program
                     </button>
@@ -114,15 +114,15 @@ const Programs = () => {
                     <div className="text-gray-400">No programs found. Create one to get started!</div>
                 ) : (
                     programs.map((program) => (
-                        <div key={program.id} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6 hover:border-bright-sun-400/30 transition-colors">
+                        <div key={program.id} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6 hover:border-bright-sun-300/30 transition-colors">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
                                     <h3 className="text-xl font-bold text-white">{program.name}</h3>
                                     <p className="text-gray-400 text-sm mt-1">{program.sportName}</p>
                                 </div>
                                 <span className={`px-3 py-1 rounded-full text-xs ${program.status === "ACTIVE"
-                                        ? "bg-green-500/20 text-green-300"
-                                        : "bg-blue-500/20 text-blue-300"
+                                    ? "bg-green-500/20 text-green-300"
+                                    : "bg-blue-500/20 text-blue-300"
                                     }`}>
                                     {program.status}
                                 </span>
@@ -145,7 +145,7 @@ const Programs = () => {
 
                             <div className="mt-6 pt-6 border-t border-gray-700/50">
                                 <div className="flex justify-between">
-                                    <button className="text-bright-sun-400 hover:text-bright-sun-300 px-4 py-2 border border-bright-sun-400/30 rounded-lg hover:border-bright-sun-400/50">
+                                    <button className="text-bright-sun-300 hover:text-bright-sun-200 px-4 py-2 border border-bright-sun-300/30 rounded-lg hover:border-bright-sun-300/50">
                                         Edit
                                     </button>
                                     <button className="text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg">

@@ -25,7 +25,7 @@ const CoachDashboard = () => {
     const stats = [
         { label: 'My Athletes', value: statsData?.athleteCount ?? '0', icon: IconUsers, color: 'text-blue-400', bg: 'bg-blue-500/10' },
         { label: 'Classes Today', value: statsData?.upcomingClassesCount ?? '0', icon: IconCalendarEvent, color: 'text-green-400', bg: 'bg-green-500/10' },
-        { label: 'Skills Assessed', value: statsData?.skillsAssessedCount ?? '0', icon: IconTrophy, color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
+        { label: 'Skills Assessed', value: statsData?.skillsAssessedCount ?? '0', icon: IconTrophy, color: 'text-bright-sun-200', bg: 'bg-bright-sun-200/10' },
         { label: 'Avg Performance', value: statsData?.performance ?? '0%', icon: IconTrendingUp, color: 'text-purple-400', bg: 'bg-purple-500/10' },
     ];
 
@@ -45,7 +45,7 @@ const CoachDashboard = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-bright-sun-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-bright-sun-300"></div>
             </div>
         );
     }
@@ -55,7 +55,7 @@ const CoachDashboard = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
-                    <div key={index} className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-bright-sun-500/30 transition-all hover:scale-[1.02] shadow-sm">
+                    <div key={index} className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-bright-sun-300/30 transition-all hover:scale-[1.02] shadow-sm">
                         <div className="flex items-start justify-between">
                             <div>
                                 <p className="text-gray-400 text-sm font-medium tracking-tight uppercase">{stat.label}</p>
@@ -77,7 +77,7 @@ const CoachDashboard = () => {
                             <h3 className="text-xl font-bold text-white">Today's Schedule</h3>
                             <p className="text-gray-400 text-sm mt-1">Your assigned classes for today</p>
                         </div>
-                        <Link to="/coach/schedule" className="group flex items-center gap-2 text-sm font-semibold text-bright-sun-400 hover:text-bright-sun-300 transition-colors">
+                        <Link to="/coach/schedule" className="group flex items-center gap-2 text-sm font-semibold text-bright-sun-300 hover:text-bright-sun-200 transition-colors">
                             Full Schedule <IconArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
@@ -86,13 +86,13 @@ const CoachDashboard = () => {
                         <div className="space-y-4">
                             {upcomingClasses.map((cls: any) => (
                                 <div key={cls.id} className="flex items-center gap-4 p-5 rounded-2xl bg-gray-700/30 hover:bg-gray-700/50 transition-all border border-gray-700/20 group">
-                                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700/50 group-hover:border-bright-sun-500/30 transition-colors">
-                                        <IconCalendarEvent className="w-6 h-6 text-bright-sun-400" />
+                                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700/50 group-hover:border-bright-sun-300/30 transition-colors">
+                                        <IconCalendarEvent className="w-6 h-6 text-bright-sun-300" />
                                     </div>
                                     <div className="flex-1">
                                         <h4 className="text-white font-bold text-lg">{cls.name}</h4>
                                         <p className="text-gray-400 text-sm flex items-center gap-2 mt-0.5">
-                                            <span className="text-bright-sun-400/80 font-medium">
+                                            <span className="text-bright-sun-300/80 font-medium">
                                                 {formatTime(cls.startTime)} - {formatTime(cls.endTime)}
                                             </span>
                                             • Main Center
@@ -118,11 +118,11 @@ const CoachDashboard = () => {
                 <div className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8">
                     <h3 className="text-xl font-bold text-white mb-8">Quick Actions</h3>
                     <div className="space-y-4">
-                        <Link to="/coach/athletes" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-gray-700/30 hover:bg-bright-sun-500/10 transition-all group border border-gray-700/20 hover:border-bright-sun-500/30">
-                            <div className="p-3 bg-gray-800 rounded-xl group-hover:bg-bright-sun-500 group-hover:text-gray-900 transition-all shadow-sm">
+                        <Link to="/coach/athletes" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-gray-700/30 hover:bg-bright-sun-300/10 transition-all group border border-gray-700/20 hover:border-bright-sun-300/30">
+                            <div className="p-3 bg-gray-800 rounded-xl group-hover:bg-bright-sun-300 group-hover:text-gray-900 transition-all shadow-sm">
                                 <IconUsers className="w-6 h-6 text-gray-400 group-hover:text-gray-900" />
                             </div>
-                            <span className="font-bold text-gray-300 group-hover:text-bright-sun-400 text-lg">Take Attendance</span>
+                            <span className="font-bold text-gray-300 group-hover:text-bright-sun-300 text-lg">Take Attendance</span>
                         </Link>
                         <Link to="/coach/athletes" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-gray-700/30 hover:bg-purple-500/10 transition-all group border border-gray-700/20 hover:border-purple-500/30">
                             <div className="p-3 bg-gray-800 rounded-xl group-hover:bg-purple-500 group-hover:text-white transition-all shadow-sm">
@@ -132,8 +132,8 @@ const CoachDashboard = () => {
                         </Link>
                     </div>
 
-                    <div className="mt-8 p-6 bg-bright-sun-500/5 rounded-2xl border border-bright-sun-500/20">
-                        <h4 className="text-bright-sun-400 font-bold text-sm uppercase tracking-wider mb-2">Coach Pro-Tip</h4>
+                    <div className="mt-8 p-6 bg-bright-sun-300/5 rounded-2xl border border-bright-sun-300/20">
+                        <h4 className="text-bright-sun-300 font-bold text-sm uppercase tracking-wider mb-2">Coach Pro-Tip</h4>
                         <p className="text-gray-400 text-sm leading-relaxed">
                             Consistent skill assessment helps students stay motivated and gives parents clear visibility into their progress.
                         </p>

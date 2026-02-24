@@ -42,7 +42,7 @@ const Athletes = () => {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-white">Student Management</h2>
-                {/* <button className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all">
+                {/* <button className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all">
                     Register New Student
                 </button> */}
             </div>
@@ -78,10 +78,10 @@ const Athletes = () => {
                                         <td className="p-4 text-gray-300">{child.parentName}</td>
                                         <td className="p-4">
                                             <span className={`px-3 py-1 rounded-full text-xs ${child.registrationStatus === "ACTIVE"
-                                                    ? "bg-green-500/20 text-green-300"
-                                                    : child.registrationStatus === "PENDING"
-                                                        ? "bg-yellow-500/20 text-yellow-300"
-                                                        : "bg-red-500/20 text-red-300"
+                                                ? "bg-green-500/20 text-green-300"
+                                                : child.registrationStatus === "PENDING"
+                                                    ? "bg-yellow-500/20 text-yellow-300"
+                                                    : "bg-red-500/20 text-red-300"
                                                 }`}>
                                                 {child.registrationStatus}
                                             </span>

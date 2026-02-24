@@ -265,7 +265,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                     </button>
                     <button
                         onClick={() => setIsAddingChild(true)}
-                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                     >
                         <IconPlus size={20} />
                         <span>Register Child</span>
@@ -285,7 +285,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search by name or parent..."
-                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                             />
                         </div>
                     </div>
@@ -295,7 +295,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                         <select
                             value={sportFilter}
                             onChange={(e) => setSportFilter(e.target.value)}
-                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         >
                             <option value="all">All Sports</option>
                             <option value="Karate">Karate</option>
@@ -308,7 +308,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
-                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         >
                             <option value="all">All Status</option>
                             <option value="active">Active</option>
@@ -349,7 +349,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="text"
                                 value={formData.childName}
                                 onChange={(e) => setFormData({ ...formData, childName: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter child's name"
                             />
                         </div>
@@ -360,7 +360,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="number"
                                 value={formData.age}
                                 onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter age"
                                 min="4"
                                 max="18"
@@ -372,7 +372,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                             <select
                                 value={formData.gender}
                                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -392,7 +392,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                         sport: prog ? prog.name : ""
                                     });
                                 }}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 <option value="">Select a Program</option>
                                 <option value="Karate">Karate</option>
@@ -416,7 +416,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="text"
                                 value={formData.parentName}
                                 onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Parent's full name"
                             />
                         </div>
@@ -427,7 +427,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="email"
                                 value={formData.parentEmail}
                                 onChange={(e) => setFormData({ ...formData, parentEmail: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="parent@example.com"
                             />
                         </div>
@@ -438,7 +438,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="tel"
                                 value={formData.parentPhone}
                                 onChange={(e) => setFormData({ ...formData, parentPhone: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="+1234567890"
                             />
                         </div>
@@ -449,7 +449,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="text"
                                 value={formData.address}
                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Full address"
                             />
                         </div>
@@ -460,7 +460,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="text"
                                 value={formData.emergencyContact}
                                 onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Emergency contact name"
                             />
                         </div>
@@ -471,7 +471,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                 type="tel"
                                 value={formData.emergencyPhone}
                                 onChange={(e) => setFormData({ ...formData, emergencyPhone: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="+1234567890"
                             />
                         </div>
@@ -490,7 +490,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                         </button>
                         <button
                             onClick={editingChild ? handleUpdateChild : handleAddChild}
-                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                         >
                             <IconCheck size={20} />
                             <span>{editingChild ? "Update Profile" : "Register Child"}</span>
@@ -501,11 +501,11 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
 
             {/* Pending Registrations */}
             {filteredRegistrations.length > 0 && (
-                <div className="bg-gray-800/30 border border-yellow-500/30 rounded-2xl p-6">
+                <div className="bg-gray-800/30 border-bright-sun-300/30 rounded-2xl p-6">
                     <div className="flex justify-between items-center mb-6">
                         <div className="flex items-center space-x-3">
                             <h3 className="text-xl font-semibold text-white">Pending Registrations</h3>
-                            <span className="bg-yellow-500 text-white text-sm px-3 py-1 rounded-full">
+                            <span className="bg-bright-sun-300 text-white text-sm px-3 py-1 rounded-full">
                                 {filteredRegistrations.length} pending
                             </span>
                         </div>
@@ -515,7 +515,7 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
                                     type="checkbox"
                                     checked={showPendingOnly}
                                     onChange={(e) => setShowPendingOnly(e.target.checked)}
-                                    className="rounded text-bright-sun-400"
+                                    className="rounded text-bright-sun-300"
                                 />
                                 <span className="text-sm">Show pending only</span>
                             </label>
@@ -524,14 +524,14 @@ const ChildManagement = ({ children, setChildren, newRegistrations, setNewRegist
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {filteredRegistrations.map((child) => (
-                            <div key={child.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-yellow-500/30 transition-colors">
+                            <div key={child.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-colors">
                                 <div className="flex justify-between items-start mb-3">
                                     <div>
                                         <div className="text-white font-bold">{child.childName || child.name}</div>
                                         <div className="text-gray-400 text-sm">Age: {child.age} • {child.gender} • {child.sport}</div>
                                     </div>
                                     <span className={`text-xs px-2 py-1 rounded-full ${(child.registrationStatus || child.status || "").toUpperCase() === 'PENDING'
-                                        ? 'bg-yellow-500/20 text-yellow-400'
+                                        ? 'bg-bright-sun-300/20 text-bright-sun-300'
                                         : (child.registrationStatus || child.status || "").toUpperCase() === 'REJECTED'
                                             ? 'bg-red-500/20 text-red-400'
                                             : 'bg-green-500/20 text-green-400'

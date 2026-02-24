@@ -15,17 +15,18 @@ const HomePage = () => {
             <section id="home" className="scroll-mt-24">
                 <HeroSection />
             </section>
+            <section id="aboutUs" className="scroll-mt-24">
+                <AboutUs />
+            </section>
 
             <section id="partners" className="scroll-mt-24">
                 <Partners />
             </section>
 
-            <section id="sports-disciplines" className="scroll-mt-24">
+            {/* <section id="sports-disciplines" className="scroll-mt-24">
                 <SportsDisciplines />
-            </section>
-            <section id="aboutUs" className="scroll-mt-24">
-                <AboutUs />
-            </section>
+            </section> */}
+
 
             <section id="footer" className="scroll-mt-24">
                 <Footer />

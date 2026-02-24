@@ -212,7 +212,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                 </div>
                 <button
                     onClick={() => setIsAddingChild(true)}
-                    className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                    className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-3 rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                 >
                     <IconPlus size={20} />
                     <span>Register New Child</span>
@@ -245,7 +245,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter child's name"
                             />
                         </div>
@@ -256,7 +256,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                 type="number"
                                 value={formData.age}
                                 onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter age"
                                 min="4"
                                 max="18"
@@ -268,7 +268,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                             <select
                                 value={formData.gender}
                                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -280,7 +280,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                             <select
                                 value={formData.sport}
                                 onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 {sports.map(sport => (
                                     <option key={sport.id} value={sport.name}>{sport.name}</option>
@@ -294,7 +294,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                 <select
                                     value={formData.belt}
                                     onChange={(e) => setFormData({ ...formData, belt: e.target.value })}
-                                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                                 >
                                     {sports[0].belts?.map(belt => (
                                         <option key={belt} value={belt}>{belt} Belt</option>
@@ -307,7 +307,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                 <select
                                     value={formData.level}
                                     onChange={(e) => setFormData({ ...formData, level: e.target.value })}
-                                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                                 >
                                     {sports[1].levels?.map(level => (
                                         <option key={level} value={level}>{level}</option>
@@ -348,7 +348,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                         </button>
                         <button
                             onClick={editingChild ? handleUpdateChild : handleAddChild}
-                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                         >
                             <IconCheck size={20} />
                             <span>{editingChild ? "Update Profile" : "Register Child"}</span>
@@ -367,7 +367,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                         <p className="text-gray-400 mt-4">No children registered yet</p>
                         <button
                             onClick={() => setIsAddingChild(true)}
-                            className="mt-4 text-bright-sun-400 hover:text-bright-sun-300"
+                            className="mt-4 text-bright-sun-300 hover:text-bright-sun-200"
                         >
                             Register your first child
                         </button>
@@ -377,8 +377,8 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                         {children.map((child) => (
                             <div
                                 key={child.id}
-                                className={`bg-gray-800/50 border rounded-xl p-6 hover:border-bright-sun-400/30 transition-colors ${selectedChild?.id === child.id
-                                    ? 'border-bright-sun-400/50'
+                                className={`bg-gray-800/50 border rounded-xl p-6 hover:border-bright-sun-300/30 transition-colors ${selectedChild?.id === child.id
+                                    ? 'border-bright-sun-300/50'
                                     : 'border-gray-700/50'
                                     }`}
                             >
@@ -387,7 +387,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                         <div className="flex items-center space-x-3 mb-1">
                                             <h4 className="text-white font-bold text-lg">{child.name}</h4>
                                             <span className={`px-2 py-0.5 rounded-full text-[10px] uppercase font-bold ${child.registrationStatus === 'ACTIVE' || child.registrationStatus === 'APPROVED' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
-                                                child.registrationStatus === 'PENDING' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                                                child.registrationStatus === 'PENDING' ? 'bg-bright-sun-300/20 text-bright-sun-300 border border-bright-sun-300/30' :
                                                     'bg-red-500/20 text-red-400 border border-red-500/30'
                                                 }`}>
                                                 {child.registrationStatus || 'PENDING'}
@@ -435,7 +435,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                             <span className="text-white font-medium">{child.progress}%</span>
                                             <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
                                                 <div
-                                                    className="h-full bg-gradient-to-r from-bright-sun-400 to-bright-sun-500"
+                                                    className="h-full bg-gradient-to-r from-bright-sun-200 to-bright-sun-300"
                                                     style={{ width: `${child.progress}%` }}
                                                 ></div>
                                             </div>
@@ -452,7 +452,7 @@ const ChildManagement = ({ children, setChildren, selectedChild, setSelectedChil
                                 <button
                                     onClick={() => setSelectedChild(child)}
                                     className={`w-full mt-4 py-2 rounded-lg transition-colors ${selectedChild?.id === child.id
-                                        ? 'bg-bright-sun-400/20 text-bright-sun-400 border border-bright-sun-400/30'
+                                        ? 'bg-bright-sun-300/20 text-bright-sun-300 border border-bright-sun-300/30'
                                         : 'bg-gray-700/50 text-white hover:bg-gray-700'
                                         }`}
                                 >

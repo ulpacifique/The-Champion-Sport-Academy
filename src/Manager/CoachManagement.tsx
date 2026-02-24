@@ -132,7 +132,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                 </div>
                 <button
                     onClick={() => setIsAddingCoach(true)}
-                    className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                    className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                 >
                     <IconPlus size={20} />
                     <span>Add Coach</span>
@@ -151,7 +151,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search by name..."
-                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                             />
                         </div>
                     </div>
@@ -161,7 +161,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                         <select
                             value={sportFilter}
                             onChange={(e) => setSportFilter(e.target.value)}
-                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         >
                             <option value="all">All Sports</option>
                             <option value="Karate">Karate</option>
@@ -197,7 +197,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Coach's full name"
                             />
                         </div>
@@ -207,7 +207,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                             <select
                                 value={formData.sport}
                                 onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 <option value="Karate">Karate</option>
                                 <option value="Gymnastics">Gymnastics</option>
@@ -220,7 +220,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="text"
                                 value={formData.experience}
                                 onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="e.g., 5 years"
                             />
                         </div>
@@ -231,7 +231,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="number"
                                 value={formData.salary}
                                 onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter salary amount"
                             />
                         </div>
@@ -242,7 +242,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="coach@example.com"
                             />
                         </div>
@@ -253,7 +253,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="tel"
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="+1234567890"
                             />
                         </div>
@@ -264,7 +264,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="text"
                                 value={formData.qualification}
                                 onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Certifications and qualifications"
                             />
                         </div>
@@ -275,7 +275,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="text"
                                 value={formData.address}
                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Full address"
                             />
                         </div>
@@ -286,7 +286,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 type="date"
                                 value={formData.hireDate}
                                 onChange={(e) => setFormData({ ...formData, hireDate: e.target.value })}
-                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             />
                         </div>
                     </div>
@@ -298,13 +298,13 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                 setEditingCoach(null);
                                 resetForm();
                             }}
-                            className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                            className="flex-1 bg-bright-sun-300 text-gray-900 font-bold py-3 rounded-xl hover:bg-bright-sun-200 transition-colors"
                         >
                             Cancel
                         </button>
                         <button
                             onClick={editingCoach ? handleUpdateCoach : handleAddCoach}
-                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                         >
                             <IconCheck size={20} />
                             <span>{editingCoach ? "Update Coach" : "Add Coach"}</span>
@@ -325,7 +325,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                         <p className="text-gray-400 mt-4">No coaches found</p>
                         <button
                             onClick={() => setIsAddingCoach(true)}
-                            className="mt-4 text-bright-sun-400 hover:text-bright-sun-300"
+                            className="mt-4 text-bright-sun-300 hover:text-bright-sun-200"
                         >
                             Add your first coach
                         </button>
@@ -333,7 +333,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCoaches.map((coach) => (
-                            <div key={coach.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-bright-sun-400/30 transition-colors">
+                            <div key={coach.id} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-bright-sun-300/30 transition-colors">
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
                                         <h4 className="text-white font-bold text-lg">{coach.name}</h4>
@@ -342,7 +342,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                     <div className="flex space-x-2">
                                         <button
                                             onClick={() => handleEditCoach(coach)}
-                                            className="p-2 text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 rounded-lg transition-colors"
+                                            className="p-2 text-bright-sun-300 hover:bg-bright-sun-300/10 rounded-lg transition-colors"
                                         >
                                             <IconEdit size={18} />
                                         </button>
@@ -373,8 +373,8 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                                 {coach.attendance.present}/{coach.attendance.total} days
                                             </span>
                                             <span className={`text-xs px-2 py-1 rounded-full ${coach.attendance.total > 0 && (coach.attendance.present / coach.attendance.total) >= 0.9
-                                                    ? 'bg-green-500/20 text-green-400'
-                                                    : 'bg-yellow-500/20 text-yellow-400'
+                                                ? 'bg-green-500/20 text-green-400'
+                                                : 'bg-bright-sun-300/20 text-bright-sun-300'
                                                 }`}>
                                                 {coach.attendance.total > 0 ? Math.round((coach.attendance.present / coach.attendance.total) * 100) : 0}%
                                             </span>
@@ -415,7 +415,7 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
             {/* Attendance Summary */}
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-6">
-                    <IconCalendarEvent className="text-bright-sun-400" size={24} />
+                    <IconCalendarEvent className="text-bright-sun-300" size={24} />
                     <h3 className="text-xl font-semibold text-white">Monthly Attendance Overview</h3>
                 </div>
 
@@ -442,8 +442,8 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                         <td className="py-3 px-4 text-white font-medium">{coach.name}</td>
                                         <td className="py-3 px-4">
                                             <span className={`px-2 py-1 rounded-full text-xs ${coach.sport === "Karate"
-                                                    ? 'bg-blue-500/20 text-blue-400'
-                                                    : 'bg-purple-500/20 text-purple-400'
+                                                ? 'bg-blue-500/20 text-blue-400'
+                                                : 'bg-purple-500/20 text-purple-400'
                                                 }`}>
                                                 {coach.sport}
                                             </span>
@@ -455,15 +455,15 @@ const CoachManagement = ({ coaches, setCoaches }: CoachManagementProps) => {
                                                 <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
                                                     <div
                                                         className={`h-full ${attendanceRate >= 90 ? 'bg-green-500' :
-                                                                attendanceRate >= 80 ? 'bg-yellow-500' :
-                                                                    'bg-red-500'
+                                                            attendanceRate >= 80 ? 'bg-bright-sun-300' :
+                                                                'bg-red-500'
                                                             }`}
                                                         style={{ width: `${attendanceRate}%` }}
                                                     ></div>
                                                 </div>
                                                 <span className={`text-sm ${attendanceRate >= 90 ? 'text-green-400' :
-                                                        attendanceRate >= 80 ? 'text-yellow-400' :
-                                                            'text-red-400'
+                                                    attendanceRate >= 80 ? 'text-bright-sun-300' :
+                                                        'text-red-400'
                                                     }`}>
                                                     {attendanceRate}%
                                                 </span>

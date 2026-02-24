@@ -41,7 +41,7 @@ const BroadcastMessage = () => {
             const broadcastData = {
                 message,
                 groups: selectedGroups,
-                schedule: scheduleDate && scheduleTime 
+                schedule: scheduleDate && scheduleTime
                     ? `${scheduleDate} ${scheduleTime}`
                     : 'immediate',
                 totalRecipients: selectedGroups.reduce((total, groupId) => {
@@ -68,18 +68,17 @@ const BroadcastMessage = () => {
             {/* Recipient Selection */}
             <div className="mb-8">
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                    <IconUsers className="mr-2 text-bright-sun-400" /> Select Recipients
+                    <IconUsers className="mr-2 text-bright-sun-300" /> Select Recipients
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {recipientGroups.map((group) => (
                         <button
                             key={group.id}
                             onClick={() => toggleGroup(group.id)}
-                            className={`p-4 rounded-xl border transition-all ${
-                                selectedGroups.includes(group.id)
-                                    ? 'bg-bright-sun-400/20 border-bright-sun-400 text-bright-sun-400'
-                                    : 'bg-gray-800/50 border-gray-700/50 text-gray-300 hover:border-gray-600'
-                            }`}
+                            className={`p-4 rounded-xl border transition-all ${selectedGroups.includes(group.id)
+                                ? 'bg-bright-sun-300/20 border-bright-sun-300 text-bright-sun-300'
+                                : 'bg-gray-800/50 border-gray-700/50 text-gray-300 hover:border-gray-600'
+                                }`}
                         >
                             <div className="text-lg font-semibold">{group.count}</div>
                             <div className="text-sm">{group.label}</div>
@@ -91,15 +90,15 @@ const BroadcastMessage = () => {
             {/* Message Composition */}
             <div className="mb-8">
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                    <IconMail className="mr-2 text-bright-sun-400" /> Compose Message
+                    <IconMail className="mr-2 text-bright-sun-300" /> Compose Message
                 </h3>
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type your broadcast message here..."
-                    className="w-full h-48 px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400 resize-none"
+                    className="w-full h-48 px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 resize-none"
                 />
-                
+
                 {/* Quick Templates */}
                 <div className="mt-4">
                     <p className="text-gray-400 text-sm mb-2">Quick Templates:</p>
@@ -120,7 +119,7 @@ const BroadcastMessage = () => {
             {/* Schedule Options */}
             <div className="mb-8">
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                    <IconCalendar className="mr-2 text-bright-sun-400" /> Schedule (Optional)
+                    <IconCalendar className="mr-2 text-bright-sun-300" /> Schedule (Optional)
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -129,7 +128,7 @@ const BroadcastMessage = () => {
                             type="date"
                             value={scheduleDate}
                             onChange={(e) => setScheduleDate(e.target.value)}
-                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
                     <div>
@@ -138,7 +137,7 @@ const BroadcastMessage = () => {
                             type="time"
                             value={scheduleTime}
                             onChange={(e) => setScheduleTime(e.target.value)}
-                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
                 </div>
@@ -151,7 +150,7 @@ const BroadcastMessage = () => {
                     <div>
                         <p className="text-gray-400">Selected Groups:</p>
                         <p className="text-white font-semibold">
-                            {selectedGroups.length > 0 
+                            {selectedGroups.length > 0
                                 ? selectedGroups.map(id => recipientGroups.find(g => g.id === id)?.label).join(", ")
                                 : "None selected"
                             }
@@ -174,11 +173,10 @@ const BroadcastMessage = () => {
                 <button
                     onClick={handleSendBroadcast}
                     disabled={!message.trim() || selectedGroups.length === 0}
-                    className={`inline-flex items-center space-x-2 px-8 py-3 rounded-xl font-bold text-lg transition-all ${
-                        message.trim() && selectedGroups.length > 0
-                            ? 'bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 hover:shadow-lg hover:scale-105'
-                            : 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                    }`}
+                    className={`inline-flex items-center space-x-2 px-8 py-3 rounded-xl font-bold text-lg transition-all ${message.trim() && selectedGroups.length > 0
+                        ? 'bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 hover:shadow-lg hover:scale-105'
+                        : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                        }`}
                 >
                     <IconSend size={24} />
                     <span>

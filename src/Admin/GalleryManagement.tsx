@@ -108,7 +108,7 @@ const GalleryManagement = () => {
                 <h2 className="text-xl font-semibold mb-4 text-cerulean-blue-800">Upload New Photo</h2>
                 <form onSubmit={handleUpload} className="grid md:grid-cols-2 gap-8">
                     <div>
-                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-bright-sun-400 transition-colors cursor-pointer relative h-64 flex flex-col items-center justify-center bg-gray-50">
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-bright-sun-300 transition-colors cursor-pointer relative h-64 flex flex-col items-center justify-center bg-gray-50">
                             <input
                                 type="file"
                                 accept="image/*"
@@ -138,7 +138,7 @@ const GalleryManagement = () => {
                                 type="text"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-400 focus:border-transparent outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-300 focus:border-transparent outline-none"
                                 placeholder="e.g., Gymnastics Team Training"
                                 required
                             />
@@ -149,7 +149,7 @@ const GalleryManagement = () => {
                             <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-400 focus:border-transparent outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-300 focus:border-transparent outline-none"
                                 rows={3}
                                 placeholder="Brief description of the photo..."
                             />
@@ -160,7 +160,7 @@ const GalleryManagement = () => {
                             <select
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value as any)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-400 focus:border-transparent outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bright-sun-300 focus:border-transparent outline-none"
                             >
                                 <option value="GENERAL">General</option>
                                 <option value="GYMNASTICS">Gymnastics</option>
@@ -239,7 +239,7 @@ const GalleryManagement = () => {
                                     alt={image.title}
                                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
-                                <div className="absolute top-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+                                <div className="absolute top-2 right-2 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all">
                                     {image.category}
                                 </div>
                             </div>

@@ -112,7 +112,7 @@ const Coaches = () => {
                         setEditingCoach(null);
                         setIsAddModalOpen(true);
                     }}
-                    className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
+                    className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all"
                 >
                     Add New Coach
                 </button>
@@ -219,7 +219,7 @@ const Coaches = () => {
                                                 >
                                                     View / Edit
                                                 </button>
-                                                {/* <button className="text-bright-sun-400 hover:text-bright-sun-300 px-3 py-1 bg-bright-sun-400/10 rounded">Edit</button> */}
+                                                {/* <button className="text-bright-sun-300 hover:text-bright-sun-200 px-3 py-1 bg-bright-sun-300/10 rounded">Edit</button> */}
                                                 <button
                                                     onClick={() => handleRemove(coach.id)}
                                                     className="text-red-400 hover:text-red-300 px-3 py-1 bg-red-500/10 rounded"

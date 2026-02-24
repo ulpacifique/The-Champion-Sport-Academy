@@ -28,7 +28,7 @@ const CoachSchedule = () => {
             <div className="grid gap-6">
                 {schedule.map((day, idx) => (
                     <div key={idx} className="bg-gray-800 border border-gray-700 rounded-2xl p-6">
-                        <h3 className="text-lg font-bold text-bright-sun-400 mb-4 flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-bright-sun-300 mb-4 flex items-center gap-2">
                             <IconCalendar size={20} />
                             {day.date}
                         </h3>
@@ -55,8 +55,8 @@ const CoachSchedule = () => {
                                                 </span>
                                             )}
                                             <span className={`px-2 py-0.5 rounded text-xs border ${event.type === 'Class' ? 'border-green-500/30 text-green-400 bg-green-500/10' :
-                                                    event.type === 'Meeting' ? 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10' :
-                                                        'border-purple-500/30 text-purple-400 bg-purple-500/10'
+                                                event.type === 'Meeting' ? 'border-bright-sun-300/30 text-bright-sun-300 bg-bright-sun-300/10' :
+                                                    'border-purple-500/30 text-purple-400 bg-purple-500/10'
                                                 }`}>
                                                 {event.type}
                                             </span>

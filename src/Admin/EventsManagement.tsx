@@ -130,7 +130,7 @@ const EventsManagement = () => {
                 </div>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold px-6 py-2.5 rounded-xl hover:shadow-lg transition-all flex items-center gap-2"
+                    className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:shadow-lg transition-all flex items-center gap-2"
                 >
                     {showForm ? <IconX size={20} /> : <IconPlus size={20} />}
                     {showForm ? 'Cancel' : 'New Event/Post'}
@@ -151,7 +151,7 @@ const EventsManagement = () => {
                                     name="title"
                                     value={formData.title}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                     placeholder="Event title or Announcement heading"
                                     required
                                 />
@@ -163,7 +163,7 @@ const EventsManagement = () => {
                                     name="type"
                                     value={formData.type}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                 >
                                     <option value="EVENT">Event (Tournament, Showcase, etc.)</option>
                                     <option value="ANNOUNCEMENT">Announcement (Update, Cancellation, etc.)</option>
@@ -176,7 +176,7 @@ const EventsManagement = () => {
                                     name="sport"
                                     value={formData.sport}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                 >
                                     <option value="All">All Sports</option>
                                     <option value="Karate">Karate Only</option>
@@ -191,7 +191,7 @@ const EventsManagement = () => {
                                     name="date"
                                     value={formData.date}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                     required
                                 />
                             </div>
@@ -203,7 +203,7 @@ const EventsManagement = () => {
                                     name="time"
                                     value={formData.time}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                 />
                             </div>
 
@@ -214,7 +214,7 @@ const EventsManagement = () => {
                                     name="location"
                                     value={formData.location}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all"
                                     placeholder="e.g., Main Dojo, Main Stadium, Zoom"
                                 />
                             </div>
@@ -226,7 +226,7 @@ const EventsManagement = () => {
                                     value={formData.description}
                                     onChange={handleInputChange}
                                     rows={4}
-                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-400 outline-none transition-all resize-none"
+                                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-bright-sun-300 outline-none transition-all resize-none"
                                     placeholder="Provide more details about the event or announcement..."
                                 />
                             </div>
@@ -242,7 +242,7 @@ const EventsManagement = () => {
                             </button>
                             <button
                                 type="submit"
-                                className="px-8 py-2.5 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-xl hover:shadow-lg transition-all"
+                                className="px-8 py-2.5 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-xl hover:shadow-lg transition-all"
                             >
                                 {editingEvent ? 'Update' : 'Publish'}
                             </button>
@@ -268,7 +268,7 @@ const EventsManagement = () => {
                                 <tr>
                                     <td colSpan={5} className="text-center p-12 text-gray-500">
                                         <div className="flex flex-col items-center gap-3">
-                                            <div className="w-8 h-8 border-2 border-bright-sun-400 border-t-transparent rounded-full animate-spin"></div>
+                                            <div className="w-8 h-8 border-2 border-bright-sun-300 border-t-transparent rounded-full animate-spin"></div>
                                             Loading events...
                                         </div>
                                     </td>
@@ -331,7 +331,7 @@ const EventsManagement = () => {
                                             <div className="flex items-center gap-2">
                                                 <button
                                                     onClick={() => handleEdit(event)}
-                                                    className="p-2 text-gray-400 hover:text-bright-sun-400 hover:bg-bright-sun-400/10 rounded-lg transition-all"
+                                                    className="p-2 text-gray-400 hover:text-bright-sun-300 hover:bg-bright-sun-300/10 rounded-lg transition-all"
                                                     title="Edit"
                                                 >
                                                     <IconEdit size={18} />

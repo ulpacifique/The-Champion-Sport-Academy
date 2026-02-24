@@ -1,6 +1,6 @@
 // src/Parent/ProfileSettings.tsx
 import { useState } from "react";
-import { 
+import {
     IconUser,
     IconMail,
     IconPhone,
@@ -47,7 +47,7 @@ const ProfileSettings = () => {
             alert("New passwords don't match!");
             return;
         }
-        
+
         if (passwordData.newPassword.length < 6) {
             alert("Password must be at least 6 characters long");
             return;
@@ -86,7 +86,7 @@ const ProfileSettings = () => {
                         {/* Profile Information */}
                         <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                             <div className="flex items-center space-x-3 mb-6">
-                                <IconUser className="text-bright-sun-400" size={24} />
+                                <IconUser className="text-bright-sun-300" size={24} />
                                 <h3 className="text-xl font-semibold text-white">Profile Information</h3>
                             </div>
 
@@ -98,8 +98,8 @@ const ProfileSettings = () => {
                                         <input
                                             type="text"
                                             value={userData.firstName}
-                                            onChange={(e) => setUserData({...userData, firstName: e.target.value})}
-                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                            onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                             placeholder="First name"
                                         />
                                     </div>
@@ -112,8 +112,8 @@ const ProfileSettings = () => {
                                         <input
                                             type="text"
                                             value={userData.lastName}
-                                            onChange={(e) => setUserData({...userData, lastName: e.target.value})}
-                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                            onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                             placeholder="Last name"
                                         />
                                     </div>
@@ -127,8 +127,8 @@ const ProfileSettings = () => {
                                     <input
                                         type="email"
                                         value={userData.email}
-                                        onChange={(e) => setUserData({...userData, email: e.target.value})}
-                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                        onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                         placeholder="Email address"
                                     />
                                 </div>
@@ -141,8 +141,8 @@ const ProfileSettings = () => {
                                     <input
                                         type="tel"
                                         value={userData.phone}
-                                        onChange={(e) => setUserData({...userData, phone: e.target.value})}
-                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                        onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                         placeholder="Phone number"
                                     />
                                 </div>
@@ -155,8 +155,8 @@ const ProfileSettings = () => {
                                     <input
                                         type="text"
                                         value={userData.address}
-                                        onChange={(e) => setUserData({...userData, address: e.target.value})}
-                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                        onChange={(e) => setUserData({ ...userData, address: e.target.value })}
+                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                         placeholder="Address"
                                     />
                                 </div>
@@ -169,8 +169,8 @@ const ProfileSettings = () => {
                                     <input
                                         type="text"
                                         value={userData.emergencyContact}
-                                        onChange={(e) => setUserData({...userData, emergencyContact: e.target.value})}
-                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                        onChange={(e) => setUserData({ ...userData, emergencyContact: e.target.value })}
+                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                         placeholder="Emergency contact name"
                                     />
                                 </div>
@@ -183,8 +183,8 @@ const ProfileSettings = () => {
                                     <input
                                         type="tel"
                                         value={userData.emergencyPhone}
-                                        onChange={(e) => setUserData({...userData, emergencyPhone: e.target.value})}
-                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                        onChange={(e) => setUserData({ ...userData, emergencyPhone: e.target.value })}
+                                        className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                         placeholder="Emergency contact phone"
                                     />
                                 </div>
@@ -193,7 +193,7 @@ const ProfileSettings = () => {
                             <div className="flex justify-end">
                                 <button
                                     onClick={handleUpdateProfile}
-                                    className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                                    className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                                 >
                                     <IconDeviceFloppy size={20} />
                                     <span>Save Changes</span>
@@ -204,7 +204,7 @@ const ProfileSettings = () => {
                         {/* Password Change */}
                         <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                             <div className="flex items-center space-x-3 mb-6">
-                                <IconLock className="text-bright-sun-400" size={24} />
+                                <IconLock className="text-bright-sun-300" size={24} />
                                 <h3 className="text-xl font-semibold text-white">Change Password</h3>
                             </div>
 
@@ -216,8 +216,8 @@ const ProfileSettings = () => {
                                         <input
                                             type="password"
                                             value={passwordData.currentPassword}
-                                            onChange={(e) => setPasswordData({...passwordData, currentPassword: e.target.value})}
-                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                            onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
+                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                             placeholder="Enter current password"
                                         />
                                     </div>
@@ -230,8 +230,8 @@ const ProfileSettings = () => {
                                         <input
                                             type="password"
                                             value={passwordData.newPassword}
-                                            onChange={(e) => setPasswordData({...passwordData, newPassword: e.target.value})}
-                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                            onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                             placeholder="Enter new password"
                                         />
                                     </div>
@@ -245,8 +245,8 @@ const ProfileSettings = () => {
                                         <input
                                             type="password"
                                             value={passwordData.confirmPassword}
-                                            onChange={(e) => setPasswordData({...passwordData, confirmPassword: e.target.value})}
-                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                            onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                                            className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                             placeholder="Confirm new password"
                                         />
                                     </div>
@@ -255,7 +255,7 @@ const ProfileSettings = () => {
                                 <div className="flex justify-end">
                                     <button
                                         onClick={handleChangePassword}
-                                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all"
+                                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all"
                                     >
                                         Update Password
                                     </button>
@@ -289,10 +289,10 @@ const ProfileSettings = () => {
                                             <input
                                                 type="checkbox"
                                                 checked={value}
-                                                onChange={(e) => setNotifications({...notifications, [key]: e.target.checked})}
+                                                onChange={(e) => setNotifications({ ...notifications, [key]: e.target.checked })}
                                                 className="sr-only peer"
                                             />
-                                            <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-bright-sun-400"></div>
+                                            <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-bright-sun-300"></div>
                                         </label>
                                     </div>
                                 ))}

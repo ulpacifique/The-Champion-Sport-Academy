@@ -236,7 +236,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
-                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                            className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
 
@@ -246,7 +246,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <button
                                 onClick={() => setAttendanceType("children")}
                                 className={`flex-1 py-2 rounded-lg transition-colors ${attendanceType === "children"
-                                    ? 'bg-bright-sun-400 text-gray-900 font-bold'
+                                    ? 'bg-bright-sun-300 text-gray-900 font-bold'
                                     : 'bg-gray-700 text-white hover:bg-gray-600'
                                     }`}
                             >
@@ -255,7 +255,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <button
                                 onClick={() => setAttendanceType("coaches")}
                                 className={`flex-1 py-2 rounded-lg transition-colors ${attendanceType === "coaches"
-                                    ? 'bg-bright-sun-400 text-gray-900 font-bold'
+                                    ? 'bg-bright-sun-300 text-gray-900 font-bold'
                                     : 'bg-gray-700 text-white hover:bg-gray-600'
                                     }`}
                             >
@@ -270,7 +270,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <button
                                 onClick={() => setSession("morning")}
                                 className={`flex-1 flex items-center justify-center py-1.5 px-2 rounded-md transition-all ${session === "morning"
-                                    ? 'bg-bright-sun-400 text-gray-900 font-bold shadow-sm'
+                                    ? 'bg-bright-sun-300 text-gray-900 font-bold shadow-sm'
                                     : 'text-gray-400 hover:text-white'
                                     }`}
                             >
@@ -280,7 +280,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <button
                                 onClick={() => setSession("afternoon")}
                                 className={`flex-1 flex items-center justify-center py-1.5 px-2 rounded-md transition-all ${session === "afternoon"
-                                    ? 'bg-bright-sun-400 text-gray-900 font-bold shadow-sm'
+                                    ? 'bg-bright-sun-300 text-gray-900 font-bold shadow-sm'
                                     : 'text-gray-400 hover:text-white'
                                     }`}
                             >
@@ -296,7 +296,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <select
                                 value={selectedClass}
                                 onChange={(e) => setSelectedClass(e.target.value)}
-                                className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400"
+                                className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300"
                             >
                                 <option value="all">All Classes</option>
                                 <option value="karate-beginners">Karate Beginners</option>
@@ -349,7 +349,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                     <button
                         onClick={handleSaveAttendance}
                         disabled={isLoading || isDateDisabled}
-                        className={`px-6 py-2 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all ${isLoading || isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`px-6 py-2 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all ${isLoading || isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                     >
                         {isLoading ? 'Saving...' : 'Save Attendance'}
@@ -404,12 +404,12 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <div key={child.id} className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700/50 rounded-xl">
                                 <div className="flex items-center space-x-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${childrenAttendance[child.id] === "present" ? 'bg-green-500/20' :
-                                        childrenAttendance[child.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
+                                        childrenAttendance[child.id] === "late" ? 'bg-bright-sun-300/20' : 'bg-red-500/20'
                                         }`}>
                                         {childrenAttendance[child.id] === "present" ? (
                                             <IconCheck className="text-green-400" size={20} />
                                         ) : childrenAttendance[child.id] === "late" ? (
-                                            <IconCalendarEvent className="text-yellow-400" size={20} />
+                                            <IconCalendarEvent className="text-bright-sun-300" size={20} />
                                         ) : (
                                             <IconX className="text-red-400" size={20} />
                                         )}
@@ -447,7 +447,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                         onClick={() => handleChildAttendance(child.id, "late")}
                                         disabled={isDateDisabled}
                                         className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${childrenAttendance[child.id] === "late"
-                                            ? 'bg-yellow-500 text-white'
+                                            ? 'bg-bright-sun-300 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
                                     >
@@ -463,12 +463,12 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                             <div key={coach.id} className="flex items-center justify-between p-4 bg-gray-800/50 border border-gray-700/50 rounded-xl">
                                 <div className="flex items-center space-x-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${coachesAttendance[coach.id] === "present" ? 'bg-green-500/20' :
-                                        coachesAttendance[coach.id] === "late" ? 'bg-yellow-500/20' : 'bg-red-500/20'
+                                        coachesAttendance[coach.id] === "late" ? 'bg-bright-sun-300/20' : 'bg-red-500/20'
                                         }`}>
                                         {coachesAttendance[coach.id] === "present" ? (
                                             <IconCheck className="text-green-400" size={20} />
                                         ) : coachesAttendance[coach.id] === "late" ? (
-                                            <IconCalendarEvent className="text-yellow-400" size={20} />
+                                            <IconCalendarEvent className="text-bright-sun-300" size={20} />
                                         ) : (
                                             <IconX className="text-red-400" size={20} />
                                         )}
@@ -509,7 +509,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                         onClick={() => handleCoachAttendance(coach.id, "late")}
                                         disabled={isDateDisabled}
                                         className={`px-4 py-2 rounded-lg transition-colors ${isDateDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${coachesAttendance[coach.id] === "late"
-                                            ? 'bg-yellow-500 text-white'
+                                            ? 'bg-bright-sun-300 text-white'
                                             : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
                                             }`}
                                     >
@@ -536,7 +536,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
             {/* Monthly Attendance Report - keeping this consistent with props data for now */}
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-6">
-                    <IconCalendar className="text-bright-sun-400" size={24} />
+                    <IconCalendar className="text-bright-sun-300" size={24} />
                     <h3 className="text-xl font-semibold text-white">Monthly Attendance Report</h3>
                 </div>
 
@@ -566,7 +566,7 @@ const Attendance = ({ children, coaches }: AttendanceProps) => {
                                         <td className="py-3 px-4 text-white">{coach.attendance.total}</td>
                                         <td className="py-3 px-4">
                                             <span className={`px-2 py-1 rounded-full text-xs ${rate >= 90 ? 'bg-green-500/20 text-green-400' :
-                                                rate >= 80 ? 'bg-yellow-500/20 text-yellow-400' :
+                                                rate >= 80 ? 'bg-bright-sun-200/20 text-bright-sun-200' :
                                                     'bg-red-500/20 text-red-400'
                                                 }`}>
                                                 {rate}%

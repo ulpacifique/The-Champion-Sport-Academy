@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { 
+import {
     IconUser,
     IconMail,
     IconPhone,
@@ -36,7 +36,7 @@ const ProfileSettings = () => {
             alert("New passwords don't match!");
             return;
         }
-        
+
         if (passwordData.newPassword.length < 6) {
             alert("Password must be at least 6 characters long");
             return;
@@ -63,7 +63,7 @@ const ProfileSettings = () => {
             {/* Personal Information */}
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-6">
-                    <IconUser className="text-bright-sun-400" size={24} />
+                    <IconUser className="text-bright-sun-300" size={24} />
                     <h3 className="text-xl font-semibold text-white">Personal Information</h3>
                 </div>
 
@@ -73,8 +73,8 @@ const ProfileSettings = () => {
                         <input
                             type="text"
                             value={userData.firstName}
-                            onChange={(e) => setUserData({...userData, firstName: e.target.value})}
-                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                            onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
 
@@ -83,8 +83,8 @@ const ProfileSettings = () => {
                         <input
                             type="text"
                             value={userData.lastName}
-                            onChange={(e) => setUserData({...userData, lastName: e.target.value})}
-                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                            onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
 
@@ -95,8 +95,8 @@ const ProfileSettings = () => {
                             <input
                                 type="email"
                                 value={userData.email}
-                                onChange={(e) => setUserData({...userData, email: e.target.value})}
-                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                             />
                         </div>
                     </div>
@@ -108,8 +108,8 @@ const ProfileSettings = () => {
                             <input
                                 type="tel"
                                 value={userData.phone}
-                                onChange={(e) => setUserData({...userData, phone: e.target.value})}
-                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
+                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                             />
                         </div>
                     </div>
@@ -119,8 +119,8 @@ const ProfileSettings = () => {
                         <input
                             type="text"
                             value={userData.position}
-                            onChange={(e) => setUserData({...userData, position: e.target.value})}
-                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                            onChange={(e) => setUserData({ ...userData, position: e.target.value })}
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
 
@@ -129,8 +129,8 @@ const ProfileSettings = () => {
                         <input
                             type="text"
                             value={userData.department}
-                            onChange={(e) => setUserData({...userData, department: e.target.value})}
-                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                            onChange={(e) => setUserData({ ...userData, department: e.target.value })}
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
 
@@ -139,8 +139,8 @@ const ProfileSettings = () => {
                         <input
                             type="text"
                             value={userData.address}
-                            onChange={(e) => setUserData({...userData, address: e.target.value})}
-                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                            onChange={(e) => setUserData({ ...userData, address: e.target.value })}
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                         />
                     </div>
                 </div>
@@ -148,7 +148,7 @@ const ProfileSettings = () => {
                 <div className="flex justify-end mt-6">
                     <button
                         onClick={handleUpdateProfile}
-                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
+                        className="px-6 py-3 bg-gradient-to-r from-bright-sun-300 to-bright-sun-400 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2"
                     >
                         <IconDeviceFloppy size={20} />
                         <span>Save Changes</span>
@@ -159,7 +159,7 @@ const ProfileSettings = () => {
             {/* Password Change */}
             <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-6">
-                    <IconLock className="text-bright-sun-400" size={24} />
+                    <IconLock className="text-bright-sun-300" size={24} />
                     <h3 className="text-xl font-semibold text-white">Change Password</h3>
                 </div>
 
@@ -171,8 +171,8 @@ const ProfileSettings = () => {
                             <input
                                 type="password"
                                 value={passwordData.currentPassword}
-                                onChange={(e) => setPasswordData({...passwordData, currentPassword: e.target.value})}
-                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })}
+                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter current password"
                             />
                         </div>
@@ -185,8 +185,8 @@ const ProfileSettings = () => {
                             <input
                                 type="password"
                                 value={passwordData.newPassword}
-                                onChange={(e) => setPasswordData({...passwordData, newPassword: e.target.value})}
-                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
+                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Enter new password"
                             />
                         </div>
@@ -200,8 +200,8 @@ const ProfileSettings = () => {
                             <input
                                 type="password"
                                 value={passwordData.confirmPassword}
-                                onChange={(e) => setPasswordData({...passwordData, confirmPassword: e.target.value})}
-                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-400"
+                                onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
+                                className="w-full pl-10 pr-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300"
                                 placeholder="Confirm new password"
                             />
                         </div>
@@ -210,7 +210,7 @@ const ProfileSettings = () => {
                     <div className="flex justify-end">
                         <button
                             onClick={handleChangePassword}
-                            className="px-6 py-3 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all"
+                            className="px-8 py-3 bg-bright-sun-300 text-gray-900 rounded-xl hover:bg-bright-sun-200 transition-all font-bold shadow-lg shadow-bright-sun-300/10"
                         >
                             Update Password
                         </button>
@@ -219,13 +219,13 @@ const ProfileSettings = () => {
             </div>
 
             {/* Note about account deletion */}
-            <div className="bg-gray-800/30 border border-yellow-500/30 rounded-2xl p-6">
+            <div className="bg-gray-800/30 border border-bright-sun-300/30 rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-4">
-                    <IconAlertCircle className="text-yellow-400" size={24} />
+                    <IconAlertCircle className="text-bright-sun-300" size={24} />
                     <h3 className="text-xl font-semibold text-white">Account Management Note</h3>
                 </div>
                 <p className="text-gray-300">
-                    As a Manager, you cannot delete your account through this portal. Account management for managers 
+                    As a Manager, you cannot delete your account through this portal. Account management for managers
                     is handled by the system administrator. Please contact the administrator for any account-related issues.
                 </p>
             </div>

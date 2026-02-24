@@ -154,7 +154,7 @@ const Messages = () => {
                                 placeholder="Search contacts..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 text-sm"
+                                className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 text-sm"
                             />
                         </div>
                     </div>
@@ -173,8 +173,8 @@ const Messages = () => {
                                     className="w-full text-left p-3 rounded-lg hover:bg-gray-700/30 transition-colors border border-transparent hover:border-gray-600"
                                 >
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-8 h-8 rounded-full bg-yellow-400/20 flex items-center justify-center">
-                                            <IconUser size={16} className="text-yellow-400" />
+                                        <div className="w-8 h-8 rounded-full bg-bright-sun-300/20 flex items-center justify-center">
+                                            <IconUser size={16} className="text-bright-sun-300" />
                                         </div>
                                         <div>
                                             <div className="text-white text-sm font-medium">{recipient.firstName} {recipient.lastName}</div>
@@ -192,7 +192,7 @@ const Messages = () => {
                                         key={chat.id}
                                         onClick={() => handleSelectChat(chat.id)}
                                         className={`w-full text-left p-3 rounded-lg transition-colors ${selectedChat === chat.id
-                                            ? 'bg-yellow-400/20 border border-yellow-400/30'
+                                            ? 'bg-bright-sun-300/20 border border-bright-sun-300/30'
                                             : 'hover:bg-gray-700/30'
                                             }`}
                                     >
@@ -225,7 +225,7 @@ const Messages = () => {
                                 <button onClick={handleBackToList} className="lg:hidden text-gray-400 hover:text-white">
                                     <IconArrowLeft size={24} />
                                 </button>
-                                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <div className="w-10 h-10 bg-bright-sun-300 rounded-full flex items-center justify-center flex-shrink-0">
                                     <IconUser size={20} className="text-white" />
                                 </div>
                                 <div className="min-w-0">
@@ -242,7 +242,7 @@ const Messages = () => {
                                 {messagesList.map((msg) => (
                                     <div key={msg.id} className={`flex ${msg.sender === 'manager' ? 'justify-end' : 'justify-start'}`}>
                                         <div className={`max-w-[85%] sm:max-w-[70%] rounded-2xl p-3 ${msg.sender === 'manager'
-                                            ? 'bg-yellow-400/20 border border-yellow-400/30'
+                                            ? 'bg-bright-sun-300/20 border border-bright-sun-300/30'
                                             : 'bg-gray-700/50 border border-gray-600/50'
                                             }`}>
                                             <p className="text-white break-words text-sm">{msg.text}</p>
@@ -264,12 +264,12 @@ const Messages = () => {
                                         onChange={(e) => setMessage(e.target.value)}
                                         onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                                         placeholder="Type your message..."
-                                        className="flex-1 px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 text-sm"
+                                        className="flex-1 px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-bright-sun-300 text-sm"
                                     />
                                     <button
                                         onClick={handleSendMessage}
                                         disabled={!message.trim()}
-                                        className={`p-2 rounded-lg transition-all ${message.trim() ? 'bg-yellow-400 text-gray-900 hover:scale-105' : 'bg-gray-700 text-gray-500'}`}
+                                        className={`p-2 rounded-lg transition-all ${message.trim() ? 'bg-bright-sun-300 text-gray-900 hover:scale-105' : 'bg-gray-700 text-gray-500'}`}
                                     >
                                         <IconSend size={20} />
                                     </button>

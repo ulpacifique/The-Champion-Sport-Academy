@@ -111,7 +111,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                                     key={sport}
                                     onClick={() => setActiveSport(sport)}
                                     className={`px-3 py-1 rounded-md text-sm font-medium transition-all ${activeSport === sport
-                                        ? 'bg-bright-sun-400 text-gray-900'
+                                        ? 'bg-bright-sun-300 text-gray-900'
                                         : 'text-gray-400 hover:text-white'
                                         }`}
                                 >
@@ -129,7 +129,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                                 const child = children.find(c => c.id === parseInt(e.target.value));
                                 setSelectedChild(child);
                             }}
-                            className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-400 text-sm"
+                            className="px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-bright-sun-300 text-sm"
                         >
                             {children.map(child => (
                                 <option key={child.id} value={child.id}>
@@ -142,7 +142,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                     {/* Export Button */}
                     <button
                         onClick={handleExportReport}
-                        className="px-4 py-2 bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2 text-sm"
+                        className="px-4 py-2 bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all flex items-center space-x-2 text-sm"
                     >
                         <IconDownload size={18} />
                         <span>Export</span>
@@ -153,7 +153,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
             {selectedChild ? (
                 <>
                     {/* Overall Progress Card */}
-                    <div className="bg-gradient-to-r from-bright-sun-400/10 to-cerulean-blue-500/10 border border-bright-sun-400/20 rounded-2xl p-6">
+                    <div className="bg-gradient-to-r from-bright-sun-200/10 to-cerulean-blue-500/10 border border-bright-sun-200/20 rounded-2xl p-6">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
                                 <h3 className="text-xl font-bold text-white">
@@ -190,13 +190,13 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                         <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="text-xl font-semibold text-white">Skills Breakdown</h3>
-                                <IconTarget className="text-bright-sun-400" size={24} />
+                                <IconTarget className="text-bright-sun-300" size={24} />
                             </div>
 
                             <div className="space-y-6">
                                 {isLoading ? (
                                     <div className="flex justify-center py-8">
-                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-bright-sun-400"></div>
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-bright-sun-300"></div>
                                     </div>
                                 ) : filteredSkills.length > 0 ? (
                                     filteredSkills.map((skill, index) => (
@@ -209,7 +209,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                                             </div>
                                             <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
                                                 <div
-                                                    className="h-full bg-gradient-to-r from-bright-sun-400 to-bright-sun-500"
+                                                    className="h-full bg-gradient-to-r from-bright-sun-200 to-bright-sun-300"
                                                     style={{ width: `${skill.progress}%` }}
                                                 ></div>
                                             </div>
@@ -225,14 +225,14 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                         <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="text-xl font-semibold text-white">Growth Trends</h3>
-                                <IconChartLine className="text-bright-sun-400" size={24} />
+                                <IconChartLine className="text-bright-sun-300" size={24} />
                             </div>
 
                             <div className="h-64 flex items-end justify-between space-x-2 px-2">
                                 {progressHistory.map((item, index) => (
                                     <div key={index} className="flex-1 flex flex-col items-center">
                                         <div
-                                            className="w-full bg-gradient-to-t from-bright-sun-400/40 to-bright-sun-500 rounded-t-lg transition-all hover:brightness-125 group relative"
+                                            className="w-full bg-gradient-to-t from-bright-sun-200/40 to-bright-sun-300 rounded-t-lg transition-all hover:brightness-125 group relative"
                                             style={{ height: `${item.progress * 0.6}%` }}
                                         >
                                             <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 font-bold border border-gray-700 shadow-xl">
@@ -256,9 +256,9 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {filteredSkills.filter(s => s.notes).length > 0 ? (
                                 filteredSkills.filter(s => s.notes).map((skill, idx) => (
-                                    <div key={idx} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-400/30 transition-all">
+                                    <div key={idx} className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 hover:border-bright-sun-300/30 transition-all">
                                         <div className="flex justify-between items-start mb-3">
-                                            <div className="text-bright-sun-400 font-bold text-sm uppercase tracking-wider">{skill.name}</div>
+                                            <div className="text-bright-sun-300 font-bold text-sm uppercase tracking-wider">{skill.name}</div>
                                             <div className="text-gray-500 text-[10px] font-mono">
                                                 {skill.lastUpdated ? new Date(skill.lastUpdated).toLocaleDateString() : 'Recent'}
                                             </div>
@@ -268,7 +268,7 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                                         </p>
                                         <div className="mt-3 pt-3 border-t border-gray-700/50 flex items-center justify-between">
                                             <div className="flex items-center space-x-1">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-bright-sun-400"></div>
+                                                <div className="w-1.5 h-1.5 rounded-full bg-bright-sun-300"></div>
                                                 <span className="text-gray-400 text-xs italic">Evaluated by {skill.updatedBy || 'Head Coach'}</span>
                                             </div>
                                         </div>
@@ -286,23 +286,23 @@ const ProgressTracking = ({ selectedChild, children, setSelectedChild }: Progres
                     <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-xl font-semibold text-white">Academy Milestones</h3>
-                            <IconCalendarStats className="text-bright-sun-400" size={24} />
+                            <IconCalendarStats className="text-bright-sun-300" size={24} />
                         </div>
 
                         <div className="relative">
-                            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-bright-sun-400/20 border-l border-dashed border-gray-700"></div>
+                            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-bright-sun-300/20 border-l border-dashed border-gray-700"></div>
 
                             <div className="space-y-6">
                                 {milestones.map((milestone, index) => (
                                     <div key={index} className="relative pl-16">
-                                        <div className="absolute left-6 w-4 h-4 bg-bright-sun-400 rounded-full border-4 border-gray-800 z-10 shadow-[0_0_10px_rgba(251,191,36,0.5)]"></div>
+                                        <div className="absolute left-6 w-4 h-4 bg-bright-sun-300 rounded-full border-4 border-gray-800 z-10 shadow-[0_0_10px_rgba(251,191,36,0.5)]"></div>
                                         <div className="bg-gray-800/50 border border-gray-700/50 rounded-2xl p-5 hover:bg-gray-800/80 transition-all cursor-default">
                                             <div className="flex justify-between items-start">
                                                 <div>
                                                     <h4 className="text-white font-bold">{milestone.title}</h4>
                                                     <p className="text-gray-400 text-sm mt-1">{milestone.description}</p>
                                                 </div>
-                                                <div className="bg-bright-sun-400/10 px-2 py-1 rounded text-bright-sun-400 text-[10px] font-bold border border-bright-sun-400/20 shadow-inner">
+                                                <div className="bg-bright-sun-300/10 px-2 py-1 rounded text-bright-sun-300 text-[10px] font-bold border border-bright-sun-300/20 shadow-inner">
                                                     {milestone.date}
                                                 </div>
                                             </div>

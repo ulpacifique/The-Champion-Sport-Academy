@@ -14,7 +14,7 @@ import ParentRouter from '../Parents/ParentRouter';
 import ManagerRouter from '../Manager/ManagerRouter';
 import Karate from '../Program/Karate';
 import Gymnastics from '../Program/Gymnastics';
-
+import Founder from '../LandingPage/Founder';
 function AppRoutes() {
   return (
     <Routes>
@@ -22,6 +22,7 @@ function AppRoutes() {
       <Route path="/events" element={<EventPage />} />
       <Route path="/karate" element={<Karate />} />
       <Route path="/Gymnastics" element={<Gymnastics />} />
+      <Route path='/founder' element={<Founder />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/auth" element={<AuthPageWrapper />} />
       <Route path="/login" element={<AuthPageWrapper />} />

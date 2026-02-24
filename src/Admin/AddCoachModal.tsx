@@ -126,7 +126,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     name="firstName"
                                     value={formData.firstName}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="John"
                                     required
                                 />
@@ -141,7 +141,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     name="lastName"
                                     value={formData.lastName}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="Doe"
                                     required
                                 />
@@ -156,7 +156,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="coach@example.com"
                                     required
                                     disabled={!!initialData} // Email usually shouldn't change as it's login
@@ -172,7 +172,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     name="phoneNumber"
                                     value={formData.phoneNumber}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="+250..."
                                     required
                                 />
@@ -185,7 +185,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                 placeholder={initialData ? "******" : "******"}
                                 required={!initialData}
                             />
@@ -197,7 +197,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                 name="yearsOfExperience"
                                 value={formData.yearsOfExperience}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                 required
                             />
                         </div>
@@ -210,7 +210,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                         type="text"
                                         value={sportInput}
                                         onChange={(e) => setSportInput(e.target.value)}
-                                        className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                        className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                         placeholder="Add a sport (e.g. Soccer)"
                                     />
                                 </div>
@@ -224,7 +224,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {formData.sports.map((sport, idx) => (
-                                    <span key={idx} className="bg-bright-sun-500/20 text-bright-sun-300 px-3 py-1 rounded-full text-sm flex items-center">
+                                    <span key={idx} className="bg-bright-sun-300/20 text-bright-sun-300 px-3 py-1 rounded-full text-sm flex items-center">
                                         {sport}
                                         <button
                                             type="button"
@@ -243,7 +243,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                 name="specialization"
                                 value={formData.specialization}
                                 onChange={handleChange}
-                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none h-24 resize-none"
+                                className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none h-24 resize-none"
                                 placeholder="Description of specialization..."
                             />
                         </div>
@@ -256,7 +256,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                                     name="qualifications"
                                     value={formData.qualifications}
                                     onChange={handleChange}
-                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-500/50 focus:border-bright-sun-500 outline-none"
+                                    className="w-full bg-gray-900/50 border border-gray-700 rounded-xl py-2.5 pl-10 pr-4 text-white focus:ring-2 focus:ring-bright-sun-300/50 focus:border-bright-sun-300 outline-none"
                                     placeholder="Certifications, Degrees, etc."
                                 />
                             </div>
@@ -273,7 +273,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                         </button>
                         <button
                             type="submit"
-                            className="bg-gradient-to-r from-bright-sun-400 to-bright-sun-600 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-500/20 transition-all transform hover:-translate-y-0.5"
+                            className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-300/20 transition-all transform hover:-translate-y-0.5"
                         >
                             {initialData ? 'Update Coach' : 'Save Coach'}
                         </button>
