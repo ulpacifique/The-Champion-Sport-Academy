@@ -16,6 +16,12 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
         setLoading(true);
         setError("");
 
+        console.log('🔐 Attempting Login:', {
+            url: `${API_BASE_URL}/auth/login`,
+            email: email,
+            env_url: process.env.NEXT_PUBLIC_API_URL
+        });
+
         try {
             const response = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: "POST",
@@ -24,37 +30,54 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
                 body: JSON.stringify({ email, password: pass })
             });
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ Login Error Response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    body: errorText
+                });
 
-            if (response.ok) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify({
-                    id: data.id,
-                    email: data.email,
-                    role: data.role,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    phoneNumber: data.phoneNumber
-                }));
+                let errorMessage = "Login failed.";
+                try {
+                    const errorJson = JSON.parse(errorText);
+                    errorMessage = errorJson.message || errorMessage;
+                } catch (e) {
+                    errorMessage = errorText || errorMessage;
+                }
 
-                setSuccess("Login successful! Redirecting...");
-
-                setTimeout(() => {
-                    if (onClose) onClose();
-                    const dashboardMap: Record<string, string> = {
-                        'ADMIN': '/admin/dashboard',
-                        'MANAGER': '/manager/dashboard',
-                        'COACH': '/coach/dashboard',
-                        'PARENT': '/parent/dashboard'
-                    };
-                    window.location.href = dashboardMap[data.role] || '/';
-                }, 1000);
-            } else {
-                setError(data.message || "Login failed. Please check your credentials.");
+                setError(errorMessage);
+                return;
             }
-        } catch (err) {
+
+            const data = await response.json();
+            console.log('✅ Login Success:', data);
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify({
+                id: data.id,
+                email: data.email,
+                role: data.role,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                phoneNumber: data.phoneNumber
+            }));
+
+            setSuccess("Login successful! Redirecting...");
+
+            setTimeout(() => {
+                if (onClose) onClose();
+                const dashboardMap: Record<string, string> = {
+                    'ADMIN': '/admin/dashboard',
+                    'MANAGER': '/manager/dashboard',
+                    'COACH': '/coach/dashboard',
+                    'PARENT': '/parent/dashboard'
+                };
+                window.location.href = dashboardMap[data.role] || '/';
+            }, 1000);
+        } catch (err: any) {
             setError("Network error. Please try again.");
-            console.error("Login error:", err);
+            console.error("🚨 Login Network Error:", err);
         } finally {
             setLoading(false);
         }
@@ -64,6 +87,11 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
         setLoading(true);
         setError("");
 
+        console.log('📝 Attempting Registration:', {
+            url: `${API_BASE_URL}/auth/register`,
+            env_url: process.env.NEXT_PUBLIC_API_URL
+        });
+
         try {
             const response = await fetch(`${API_BASE_URL}/auth/register`, {
                 method: "POST",
@@ -72,31 +100,48 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
                 body: JSON.stringify(formData)
             });
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ Registration Error Response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    body: errorText
+                });
 
-            if (response.ok) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify({
-                    id: data.id,
-                    email: data.email,
-                    role: data.role,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    phoneNumber: data.phoneNumber
-                }));
+                let errorMessage = "Registration failed.";
+                try {
+                    const errorJson = JSON.parse(errorText);
+                    errorMessage = errorJson.message || errorMessage;
+                } catch (e) {
+                    errorMessage = errorText || errorMessage;
+                }
 
-                setSuccess("Registration successful! Redirecting...");
-
-                setTimeout(() => {
-                    if (onClose) onClose();
-                    window.location.href = data.role === 'PARENT' ? '/parent/dashboard' : '/';
-                }, 1500);
-            } else {
-                setError(data.message || "Registration failed. Please try again.");
+                setError(errorMessage);
+                return;
             }
-        } catch (err) {
+
+            const data = await response.json();
+            console.log('✅ Registration Success:', data);
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify({
+                id: data.id,
+                email: data.email,
+                role: data.role,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                phoneNumber: data.phoneNumber
+            }));
+
+            setSuccess("Registration successful! Redirecting...");
+
+            setTimeout(() => {
+                if (onClose) onClose();
+                window.location.href = data.role === 'PARENT' ? '/parent/dashboard' : '/';
+            }, 1500);
+        } catch (err: any) {
             setError("Network error. Please try again.");
-            console.error("Registration error:", err);
+            console.error("🚨 Registration Network Error:", err);
         } finally {
             setLoading(false);
         }

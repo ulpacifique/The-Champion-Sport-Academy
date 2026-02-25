@@ -37,6 +37,12 @@ const ForgotPassword = ({
         setError("");
         setSuccess("");
 
+        console.log('📧 Requesting OTP:', {
+            url: `${API_BASE_URL}/auth/forgot-password`,
+            email: email,
+            env_url: process.env.NEXT_PUBLIC_API_URL
+        });
+
         try {
             const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
                 method: "POST",
@@ -44,17 +50,32 @@ const ForgotPassword = ({
                 body: JSON.stringify({ email })
             });
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ Request OTP Error Response:', {
+                    status: response.status,
+                    body: errorText
+                });
 
-            if (response.ok) {
-                setSuccess("OTP has been sent to your email!");
-                setStep(2);
-            } else {
-                setError(data.message || "Failed to send OTP. Please try again.");
+                let errorMessage = "Failed to send OTP.";
+                try {
+                    const errorJson = JSON.parse(errorText);
+                    errorMessage = errorJson.message || errorMessage;
+                } catch (e) {
+                    errorMessage = errorText || errorMessage;
+                }
+
+                setError(errorMessage);
+                return;
             }
-        } catch (err) {
+
+            const data = await response.json();
+            console.log('✅ OTP Request Success:', data);
+            setSuccess("OTP has been sent to your email!");
+            setStep(2);
+        } catch (err: any) {
             setError("Network error. Please try again.");
-            console.error("Request OTP error:", err);
+            console.error("🚨 Request OTP Network Error:", err);
         } finally {
             setLocalLoading(false);
         }
@@ -80,6 +101,12 @@ const ForgotPassword = ({
         setError("");
         setSuccess("");
 
+        console.log('🔑 Resetting Password:', {
+            url: `${API_BASE_URL}/auth/reset-password`,
+            email: email,
+            env_url: process.env.NEXT_PUBLIC_API_URL
+        });
+
         try {
             const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
                 method: "POST",
@@ -87,19 +114,34 @@ const ForgotPassword = ({
                 body: JSON.stringify({ email, otp, newPassword })
             });
 
-            const data = await response.json();
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ Reset Password Error Response:', {
+                    status: response.status,
+                    body: errorText
+                });
 
-            if (response.ok) {
-                setSuccess("Password reset successful! Redirecting to login...");
-                setTimeout(() => {
-                    onNavigateToLogin();
-                }, 2000);
-            } else {
-                setError(data.message || "Failed to reset password. Invalid or expired OTP.");
+                let errorMessage = "Failed to reset password.";
+                try {
+                    const errorJson = JSON.parse(errorText);
+                    errorMessage = errorJson.message || errorMessage;
+                } catch (e) {
+                    errorMessage = errorText || errorMessage;
+                }
+
+                setError(errorMessage);
+                return;
             }
-        } catch (err) {
+
+            const data = await response.json();
+            console.log('✅ Password Reset Success:', data);
+            setSuccess("Password reset successful! Redirecting to login...");
+            setTimeout(() => {
+                onNavigateToLogin();
+            }, 2000);
+        } catch (err: any) {
             setError("Network error. Please try again.");
-            console.error("Reset password error:", err);
+            console.error("🚨 Reset Password Network Error:", err);
         } finally {
             setLocalLoading(false);
         }
