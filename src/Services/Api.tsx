@@ -2,15 +2,15 @@
 import axios from 'axios';
 
 // Use environment variable with fallback
-export const API_BASE_URL = process.env.REACT_APP_API_URL
-  ? `${process.env.REACT_APP_API_URL}/api`
-  : 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+export const API_BASE_URL = `${API_URL}/api`;
+export const ASSET_BASE_URL = API_URL;
 
-export const ASSET_BASE_URL = process.env.REACT_APP_API_URL
-  ? process.env.REACT_APP_API_URL
-  : 'http://localhost:5000';
-
-console.log('🚀 API Base URL:', API_BASE_URL); // For debugging
+console.log('🚀 API URL initialization:', {
+  provided_env: process.env.NEXT_PUBLIC_API_URL,
+  final_url: API_URL,
+  api_base: API_BASE_URL
+});
 
 const api = axios.create({
   baseURL: API_BASE_URL,
