@@ -15,7 +15,7 @@ const Founder = () => {
     // Gallery data for 18 images
     const galleryImages = Array.from({ length: 18 }, (_, i) => ({
         id: i + 1,
-        src: `/ourFounderGallery/${i + 1}.jpeg`,
+        src: `${process.env.PUBLIC_URL}/OurFounderGallery/${i + 1}.jpeg`,
         title: `Moment ${i + 1}`,
         description: "" // Space left for user to provide descriptions
     }));
