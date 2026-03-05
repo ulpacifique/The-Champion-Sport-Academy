@@ -170,6 +170,12 @@ const AboutUs = () => {
               </div>
               <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
               <div className="text-gray-400">{stat.label}</div>
+              {stat.value2 && (
+                <div className="mt-4">
+                  <div className="text-4xl font-bold text-white mb-2">{stat.value2}</div>
+                  <div className="text-gray-400">{stat.label2}</div>
+                </div>
+              )}
             </div>
           ))}
         </div>
