@@ -61,10 +61,26 @@ const Founder = () => {
                             </div>
                             <h2 className="text-4xl font-bold text-white mb-2 tracking-tight">Noël Nkuranyabahizi</h2>
                             <div className="text-bright-sun-300 text-xl font-semibold mb-6">Founder & CEO</div>
-                            <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl">
-                                Leading the vision of developing <span className="text-bright-sun-300 font-semibold">"Champions for Life"</span> with an unwavering commitment to
-                                professionalism, excellence, and sustainable community impact through the transformative power of sport and education.
-                            </p>
+                            <div className="space-y-4 text-gray-300 text-lg leading-relaxed mb-8 max-w-3xl">
+                                <p>
+                                    Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.
+                                </p>
+                                <p>
+                                    He became the first karate coach in the world to receive an Olympic Solidarity Scholarship for Coaches after karate was included in the Olympic Games programme. This prestigious scholarship enabled him to attend the CYSél – Cycle International du Sport d’Elite programme in Lausanne, Switzerland, an advanced international coaching programme for elite sport coaches.
+                                </p>
+                                <p>
+                                    His coaching expertise focuses particularly on Karate and Gymnastics, where he works across children’s sport development, high-performance athlete preparation, and coach education, contributing to the development of athletes and coaches at both national and international levels.
+                                </p>
+                                <p>
+                                    His professional engagement extends internationally in coach education, Olympic education, sport event management, and sport for youth development.
+                                </p>
+                                <p>
+                                    Noël is also a Professional Social Worker in Sport and an active member of the Alliance of Social Workers in Sport. He has participated and presented at international symposiums in the United States, including events held in Denver (2019) and New Orleans (2023), where he contributed to discussions by sharing African perspectives and experiences in the field of sport, social work.
+                                </p>
+                                <p>
+                                    He is currently pursuing a Master’s Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese.
+                                </p>
+                            </div>
                             <div className="flex flex-wrap justify-center md:justify-start gap-6">
                                 <a href="mailto:noel@thechampions.rw" className="flex items-center space-x-2 text-gray-400 hover:text-bright-sun-300 transition-colors group">
                                     <div className="p-2 bg-gray-800/50 rounded-lg group-hover:bg-bright-sun-300/10 transition-colors">

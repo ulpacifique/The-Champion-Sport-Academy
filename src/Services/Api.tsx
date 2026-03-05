@@ -13,13 +13,27 @@ console.log('🚀 API URL initialization:', {
   api_base: API_BASE_URL
 });
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// Add a request interceptor to attach authentication token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // ... rest of your code stays exactly the same
 // Video API calls with file upload

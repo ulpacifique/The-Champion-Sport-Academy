@@ -16,8 +16,8 @@ export interface AttendanceDTO {
 }
 
 const getAuthHeader = () => {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return { headers: { Authorization: `Bearer ${user.token}` } };
+    const token = localStorage.getItem('token');
+    return { headers: { Authorization: `Bearer ${token}` } };
 };
 
 export const markAttendance = async (attendance: AttendanceDTO) => {
