@@ -60,19 +60,31 @@ const NavLinks = () => {
     return (
         <>
             {/* Desktop Navigation */}
-            <div className="hidden md:flex gap-6 text-cerulean-blue-300 h-full items-center">
+            <div className="hidden md:flex items-center justify-center gap-1 lg:gap-2 h-full">
                 {links.map((link, index) => {
+                    const isActive = link.type === "hash" ? isHashActive(link.url) : isRouteActive(link.url);
+
+                    const LinkContent = (
+                        <div className="relative flex flex-col items-center justify-center h-full px-3 lg:px-4 group cursor-pointer">
+                            <span className={`text-sm lg:text-base font-bold tracking-tight transition-all duration-300 whitespace-nowrap ${isActive ? "text-bright-sun-300" : "text-gray-300 group-hover:text-white"
+                                }`}>
+                                {link.name}
+                            </span>
+
+                            {/* Modern Bottom Indicator */}
+                            <div className={`absolute bottom-0 h-1 bg-gradient-to-r from-bright-sun-200 to-bright-sun-400 rounded-t-full transition-all duration-500 ${isActive ? "w-2/3 opacity-100" : "w-0 opacity-0 group-hover:w-1/3 group-hover:opacity-50"
+                                }`} />
+                        </div>
+                    );
+
                     if (link.type === "hash") {
                         return (
                             <button
                                 key={index}
                                 onClick={() => handleHashLinkClick(link.url)}
-                                className={`${isHashActive(link.url)
-                                    ? "border-bright-sun-300 text-bright-sun-300"
-                                    : "border-transparent hover:text-bright-sun-300"
-                                    } border-t-[3px] h-full flex items-center transition-colors px-3`}
+                                className="h-full focus:outline-none"
                             >
-                                {link.name}
+                                {LinkContent}
                             </button>
                         );
                     } else {
@@ -81,12 +93,9 @@ const NavLinks = () => {
                                 key={index}
                                 to={link.url}
                                 onClick={handleRouteLinkClick}
-                                className={`${isRouteActive(link.url)
-                                    ? "border-bright-sun-300 text-bright-sun-300"
-                                    : "border-transparent hover:text-bright-sun-300"
-                                    } border-t-[3px] h-full flex items-center transition-colors px-3`}
+                                className="h-full"
                             >
-                                {link.name}
+                                {LinkContent}
                             </Link>
                         );
                     }
@@ -96,10 +105,10 @@ const NavLinks = () => {
             {/* Mobile Hamburger Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 text-white hover:bg-cerulean-blue-900 rounded-lg transition-colors"
+                className="md:hidden w-10 h-10 flex items-center justify-center text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5 active:scale-90"
                 aria-label="Toggle menu"
             >
-                {isOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+                {isOpen ? <IconX size={24} className="text-bright-sun-300" /> : <IconMenu2 size={24} />}
             </button>
 
             {/* Mobile Navigation Menu */}
@@ -107,25 +116,37 @@ const NavLinks = () => {
                 <>
                     {/* Backdrop */}
                     <div
-                        className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                        className="fixed inset-0 bg-cerulean-blue-950/80 backdrop-blur-sm z-[90] md:hidden transition-opacity duration-300"
                         onClick={() => setIsOpen(false)}
                     />
 
                     {/* Mobile Menu */}
-                    <div className="fixed top-24 left-0 right-0 bg-cerulean-blue-950 border-t border-cerulean-blue-800 shadow-xl z-50 md:hidden animate-slideDown">
-                        <div className="flex flex-col">
+                    <div className="fixed top-24 left-4 right-4 bg-cerulean-blue-900 border border-white/10 shadow-2xl z-[100] md:hidden rounded-3xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-300">
+                        <div className="flex flex-col p-2">
+                            <div className="px-4 py-3 mb-2 border-b border-white/5">
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-bright-sun-300/60">Navigation Menu</span>
+                            </div>
                             {links.map((link, index) => {
+                                const isActive = link.type === "hash" ? isHashActive(link.url) : isRouteActive(link.url);
+
+                                const MobileLinkContent = (
+                                    <div className={`flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all duration-300 ${isActive
+                                            ? "bg-bright-sun-300/10 text-bright-sun-300 border border-bright-sun-300/20"
+                                            : "text-gray-300 hover:bg-white/5 hover:text-white border border-transparent"
+                                        }`}>
+                                        <span className="font-bold tracking-tight">{link.name}</span>
+                                        {isActive && <div className="w-1.5 h-1.5 rounded-full bg-bright-sun-300 shadow-[0_0_8px_rgba(255,191,0,0.6)]" />}
+                                    </div>
+                                );
+
                                 if (link.type === "hash") {
                                     return (
                                         <button
                                             key={index}
                                             onClick={() => handleHashLinkClick(link.url)}
-                                            className={`px-6 py-4 border-l-4 transition-colors text-left ${isHashActive(link.url)
-                                                ? "border-bright-sun-300 text-bright-sun-300 bg-cerulean-blue-900/50"
-                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-300"
-                                                }`}
+                                            className="w-full text-left"
                                         >
-                                            {link.name}
+                                            {MobileLinkContent}
                                         </button>
                                     );
                                 } else {
@@ -134,16 +155,18 @@ const NavLinks = () => {
                                             key={index}
                                             to={link.url}
                                             onClick={handleRouteLinkClick}
-                                            className={`px-6 py-4 border-l-4 transition-colors text-left ${isRouteActive(link.url)
-                                                ? "border-bright-sun-300 text-bright-sun-300 bg-cerulean-blue-900/50"
-                                                : "border-transparent text-cerulean-blue-300 hover:bg-cerulean-blue-900/30 hover:text-bright-sun-300"
-                                                }`}
                                         >
-                                            {link.name}
+                                            {MobileLinkContent}
                                         </Link>
                                     );
                                 }
                             })}
+
+                            <div className="mt-2 p-4 bg-white/5 rounded-2xl">
+                                <p className="text-[10px] text-gray-400 font-medium text-center">
+                                    © 2026 THE CHAMPIONS SPORTS ACADEMY
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </>

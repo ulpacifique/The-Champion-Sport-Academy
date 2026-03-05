@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
     IconCalendar,
@@ -10,9 +10,12 @@ import {
     IconHeartHandshake,
     IconTrophy,
     IconAward,
-    IconChevronRight
+    IconChevronRight,
+    IconPhoto,
+    IconX,
+    IconChevronLeft
 } from '@tabler/icons-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../Header/Header';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
@@ -83,12 +86,48 @@ const Gymnastics = () => {
             experience: "12+ Years",
             specialty: "Artistic & Rhythmic",
             image: `${process.env.PUBLIC_URL}/athletes/palmonique.jpg`
+        },
+        {
+            name: "Coach Pacifique",
+            certification: "Multi-Medal Athlete & Instructor",
+            experience: "3 Years Teaching",
+            specialty: "Taekwondo (2 Medals, Korea Ambassadors Cup 2018) & Gymnastics (3rd Medal, 2024)",
+            image: `${process.env.PUBLIC_URL}/athletes/Coach Pacifique.jpg`
+        },
+        {
+            name: "Coach Sylvan",
+            certification: "Gymnastics Coach",
+            experience: "1 Year",
+            specialty: "Floor & Vault Training",
+            image: `${process.env.PUBLIC_URL}/athletes/Coach Sylvan.jpg`
+        },
+        {
+            name: "Coach Tracy",
+            certification: "Assistant Coach",
+            experience: "3 Years Training",
+            specialty: "Core Technique & Flexibility",
+            image: `${process.env.PUBLIC_URL}/athletes/Coach Tracy.jpg`
+        },
+        {
+            name: "Fille",
+            certification: "Academy Receptionist",
+            experience: "Administrative Excellence",
+            specialty: "Student Relations & Coordination",
+            image: `${process.env.PUBLIC_URL}/athletes/Receptionist Fille.jpg`
+        },
+        {
+            name: "Mama boy",
+            certification: "Safeguarding Officer",
+            experience: "Child Welfare",
+            specialty: "Looking after kids & Safety Oversight",
+            image: `${process.env.PUBLIC_URL}/athletes/Safeguarding Officer.jpg`
         }
     ];
 
     // Gallery State
     const [galleryImages, setGalleryImages] = useState<any[]>([]);
     const [loadingGallery, setLoadingGallery] = useState(true);
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchGallery = async () => {
@@ -113,6 +152,29 @@ const Gymnastics = () => {
 
         fetchGallery();
     }, []);
+
+    const handlePrevious = useCallback((e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        if (selectedImageIndex === null) return;
+        setSelectedImageIndex(prev => (prev !== null ? (prev === 0 ? galleryImages.length - 1 : prev - 1) : null));
+    }, [galleryImages.length, selectedImageIndex]);
+
+    const handleNext = useCallback((e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        if (selectedImageIndex === null) return;
+        setSelectedImageIndex(prev => (prev !== null ? (prev === galleryImages.length - 1 ? 0 : prev + 1) : null));
+    }, [galleryImages.length, selectedImageIndex]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (selectedImageIndex === null) return;
+            if (e.key === "Escape") setSelectedImageIndex(null);
+            if (e.key === "ArrowLeft") handlePrevious();
+            if (e.key === "ArrowRight") handleNext();
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedImageIndex, handlePrevious, handleNext]);
 
     // Core Values
     const coreValues = [
@@ -403,7 +465,7 @@ const Gymnastics = () => {
                             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 italic">
                                 Action <span className="text-bright-sun-300">Gallery</span>
                             </h2>
-                            <p className="text-gray-400 font-medium uppercase tracking-widest">Witness the Excellence</p>
+                            <p className="text-gray-400 font-medium uppercase tracking-widest">Witness the Excellence. Click to view full screen.</p>
                         </motion.div>
                     </div>
 
@@ -421,7 +483,8 @@ const Gymnastics = () => {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: i * 0.05 }}
                                         viewport={{ once: true }}
-                                        className="relative group rounded-3xl overflow-hidden cursor-pointer"
+                                        className="relative group rounded-3xl overflow-hidden cursor-pointer bg-gray-900/50"
+                                        onClick={() => setSelectedImageIndex(i)}
                                     >
                                         <img
                                             src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
@@ -434,6 +497,13 @@ const Gymnastics = () => {
                                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 text-left">
                                             <h4 className="text-white font-black text-xl mb-1">{image.title}</h4>
                                             <p className="text-bright-sun-300 text-sm font-bold uppercase">{image.category || 'Gymnastics'}</p>
+                                        </div>
+
+                                        {/* View Overlay Icon */}
+                                        <div className="absolute inset-x-0 top-0 bottom-16 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="p-3 bg-bright-sun-300 rounded-full text-cerulean-blue-950 scale-50 group-hover:scale-100 transition-transform duration-300">
+                                                <IconPhoto size={24} />
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -475,6 +545,78 @@ const Gymnastics = () => {
                     </motion.div>
                 </section>
             </main>
+
+            {/* Lightbox / Full Screen Preview */}
+            <AnimatePresence>
+                {selectedImageIndex !== null && galleryImages[selectedImageIndex] && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[200] flex items-center justify-center bg-cerulean-blue-950/95 backdrop-blur-xl p-4 md:p-10"
+                        onClick={() => setSelectedImageIndex(null)}
+                    >
+                        {/* Close Button */}
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[210] border border-white/5"
+                            onClick={() => setSelectedImageIndex(null)}
+                        >
+                            <IconX size={24} />
+                        </motion.button>
+
+                        {/* Navigation Controls */}
+                        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-10 z-[210] pointer-events-none">
+                            <motion.button
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                className="p-4 bg-white/5 hover:bg-white/10 rounded-2xl text-white transition-all pointer-events-auto border border-white/5 backdrop-blur-md group"
+                                onClick={handlePrevious}
+                            >
+                                <IconChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" />
+                            </motion.button>
+                            <motion.button
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                className="p-4 bg-white/5 hover:bg-white/10 rounded-2xl text-white transition-all pointer-events-auto border border-white/5 backdrop-blur-md group"
+                                onClick={handleNext}
+                            >
+                                <IconChevronRight size={32} className="group-hover:translate-x-1 transition-transform" />
+                            </motion.button>
+                        </div>
+
+                        {/* Image Display */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center gap-6"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="relative w-full h-[70vh] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+                                <img
+                                    src={galleryImages[selectedImageIndex].imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${galleryImages[selectedImageIndex].imageUrl}` : galleryImages[selectedImageIndex].imageUrl}
+                                    alt={galleryImages[selectedImageIndex].title}
+                                    className="w-full h-full object-contain"
+                                    onError={(e) => {
+                                        e.currentTarget.src = "https://images.unsplash.com/photo-1517836357463-d25dfeac0348?w=800&q=80";
+                                    }}
+                                />
+                            </div>
+                            <div className="text-center space-y-2 max-w-2xl px-4">
+                                <h3 className="text-2xl font-black text-white italic tracking-tighter uppercase">
+                                    {galleryImages[selectedImageIndex].title}
+                                </h3>
+                                <div className="h-0.5 w-12 bg-bright-sun-300 mx-auto" />
+                                <p className="text-gray-400 font-medium uppercase tracking-widest text-sm">
+                                    {galleryImages[selectedImageIndex].category || 'Gymnastics'}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
