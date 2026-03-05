@@ -352,16 +352,16 @@ const Gymnastics = () => {
                                     viewport={{ once: true }}
                                     className="group relative"
                                 >
-                                    <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 mb-6 shadow-2xl">
+                                    <div className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 mb-6 shadow-2xl bg-gray-900">
                                         <img
                                             src={coach.image}
                                             alt={coach.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 contrast-[1.05] brightness-[1.05]"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                                        <div className="absolute bottom-6 left-6 right-6">
-                                            <div className="text-xs font-bold text-bright-sun-300 uppercase tracking-widest mb-1">{coach.certification}</div>
-                                            <div className="text-xl font-black text-white">{coach.name}</div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-cerulean-blue-950/20 to-transparent opacity-40 group-hover:opacity-20 transition-opacity"></div>
+                                        <div className="absolute bottom-6 left-6 right-6 z-10">
+                                            <div className="text-xs font-bold text-bright-sun-300 uppercase tracking-widest mb-1 drop-shadow-md">{coach.certification}</div>
+                                            <div className="text-xl font-black text-white drop-shadow-lg">{coach.name}</div>
                                         </div>
                                     </div>
                                     <div className="px-2">

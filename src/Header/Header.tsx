@@ -1,5 +1,5 @@
 import { Avatar, Button, Indicator, Menu } from '@mantine/core';
-import { IconBell, IconSettings, IconUser, IconUserEdit, IconUsersPlus, IconLogout, IconChevronDown } from '@tabler/icons-react';
+import { IconBell, IconSettings, IconUser, IconUsersPlus, IconLogout, IconChevronDown } from '@tabler/icons-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavLinks from './NavLinks';
