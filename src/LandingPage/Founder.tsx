@@ -50,8 +50,12 @@ const Founder = () => {
                     <div className="flex flex-col md:flex-row items-center gap-12">
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-gradient-to-br from-bright-sun-200 to-bright-sun-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                            <div className="relative w-48 h-48 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-full flex items-center justify-center border-4 border-gray-800 shadow-2xl overflow-hidden">
-                                <IconUserCheck size={80} className="text-gray-900" />
+                            <div className="relative w-72 aspect-[2/3] bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-3xl flex items-center justify-center border-4 border-gray-800 shadow-2xl overflow-hidden">
+                                <img 
+                                    src={`${process.env.PUBLIC_URL}/athletes/Noel.jpg`} 
+                                    alt="Noël Nkuranyabahizi" 
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                         </div>
                         <div className="flex-1 text-center md:text-left">
