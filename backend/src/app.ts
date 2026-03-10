@@ -15,13 +15,14 @@ const PostgresStore = pgSession(session);
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:3000',
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'], // explicitly allow Authorization
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Debug logging middleware
 app.use((req, res, next) => {
-    console.log(`[Request] ${req.method} ${req.url}`);
+    console.log(`[Request] ${req.method} ${req.originalUrl}`);
     next();
 });
 
@@ -42,7 +43,7 @@ app.use(session({
     saveUninitialized: false,
     rolling: true, // Refresh session on every request
     cookie: {
-        maxAge: 5 * 60 * 1000, // 5 minutes
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',

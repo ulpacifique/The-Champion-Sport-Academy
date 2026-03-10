@@ -137,6 +137,10 @@ export const register = async (req: Request, res: Response) => {
     }
 };
 
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'champion-academy-jwt-secret';
+
 export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
@@ -147,19 +151,36 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Set user info in session
-        (req.session as any).userId = user.id;
+        // Set user info in session - Convert BigInt to Number for safe serialization
+        const userIdNum = Number(user.id);
+        (req.session as any).userId = userIdNum;
         (req.session as any).role = user.role;
 
+        // Force session save to ensure cookie is set BEFORE response for some environments
+        req.session.save((err) => {
+            if (err) {
+                console.error('Session save error:', err);
+            }
+        });
+
+        // Generate JWT token as a fallback for cases where sessions/cookies are blocked
+        const token = jwt.sign(
+            { userId: userIdNum, role: user.role, email: user.email },
+            JWT_SECRET,
+            { expiresIn: '24h' }
+        );
+
         res.json({
-            id: Number(user.id),
+            id: userIdNum,
             email: user.email,
             role: user.role,
             firstName: user.firstName,
             lastName: user.lastName,
             phoneNumber: user.phoneNumber,
+            token: token // Return token to the frontend
         });
     } catch (error: any) {
+        console.error('Login error:', error);
         res.status(500).json({ message: 'Login error', error: error.message });
     }
 };
