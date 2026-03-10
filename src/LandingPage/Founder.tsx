@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { IconMail, IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconMapPin, IconChevronDown, IconChevronUp, IconArrowRight } from "@tabler/icons-react";
+import { IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { motion, AnimatePresence } from "framer-motion";
 
