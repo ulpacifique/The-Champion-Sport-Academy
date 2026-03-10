@@ -1,4 +1,3 @@
-// AppRoutes.tsx
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './HomePage';
 import AdminRouter from '../Admin/AdminRouter';
@@ -15,6 +14,7 @@ import ManagerRouter from '../Manager/ManagerRouter';
 import Karate from '../Program/Karate';
 import Gymnastics from '../Program/Gymnastics';
 import Founder from '../LandingPage/Founder';
+import Header from '../Header/Header';
 function AppRoutes() {
   return (
     <Routes>
@@ -31,7 +31,7 @@ function AppRoutes() {
 
       <Route path="/SportDiscipline" element={<SportsDisciplines />} />
       <Route path="/Contact" element={<Contact />} />
-      <Route path="/AboutUs" element={<AboutUs />} />
+      <Route path="/AboutUs" element={<><Header /><AboutUs /></>} />
       <Route path="/Footer" element={<Footer />} />
       <Route
         path="/admin/*"

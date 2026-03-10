@@ -2,10 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { IconSparkles } from "@tabler/icons-react";
 import AuthPages from "../Page/AuthPages";
 
+const HERO_VIDEO_SRC = `${process.env.PUBLIC_URL || ""}/athletes/champVideo.3GP`;
+
 const HeroSection = () => {
     const [animate, setAnimate] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
     const heroRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     // Trigger animation when component mounts
     useEffect(() => {
@@ -13,22 +16,65 @@ const HeroSection = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    // Force video to play: direct ref, no async URL. Run on mount and on every event that signals readiness.
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+
+        const attemptPlay = () => {
+            const p = video.play();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+        };
+
+        video.addEventListener("loadstart", attemptPlay);
+        video.addEventListener("loadedmetadata", attemptPlay);
+        video.addEventListener("loadeddata", attemptPlay);
+        video.addEventListener("canplay", attemptPlay);
+        video.addEventListener("canplaythrough", attemptPlay);
+        video.addEventListener("playing", attemptPlay);
+
+        attemptPlay();
+        const t = setTimeout(attemptPlay, 100);
+        const t2 = setTimeout(attemptPlay, 500);
+
+        return () => {
+            clearTimeout(t);
+            clearTimeout(t2);
+            video.removeEventListener("loadstart", attemptPlay);
+            video.removeEventListener("loadedmetadata", attemptPlay);
+            video.removeEventListener("loadeddata", attemptPlay);
+            video.removeEventListener("canplay", attemptPlay);
+            video.removeEventListener("canplaythrough", attemptPlay);
+            video.removeEventListener("playing", attemptPlay);
+        };
+    }, []);
+
     return (
         <>
             <div ref={heroRef} className="relative flex items-center px-4 sm:px-6 md:px-10 py-16 sm:py-24 md:py-32 min-h-[90vh] md:min-h-[85vh] overflow-hidden">
-                {/* Mobile-Optimized Background Image with Enhanced Gradient Overlay */}
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center center',
-                        backgroundAttachment: 'fixed', // Creates parallax effect on mobile
-                    }}
-                >
-                    {/* Darker gradient for better text readability on mobile */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-blue-950 via-cerulean-blue-950/95 to-cerulean-blue-950/70 md:to-cerulean-blue-950/30"></div>
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cerulean-blue-950/40 to-cerulean-blue-950/80"></div>
+                {/* Background Video - loop, visible with light overlay */}
+                <div className="absolute inset-0 z-0">
+                    <video
+                        ref={videoRef}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+                        src={HERO_VIDEO_SRC}
+                        onContextMenu={(e) => e.preventDefault()}
+                        aria-hidden
+                    />
+                    {/* Light overlay so video stays visible; subtle tint for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent dark:from-cerulean-blue-950/75 dark:via-cerulean-blue-950/40 dark:to-cerulean-blue-950/15" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50 dark:to-cerulean-blue-950/60" />
                 </div>
 
                 {/* Animated decorative elements - hidden on mobile for performance */}
@@ -38,7 +84,7 @@ const HeroSection = () => {
                 {/* Content Section - Full width on mobile */}
                 <div className="relative z-10 flex flex-col w-full md:w-[65%] gap-6 md:gap-8">
                     {/* Welcome Badge with Icon */}
-                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/10 w-fit rounded-full border border-bright-sun-200/40 text-bright-sun-300 font-semibold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
+                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-500/10 to-bright-sun-600/5 dark:from-bright-sun-200/20 dark:to-bright-sun-300/10 w-fit rounded-full border border-bright-sun-500/20 dark:border-bright-sun-200/40 text-bright-sun-600 dark:text-bright-sun-300 font-bold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
                         <div className="flex items-center gap-1.5 md:gap-2">
                             <IconSparkles size={14} className="animate-pulse" />
                             <span className="whitespace-nowrap">Welcome to The Champion Sport Academy</span>
@@ -57,11 +103,11 @@ const HeroSection = () => {
                                     }}
                                 >
                                     {word.toLowerCase() === 'champions' ? (
-                                        <span className="bg-gradient-to-r from-bright-sun-200 via-bright-sun-300 to-bright-sun-200 bg-clip-text text-transparent animate-gradient">
+                                        <span className="bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 dark:from-bright-sun-200 dark:via-bright-sun-300 dark:to-bright-sun-200 bg-clip-text text-transparent animate-gradient">
                                             {word}
                                         </span>
                                     ) : (
-                                        <span className="text-white">{word}</span>
+                                        <span className="text-cerulean-blue-900 dark:text-white uppercase">{word}</span>
                                     )}
                                 </span>
                             ))}
@@ -69,7 +115,7 @@ const HeroSection = () => {
                     </div>
 
                     {/* Enhanced Subtitle */}
-                    <div className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
+                    <div className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 max-w-2xl leading-relaxed font-medium">
                         <p className={`fade-in-text ${animate ? 'active' : ''}`}
                             style={{ animationDelay: '1200ms' }}>
                             The Champions Sports Academy Ltd (CSA) is a professional, values-driven sport and physical literacy organization founded in 2017 in Kigali, Rwanda.

@@ -56,10 +56,10 @@ const Events = () => {
 
   if (loading) {
     return (
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900">
+      <section className="py-16 px-4 md:px-8 lg:px-16 bg-white dark:bg-gradient-to-b dark:from-cerulean-blue-950 dark:to-cerulean-blue-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
-          <p className="text-white mt-4">Loading videos...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cerulean-blue-600 dark:border-white mx-auto"></div>
+          <p className="text-cerulean-blue-900 dark:text-white mt-4 font-medium">Loading videos...</p>
         </div>
       </section>
     );
@@ -67,14 +67,14 @@ const Events = () => {
 
   if (error) {
     return (
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900">
+      <section className="py-16 px-4 md:px-8 lg:px-16 bg-white dark:bg-gradient-to-b dark:from-cerulean-blue-950 dark:to-cerulean-blue-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-red-400 text-xl mb-4">{error}</p>
+          <p className="text-red-600 dark:text-red-400 text-xl mb-4 font-bold">{error}</p>
           <button
             onClick={fetchVideos}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-8 py-3 bg-cerulean-blue-600 dark:bg-blue-600 text-white rounded-xl hover:bg-cerulean-blue-700 dark:hover:bg-blue-700 font-bold uppercase tracking-wider transition-all shadow-lg"
           >
-            Retry
+            Retry Connection
           </button>
         </div>
       </section>
@@ -83,26 +83,24 @@ const Events = () => {
 
   if (videos.length === 0) {
     return (
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900">
+      <section className="py-16 px-4 md:px-8 lg:px-16 bg-white dark:bg-gradient-to-b dark:from-cerulean-blue-950 dark:to-cerulean-blue-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-300 text-xl">No videos available</p>
+          <p className="text-gray-500 dark:text-gray-300 text-xl font-medium italic">No videos available at the moment.</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-cerulean-blue-950 to-cerulean-blue-900">
+    <section className="py-16 px-4 md:px-8 lg:px-16 bg-white dark:bg-gradient-to-b dark:from-cerulean-blue-950 dark:to-cerulean-blue-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        {/* ... rest of your JSX ... */}
-
         {/* Videos Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {videos.map((video) => {
             const thumbnailUrl = getThumbnailUrl(video);
 
             return (
-              <div key={video.id} className="bg-cerulean-blue-800 rounded-xl overflow-hidden shadow-lg">
+              <div key={video.id} className="bg-gray-50 dark:bg-cerulean-blue-800 rounded-2xl overflow-hidden shadow-xl dark:shadow-none border border-gray-100 dark:border-white/5 group hover:scale-[1.02] transition-all duration-500">
                 {/* Video Thumbnail */}
                 <div className="relative pt-[56.25%] bg-cerulean-blue-900">
                   {thumbnailUrl ? (
@@ -122,9 +120,11 @@ const Events = () => {
                       </svg>
                     </div>
                   )}
-                  {/* ... rest of thumbnail code ... */}
                 </div>
-                {/* ... rest of video card ... */}
+                {/* Video Info */}
+                <div className="p-6">
+                   <h3 className="text-cerulean-blue-900 dark:text-white font-black mb-2 text-xl italic tracking-tighter uppercase line-clamp-2">{video.title}</h3>
+                </div>
               </div>
             );
           })}

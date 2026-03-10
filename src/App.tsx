@@ -10,6 +10,7 @@ import AppRoutes from './Page/AppRoutes';
 import { BrowserRouter } from 'react-router-dom';
 import store from './Slices//Store'; // This should work even for .tsx files
 import IdleTimeout from './Utils/IdleTimeout';
+import { ThemeProvider } from './Context/ThemeContext';
 
 function App() {
   const theme = createTheme({
@@ -31,19 +32,21 @@ function App() {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <MantineProvider theme={theme}>
-          <Notifications
-            position="top-right"
-            zIndex={1000}
-            limit={5}
-            autoClose={5000}
-          />
-          <IdleTimeout>
-            <AppRoutes />
-          </IdleTimeout>
-        </MantineProvider>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <MantineProvider theme={theme}>
+            <Notifications
+              position="top-right"
+              zIndex={1000}
+              limit={5}
+              autoClose={5000}
+            />
+            <IdleTimeout>
+              <AppRoutes />
+            </IdleTimeout>
+          </MantineProvider>
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 }

@@ -1,6 +1,6 @@
 import { Carousel } from "@mantine/carousel";
 import { useState, useEffect } from "react";
-import { IconActivity, IconArrowLeft, IconArrowRight, IconMail, IconPhone, IconShield, IconUserCheck } from "@tabler/icons-react";
+import { IconActivity, IconArrowLeft, IconArrowRight, IconMail, IconPhone, IconShield, IconUserCheck, IconSparkles } from "@tabler/icons-react";
 import {
     IconCertificate,
     IconCalendarEvent,
@@ -39,7 +39,7 @@ const SportsDisciplines = () => {
             bgColor: "bg-blue-500/5",
             borderColor: "border-blue-500/20",
             glowColor: "shadow-blue-500/10",
-            iconColor: "text-blue-400"
+            iconColor: "text-blue-600 dark:text-blue-400"
         },
         {
             title: "School-Based Sport & Education",
@@ -54,7 +54,7 @@ const SportsDisciplines = () => {
             bgColor: "bg-purple-500/5",
             borderColor: "border-purple-500/20",
             glowColor: "shadow-purple-500/10",
-            iconColor: "text-purple-400"
+            iconColor: "text-purple-600 dark:text-purple-400"
         },
         {
             title: "Coach Education & Mentoring",
@@ -70,7 +70,7 @@ const SportsDisciplines = () => {
             bgColor: "bg-bright-sun-300/5",
             borderColor: "border-bright-sun-300/20",
             glowColor: "shadow-bright-sun-300/10",
-            iconColor: "text-bright-sun-300"
+            iconColor: "text-bright-sun-600 dark:text-bright-sun-300"
         },
         {
             title: "Sport Events & Workshops",
@@ -85,7 +85,7 @@ const SportsDisciplines = () => {
             bgColor: "bg-green-500/5",
             borderColor: "border-green-500/20",
             glowColor: "shadow-green-500/10",
-            iconColor: "text-green-400"
+            iconColor: "text-green-600 dark:text-green-400"
         },
         {
             title: "Sports Equipment Shop",
@@ -100,7 +100,7 @@ const SportsDisciplines = () => {
             bgColor: "bg-orange-500/5",
             borderColor: "border-orange-500/20",
             glowColor: "shadow-orange-500/10",
-            iconColor: "text-orange-400"
+            iconColor: "text-orange-600 dark:text-orange-400"
         }
     ];
 
@@ -112,106 +112,121 @@ const SportsDisciplines = () => {
     ];
 
     return (
-        <div className="mt-20 pb-5">
-            <div className="text-4xl text-center mb-3 font-semibold text-white">
-                Our <span className="text-bright-sun-300">Core</span> Services
+        <div className="min-h-screen bg-white dark:bg-cerulean-blue-950 pt-32 pb-20 transition-colors duration-300">
+            {/* Hero Section of Disciplines */}
+            <div className="container mx-auto px-4 mb-20 text-center">
+                <div className={`inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs transition-all duration-700 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <IconActivity size={16} />
+                    <span>Our Ecosystem</span>
+                </div>
+                <h1 className={`text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    Our <span className="text-bright-sun-600 dark:text-bright-sun-300">Core</span> Services
+                </h1>
+                <p className={`text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    Comprehensive sports development ecosystem from training to competition, professionally designed to shape champions.
+                </p>
             </div>
-            <div className="text-lg mb-10 mx-auto text-gray-400 text-center w-1/2">
-                Comprehensive sports development ecosystem from training to competition
+
+            <div className="container mx-auto px-4">
+                <Carousel
+                    slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }}
+                    slideGap="xl"
+                    loop
+                    align="start"
+                    className="focus-visible:[&_button]:!outline-none [&_button]:!bg-bright-sun-600 dark:[&_button]:!bg-bright-sun-300 [&_button]:!border-none [&_button]:hover:!opacity-75 [&_button]:opacity-0 hover:[&_button]:opacity-100 [&_button]:!w-12 [&_button]:!h-12 [&_button]:!text-white dark:[&_button]:!text-gray-900 [&_button]:shadow-xl"
+                    nextControlIcon={<IconArrowRight size={24} />}
+                    previousControlIcon={<IconArrowLeft size={24} />}
+                >
+                    {coreServices.map((service, index) => (
+                        <Carousel.Slide key={service.title}>
+                            <div className={`group relative bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 p-8 rounded-3xl h-full backdrop-blur-md transition-all duration-500 hover:shadow-2xl hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 hover:-translate-y-2 cursor-pointer shadow-sm dark:shadow-none`}>
+                                {/* Floating Icon Container */}
+                                <div className="relative mb-8">
+                                    <div className={`w-16 h-16 bg-white dark:bg-cerulean-blue-800/60 rounded-2xl flex items-center justify-center border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform duration-500 shadow-sm`}>
+                                        <service.icon size={32} className={`${service.iconColor} group-hover:scale-110 transition-transform`} />
+                                    </div>
+                                    <div className={`absolute -inset-2 ${service.iconColor} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 blur-xl transition-opacity duration-700`}>
+                                        <service.icon size={32} />
+                                    </div>
+                                </div>
+
+                                <div className="mb-6">
+                                    <h3 className="text-xl font-black text-cerulean-blue-900 dark:text-white mb-3 group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors uppercase italic tracking-tight leading-tight">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-medium">
+                                        {service.description}
+                                    </p>
+                                </div>
+
+                                <div className="space-y-4 mb-8">
+                                    {service.features.map((feature, idx) => (
+                                        <div key={idx} className="flex items-start space-x-3">
+                                            <div className={`mt-1.5 w-1.5 h-1.5 rounded-full bg-bright-sun-600 dark:bg-bright-sun-300 group-hover:animate-pulse`} />
+                                            <span className="text-gray-600 dark:text-gray-300 text-sm font-medium leading-relaxed">{feature}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Decorative Corner Accent */}
+                                <div className={`absolute bottom-4 right-4 w-8 h-8 rounded-br-2xl border-b-2 border-r-2 border-gray-200 dark:border-white/10 opacity-30 group-hover:opacity-100 group-hover:border-bright-sun-600 dark:group-hover:border-bright-sun-300 transition-all duration-500`} />
+                            </div>
+                        </Carousel.Slide>
+                    ))}
+                </Carousel>
             </div>
-
-            <Carousel
-                slideSize="22%"
-                slideGap="md"
-                loop
-                align="start"
-                className="focus-visible:[&_button]:!outline-none [&_button]:!bg-bright-sun-300 [&_button]:!border-none [&_button]:hover:!opacity-75 [&_button]:opacity-0 hover:[&_button]:opacity-100"
-                nextControlIcon={<IconArrowRight className="h-8 w-8" />}
-                previousControlIcon={<IconArrowLeft className="h-8 w-8" />}
-            >
-                {coreServices.map((service, index) => (
-                    <Carousel.Slide key={service.title}>
-                        <div className={`group relative ${service.bgColor} border ${service.borderColor} p-8 rounded-3xl h-[280px] my-5 backdrop-blur-md transition-all duration-500 hover:shadow-2xl ${service.glowColor} hover:-translate-y-2 hover:bg-gray-800/20 cursor-pointer`}>
-                            {/* Floating Icon Container */}
-                            <div className="relative mb-6">
-                                <div className={`w-14 h-14 bg-gray-900/60 rounded-2xl flex items-center justify-center border ${service.borderColor} group-hover:scale-110 transition-transform duration-500 shadow-inner`}>
-                                    <service.icon size={26} className={`${service.iconColor} group-hover:scale-110 transition-transform`} />
-                                </div>
-                                <div className={`absolute -inset-2 ${service.iconColor} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-700`}>
-                                    <service.icon size={26} />
-                                </div>
-                            </div>
-
-                            <div className="mb-4">
-                                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-bright-sun-300 transition-colors line-clamp-2">
-                                    {service.title}
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
-                                    {service.description}
-                                </p>
-                            </div>
-
-                            {/* Decorative Corner Accent */}
-                            <div className={`absolute bottom-4 right-4 w-8 h-8 rounded-br-2xl border-b-2 border-r-2 ${service.borderColor} opacity-30 group-hover:opacity-100 transition-opacity duration-500`} />
-                        </div>
-                    </Carousel.Slide>
-                ))}
-            </Carousel>
 
             {/* Partners Section */}
-            <div className="mt-16 relative overflow-hidden">
+            <div className="mt-32 relative overflow-hidden bg-gray-50/50 dark:bg-transparent py-20 transition-colors duration-300">
                 {/* Background gradient effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-300/5 via-transparent to-bright-sun-300/5 blur-3xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-600/5 dark:from-bright-sun-300/5 via-transparent to-bright-sun-600/5 dark:to-bright-sun-300/5 blur-3xl pointer-events-none" />
 
-                <div className="relative z-10">
-                    <div className="text-4xl md:text-5xl text-center mb-4 font-bold">
-                        <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="text-4xl md:text-6xl text-center mb-6 font-black uppercase italic tracking-tighter">
+                        <span className="text-cerulean-blue-900 dark:text-white">
                             Our
                         </span>{" "}
-                        <span className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 bg-clip-text text-transparent">
+                        <span className="text-bright-sun-600 dark:text-bright-sun-300">
                             Partners
-                        </span>{" "}
-                        <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                            & Ecosystem
                         </span>
                     </div>
 
-                    <div className="text-lg mb-12 mx-auto text-gray-400 text-center max-w-2xl px-4">
-                        Collaborating with leading organizations to deliver world-class sports programs
+                    <div className="text-lg md:text-xl mb-16 mx-auto text-gray-600 dark:text-gray-400 text-center max-w-2xl px-4 font-medium uppercase tracking-[3px]">
+                        The Ecosystem <span className="text-bright-sun-600 dark:text-bright-sun-300">of Excellence</span>
                     </div>
 
                     <Carousel
-                        slideSize="25%"
+                        slideSize={{ base: '100%', sm: '50%', lg: '25%' }}
                         slideGap="xl"
                         loop
                         align="start"
-                        className="focus-visible:[&_button]:!outline-none [&_button]:!bg-gradient-to-r [&_button]:!from-bright-sun-200 [&_button]:!to-bright-sun-300 [&_button]:!border-none [&_button]:hover:!opacity-90 [&_button]:!opacity-0 hover:[&_button]:!opacity-100 [&_button]:!transition-all [&_button]:!duration-300 [&_button]:!shadow-lg [&_button]:!shadow-bright-sun-200/20"
-                        nextControlIcon={<IconArrowRight className="h-8 w-8" />}
-                        previousControlIcon={<IconArrowLeft className="h-8 w-8" />}
+                        className="focus-visible:[&_button]:!outline-none [&_button]:!bg-bright-sun-600 dark:[&_button]:!bg-bright-sun-300 [&_button]:!border-none [&_button]:hover:!opacity-75 [&_button]:opacity-0 hover:[&_button]:opacity-100 [&_button]:!w-12 [&_button]:!h-12 [&_button]:shadow-xl"
+                        nextControlIcon={<IconArrowRight size={24} className="text-white dark:text-gray-900" />}
+                        previousControlIcon={<IconArrowLeft size={24} className="text-white dark:text-gray-900" />}
                     >
                         {[
-                            { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner", icon: "🥋", gradient: "from-red-500/20 to-red-600/20", border: "border-red-500/30" },
-                            { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner", icon: "🤸", gradient: "from-blue-500/20 to-blue-600/20", border: "border-blue-500/30" },
-                            { name: "RNOSC", type: "National Olympic Committee", icon: "🏅", gradient: "from-bright-sun-200/20 to-bright-sun-300/20", border: "border-bright-sun-300/30" },
-                            { name: "Ministry of Sports", type: "Government Partner", icon: "🏛️", gradient: "from-blue-600/20 to-blue-700/20", border: "border-blue-600/30" },
-                            { name: "National Olympic & Sports Academy", type: "National Partner", icon: "🎓", gradient: "from-green-600/20 to-green-700/20", border: "border-green-600/30" },
-                            { name: "World Karate Federation (WKF)", type: "International Partner", icon: "🌍", gradient: "from-purple-500/20 to-purple-600/20", border: "border-purple-500/30" },
-                            { name: "International Olympic Committee (IOC)", type: "International Partner", icon: "⚡", gradient: "from-green-500/20 to-green-600/20", border: "border-green-500/30" },
-                            { name: "International Olympic Academy (IOA)", type: "International Partner", icon: "🏛️", gradient: "from-blue-400/20 to-blue-500/20", border: "border-blue-400/30" },
-                            { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network", icon: "🤝", gradient: "from-orange-500/20 to-orange-600/20", border: "border-orange-500/30" },
-                            { name: "USA Karate", type: "International Partner", icon: "🇺🇸", gradient: "from-red-600/20 to-red-700/20", border: "border-red-600/30" },
-                            { name: "5280 Gymnastics", type: "International Partner", icon: "🤸‍♀️", gradient: "from-pink-500/20 to-pink-600/20", border: "border-pink-500/30" },
-                            { name: "Gasore Serge Foundation", type: "Foundation", icon: "❤️", gradient: "from-pink-500/20 to-pink-600/20", border: "border-pink-500/30" },
+                            { name: "Rwanda Karate Federation", type: "FERWAKA", icon: "🥋", border: "border-red-500/30" },
+                            { name: "Rwanda Gymnastics Federation", type: "FERWACY", icon: "🤸", border: "border-blue-500/30" },
+                            { name: "RNOSC", type: "Olympic Committee", icon: "🏅", border: "border-bright-sun-300/30" },
+                            { name: "Ministry of Sports", type: "Government Partner", icon: "🏛️", border: "border-blue-600/30" },
+                            { name: "National Olympic Academy", type: "National Partner", icon: "🎓", border: "border-green-600/30" },
+                            { name: "World Karate Federation", type: "WKF", icon: "🌍", border: "border-purple-500/30" },
+                            { name: "International Olympic Committee", type: "IOC", icon: "⚡", border: "border-green-500/30" },
+                            { name: "International Olympic Academy", type: "IOA", icon: "🏛️", border: "border-blue-400/30" },
+                            { name: "ASWIS", type: "Social Workers in Sport", icon: "🤝", border: "border-orange-500/30" },
+                            { name: "USA Karate", type: "International Partner", icon: "🇺🇸", border: "border-red-600/30" },
+                            { name: "5280 Gymnastics", type: "International Partner", icon: "🤸‍♀️", border: "border-pink-500/30" },
+                            { name: "Gasore Serge Foundation", type: "Foundation", icon: "❤️", border: "border-pink-500/30" },
                         ].map((partner, index) => (
                             <Carousel.Slide key={partner.name}>
                                 <div
-                                    className={`group relative flex flex-col items-center w-64 gap-4 border ${partner.border} bg-gradient-to-br ${partner.gradient} backdrop-blur-sm p-6 rounded-2xl hover:cursor-pointer transition-all duration-300 ease-out hover:scale-105 my-5 overflow-hidden animate-breathing`}
+                                    className={`group relative flex flex-col items-center w-full gap-4 border border-gray-100 dark:border-white/10 bg-white dark:bg-cerulean-blue-900/40 backdrop-blur-sm p-8 rounded-3xl hover:cursor-pointer transition-all duration-300 ease-out hover:scale-[1.03] my-5 shadow-sm dark:shadow-none animate-breathing`}
                                     style={{
                                         animationDelay: `${index * 0.5}s`
                                     }}
                                 >
                                     {/* Animated background gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-bright-sun-600/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                     {/* Icon with subtle animation */}
                                     <div className="text-5xl transform group-hover:scale-110 transition-all duration-500 relative z-10">
@@ -220,16 +235,16 @@ const SportsDisciplines = () => {
 
                                     {/* Content */}
                                     <div className="relative z-10 space-y-2">
-                                        <div className="text-white text-lg font-bold text-center group-hover:text-bright-sun-300 transition-colors duration-300">
+                                        <div className="text-cerulean-blue-900 dark:text-white text-lg font-black text-center group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors duration-300 uppercase tracking-tight leading-tight">
                                             {partner.name}
                                         </div>
-                                        <div className="text-sm text-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                                        <div className="text-xs font-bold text-center text-gray-500 dark:text-gray-400 group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors duration-300 uppercase tracking-widest">
                                             {partner.type}
                                         </div>
                                     </div>
 
                                     {/* Bottom accent line */}
-                                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-bright-sun-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-bright-sun-600 dark:via-bright-sun-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
                             </Carousel.Slide>
                         ))}
@@ -237,129 +252,34 @@ const SportsDisciplines = () => {
                 </div>
             </div>
 
-            {/* Ecosystem Highlights */}
-            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
-                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <IconUsers className="text-bright-sun-300" size={24} />
-                    </div>
-                    <div className="text-white text-xl font-semibold mb-2">Athlete Journey</div>
-                    <div className="text-sm text-gray-400">
-                        Physical Literacy → Skill Development → Competition
-                    </div>
-                </div>
-
-                <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
-                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <IconCertificate className="text-bright-sun-300" size={24} />
-                    </div>
-                    <div className="text-white text-xl font-semibold mb-2">Coach Development</div>
-                    <div className="text-sm text-gray-400">
-                        Certification → Mentoring → Professional Development
-                    </div>
-                </div>
-
-                <div className="text-center p-6 border border-gray-700/50 rounded-xl hover:border-bright-sun-300/50 transition duration-300">
-                    <div className="w-12 h-12 bg-bright-sun-300/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <IconWorld className="text-bright-sun-300" size={24} />
-                    </div>
-                    <div className="text-white text-xl font-semibold mb-2">Global Network</div>
-                    <div className="text-sm text-gray-400">
-                        International standards and partnership opportunities
-                    </div>
-                </div>
-            </div>
-            {/* What We Do */}
-            <div className="container mx-auto px-4 py-16">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What We Do</h2>
-                    <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-                        Professionally designed programmes aligned with international best practices
-                        in sport development, coaching education, and well-being.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-                    {coreServices.map((program, index) => (
-                        <div
-                            key={program.title}
-                            className={`group relative ${program.bgColor} border ${program.borderColor} rounded-3xl p-8 h-full backdrop-blur-md transition-all duration-700 hover:shadow-2xl ${program.glowColor} hover:-translate-y-2 hover:bg-gray-800/20 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                            style={{ animationDelay: `${700 + index * 150}ms` }}
-                        >
-                            {/* Floating Icon Container */}
-                            <div className="relative mb-8">
-                                <div className={`w-16 h-16 bg-gray-900/60 rounded-2xl flex items-center justify-center border ${program.borderColor} group-hover:scale-110 transition-transform duration-500 shadow-inner group-hover:shadow-[0_0_20px_rgba(251,191,36,0.1)]`}>
-                                    <program.icon className={`${program.iconColor} group-hover:scale-110 transition-transform`} size={32} />
-                                </div>
-                                <div className={`absolute -inset-2 ${program.iconColor} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-700`}>
-                                    <program.icon size={32} />
-                                </div>
-                            </div>
-
-                            <div className="mb-6">
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-bright-sun-300 transition-colors">{program.title}</h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">{program.description}</p>
-                            </div>
-
-                            <div className="space-y-4 mb-8">
-                                {program.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-start space-x-3">
-                                        <div className={`mt-1.5 w-1.5 h-1.5 rounded-full ${program.iconColor} group-hover:animate-pulse`} />
-                                        <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {program.sports && (
-                                <div className="mt-auto border-t border-gray-700/50 pt-6">
-                                    <div className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">Programs</div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {program.sports.map((sport) => (
-                                            <span
-                                                key={sport}
-                                                className={`px-3 py-1 bg-gray-900/40 border ${program.borderColor} text-gray-300 rounded-full text-[10px] font-bold uppercase tracking-widest group-hover:border-bright-sun-300/30 transition-colors`}
-                                            >
-                                                {sport}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {program.focus && (
-                                <div className="mt-auto pt-6">
-                                    <div className="px-4 py-2 bg-bright-sun-300/5 border border-bright-sun-300/10 rounded-xl text-bright-sun-300 italic text-[11px] leading-relaxed text-center">
-                                        "{program.focus}"
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-
             {/* Achievements */}
-            <div className="container mx-auto px-4 py-16">
-                <div className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8">
-                    <div className="text-center mb-10">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Achievements</h2>
-                        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                            Milestones that reflect our commitment to excellence in sports education
+            <div className="container mx-auto px-4 py-32">
+                <div className="bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-12 md:p-20 shadow-sm dark:shadow-none relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 blur-3xl -z-10"></div>
+                    
+                    <div className="text-center mb-16">
+                        <div className={`inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs`}>
+                            <IconTrophy size={16} />
+                            <span>Milestones</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter">Our Achievements</h2>
+                        <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto uppercase tracking-wide">
+                            Impact that speaks for itself.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {achievements.map((achievement, index) => (
                             <div
                                 key={achievement.title}
-                                className={`${achievement.color} border border-gray-700/50 rounded-2xl p-6 text-center transition-all duration-500 hover:scale-[1.05] ${animate ? 'opacity-100' : 'opacity-0'}`}
+                                className={`bg-white dark:bg-cerulean-blue-800/40 border border-gray-100 dark:border-white/10 rounded-3xl p-8 text-center transition-all duration-500 hover:scale-[1.05] hover:shadow-xl shadow-sm dark:shadow-none group ${animate ? 'opacity-100' : 'opacity-0'}`}
                                 style={{ animationDelay: `${1000 + index * 200}ms` }}
                             >
-                                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-800/50 rounded-2xl mb-4">
-                                    <achievement.icon className="text-white" size={32} />
+                                <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-50 dark:bg-cerulean-blue-900/50 rounded-2xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                                    <achievement.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={40} />
                                 </div>
-                                <div className="text-4xl font-bold text-white mb-2">{achievement.count}</div>
-                                <div className="text-gray-300">{achievement.title}</div>
+                                <div className="text-5xl font-black text-cerulean-blue-900 dark:text-white mb-3 italic tracking-tighter">{achievement.count}</div>
+                                <div className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">{achievement.title}</div>
                             </div>
                         ))}
                     </div>
@@ -368,25 +288,28 @@ const SportsDisciplines = () => {
 
             {/* Founder & CEO Section */}
             <div className="container mx-auto px-4 py-16">
-                <div className={`bg-gray-800/30 border border-gray-700/50 rounded-2xl p-12 transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        <div className="w-48 h-48 bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 rounded-full flex items-center justify-center border-4 border-gray-800 shadow-2xl">
-                            <IconUserCheck size={80} className="text-gray-900" />
+                <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-12 transition-all duration-1000 shadow-sm dark:shadow-none ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="flex flex-col md:flex-row items-center gap-16">
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-bright-sun-600 dark:bg-bright-sun-300 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                            <div className="relative w-48 h-48 md:w-64 md:h-64 bg-white dark:bg-cerulean-blue-800 rounded-full flex items-center justify-center border-8 border-white dark:border-cerulean-blue-900 shadow-2xl overflow-hidden">
+                                <IconUserCheck size={100} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                            </div>
                         </div>
                         <div className="flex-1 text-center md:text-left">
-                            <h2 className="text-3xl font-bold text-white mb-2">Noël Nkuranyabahizi</h2>
-                            <div className="text-bright-sun-300 text-xl font-semibold mb-6">Founder & CEO</div>
-                            <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                                Leading the vision of developing "Champions for Life" with a commitment to
-                                professionalism, excellence, and community impact through sport and education.
+                            <div className="text-bright-sun-600 dark:text-bright-sun-300 text-xs font-black uppercase tracking-[0.3em] mb-4">Visionary Leadership</div>
+                            <h2 className="text-4xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white mb-2 uppercase italic tracking-tighter">Noël Nkuranyabahizi</h2>
+                            <div className="text-gray-600 dark:text-gray-400 text-xl font-bold mb-8 uppercase tracking-widest">Founder & CEO</div>
+                            <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl font-medium leading-relaxed mb-10 border-l-4 border-bright-sun-600 dark:border-bright-sun-300 pl-8 italic">
+                                "Leading the vision of developing Champions for Life with a commitment to professionalism, excellence, and community impact through sport and education."
                             </p>
-                            <div className="flex flex-wrap justify-center md:justify-start gap-6">
-                                <div className="flex items-center space-x-2 text-gray-400">
-                                    <IconMail size={20} className="text-bright-sun-300" />
+                            <div className="flex flex-wrap justify-center md:justify-start gap-8">
+                                <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">
+                                    <IconMail size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
                                     <span>noel@thechampions.rw</span>
                                 </div>
-                                <div className="flex items-center space-x-2 text-gray-400">
-                                    <IconPhone size={20} className="text-bright-sun-300" />
+                                <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">
+                                    <IconSparkles size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
                                     <span>Kigali, Rwanda</span>
                                 </div>
                             </div>
@@ -396,35 +319,34 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Our Commitment */}
-            <div className="container mx-auto px-4 py-16">
-                <div className={`bg-gradient-to-r from-gray-800/30 to-cerulean-blue-900/30 border border-gray-700/50 rounded-2xl p-12 text-center transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div className="max-w-3xl mx-auto">
-                        <div className="inline-flex items-center justify-center w-20 h-20 bg-bright-sun-300/20 rounded-2xl mb-6 border border-bright-sun-300/30">
-                            <IconShield className="text-bright-sun-300" size={40} />
+            <div className="container mx-auto px-4 py-32">
+                <div className={`bg-cerulean-blue-900 dark:bg-white border border-cerulean-blue-800 dark:border-gray-100 rounded-[3.5rem] p-12 md:p-24 text-center transition-all duration-1000 shadow-2xl ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="inline-flex items-center justify-center w-24 h-24 bg-white/10 dark:bg-bright-sun-300/10 rounded-3xl mb-12 border border-white/10 dark:border-bright-sun-300/20 shadow-inner">
+                            <IconShield className="text-white dark:text-bright-sun-600" size={48} />
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Our Commitment</h2>
+                        <h2 className="text-4xl md:text-6xl font-black text-white dark:text-cerulean-blue-900 mb-8 uppercase italic tracking-tighter">Our Commitment</h2>
 
-                        <p className="text-gray-300 text-lg mb-10">
+                        <p className="text-cerulean-blue-100 dark:text-gray-600 text-xl md:text-2xl font-medium mb-16 leading-relaxed">
                             At The Champions Sports Academy, we believe sport is more than competition.
                             It is an educational and social force that shapes healthier individuals and
-                            stronger communities. We are committed to creating a safe, inclusive, and
-                            empowering environment for every athlete.
+                            stronger communities.
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                             {[
-                                { name: 'Professionalism', icon: IconStar, color: 'bg-blue-600/20' },
-                                { name: 'Safeguarding', icon: IconShield, color: 'bg-bright-sun-300/20' },
-                                { name: 'Inclusion', icon: IconUsers, color: 'bg-green-600/20' },
-                                { name: 'Excellence', icon: IconTrophy, color: 'bg-purple-600/20' }
+                                { name: 'Professionalism', icon: IconStar, color: 'bg-white/5 dark:bg-gray-50' },
+                                { name: 'Safeguarding', icon: IconShield, color: 'bg-white/5 dark:bg-gray-50' },
+                                { name: 'Inclusion', icon: IconUsers, color: 'bg-white/5 dark:bg-gray-50' },
+                                { name: 'Excellence', icon: IconTrophy, color: 'bg-white/5 dark:bg-gray-50' }
                             ].map((item) => (
                                 <div
                                     key={item.name}
-                                    className={`${item.color} border border-gray-700/50 rounded-xl p-6 hover:scale-105 transition-all duration-300`}
+                                    className={`${item.color} border border-white/10 dark:border-gray-200 rounded-3xl p-8 hover:scale-105 transition-all duration-300 group cursor-pointer shadow-sm`}
                                 >
-                                    <item.icon className="text-white mb-3 mx-auto" size={24} />
-                                    <div className="text-white font-semibold">{item.name}</div>
+                                    <item.icon className="text-bright-sun-300 dark:text-bright-sun-600 mb-4 mx-auto group-hover:scale-110 transition-transform" size={32} />
+                                    <div className="text-white dark:text-cerulean-blue-900 font-black uppercase tracking-widest text-xs">{item.name}</div>
                                 </div>
                             ))}
                         </div>

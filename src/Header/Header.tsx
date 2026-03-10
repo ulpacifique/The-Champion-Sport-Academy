@@ -1,13 +1,15 @@
 import { Avatar, Button, Indicator, Menu } from '@mantine/core';
-import { IconBell, IconSettings, IconUser, IconUsersPlus, IconLogout, IconChevronDown } from '@tabler/icons-react';
+import { IconBell, IconSettings, IconUser, IconUsersPlus, IconLogout, IconChevronDown, IconSun, IconMoon } from '@tabler/icons-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavLinks from './NavLinks';
+import { useTheme } from '../Context/ThemeContext';
 
 const Header = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
+    const { theme, toggleTheme } = useTheme();
 
     // Load user from localStorage
     useEffect(() => {
@@ -69,7 +71,7 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-cerulean-blue-950/95 backdrop-blur-md px-4 sm:px-6 lg:px-8 text-white h-20 sm:h-24 flex justify-between items-center sticky top-0 z-[100] border-b border-white/5 shadow-2xl transition-all duration-300">
+        <header className="w-full bg-white/95 dark:bg-cerulean-blue-950/95 backdrop-blur-md px-4 sm:px-6 lg:px-8 text-cerulean-blue-900 dark:text-white h-20 sm:h-24 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300">
             {/* Logo & Brand */}
             <Link to="/" className="flex gap-3 sm:gap-4 items-center group">
                 <div className="relative">
@@ -80,12 +82,12 @@ const Header = () => {
                     {/* Full name on larger screens */}
                     <div className="hidden lg:block text-2xl xl:text-3xl font-black tracking-tighter leading-tight bg-gradient-to-r from-bright-sun-200 to-bright-sun-400 bg-clip-text text-transparent italic uppercase">
                         The Champions
-                        <span className="block text-white not-italic font-bold text-lg xl:text-xl tracking-normal opacity-90 -mt-1">Sports Academy</span>
+                        <span className="block text-cerulean-blue-900 dark:text-white not-italic font-bold text-lg xl:text-xl tracking-normal opacity-90 -mt-1">Sports Academy</span>
                     </div>
                     {/* Short name on medium screens */}
                     <div className="hidden sm:block lg:hidden text-xl font-black tracking-tight leading-none text-bright-sun-300 uppercase italic">
                         Champions
-                        <span className="block text-white not-italic font-bold text-sm tracking-normal opacity-80 mt-0.5">Academy</span>
+                        <span className="block text-cerulean-blue-900 dark:text-white not-italic font-bold text-sm tracking-normal opacity-80 mt-0.5">Academy</span>
                     </div>
                     {/* Acronym on mobile */}
                     <div className="block sm:hidden text-xl font-black tracking-tighter text-bright-sun-300 italic">
@@ -105,10 +107,10 @@ const Header = () => {
                 {user ? (
                     <Menu shadow="xl" width={240} position="bottom-end" withArrow transitionProps={{ transition: 'pop-top-right' }}>
                         <Menu.Target>
-                            <div className="flex gap-3 items-center cursor-pointer bg-white/5 hover:bg-white/10 px-3 py-2 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10 group">
+                            <div className="flex gap-3 items-center cursor-pointer bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 px-3 py-2 rounded-2xl transition-all duration-300 border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 group">
                                 <div className="hidden xl:block text-right">
-                                    <div className="font-bold text-sm text-white group-hover:text-bright-sun-300 transition-colors uppercase tracking-wide">{getUserName()}</div>
-                                    <div className="text-[10px] text-bright-sun-400 font-bold uppercase tracking-widest opacity-80">{user.role || 'User'}</div>
+                                    <div className="font-bold text-sm text-cerulean-blue-900 dark:text-white group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors uppercase tracking-wide">{getUserName()}</div>
+                                    <div className="text-[10px] text-bright-sun-600 dark:text-bright-sun-400 font-bold uppercase tracking-widest opacity-80">{user.role || 'User'}</div>
                                 </div>
                                 <Avatar
                                     radius="xl"
@@ -187,17 +189,30 @@ const Header = () => {
                     </div>
                 )}
 
+                {/* Theme Toggle Button */}
+                <div 
+                    onClick={toggleTheme}
+                    className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 dark:bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/10 border border-gray-200 dark:border-white/5 transition-all duration-300 group shadow-sm dark:shadow-none"
+                    title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                    {theme === 'dark' ? (
+                        <IconSun size={20} className="text-bright-sun-400 group-hover:scale-110 transition-transform" stroke={1.5} />
+                    ) : (
+                        <IconMoon size={20} className="text-cerulean-blue-600 group-hover:scale-110 transition-transform" stroke={1.5} />
+                    )}
+                </div>
+
                 {/* Notifications & Settings - Only visible when logged in */}
                 {user && (
                     <div className="hidden sm:flex gap-3 items-center ml-2">
-                        <div className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-white/10 hover:border-white/10 border border-white/5 transition-all group">
+                        <div className="w-10 h-10 bg-gray-100 dark:bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/5 transition-all group">
                             <Indicator color="brightSun.4" offset={2} size={8} withBorder aria-label="Notifications">
-                                <IconBell size={20} className="text-gray-300 group-hover:text-bright-sun-300 transition-colors" stroke={1.5} />
+                                <IconBell size={20} className="text-gray-500 dark:text-gray-300 group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors" stroke={1.5} />
                             </Indicator>
                         </div>
 
-                        <div className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-white/10 hover:border-white/10 border border-white/5 transition-all group">
-                            <IconSettings size={20} className="text-gray-300 group-hover:text-bright-sun-300 transition-colors" stroke={1.5} />
+                        <div className="w-10 h-10 bg-gray-100 dark:bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/5 transition-all group">
+                            <IconSettings size={20} className="text-gray-500 dark:text-gray-300 group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors" stroke={1.5} />
                         </div>
                     </div>
                 )}
