@@ -71,7 +71,7 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-white/95 dark:bg-cerulean-blue-950/95 backdrop-blur-md px-4 sm:px-6 lg:px-8 text-cerulean-blue-900 dark:text-white h-20 sm:h-24 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300">
+        <header className="w-full bg-white/95 dark:bg-cerulean-blue-900/95 backdrop-blur-md px-4 sm:px-6 lg:px-8 text-cerulean-blue-900 dark:text-white h-20 sm:h-24 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300">
             {/* Logo & Brand */}
             <Link to="/" className="flex gap-3 sm:gap-4 items-center group">
                 <div className="relative">

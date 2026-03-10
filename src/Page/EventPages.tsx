@@ -94,7 +94,7 @@ const EventPage = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
+      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
@@ -111,7 +111,7 @@ const EventPage = () => {
   // Error state
   if (error) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
+      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
@@ -139,7 +139,7 @@ const EventPage = () => {
   // Empty state - no videos in the database
   if (videos.length === 0) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
+      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
@@ -178,7 +178,7 @@ const EventPage = () => {
   }
 
   return (
-    <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
+    <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
       <Header />
       <SportsDisciplines />
       <main className="py-16 px-4 md:px-8 lg:px-16">

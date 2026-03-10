@@ -111,7 +111,7 @@ const SportsDisciplines = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white dark:bg-cerulean-blue-950 pt-32 pb-20 transition-colors duration-300">
+        <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-32 pb-20 transition-colors duration-300">
             {/* Hero Section of Disciplines */}
             <div className="container mx-auto px-4 mb-20 text-center">
                 <div className={`inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs transition-all duration-700 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>

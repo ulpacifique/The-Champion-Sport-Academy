@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { IconMail, IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconMapPin, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { IconMail, IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconMapPin, IconChevronDown, IconChevronUp, IconArrowRight } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -60,25 +60,32 @@ const Founder = () => {
     }, [selectedImage, handlePrevious, handleNext]);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-cerulean-blue-950 transition-colors duration-300">
+        <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
             <Header />
             {/* Founder & CEO Section */}
             <div className="container mx-auto px-4 py-32">
                 <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-8 md:p-20 backdrop-blur-md shadow-sm dark:shadow-none transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                     <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                        <div className="relative group shrink-0">
-                            <div className="absolute -inset-6 bg-bright-sun-600/20 dark:bg-bright-sun-300/20 rounded-full blur-[100px] opacity-25 group-hover:opacity-100 transition duration-1000"></div>
-                            <div className="relative w-80 aspect-[3/4] rounded-[3rem] overflow-hidden border-[12px] border-white dark:border-cerulean-blue-900 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-                                <img
-                                    src={`${process.env.PUBLIC_URL}/athletes/Noel.jpg`}
-                                    alt="Noël Nkuranyabahizi"
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/40 to-transparent"></div>
+                        <div className="relative group shrink-0 flex flex-col items-center">
+                            {/* Outer ring + shadow stack for depth */}
+                            <div className="relative">
+                                <div className="absolute inset-0 rounded-full bg-bright-sun-400/30 dark:bg-bright-sun-300/20 blur-2xl scale-110 group-hover:scale-125 transition-transform duration-700" aria-hidden />
+                                <div className="relative w-72 sm:w-80 aspect-square rounded-full p-2 bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 dark:from-bright-sun-300 dark:to-bright-sun-500 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[1.02]">
+                                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-cerulean-blue-900/80 bg-white dark:bg-cerulean-blue-900 shadow-inner">
+                                        <img
+                                            src={`${process.env.PUBLIC_URL}/athletes/Noel.jpg`}
+                                            alt="Noël Nkuranyabahizi"
+                                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 rounded-full ring-inset ring-1 ring-black/5 dark:ring-white/10 pointer-events-none" aria-hidden />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-full pointer-events-none" aria-hidden />
+                                    </div>
+                                </div>
                             </div>
-                            {/* Floating Achievement Badge */}
-                            <div className="absolute -bottom-6 -right-6 bg-bright-sun-400 dark:bg-bright-sun-300 p-6 rounded-3xl shadow-2xl border-4 border-white dark:border-cerulean-blue-900 z-20 group-hover:rotate-6 transition-transform">
-                                <IconTrophy size={32} className="text-gray-900" />
+                            {/* Achievement pill under the photo */}
+                            <div className="mt-6 flex items-center gap-2 px-5 py-2.5 rounded-full bg-bright-sun-400/90 dark:bg-bright-sun-300/90 text-gray-900 font-bold text-sm uppercase tracking-wider shadow-lg border border-bright-sun-500/30 dark:border-bright-sun-200/50">
+                                <IconTrophy size={20} className="text-cerulean-blue-900 shrink-0" />
+                                <span>National Coaching Award 2020</span>
                             </div>
                         </div>
 
@@ -131,27 +138,14 @@ const Founder = () => {
                                 </button>
                             </div>
 
-                            <div className="flex flex-wrap justify-center lg:justify-start gap-12 pt-8 border-t border-gray-200 dark:border-white/5">
-                                <a href="mailto:noel@thechampions.rw" className="flex items-center space-x-4 text-gray-500 dark:text-gray-400 hover:text-bright-sun-600 dark:hover:text-bright-sun-300 transition-colors group">
-                                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-cerulean-blue-800 rounded-2xl group-hover:scale-110 transition-transform">
-                                        <IconMail size={24} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                                    </div>
-                                    <span className="font-black uppercase tracking-widest text-sm italic">noel@thechampions.rw</span>
-                                </a>
-                                <div className="flex items-center space-x-4 text-gray-500 dark:text-gray-400">
-                                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-cerulean-blue-800 rounded-2xl">
-                                        <IconMapPin size={24} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                                    </div>
-                                    <span className="font-black uppercase tracking-widest text-sm italic">Kigali, Rwanda</span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Founder's Journey Gallery */}
-            <div className="container mx-auto px-4 py-32 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300">
+            {/* 1. Founder's Journey (past) */}
+            <div id="founder-journey" className="container mx-auto px-4 py-32 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300 scroll-mt-24">
                 <div className="text-center mb-24 px-4">
                     <motion.div {...fadeInUp}>
                         <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 italic text-cerulean-blue-900 dark:text-white underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8 flex items-center justify-center gap-4">
@@ -207,6 +201,60 @@ const Founder = () => {
                 </div>
             </div>
 
+            {/* 2. Sport Coaching */}
+            <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                        International Elite Sports Coach
+                    </h2>
+                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>Noël Nkuranyabahizi is an International Elite Sports Coach, coach developer, and sport development leader specializing in multi-sport athlete development, particularly in Karate and Gymnastics. He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, an organization dedicated to promoting physical literacy, Olympic values, and long-term athlete development for children and youth.</p>
+                        <p>A 4th Dan Black Belt in Karate, Noël served as Head Coach of the Rwanda National Karate Team (2015–2023), where he led national athlete development programmes and prepared athletes for regional and continental competitions. His work focuses on elite coaching, grassroots sport development, and coach education, supporting both athletes and coaches through structured development pathways.</p>
+                        <p>He is the recipient of the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his contribution to sport development in Rwanda. He also received an Olympic Solidarity Scholarship for Coaches, which enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international programme for elite sport coaches.</p>
+                        <p>Through his leadership and international engagement, Noël contributes to strengthening coaching systems, athlete development, and values-based sport education. He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese</p>
+                    </div>
+                </div>
+            </section>
+            {/* Professional */}
+            <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                        Professional
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Content for this section can be added here.
+                    </p>
+                </div>
+            </section>
+
+            {/* 3. Social Worker in Sport */}
+            <section id="social-worker-in-sport" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                        Social Worker in Sport
+                    </h2>
+                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>Noël Nkuranyabahizi is a Professional Social Worker in Sport whose work focuses on the use of sport as a tool for youth development, psychosocial well-being, and positive social change. With a Bachelor's Degree in Social Work, he integrates social work principles with sport coaching and athlete development to support the holistic well-being of children, youth, athletes, and coaches.</p>
+                        <p>Through his professional engagement in the field of sport and social work, he became a member of the Alliance of Social Workers in Sport (ASWIS) based in the United States, an international network dedicated to advancing social work practice in sport environments.</p>
+                        <p>Noël has contributed to the global dialogue on sport and social development through international academic presentations. In 2019, he presented at the Social Work in Sport International Symposium in Denver, Colorado, where he delivered a presentation on "The Role of Karate in Improving Children's Self-Esteem," highlighting how martial arts can contribute to confidence building, discipline, and psychosocial development among young participants.</p>
+                        <p>He also presented at the Social Work in Sport International Symposium held at Tulane University in New Orleans, Louisiana, where he shared research on "The Impact of Elite Sport Coaching Activities on the Coaches' Mental Well-being in Rwanda." His work examined the psychological pressures experienced by elite sport coaches and emphasized the importance of supportive systems that protect the mental health and well-being of coaching professionals.</p>
+                        <p>Through his work in coaching, youth sport development, and social work in sport, Noël continues to advocate for sport as a powerful platform for education, inclusion, mental well-being, and community development, contributing to both national and international discussions on the social value of sport.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. Sport Events Management */}
+            <section id="sport-events-management" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                        Sport Events Management
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Content for this section can be added here.
+                    </p>
+                </div>
+            </section>
+
             {/* Lightbox / Full Screen Preview */}
             <AnimatePresence>
                 {selectedImage !== null && (
@@ -214,7 +262,7 @@ const Founder = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[200] flex items-center justify-center bg-cerulean-blue-950/98 backdrop-blur-2xl p-4 md:p-10"
+                        className="fixed inset-0 z-[200] flex items-center justify-center bg-cerulean-blue-900/98 backdrop-blur-2xl p-4 md:p-10"
                         onClick={() => setSelectedImage(null)}
                     >
                         {/* Close Button */}

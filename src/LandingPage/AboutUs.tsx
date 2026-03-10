@@ -109,7 +109,7 @@ const AboutUs = () => {
 
 
   return (
-    <div className="min-h-screen bg-white dark:bg-cerulean-blue-950 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
       
       {/* Hero Section */}
       <section className="relative py-24 px-4 overflow-hidden">
@@ -184,7 +184,7 @@ const AboutUs = () => {
       <section className="py-24 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-20 px-4">
-            <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Impact In <span className="text-bright-sun-600 dark:text-bright-sun-300">Numbers</span></h2>
+            <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Impact  <span className="text-bright-sun-600 dark:text-bright-sun-300"></span></h2>
             <p className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] text-sm">Quantifying our reach across Rwanda.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -292,7 +292,7 @@ const AboutUs = () => {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-24 bg-gray-50/50 dark:bg-cerulean-blue-950 border-y border-gray-100 dark:border-white/10 transition-colors duration-300">
+      <section className="py-24 bg-gray-50/50 dark:bg-cerulean-blue-900 border-y border-gray-100 dark:border-white/10 transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-20 px-4">
             <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Our Core <span className="text-bright-sun-600 dark:text-bright-sun-300">Values</span></h2>
@@ -321,7 +321,7 @@ const AboutUs = () => {
       </section>
 
       {/* Management Team Section - circular overlapping layout */}
-      <section className="py-32 relative overflow-hidden bg-white dark:bg-cerulean-blue-950 transition-colors duration-300">
+      <section className="py-32 relative overflow-hidden bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-20 items-center mb-32">
             <div className="lg:w-1/2 relative flex justify-center lg:justify-end items-center min-h-[380px] lg:min-h-[420px]">
@@ -448,7 +448,7 @@ const AboutUs = () => {
       </section>
 
       {/* Ecosystem Highlights */}
-      <section className="py-24 px-4 bg-white dark:bg-cerulean-blue-950 transition-colors duration-300">
+      <section className="py-24 px-4 bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div 

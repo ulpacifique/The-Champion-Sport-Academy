@@ -120,12 +120,12 @@ const Gymnastics = () => {
     const coreValues = coreValuesData.map((v, i) => ({ ...v, icon: valueIcons[i] }));
 
     return (
-        <div className="bg-white dark:bg-cerulean-blue-950 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
+        <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-950/80 z-10"></div>
+                <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900/80 z-10"></div>
                 <div
                     className="absolute inset-0 z-0"
                     style={{
@@ -278,7 +278,7 @@ const Gymnastics = () => {
 
                 {/* Core Values */}
                 <section className="py-32 px-4 md:px-8 lg:px-16 text-cerulean-blue-900 dark:text-white transition-colors duration-300 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-950"></div>
+                    <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900"></div>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-5 gap-8">
                             {coreValues.map((value, i) => (
@@ -448,7 +448,7 @@ const Gymnastics = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[200] flex items-center justify-center bg-cerulean-blue-950/98 backdrop-blur-2xl p-4 md:p-10"
+                        className="fixed inset-0 z-[200] flex items-center justify-center bg-cerulean-blue-900/98 backdrop-blur-2xl p-4 md:p-10"
                         onClick={() => setSelectedImageIndex(null)}
                     >
                         {/* Close Button */}

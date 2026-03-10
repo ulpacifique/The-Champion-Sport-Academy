@@ -177,7 +177,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
             <div className="bg-cerulean-blue-900 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-cerulean-blue-800">
 
                 {/* Header */}
-                <div className="flex-shrink-0 p-6 bg-cerulean-blue-950 border-b border-cerulean-blue-800 flex justify-between items-center">
+                <div className="flex-shrink-0 p-6 bg-cerulean-blue-900 border-b border-cerulean-blue-800 flex justify-between items-center">
                     <div>
                         <h2 className="text-2xl font-bold text-white">Progress Tracking</h2>
                         <div className="flex items-center space-x-2 mt-1">
@@ -193,7 +193,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                 </div>
 
                 {/* Tabs */}
-                <div className="flex-shrink-0 flex border-b border-cerulean-blue-800 bg-cerulean-blue-950/50 overflow-x-auto overflow-y-hidden">
+                <div className="flex-shrink-0 flex border-b border-cerulean-blue-800 bg-cerulean-blue-900/50 overflow-x-auto overflow-y-hidden">
                     {availableSports.map(sport => (
                         <button
                             key={sport}
@@ -225,7 +225,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                                 onChange={(e) => setNewSportName(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleAddSport()}
                                 autoFocus
-                                className="flex-1 bg-cerulean-blue-950 border border-cerulean-blue-700/50 rounded-lg p-2.5 text-white focus:outline-none focus:border-bright-sun-300 placeholder:text-gray-500"
+                                className="flex-1 bg-cerulean-blue-900 border border-cerulean-blue-700/50 rounded-lg p-2.5 text-white focus:outline-none focus:border-bright-sun-300 placeholder:text-gray-500"
                             />
                             <button
                                 onClick={handleAddSport}
@@ -261,7 +261,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                                     <div key={skill} className="bg-cerulean-blue-800/40 rounded-xl p-5 border border-cerulean-blue-700/30 group hover:border-bright-sun-300/30 transition-all">
                                         <div className="flex justify-between items-center mb-3">
                                             <label className="font-bold text-lg text-white group-hover:text-bright-sun-300 transition-colors">{skill}</label>
-                                            <div className="bg-cerulean-blue-950/50 px-3 py-1 rounded-full border border-cerulean-blue-700/50">
+                                            <div className="bg-cerulean-blue-900/50 px-3 py-1 rounded-full border border-cerulean-blue-700/50">
                                                 <span className={`font-mono font-bold ${record.percentage === 100 ? 'text-green-400' :
                                                     record.percentage > 50 ? 'text-bright-sun-300' :
                                                         'text-gray-400'
@@ -277,7 +277,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                                                 step="5"
                                                 value={record.percentage}
                                                 onChange={(e) => handleUpdate(skill, parseInt(e.target.value), record.notes)}
-                                                className="w-full h-2.5 bg-cerulean-blue-950 rounded-lg appearance-none cursor-pointer accent-bright-sun-300 hover:accent-bright-sun-200"
+                                                className="w-full h-2.5 bg-cerulean-blue-900 rounded-lg appearance-none cursor-pointer accent-bright-sun-300 hover:accent-bright-sun-200"
                                             />
                                             <div className="flex justify-between mt-2 text-[10px] uppercase tracking-tighter text-cerulean-blue-400 font-bold">
                                                 <span>Beginner</span>
@@ -294,7 +294,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                                                 placeholder="Enter feedback or performance notes..."
                                                 value={record.notes || ''}
                                                 onChange={(e) => handleUpdate(skill, record.percentage, e.target.value)}
-                                                className="w-full bg-cerulean-blue-950/50 border border-cerulean-blue-700/50 rounded-xl p-4 pt-5 text-sm text-white focus:outline-none focus:border-bright-sun-300 focus:bg-cerulean-blue-950 min-h-[80px] transition-all resize-none placeholder:text-gray-600"
+                                                className="w-full bg-cerulean-blue-900/50 border border-cerulean-blue-700/50 rounded-xl p-4 pt-5 text-sm text-white focus:outline-none focus:border-bright-sun-300 focus:bg-cerulean-blue-900 min-h-[80px] transition-all resize-none placeholder:text-gray-600"
                                             />
                                         </div>
                                     </div>
@@ -316,7 +316,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                                             value={newSkillName}
                                             onChange={(e) => setNewSkillName(e.target.value)}
                                             onKeyDown={(e) => e.key === 'Enter' && handleAddSkill()}
-                                            className="w-full bg-cerulean-blue-950 border border-cerulean-blue-700/50 rounded-xl p-3 text-white focus:outline-none focus:border-bright-sun-300 transition-all placeholder:text-gray-600"
+                                            className="w-full bg-cerulean-blue-900 border border-cerulean-blue-700/50 rounded-xl p-3 text-white focus:outline-none focus:border-bright-sun-300 transition-all placeholder:text-gray-600"
                                         />
                                         <datalist id="skill-suggestions">
                                             {activeTab === 'Gymnastics' && DEFAULT_GYMNASTICS_SKILLS.map(s => <option key={s} value={s} />)}
@@ -343,7 +343,7 @@ const ChildProgressModal: React.FC<ChildProgressModalProps> = ({ childId, childN
                 </div>
 
                 {/* Footer */}
-                <div className="flex-shrink-0 p-4 bg-cerulean-blue-950 border-t border-cerulean-blue-800 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+                <div className="flex-shrink-0 p-4 bg-cerulean-blue-900 border-t border-cerulean-blue-800 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
                     <div className="flex items-center space-x-2">
                         {hasChanges ? (
                             <span className="text-bright-sun-300 text-sm font-bold animate-pulse">

@@ -63,12 +63,12 @@ const Karate = () => {
     const coreValues = coreValuesData.map((v, i) => ({ ...v, icon: valueIcons[i] }));
 
     return (
-        <div className="bg-white dark:bg-cerulean-blue-950 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
+        <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-950/80 z-10"></div>
+                <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900/80 z-10"></div>
                 <div
                     className="absolute inset-0 z-0"
                     style={{
@@ -221,7 +221,7 @@ const Karate = () => {
 
                 {/* Core Values */}
                 <section className="py-32 px-4 md:px-8 lg:px-16 text-cerulean-blue-900 dark:text-white transition-colors duration-300 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-950"></div>
+                    <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900"></div>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-5 gap-8">
                             {coreValues.map((value, i) => (
@@ -307,7 +307,7 @@ const Karate = () => {
                         <h2 className="text-5xl md:text-8xl font-black mb-10 leading-[0.9] uppercase italic tracking-tighter relative z-10">Become a<br />World <span className="text-white dark:text-cerulean-blue-950">Champion</span></h2>
                         <p className="text-xl md:text-2xl font-black mb-16 text-cerulean-blue-950/80 max-w-3xl mx-auto uppercase tracking-tight relative z-10 italic">Join the 20+ year legacy of excellence. Secure your future in the martial arts with The Champions Sports Academy.</p>
                         <div className="flex flex-col sm:flex-row gap-8 justify-center relative z-10">
-                            <Link to="/register" className="px-12 py-6 bg-cerulean-blue-950 text-white rounded-[2rem] font-black text-2xl hover:scale-105 transition-all shadow-2xl uppercase italic tracking-tighter">Register Now</Link>
+                            <Link to="/register" className="px-12 py-6 bg-cerulean-blue-900 text-white rounded-[2rem] font-black text-2xl hover:scale-105 transition-all shadow-2xl uppercase italic tracking-tighter">Register Now</Link>
                             <Link to="/contact" className="px-12 py-6 bg-white/30 backdrop-blur-md rounded-[2rem] font-black text-2xl hover:bg-white/40 transition-all border border-cerulean-blue-900/10 uppercase italic tracking-tighter">Contact Masters</Link>
                         </div>
                     </motion.div>

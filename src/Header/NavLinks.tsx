@@ -116,7 +116,7 @@ const NavLinks = () => {
                 <>
                     {/* Backdrop */}
                     <div
-                        className="fixed inset-0 bg-white/60 dark:bg-cerulean-blue-950/80 backdrop-blur-sm z-[90] md:hidden transition-opacity duration-300"
+                        className="fixed inset-0 bg-white/60 dark:bg-cerulean-blue-900/80 backdrop-blur-sm z-[90] md:hidden transition-opacity duration-300"
                         onClick={() => setIsOpen(false)}
                     />
 

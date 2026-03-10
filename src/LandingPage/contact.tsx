@@ -22,11 +22,11 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white dark:bg-cerulean-blue-950 text-cerulean-blue-900 dark:text-white transition-colors duration-300">
+        <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white transition-colors duration-300">
             <Header />
 
             {/* Hero Section */}
-            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gray-50 dark:bg-cerulean-blue-950">
+            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gray-50 dark:bg-cerulean-blue-900">
                 <div
                     className="absolute inset-0 opacity-5 dark:opacity-[0.07] z-0"
                     style={{

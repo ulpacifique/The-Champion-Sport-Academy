@@ -7,7 +7,7 @@ import AboutUs from "../LandingPage/AboutUs";
 
 const HomePage = () => {
     return (
-        <div className="min-h-[100vh] bg-cerulean-blue-950 font-['Poppins']">
+        <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
             <Header />
 
             {/* Add IDs to each section for smooth scrolling */}
