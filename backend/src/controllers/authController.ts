@@ -90,9 +90,15 @@ export const resetPassword = async (req: Request, res: Response) => {
 };
 
 export const register = async (req: Request, res: Response) => {
-    const { email, password, firstName, lastName, phoneNumber, role, address } = req.body;
+    const { firstName, lastName, password, role, address } = req.body;
+    const email = req.body.email?.toLowerCase().trim();
+    const phoneNumber = req.body.phoneNumber?.trim();
 
     try {
+        if (!email) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
         const existingUser = await prisma.user.findFirst({
             where: { OR: [{ email }, { phoneNumber }] }
         });

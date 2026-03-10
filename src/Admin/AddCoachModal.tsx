@@ -77,8 +77,11 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
         }));
     };
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (isSubmitting) return;
 
         let finalSports = [...formData.sports];
         if (sportInput.trim() && !finalSports.includes(sportInput.trim())) {
@@ -94,14 +97,18 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
             return;
         }
 
+        setIsSubmitting(true);
         try {
             await onSubmit({
                 ...formData,
                 sports: finalSports,
                 yearsOfExperience: parseInt(formData.yearsOfExperience) || 0
             });
+            onClose(); // Close modal on success
         } catch (err) {
             // Error handled by parent
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -273,9 +280,10 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
                         </button>
                         <button
                             type="submit"
-                            className="bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-300/20 transition-all transform hover:-translate-y-0.5"
+                            disabled={isSubmitting}
+                            className={`${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:-translate-y-0.5'} bg-gradient-to-r from-bright-sun-200 to-bright-sun-300 text-gray-900 font-bold px-8 py-2.5 rounded-xl hover:shadow-lg hover:shadow-bright-sun-300/20 transition-all transform`}
                         >
-                            {initialData ? 'Update Coach' : 'Save Coach'}
+                            {isSubmitting ? 'Processing...' : (initialData ? 'Update Coach' : 'Save Coach')}
                         </button>
                     </div>
                 </form>

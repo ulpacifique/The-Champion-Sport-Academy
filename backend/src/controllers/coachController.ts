@@ -70,11 +70,34 @@ export const getCoachById = async (req: Request, res: Response) => {
 };
 
 export const registerCoach = async (req: Request, res: Response) => {
-    const { email, password, firstName, lastName, phoneNumber, qualifications, yearsOfExperience, specialization, salary, sports } = req.body;
+    const { password, firstName, lastName, qualifications, yearsOfExperience, specialization, salary, sports } = req.body;
+    const email = req.body.email?.toLowerCase().trim();
+    const phoneNumber = req.body.phoneNumber?.trim();
 
-    console.log('Registering coach with data:', { email, firstName, lastName, sports });
+    console.log('Registering coach with data:', { email, phoneNumber, firstName, lastName });
 
     try {
+        if (!email) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
+        // Check if user already exists
+        const existingUser = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    { email },
+                    { phoneNumber: phoneNumber || 'NON_EXISTENT_PHONE' }
+                ]
+            }
+        });
+
+        if (existingUser) {
+            console.log('User already exists:', existingUser.email);
+            return res.status(400).json({
+                message: `A user with this ${existingUser.email === email ? 'email' : 'phone number'} already exists`
+            });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Step 1: Create user and coach without sports
