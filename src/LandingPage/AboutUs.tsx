@@ -9,7 +9,6 @@ import {
   IconActivity,
   IconSparkles,
   IconMedal,
-  IconClock,
   IconUserCheck,
   IconArrowLeft,
   IconArrowRight,
