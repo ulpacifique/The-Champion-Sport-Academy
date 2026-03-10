@@ -17,7 +17,6 @@ import {
   IconWorld
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import Header from "../Header/Header";
 import { coreValuesData } from "../Data/coreValues";
 
 const AboutUs = () => {
