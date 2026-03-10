@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
     IconCalendar,
@@ -10,13 +9,10 @@ import {
     IconFriends,
     IconHeartHandshake,
     IconTrophy,
-    IconSparkles,
 } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 import { coreValuesData } from '../Data/coreValues';
-import { galleryAPI } from '../api/galleryAPI';
-import { ASSET_BASE_URL } from '../Services/Api';
 
 const Karate = () => {
     // Animation variants
@@ -55,33 +51,6 @@ const Karate = () => {
             image: `${process.env.PUBLIC_URL}/athletes/competion.jpg`
         }
     ];
-
-
-    // Gallery State
-    const [galleryImages, setGalleryImages] = useState<any[]>([]);
-    const [loadingGallery, setLoadingGallery] = useState(true);
-
-    useEffect(() => {
-        const fetchGallery = async () => {
-            try {
-                const [karatePhotos, generalPhotos] = await Promise.all([
-                    galleryAPI.getImagesByCategory('KARATE'),
-                    galleryAPI.getImagesByCategory('GENERAL')
-                ]);
-
-                const allPhotos = [...karatePhotos, ...generalPhotos]
-                    .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime());
-
-                setGalleryImages(allPhotos);
-            } catch (error) {
-                console.error("Failed to fetch gallery images", error);
-            } finally {
-                setLoadingGallery(false);
-            }
-        };
-
-        fetchGallery();
-    }, []);
 
     // Core Values (shared data + local icons)
     const valueIcons = [

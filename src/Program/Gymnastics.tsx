@@ -13,8 +13,7 @@ import {
     IconChevronRight,
     IconPhoto,
     IconX,
-    IconChevronLeft,
-    IconSparkles
+    IconChevronLeft
 } from '@tabler/icons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../Header/Header';

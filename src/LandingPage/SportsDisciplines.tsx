@@ -1,11 +1,10 @@
 import { Carousel } from "@mantine/carousel";
 import { useState, useEffect } from "react";
-import { IconActivity, IconArrowLeft, IconArrowRight, IconMail, IconPhone, IconShield, IconUserCheck, IconSparkles } from "@tabler/icons-react";
+import { IconActivity, IconArrowLeft, IconArrowRight, IconShield } from "@tabler/icons-react";
 import {
     IconCertificate,
     IconCalendarEvent,
     IconShoppingCart,
-    IconWorld,
     IconUsers,
     IconTrophy,
     IconMedal,
@@ -286,49 +285,17 @@ const SportsDisciplines = () => {
                 </div>
             </div>
 
-            {/* Founder & CEO Section */}
-            <div className="container mx-auto px-4 py-16">
-                <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-12 transition-all duration-1000 shadow-sm dark:shadow-none ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div className="flex flex-col md:flex-row items-center gap-16">
-                        <div className="relative group">
-                            <div className="absolute inset-0 bg-bright-sun-600 dark:bg-bright-sun-300 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                            <div className="relative w-48 h-48 md:w-64 md:h-64 bg-white dark:bg-cerulean-blue-800 rounded-full flex items-center justify-center border-8 border-white dark:border-cerulean-blue-900 shadow-2xl overflow-hidden">
-                                <IconUserCheck size={100} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                            </div>
-                        </div>
-                        <div className="flex-1 text-center md:text-left">
-                            <div className="text-bright-sun-600 dark:text-bright-sun-300 text-xs font-black uppercase tracking-[0.3em] mb-4">Visionary Leadership</div>
-                            <h2 className="text-4xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white mb-2 uppercase italic tracking-tighter">Noël Nkuranyabahizi</h2>
-                            <div className="text-gray-600 dark:text-gray-400 text-xl font-bold mb-8 uppercase tracking-widest">Founder & CEO</div>
-                            <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl font-medium leading-relaxed mb-10 border-l-4 border-bright-sun-600 dark:border-bright-sun-300 pl-8 italic">
-                                "Leading the vision of developing Champions for Life with a commitment to professionalism, excellence, and community impact through sport and education."
-                            </p>
-                            <div className="flex flex-wrap justify-center md:justify-start gap-8">
-                                <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">
-                                    <IconMail size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                                    <span>noel@thechampions.rw</span>
-                                </div>
-                                <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">
-                                    <IconSparkles size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                                    <span>Kigali, Rwanda</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Our Commitment */}
+            {/* Our Commitment - light in light mode, dark blue in dark mode */}
             <div className="container mx-auto px-4 py-32">
-                <div className={`bg-cerulean-blue-900 dark:bg-white border border-cerulean-blue-800 dark:border-gray-100 rounded-[3.5rem] p-12 md:p-24 text-center transition-all duration-1000 shadow-2xl ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                <div className={`bg-white dark:bg-cerulean-blue-800 border border-gray-100 dark:border-white/10 rounded-[3.5rem] p-12 md:p-24 text-center transition-all duration-1000 shadow-2xl ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                     <div className="max-w-4xl mx-auto">
-                        <div className="inline-flex items-center justify-center w-24 h-24 bg-white/10 dark:bg-bright-sun-300/10 rounded-3xl mb-12 border border-white/10 dark:border-bright-sun-300/20 shadow-inner">
-                            <IconShield className="text-white dark:text-bright-sun-600" size={48} />
+                        <div className="inline-flex items-center justify-center w-24 h-24 bg-bright-sun-100 dark:bg-white/10 rounded-3xl mb-12 border border-bright-sun-200 dark:border-white/20 shadow-inner">
+                            <IconShield className="text-bright-sun-600 dark:text-bright-sun-300" size={48} />
                         </div>
 
-                        <h2 className="text-4xl md:text-6xl font-black text-white dark:text-cerulean-blue-900 mb-8 uppercase italic tracking-tighter">Our Commitment</h2>
+                        <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-8 uppercase italic tracking-tighter">Our Commitment</h2>
 
-                        <p className="text-cerulean-blue-100 dark:text-gray-600 text-xl md:text-2xl font-medium mb-16 leading-relaxed">
+                        <p className="text-gray-600 dark:text-gray-200 text-xl md:text-2xl font-medium mb-16 leading-relaxed">
                             At The Champions Sports Academy, we believe sport is more than competition.
                             It is an educational and social force that shapes healthier individuals and
                             stronger communities.
@@ -336,17 +303,17 @@ const SportsDisciplines = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                             {[
-                                { name: 'Professionalism', icon: IconStar, color: 'bg-white/5 dark:bg-gray-50' },
-                                { name: 'Safeguarding', icon: IconShield, color: 'bg-white/5 dark:bg-gray-50' },
-                                { name: 'Inclusion', icon: IconUsers, color: 'bg-white/5 dark:bg-gray-50' },
-                                { name: 'Excellence', icon: IconTrophy, color: 'bg-white/5 dark:bg-gray-50' }
+                                { name: 'Professionalism', icon: IconStar },
+                                { name: 'Safeguarding', icon: IconShield },
+                                { name: 'Inclusion', icon: IconUsers },
+                                { name: 'Excellence', icon: IconTrophy }
                             ].map((item) => (
                                 <div
                                     key={item.name}
-                                    className={`${item.color} border border-white/10 dark:border-gray-200 rounded-3xl p-8 hover:scale-105 transition-all duration-300 group cursor-pointer shadow-sm`}
+                                    className="bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-3xl p-8 hover:scale-105 transition-all duration-300 group cursor-pointer shadow-sm"
                                 >
-                                    <item.icon className="text-bright-sun-300 dark:text-bright-sun-600 mb-4 mx-auto group-hover:scale-110 transition-transform" size={32} />
-                                    <div className="text-white dark:text-cerulean-blue-900 font-black uppercase tracking-widest text-xs">{item.name}</div>
+                                    <item.icon className="text-bright-sun-600 dark:text-bright-sun-300 mb-4 mx-auto group-hover:scale-110 transition-transform" size={32} />
+                                    <div className="text-cerulean-blue-900 dark:text-white font-black uppercase tracking-widest text-xs">{item.name}</div>
                                 </div>
                             ))}
                         </div>

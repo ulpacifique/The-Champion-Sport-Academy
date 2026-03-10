@@ -1,11 +1,21 @@
 import { useState, useEffect, useCallback } from "react";
-import { IconMail, IconPhone, IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconUserCheck, IconAward, IconTrophy, IconMapPin } from "@tabler/icons-react";
+import { IconMail, IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconMapPin, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { motion, AnimatePresence } from "framer-motion";
+
+const FOUNDER_BIO = [
+    "Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.",
+    "He became the first karate coach in the world to receive an Olympic Solidarity Scholarship for Coaches after karate was included in the Olympic Games programme. This prestigious scholarship enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international coaching programme for elite sport coaches.",
+    "His coaching expertise focuses particularly on Karate and Gymnastics, where he works across children's sport development, high-performance athlete preparation, and coach education, contributing to the development of athletes and coaches at both national and international levels.",
+    "His professional engagement extends internationally in coach education, Olympic education, sport event management, and sport for youth development.",
+    "Noël is also a Professional Social Worker in Sport and an active member of the Alliance of Social Workers in Sport. He has participated and presented at international symposiums in the United States, including events held in Denver (2019) and New Orleans (2023).",
+    "He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese.",
+];
 
 const Founder = () => {
     const [animate, setAnimate] = useState(false);
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
+    const [bioExpanded, setBioExpanded] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
@@ -81,25 +91,44 @@ const Founder = () => {
                             <h1 className="text-5xl md:text-7xl font-black text-cerulean-blue-900 dark:text-white mb-4 leading-none uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Noël Nkuranyabahizi</h1>
                             <div className="text-bright-sun-600 dark:text-bright-sun-300 text-2xl font-black mb-10 uppercase tracking-widest italic tracking-tighter">Founder & CEO</div>
 
-                            <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed mb-12 max-w-4xl font-medium">
+                            <div className="max-w-4xl mb-12">
+                                <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed font-medium">
                                 <p className="border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8 italic">
-                                    Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.
-                                </p>
-                                <p>
-                                    He became the first karate coach in the world to receive an Olympic Solidarity Scholarship for Coaches after karate was included in the Olympic Games programme. This prestigious scholarship enabled him to attend the CYSél – Cycle International du Sport d’Elite programme in Lausanne, Switzerland, an advanced international coaching programme for elite sport coaches.
-                                </p>
-                                <p>
-                                    His coaching expertise focuses particularly on Karate and Gymnastics, where he works across children’s sport development, high-performance athlete preparation, and coach education, contributing to the development of athletes and coaches at both national and international levels.
-                                </p>
-                                <p>
-                                    His professional engagement extends internationally in coach education, Olympic education, sport event management, and sport for youth development.
-                                </p>
-                                <p>
-                                    Noël is also a Professional Social Worker in Sport and an active member of the Alliance of Social Workers in Sport. He has participated and presented at international symposiums in the United States, including events held in Denver (2019) and New Orleans (2023).
-                                </p>
-                                <p>
-                                    He is currently pursuing a Master’s Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese.
-                                </p>
+                                        {FOUNDER_BIO[0]}
+                                    </p>
+                                    <AnimatePresence initial={false}>
+                                        {bioExpanded && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="space-y-6 overflow-hidden"
+                                            >
+                                                {FOUNDER_BIO.slice(1).map((para, i) => (
+                                                    <p key={i}>{para}</p>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setBioExpanded((v) => !v)}
+                                    className="mt-8 inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm border-2 border-cerulean-blue-900/30 dark:border-white/30 bg-white dark:bg-white/10 text-cerulean-blue-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/20 transition-all"
+                                >
+                                    {bioExpanded ? (
+                                        <>
+                                            Read Less
+                                            <IconChevronUp size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                                        </>
+                                    ) : (
+                                        <>
+                                            Read More
+                                            <IconChevronDown size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                                        </>
+                                    )}
+                                </button>
                             </div>
 
                             <div className="flex flex-wrap justify-center lg:justify-start gap-12 pt-8 border-t border-gray-200 dark:border-white/5">
