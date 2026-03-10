@@ -23,6 +23,7 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
     });
 
     const [sportInput, setSportInput] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     React.useEffect(() => {
         if (initialData) {
@@ -76,8 +77,6 @@ const AddCoachModal: React.FC<AddCoachModalProps> = ({ isOpen, onClose, onSubmit
             sports: prev.sports.filter(s => s !== sport)
         }));
     };
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
