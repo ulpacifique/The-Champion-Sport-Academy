@@ -215,23 +215,13 @@ const Founder = () => {
                     </div>
                 </div>
             </section>
-            {/* Professional */}
-            <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Professional
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Content for this section can be added here.
-                    </p>
-                </div>
-            </section>
+            
 
             {/* 3. Social Worker in Sport */}
             <section id="social-worker-in-sport" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Social Worker in Sport
+                       Professional Social Worker in Sport
                     </h2>
                     <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                         <p>Noël Nkuranyabahizi is a Professional Social Worker in Sport whose work focuses on the use of sport as a tool for youth development, psychosocial well-being, and positive social change. With a Bachelor's Degree in Social Work, he integrates social work principles with sport coaching and athlete development to support the holistic well-being of children, youth, athletes, and coaches.</p>
@@ -249,9 +239,11 @@ const Founder = () => {
                     <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
                         Sport Events Management
                     </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Content for this section can be added here.
-                    </p>
+                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p>Noël Nkuranyabahizi is a Sport Events Manager and International Elite Sports Coach with significant experience in the organization and management of national and international sport events. He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, where he leads the development of sport programmes, competitions, and youth sport initiatives.</p>
+                        <p>He has managed and coordinated major national and international sport events, contributing to event planning, technical coordination, and operational management. Notably, he served as Event Manager for the African Rhythmic Gymnastics Championships held in Rwanda, supporting the successful organization of this continental competition.</p>
+                        <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese, further strengthening his expertise in sport event management and Olympic sport systems.</p>
+                    </div>
                 </div>
             </section>
 

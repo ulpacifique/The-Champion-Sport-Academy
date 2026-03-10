@@ -94,13 +94,13 @@ const EventPage = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
+      <div className="min-h-[100vh] bg-white dark:bg-cerulean-blue-900 font-['Poppins'] transition-colors duration-300">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
-            <p className="text-white mt-4">Loading videos...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cerulean-blue-600 dark:border-white mx-auto"></div>
+            <p className="text-cerulean-blue-900 dark:text-white mt-4">Loading videos...</p>
           </div>
         </main>
         <Footer />
@@ -111,21 +111,21 @@ const EventPage = () => {
   // Error state
   if (error) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
+      <div className="min-h-[100vh] bg-white dark:bg-cerulean-blue-900 font-['Poppins'] transition-colors duration-300">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto text-center">
-            <div className="text-red-400 mb-4">
+            <div className="text-red-500 dark:text-red-400 mb-4">
               <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Error Loading Content</h3>
-            <p className="text-gray-400 mb-6">{error}</p>
+            <h3 className="text-xl font-bold text-cerulean-blue-900 dark:text-white mb-2">Error Loading Content</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">{error}</p>
             <button
               onClick={fetchVideos}
-              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
+              className="inline-flex items-center px-6 py-3 bg-cerulean-blue-600 dark:bg-blue-600 hover:bg-cerulean-blue-700 dark:hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
             >
               Try Again
             </button>
@@ -139,33 +139,33 @@ const EventPage = () => {
   // Empty state - no videos in the database
   if (videos.length === 0) {
     return (
-      <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
+      <div className="min-h-[100vh] bg-white dark:bg-cerulean-blue-900 font-['Poppins'] transition-colors duration-300">
         <Header />
         <SportsDisciplines />
         <main className="py-16 px-4 md:px-8 lg:px-16">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-cerulean-blue-900 dark:text-white mb-4">
                 Video Library
               </h1>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
                 Watch full coverage, highlights, and exclusive content from The Champions Sports Academy
               </p>
             </div>
 
             {/* No Videos Message */}
             <div className="text-center py-16">
-              <div className="text-gray-400 mb-4">
+              <div className="text-gray-500 dark:text-gray-400 mb-4">
                 <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">No Videos Available</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-2xl font-bold text-cerulean-blue-900 dark:text-white mb-2">No Videos Available</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">
                 No videos have been added yet. Check back soon for exciting content!
               </p>
-              <p className="text-gray-500 text-sm mt-8">
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-8">
                 Admin: Add videos through the admin panel to display them here.
               </p>
             </div>
@@ -178,17 +178,17 @@ const EventPage = () => {
   }
 
   return (
-    <div className="min-h-[100vh] bg-cerulean-blue-900 font-['Poppins']">
+    <div className="min-h-[100vh] bg-white dark:bg-cerulean-blue-900 font-['Poppins'] transition-colors duration-300">
       <Header />
       <SportsDisciplines />
       <main className="py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-cerulean-blue-900 dark:text-white mb-4">
               Video Library
             </h1>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
               Watch full coverage, highlights, and exclusive content from The Champions Sports Academy
             </p>
           </div>
@@ -201,8 +201,8 @@ const EventPage = () => {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-5 py-2 rounded-full transition-colors duration-300 ${selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-cerulean-blue-800 text-gray-300 hover:bg-cerulean-blue-700'
+                    ? 'bg-cerulean-blue-600 dark:bg-blue-600 text-white'
+                    : 'bg-gray-200 dark:bg-cerulean-blue-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-cerulean-blue-700'
                     }`}
                 >
                   {category}
@@ -216,11 +216,11 @@ const EventPage = () => {
             {filteredVideos.map((video) => (
               <div
                 key={video.id}
-                className="bg-cerulean-blue-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                className="bg-white dark:bg-cerulean-blue-900 rounded-xl overflow-hidden shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 onClick={() => openVideoModal(video)}
               >
                 {/* Video Thumbnail */}
-                <div className="relative pt-[56.25%] bg-cerulean-blue-800">
+                <div className="relative pt-[56.25%] bg-gray-200 dark:bg-cerulean-blue-800">
                   {video.thumbnailUrl ? (
                     <img
                       src={video.thumbnailUrl.startsWith('http') ? video.thumbnailUrl : `http://localhost:8081${video.thumbnailUrl}`}
@@ -252,7 +252,7 @@ const EventPage = () => {
                     {video.duration}
                   </div>
                   <div className="absolute top-4 left-4">
-                    <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                    <span className="inline-block bg-cerulean-blue-600 dark:bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
                       {video.category}
                     </span>
                   </div>
@@ -261,21 +261,21 @@ const EventPage = () => {
                 {/* Video Info */}
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold text-white mb-2">
+                    <h3 className="text-xl font-bold text-cerulean-blue-900 dark:text-white mb-2">
                       {video.title}
                     </h3>
                   </div>
 
-                  <p className="text-gray-300 mb-4 line-clamp-2">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
                     {video.description}
                   </p>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400 text-sm">
+                    <span className="text-gray-500 dark:text-gray-400 text-sm">
                       {new Date(video.createdAt).toLocaleDateString()}
                     </span>
                     {video.views > 0 && (
-                      <div className="flex items-center text-gray-400 text-sm">
+                      <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm">
                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -292,16 +292,16 @@ const EventPage = () => {
           {/* Empty Filter State */}
           {filteredVideos.length === 0 && (
             <div className="text-center py-16">
-              <div className="text-gray-400 mb-4">
+              <div className="text-gray-500 dark:text-gray-400 mb-4">
                 <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">No Videos Found</h3>
-              <p className="text-gray-400 mb-6">No videos available for "{selectedCategory}" category</p>
+              <h3 className="text-xl font-bold text-cerulean-blue-900 dark:text-white mb-2">No Videos Found</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">No videos available for "{selectedCategory}" category</p>
               <button
                 onClick={() => setSelectedCategory("All")}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
+                className="inline-flex items-center px-6 py-3 bg-cerulean-blue-600 dark:bg-blue-600 hover:bg-cerulean-blue-700 dark:hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
               >
                 Show All Videos
               </button>
@@ -319,7 +319,7 @@ const EventPage = () => {
             onClick={closeVideoModal}
           >
             <div
-              className="bg-cerulean-blue-900 rounded-2xl w-full max-w-4xl overflow-hidden"
+              className="bg-white dark:bg-cerulean-blue-900 rounded-2xl w-full max-w-4xl overflow-hidden border border-gray-200 dark:border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Video Player */}
@@ -358,19 +358,19 @@ const EventPage = () => {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h2 className="text-2xl font-bold text-white mb-2">
+                    <h2 className="text-2xl font-bold text-cerulean-blue-900 dark:text-white mb-2">
                       {selectedVideo.title}
                     </h2>
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full">
+                    <div className="flex items-center gap-4 mb-4 flex-wrap">
+                      <span className="inline-block bg-cerulean-blue-600 dark:bg-blue-600 text-white px-3 py-1 rounded-full">
                         {selectedVideo.category}
                       </span>
-                      <span className="text-gray-400">
+                      <span className="text-gray-500 dark:text-gray-400">
                         {new Date(selectedVideo.createdAt).toLocaleDateString()}
                       </span>
-                      <span className="text-gray-400">{selectedVideo.duration}</span>
+                      <span className="text-gray-500 dark:text-gray-400">{selectedVideo.duration}</span>
                       {selectedVideo.views > 0 && (
-                        <span className="text-gray-400">
+                        <span className="text-gray-500 dark:text-gray-400">
                           {selectedVideo.views.toLocaleString()} views
                         </span>
                       )}
@@ -378,14 +378,14 @@ const EventPage = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
                   {selectedVideo.description}
                 </p>
 
                 <div className="flex justify-end">
                   <button
                     onClick={closeVideoModal}
-                    className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                    className="px-6 py-2 bg-gray-600 dark:bg-gray-700 hover:bg-gray-500 dark:hover:bg-gray-600 text-white rounded-lg transition-colors"
                   >
                     Close
                   </button>

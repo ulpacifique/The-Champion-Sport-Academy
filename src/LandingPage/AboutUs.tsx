@@ -43,11 +43,11 @@ const AboutUs = () => {
   // Management Team / Coaches
   const coaches = [
     {
-      name: "Coach Noel NKURANYABAHIZI",
-      role: "Senior Master & Founder",
-      experience: "30+ Years",
-      specialty: "Master Coach & Leadership",
-      image: `${process.env.PUBLIC_URL}/athletes/Noel.jpg`
+      name: "Coach Kharif",
+      role: "Head Karate Coach",
+      experience: "Expert Trainer",
+      specialty: "Youth Development & Karate",
+      image: `${process.env.PUBLIC_URL}/athletes/Khalif.PNG`
     },
     {
       name: "Coach Dushime Sharifu",
@@ -62,13 +62,6 @@ const AboutUs = () => {
       experience: "12+ Years",
       specialty: "Artistic & Rhythmic",
       image: `${process.env.PUBLIC_URL}/athletes/palmonique.jpg`
-    },
-    {
-      name: "Coach Khalif",
-      role: "Senior Instructor",
-      experience: "Expert Trainer",
-      specialty: "Youth Development & Karate",
-      image: `${process.env.PUBLIC_URL}/athletes/Khalif.PNG`
     },
     {
       name: "Coach Pacifique",
@@ -323,6 +316,9 @@ const AboutUs = () => {
       {/* Management Team Section - circular overlapping layout */}
       <section className="py-32 relative overflow-hidden bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-16 text-center underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+            Management team
+          </h2>
           <div className="flex flex-col lg:flex-row gap-20 items-center mb-32">
             <div className="lg:w-1/2 relative flex justify-center lg:justify-end items-center min-h-[380px] lg:min-h-[420px]">
               {/* Larger circle - team (right/top in reference) */}
@@ -334,11 +330,11 @@ const AboutUs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/30 to-transparent pointer-events-none"></div>
               </div>
-              {/* Smaller overlapping circle - founder (bottom-left, in front of main circle) */}
+              {/* Smaller overlapping circle - Head Karate Coach (bottom-left, in front of main circle) */}
               <div className="absolute left-[5%] bottom-[2%] lg:left-[8%] lg:bottom-[4%] z-20 w-[180px] h-[180px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden border-[8px] border-white dark:border-cerulean-blue-900 shadow-2xl group hidden sm:block">
                 <img
-                  src={`${process.env.PUBLIC_URL}/athletes/Noel.jpg`}
-                  alt="Founder"
+                  src={`${process.env.PUBLIC_URL}/athletes/Khalif.PNG`}
+                  alt="Coach Kharif - Head Karate Coach"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
               </div>
@@ -486,14 +482,6 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer Info */}
-      <footer className="py-16 text-center border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/[0.01]">
-        <div className="flex items-center justify-center space-x-3 text-gray-400 dark:text-gray-500 font-black uppercase tracking-[0.4em] text-[10px]">
-          <IconClock size={16} className="text-bright-sun-600 dark:text-bright-sun-300" />
-          <span>Saturday - Sunday • 09:00 AM - 06:00 PM</span>
-        </div>
-      </footer>
     </div>
   );
 };

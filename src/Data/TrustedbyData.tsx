@@ -3,6 +3,5 @@ export const trustedBy = [
     "olympics",
     "igihe",
     "gym",
-    "minister of sport",
-    "RwandaKarate"
+    "minister of sport"
 ];
