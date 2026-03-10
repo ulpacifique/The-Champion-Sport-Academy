@@ -201,17 +201,103 @@ const Founder = () => {
                 </div>
             </div>
 
-            {/* 2. Sport Coaching */}
+            {/* 2. Sport Coaching — one photo per row, alternate: words left/photo right, then photo left/words right */}
             <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
                         International Elite Sports Coach
                     </h2>
-                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>Noël Nkuranyabahizi is an International Elite Sports Coach, coach developer, and sport development leader specializing in multi-sport athlete development, particularly in Karate and Gymnastics. He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, an organization dedicated to promoting physical literacy, Olympic values, and long-term athlete development for children and youth.</p>
-                        <p>A 4th Dan Black Belt in Karate, Noël served as Head Coach of the Rwanda National Karate Team (2015–2023), where he led national athlete development programmes and prepared athletes for regional and continental competitions. His work focuses on elite coaching, grassroots sport development, and coach education, supporting both athletes and coaches through structured development pathways.</p>
-                        <p>He is the recipient of the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his contribution to sport development in Rwanda. He also received an Olympic Solidarity Scholarship for Coaches, which enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international programme for elite sport coaches.</p>
-                        <p>Through his leadership and international engagement, Noël contributes to strengthening coaching systems, athlete development, and values-based sport education. He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese</p>
+
+                    <div className="space-y-12 md:space-y-16">
+                        {/* 1: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/team2.jfif`} alt="Team coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Noël Nkuranyabahizi is an International Elite Sports Coach, coach developer, and sport development leader specializing in multi-sport athlete development, particularly in Karate and Gymnastics.</p>
+                            </div>
+                        </div>
+
+                        {/* 2: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/team rwanda.jpeg`} alt="Team Rwanda" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, an organization dedicated to promoting physical literacy, Olympic values, and long-term athlete development for children and youth.</p>
+                            </div>
+                        </div>
+
+                        {/* 3: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/IM1.jfif`} alt="Elite coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>A 4th Dan Black Belt in Karate, Noël served as Head Coach of the Rwanda National Karate Team (2015–2023), where he led national athlete development programmes and prepared athletes for regional and continental competitions.</p>
+                            </div>
+                        </div>
+
+                        {/* 4: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/in camp.jpg`} alt="In camp" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>His work focuses on elite coaching, grassroots sport development, and coach education, supporting both athletes and coaches through structured development pathways.</p>
+                            </div>
+                        </div>
+
+                        {/* 5: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/in stade.JPG`} alt="In stade" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He is the recipient of the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his contribution to sport development in Rwanda.</p>
+                            </div>
+                        </div>
+
+                        {/* 6: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/award.jfif`} alt="Award" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He also received an Olympic Solidarity Scholarship for Coaches, which enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international programme for elite sport coaches.</p>
+                            </div>
+                        </div>
+
+                        {/* 7: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/team.jfif`} alt="Team" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Through his leadership and international engagement, Noël contributes to strengthening coaching systems, athlete development, and values-based sport education.</p>
+                            </div>
+                        </div>
+
+                        {/* 8: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/graduation.jpg`} alt="Graduation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese.</p>
+                            </div>
+                        </div>
+
+                        {/* 9: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/coahing/master sinzi.jpeg`} alt="Master Sinzi" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Meet the people and moments behind our academy—team sessions, awards, and the path to mastery.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
