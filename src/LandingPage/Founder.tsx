@@ -34,8 +34,7 @@ const Founder = () => {
     const galleryImages = Array.from({ length: 18 }, (_, i) => ({
         id: i + 1,
         src: `${process.env.PUBLIC_URL}/OurFounderGallery/${i + 1}.jpeg`,
-        title: `Moment ${i + 1}`,
-        description: "" // Space left for user to provide descriptions
+        title: `Moment ${i + 1}`
     }));
 
     const handlePrevious = useCallback((e?: React.MouseEvent) => {
@@ -158,42 +157,24 @@ const Founder = () => {
                     </motion.div>
                 </div>
 
-                <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8 max-w-[1600px] mx-auto px-4">
+                <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-[1600px] mx-auto px-4 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} transition-all duration-700`}>
                     {galleryImages.map((image, index) => (
                         <div
                             key={image.id}
                             onClick={() => setSelectedImage(image.id)}
-                            className={`group relative bg-white dark:bg-cerulean-blue-900 border-[8px] border-white dark:border-cerulean-blue-900 rounded-[2.5rem] overflow-hidden cursor-pointer transition-all duration-700 hover:scale-[1.03] shadow-2xl ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                                }`}
-                            style={{ transitionDelay: `${index * 50}ms` }}
+                            className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer bg-white dark:bg-cerulean-blue-900 border-4 border-white dark:border-cerulean-blue-900 shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+                            style={{ transitionDelay: `${index * 30}ms` }}
                         >
-                            {/* Image Container */}
-                            <div className="aspect-square overflow-hidden relative">
-                                <img
-                                    src={image.src}
-                                    alt={image.title}
-                                    className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                                    loading="lazy"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950 via-transparent to-transparent opacity-60 z-10" />
-
-                                {/* View Overlay */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                                    <div className="p-5 bg-bright-sun-300 rounded-full text-cerulean-blue-950 scale-50 group-hover:scale-100 transition-transform duration-500 shadow-2xl">
-                                        <IconPhoto size={32} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Info */}
-                            <div className="p-8 relative z-20">
-                                <h3 className="text-cerulean-blue-900 dark:text-white font-black mb-2 text-xl italic tracking-tighter uppercase transition-colors">
-                                    {image.title}
-                                </h3>
-                                <div className="border-l-4 border-bright-sun-500/30 dark:border-bright-sun-300/30 pl-4 py-2">
-                                    <p className="text-gray-500 dark:text-gray-400 text-xs font-black uppercase tracking-widest leading-loose">
-                                        {image.description || "The Legacy of Excellence"}
-                                    </p>
+                            <img
+                                src={image.src}
+                                alt={image.title}
+                                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                                <div className="p-3 bg-bright-sun-300 rounded-full text-cerulean-blue-900 shadow-xl">
+                                    <IconPhoto size={24} />
                                 </div>
                             </div>
                         </div>
@@ -303,18 +284,54 @@ const Founder = () => {
             </section>
             
 
-            {/* 3. Social Worker in Sport */}
+            {/* 3. Professional Social Worker in Sport — one photo per row, alternate left/right (photos from SocialWork) */}
             <section id="social-worker-in-sport" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                       Professional Social Worker in Sport
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                        Professional Social Worker in Sport
                     </h2>
-                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>Noël Nkuranyabahizi is a Professional Social Worker in Sport whose work focuses on the use of sport as a tool for youth development, psychosocial well-being, and positive social change. With a Bachelor's Degree in Social Work, he integrates social work principles with sport coaching and athlete development to support the holistic well-being of children, youth, athletes, and coaches.</p>
-                        <p>Through his professional engagement in the field of sport and social work, he became a member of the Alliance of Social Workers in Sport (ASWIS) based in the United States, an international network dedicated to advancing social work practice in sport environments.</p>
-                        <p>Noël has contributed to the global dialogue on sport and social development through international academic presentations. In 2019, he presented at the Social Work in Sport International Symposium in Denver, Colorado, where he delivered a presentation on "The Role of Karate in Improving Children's Self-Esteem," highlighting how martial arts can contribute to confidence building, discipline, and psychosocial development among young participants.</p>
-                        <p>He also presented at the Social Work in Sport International Symposium held at Tulane University in New Orleans, Louisiana, where he shared research on "The Impact of Elite Sport Coaching Activities on the Coaches' Mental Well-being in Rwanda." His work examined the psychological pressures experienced by elite sport coaches and emphasized the importance of supportive systems that protect the mental health and well-being of coaching professionals.</p>
-                        <p>Through his work in coaching, youth sport development, and social work in sport, Noël continues to advocate for sport as a powerful platform for education, inclusion, mental well-being, and community development, contributing to both national and international discussions on the social value of sport.</p>
+
+                    <div className="space-y-12 md:space-y-16">
+                        {/* 1: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/SocialWork/Sport International Symposium.jfif`} alt="Sport International Symposium" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Noël Nkuranyabahizi is a Professional Social Worker in Sport whose work focuses on the use of sport as a tool for youth development, psychosocial well-being, and positive social change. With a Bachelor's Degree in Social Work, he integrates social work principles with sport coaching and athlete development to support the holistic well-being of children, youth, athletes, and coaches.</p>
+                            </div>
+                        </div>
+
+                        {/* 2: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/SocialWork/global Dialogue.jfif`} alt="Global dialogue on sport and social development" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Through his professional engagement in the field of sport and social work, he became a member of the Alliance of Social Workers in Sport (ASWIS) based in the United States, an international network dedicated to advancing social work practice in sport environments.</p>
+                            </div>
+                        </div>
+
+                        {/* 3: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/SocialWork/member Of Alliance.jfif`} alt="Member of Alliance of Social Workers in Sport" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Noël has contributed to the global dialogue on sport and social development through international academic presentations. In 2019, he presented at the Social Work in Sport International Symposium in Denver, Colorado, where he delivered a presentation on "The Role of Karate in Improving Children's Self-Esteem," highlighting how martial arts can contribute to confidence building, discipline, and psychosocial development among young participants.</p>
+                            </div>
+                        </div>
+
+                        {/* 4: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${process.env.PUBLIC_URL}/SocialWork/highLevelDegree.jfif`} alt="High level degree and expertise" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
+                                <p>He also presented at the Social Work in Sport International Symposium held at Tulane University in New Orleans, Louisiana, where he shared research on "The Impact of Elite Sport Coaching Activities on the Coaches' Mental Well-being in Rwanda." His work examined the psychological pressures experienced by elite sport coaches and emphasized the importance of supportive systems that protect the mental health and well-being of coaching professionals.</p>
+                                <p>Through his work in coaching, youth sport development, and social work in sport, Noël continues to advocate for sport as a powerful platform for education, inclusion, mental well-being, and community development, contributing to both national and international discussions on the social value of sport.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -394,7 +411,7 @@ const Founder = () => {
                                 </h3>
                                 <div className="h-1 w-20 bg-bright-sun-300 mx-auto rounded-full" />
                                 <p className="text-gray-400 font-black uppercase tracking-[0.4em] text-xs">
-                                    {galleryImages[selectedImage - 1].description || "The Champion Sport Academy Legacy"}
+                                    The Champion Sport Academy Legacy
                                 </p>
                             </div>
                         </motion.div>

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { IconSparkles } from "@tabler/icons-react";
 import AuthPages from "../Page/AuthPages";
 
-const HERO_VIDEO_SRC = `${process.env.PUBLIC_URL || ""}/athletes/champVideo.3GP`;
+const HERO_VIDEO_SRC = `${process.env.PUBLIC_URL || ""}/athletes/champVideo.mp4`;
 
 const HeroSection = () => {
     const [animate, setAnimate] = useState(false);

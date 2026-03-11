@@ -68,7 +68,7 @@ const Karate = () => {
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900/80 z-10"></div>
+                <div className="absolute inset-0 bg-white/50 dark:bg-cerulean-blue-900/70 z-10"></div>
                 <div
                     className="absolute inset-0 z-0"
                     style={{
