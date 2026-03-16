@@ -28,9 +28,9 @@ const Contact = () => {
             {/* Hero Section */}
             <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gray-50 dark:bg-cerulean-blue-900">
                 <div
-                    className="absolute inset-0 opacity-5 dark:opacity-[0.07] z-0"
+                    className="absolute inset-0 opacity-10 dark:opacity-[0.07] z-0"
                     style={{
-                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/Champions.jpg)`,
+                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/competion.jpg)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}

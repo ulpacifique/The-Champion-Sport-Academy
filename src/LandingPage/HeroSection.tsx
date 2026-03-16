@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { IconSparkles } from "@tabler/icons-react";
 import AuthPages from "../Page/AuthPages";
 
 const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/champVideo.mp4`;
@@ -57,7 +56,7 @@ const HeroSection = () => {
 
     return (
         <>
-            <div ref={heroRef} className="relative flex items-center px-4 sm:px-6 md:px-10 py-16 sm:py-24 md:py-32 min-h-[90vh] md:min-h-[85vh] overflow-hidden">
+<div ref={heroRef} className="relative flex flex-col items-center justify-start **pt-4 sm:pt-6 md:pt-8** px-4 sm:px-6 md:px-10 py-12 md:py-16 min-h-[90vh] md:min-h-[85vh] overflow-hidden">
                 {/* Background Video - loop, visible with light overlay */}
                 <div className="absolute inset-0 z-0">
                     <video
@@ -81,24 +80,16 @@ const HeroSection = () => {
                 <div className="hidden md:block absolute top-20 right-20 w-72 h-72 bg-bright-sun-300/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="hidden md:block absolute bottom-20 right-40 w-96 h-96 bg-cerulean-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
-                {/* Content Section - Full width on mobile */}
-                <div className="relative z-10 flex flex-col w-full md:w-[65%] gap-6 md:gap-8">
-                    {/* Welcome Badge with Icon */}
-                    <div className={`group px-4 py-2 bg-gradient-to-r from-bright-sun-500/10 to-bright-sun-600/5 dark:from-bright-sun-200/20 dark:to-bright-sun-300/10 w-fit rounded-full border border-bright-sun-500/20 dark:border-bright-sun-200/40 text-bright-sun-600 dark:text-bright-sun-300 font-bold text-xs sm:text-sm tracking-wider uppercase mb-1 md:mb-2 animate-fade-in backdrop-blur-sm hover:scale-105 transition-transform cursor-default ${animate ? 'active' : ''}`}>
-                        <div className="flex items-center gap-1.5 md:gap-2">
-                            <IconSparkles size={14} className="animate-pulse" />
-                            <span className="whitespace-nowrap">Welcome to The Champion Sport Academy</span>
-                        </div>
-                    </div>
-
-                    {/* One line above */}
-                    <p className={`text-sm sm:text-base md:text-lg text-cerulean-blue-800 dark:text-gray-200 font-semibold uppercase tracking-widest drop-shadow-lg ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                {/* Content: title first and centered, up near header */}
+                <div className="relative z-10 flex flex-col items-center text-center w-full max-w-8xl">
+                    {/* One line above the title */}
+                    <p className={`text-sm sm:text-base md:text-lg text-cerulean-blue-800 dark:text-gray-200 font-semibold uppercase tracking-widest drop-shadow-lg whitespace-nowrap mb-3 ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
                         The Champion Sport Academy
                     </p>
 
-                    {/* Title: We Are The Champions For Life */}
-                    <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl">
-                        <div className="flex flex-wrap gap-x-2 md:gap-x-3 gap-y-1">
+                    {/* First: We Are The Champions For Life — centered, at top */}
+                    <div className="text-3xl sm:text-4xl md:text-6xl lg:text-5xl font-bold leading-tight drop-shadow-2xl mb-4 md:mb-6">
+                        <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3 gap-y-1">
                             {["We Are The", "Champions", "For", "Life"].map((word, index) => (
                                 <span
                                     key={index}
@@ -116,18 +107,21 @@ const HeroSection = () => {
                             ))}
                         </div>
                     </div>
+                    <div className="h-8 md:h-60"></div>
+{/* One line below */}
+<p className={`text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 font-medium drop-shadow-lg mb-6 ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`} style={{ transitionDelay: '400ms' }}>
+    Excellence in Sport & Life — Kigali, Rwanda
+</p>
 
-                    {/* One line below */}
-                    <p className={`text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 font-medium drop-shadow-lg max-w-2xl ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`} style={{ transitionDelay: '400ms' }}>
-                        Excellence in Sport & Life — Kigali, Rwanda
-                    </p>
+{/* Add spacer here */}
 
-                    {/* Subtitle - optional longer description */}
-                    <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed mt-2">
-                        <p className={`fade-in-text ${animate ? 'active' : ''}`} style={{ animationDelay: '600ms' }}>
-                            Values-driven sport and physical literacy organization founded in 2017. Delivering high-quality sport and education while contributing to national sport development.
-                        </p>
-                    </div>
+
+{/* Subtitle */}
+<div className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed mx-auto">
+    <p className={`fade-in-text ${animate ? 'active' : ''}`} style={{ animationDelay: '600ms' }}>
+        Values-driven sport and physical literacy organization founded in 2017. Delivering high-quality sport and education while contributing to national sport development.
+    </p>
+</div>
 
 
 
