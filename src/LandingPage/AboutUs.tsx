@@ -46,56 +46,56 @@ const AboutUs = () => {
       role: "Head Karate Coach",
       experience: "Expert Trainer",
       specialty: "Youth Development & Karate",
-      image: `${process.env.PUBLIC_URL}/athletes/Khalif.PNG`
+      image: `${import.meta.env.BASE_URL}athletes/Khalif.PNG`
     },
     {
       name: "Coach Dushime Sharifu",
       role: "National Team Athlete",
       experience: "10+ Years",
       specialty: "Acrobatics & Fitness",
-      image: `${process.env.PUBLIC_URL}/athletes/Dushime.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Dushime.jpg`
     },
     {
       name: "Coach ABAYISENGA Paremonique",
       role: "Certified National Coach",
       experience: "12+ Years",
       specialty: "Artistic & Rhythmic",
-      image: `${process.env.PUBLIC_URL}/athletes/palmonique.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/palmonique.jpg`
     },
     {
       name: "Coach Pacifique",
       role: "Instructor",
       experience: "3+ Years",
       specialty: "Taekwondo & Gymnastics",
-      image: `${process.env.PUBLIC_URL}/athletes/Coach Pacifique.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Coach Pacifique.jpg`
     },
     {
       name: "Coach Sylvan",
       role: "Gymnastics Coach",
       experience: "1 Year",
       specialty: "Floor & Vault Training",
-      image: `${process.env.PUBLIC_URL}/athletes/Coach Sylvan.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Coach Sylvan.jpg`
     },
     {
       name: "Coach Tracy",
       role: "Assistant Coach",
       experience: "3 Years",
       specialty: "Core Technique & Flexibility",
-      image: `${process.env.PUBLIC_URL}/athletes/Coach Tracy.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Coach Tracy.jpg`
     },
     {
       name: "Fille",
       role: "Academy Receptionist",
       experience: "Admin Expert",
       specialty: "Student Relations",
-      image: `${process.env.PUBLIC_URL}/athletes/Receptionist Fille.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Receptionist Fille.jpg`
     },
     {
       name: "Mama boy",
       role: "Safeguarding Officer",
       experience: "Welfare Guard",
       specialty: "Safety Oversight",
-      image: `${process.env.PUBLIC_URL}/athletes/Safeguarding Officer.jpg`
+      image: `${import.meta.env.BASE_URL}athletes/Safeguarding Officer.jpg`
     }
   ];
 
@@ -323,7 +323,7 @@ const AboutUs = () => {
               {/* Larger circle - team (right/top in reference) */}
               <div className="relative z-10 w-full max-w-[340px] lg:max-w-[380px] aspect-square rounded-full overflow-hidden border-[10px] border-white dark:border-cerulean-blue-900 shadow-2xl transition-transform duration-1000 hover:scale-[1.02] hover:shadow-bright-sun-500/10 dark:hover:shadow-bright-sun-300/10">
                 <img
-                  src={`${process.env.PUBLIC_URL}/athletes/team.JPG`}
+                  src={`${import.meta.env.BASE_URL}athletes/team.JPG`}
                   alt="Our Team"
                   className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
                 />
@@ -332,7 +332,7 @@ const AboutUs = () => {
               {/* Smaller overlapping circle - Head Karate Coach (bottom-left, in front of main circle) */}
               <div className="absolute left-[5%] bottom-[2%] lg:left-[8%] lg:bottom-[4%] z-20 w-[180px] h-[180px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden border-[8px] border-white dark:border-cerulean-blue-900 shadow-2xl group hidden sm:block">
                 <img
-                  src={`${process.env.PUBLIC_URL}/athletes/Khalif.PNG`}
+                  src={`${import.meta.env.BASE_URL}athletes/Khalif.PNG`}
                   alt="Coach Kharif - Head Karate Coach"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />

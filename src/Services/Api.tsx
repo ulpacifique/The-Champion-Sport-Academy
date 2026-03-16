@@ -3,12 +3,12 @@ import axios from 'axios';
 
 // Use environment variable with fallback
 // Use environment variable with fallback
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 export const API_BASE_URL = `${API_URL}/api`;
 export const ASSET_BASE_URL = API_URL;
 
 console.log('🚀 API URL initialization:', {
-  provided_env: process.env.REACT_APP_API_URL,
+  provided_env: import.meta.env.VITE_API_URL,
   final_url: API_URL,
   api_base: API_BASE_URL
 });

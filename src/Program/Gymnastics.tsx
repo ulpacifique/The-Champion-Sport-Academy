@@ -38,7 +38,7 @@ const Gymnastics = () => {
             features: ["Basic Movement Skills", "Balance & Coordination", "Social Development", "Body Awareness"],
             icon: <IconHeartHandshake size={24} />,
             schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${process.env.PUBLIC_URL}/athletes/team.JPG`
+            image: `${import.meta.env.BASE_URL}athletes/team.JPG`
         },
         {
             title: "Private Home Classes",
@@ -46,7 +46,7 @@ const Gymnastics = () => {
             features: ["Personalized Attention", "Strength Development", "Flexibility", "Rapid Progress"],
             icon: <IconTrophy size={24} />,
             schedule: "Mon - Fri: Available by appointment",
-            image: `${process.env.PUBLIC_URL}/athletes/athlete-2.jpg`
+            image: `${import.meta.env.BASE_URL}athletes/athlete-2.jpg`
         },
         {
             title: "Advanced Gymnastics",
@@ -54,7 +54,7 @@ const Gymnastics = () => {
             features: ["Advanced Techniques", "Competition Prep", "Strength Conditioning", "Mental Training"],
             icon: <IconAward size={24} />,
             schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${process.env.PUBLIC_URL}/athletes/athlete-1.jpg`
+            image: `${import.meta.env.BASE_URL}athletes/athlete-1.jpg`
         }
     ];
 
@@ -129,7 +129,7 @@ const Gymnastics = () => {
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
+                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/Champions.jfif)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
@@ -201,7 +201,7 @@ const Gymnastics = () => {
                                 <div className="absolute -inset-6 bg-bright-sun-600/10 dark:bg-bright-sun-300/10 blur-[100px] rounded-full"></div>
                                 <div className="relative rounded-[3rem] overflow-hidden border-[12px] border-gray-50 dark:border-cerulean-blue-900 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
                                     <img
-                                        src={`${process.env.PUBLIC_URL}/athletes/Instruction.jpg`}
+                                        src={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`}
                                         alt="Gymnastics training"
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />

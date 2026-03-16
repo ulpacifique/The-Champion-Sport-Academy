@@ -19,7 +19,7 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
         console.log('🔐 Attempting Login:', {
             url: `${API_BASE_URL}/auth/login`,
             email: email,
-            env_url: process.env.REACT_APP_API_URL
+            env_url: import.meta.env.VITE_API_URL
         });
 
         try {
@@ -89,7 +89,7 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
 
         console.log('📝 Attempting Registration:', {
             url: `${API_BASE_URL}/auth/register`,
-            env_url: process.env.REACT_APP_API_URL
+            env_url: import.meta.env.VITE_API_URL
         });
 
         try {

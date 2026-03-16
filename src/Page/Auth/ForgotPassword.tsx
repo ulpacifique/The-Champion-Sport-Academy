@@ -40,7 +40,7 @@ const ForgotPassword = ({
         console.log('📧 Requesting OTP:', {
             url: `${API_BASE_URL}/auth/forgot-password`,
             email: email,
-            env_url: process.env.REACT_APP_API_URL
+            env_url: import.meta.env.VITE_API_URL
         });
 
         try {
@@ -104,7 +104,7 @@ const ForgotPassword = ({
         console.log('🔑 Resetting Password:', {
             url: `${API_BASE_URL}/auth/reset-password`,
             email: email,
-            env_url: process.env.REACT_APP_API_URL
+            env_url: import.meta.env.VITE_API_URL
         });
 
         try {

@@ -32,7 +32,7 @@ const Karate = () => {
             features: ["Basic & Advanced Techniques", "Conditioning", "Sparring Sessions", "Kata Training"],
             icon: <IconShield size={24} />,
             schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${process.env.PUBLIC_URL}/athletes/Karate.JPG`
+            image: `${import.meta.env.BASE_URL}athletes/Karate.JPG`
         },
         {
             title: "Private Home Classes",
@@ -40,7 +40,7 @@ const Karate = () => {
             features: ["Personalized Attention", "Flexible Scheduling", "Rapid Progress", "Focused Training"],
             icon: <IconStar size={24} />,
             schedule: "Mon - Fri: Available by appointment",
-            image: `${process.env.PUBLIC_URL}/athletes/Class.jpg`
+            image: `${import.meta.env.BASE_URL}athletes/Class.jpg`
         },
         {
             title: "Competition Team",
@@ -48,7 +48,7 @@ const Karate = () => {
             features: ["Elite Coaching", "Strategy Tactics", "Team Building", "Tournament Support"],
             icon: <IconTrophy size={24} />,
             schedule: "Selected Weekends & Camps",
-            image: `${process.env.PUBLIC_URL}/athletes/competion.jpg`
+            image: `${import.meta.env.BASE_URL}athletes/competion.jpg`
         }
     ];
 
@@ -72,7 +72,7 @@ const Karate = () => {
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Karate.JPG)`,
+                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/Karate.JPG)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
@@ -108,7 +108,7 @@ const Karate = () => {
                                 <div className="absolute -inset-6 bg-bright-sun-600/10 dark:bg-bright-sun-300/10 blur-[100px] rounded-full"></div>
                                 <div className="relative rounded-[3rem] overflow-hidden border-[12px] border-gray-50 dark:border-cerulean-blue-900 shadow-2xl">
                                     <img
-                                        src={`${process.env.PUBLIC_URL}/athletes/karate.png`}
+                                        src={`${import.meta.env.BASE_URL}athletes/karate.png`}
                                         alt="Karate Philosophy"
                                         className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                                     />

@@ -30,7 +30,7 @@ const Contact = () => {
                 <div
                     className="absolute inset-0 opacity-5 dark:opacity-[0.07] z-0"
                     style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/athletes/Champions.jpg)`,
+                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/Champions.jpg)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
