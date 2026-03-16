@@ -26,9 +26,21 @@ const AboutUs = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Core values from shared data + icons
-  const valueIcons = [IconShield, IconUsers, IconActivity, IconHeart, IconTrophy];
-  const coreValues = coreValuesData.map((v, i) => ({ ...v, icon: valueIcons[i] }));
+  // Core values: avatar from public/avatar (1st, 2nd, 3rd, 4th, logo for the five values)
+  const avatarFiles = ["1st.png", "2nd avatart.png", "3rd.png", "4th.png", "logo.png"];
+  const coreValues = coreValuesData.map((v, i) => ({
+    ...v,
+    tagline: v.tagline || v.description.slice(0, 80) + ".",
+    avatar: `${import.meta.env.BASE_URL}avatar/${avatarFiles[i]}`,
+  }));
+  // Card header colors to match reference: Discipline & Excellence = gold/amber, Friendship & Respect = light blue, Teamwork = darker blue
+  const valueHeaderBg = [
+    "bg-amber-500 dark:bg-bright-sun-500",           // Discipline
+    "bg-sky-400 dark:bg-cerulean-blue-400",          // Friendship
+    "bg-cerulean-blue-700 dark:bg-cerulean-blue-600", // Teamwork
+    "bg-sky-400 dark:bg-cerulean-blue-400",          // Respect
+    "bg-amber-500 dark:bg-bright-sun-500",           // Excellence
+  ];
 
 
   // Statistics
@@ -38,67 +50,6 @@ const AboutUs = () => {
     { value: "223+", label: "Medals Won", icon: IconMedal, color: "text-green-600 dark:text-green-400" },
     { value: "18", label: "Trophies Won", icon: IconTrophy, color: "text-purple-600 dark:text-purple-400" },
   ];
-
-  // Management Team / Coaches
-  const coaches = [
-    {
-      name: "Coach Kharif",
-      role: "Head Karate Coach",
-      experience: "Expert Trainer",
-      specialty: "Youth Development & Karate",
-      image: `${import.meta.env.BASE_URL}athletes/Khalif.PNG`
-    },
-    {
-      name: "Coach Dushime Sharifu",
-      role: "National Team Athlete",
-      experience: "10+ Years",
-      specialty: "Acrobatics & Fitness",
-      image: `${import.meta.env.BASE_URL}athletes/Dushime.jpg`
-    },
-    {
-      name: "Coach ABAYISENGA Paremonique",
-      role: "Certified National Coach",
-      experience: "12+ Years",
-      specialty: "Artistic & Rhythmic",
-      image: `${import.meta.env.BASE_URL}athletes/palmonique.jpg`
-    },
-    {
-      name: "Coach Pacifique",
-      role: "Instructor",
-      experience: "3+ Years",
-      specialty: "Taekwondo & Gymnastics",
-      image: `${import.meta.env.BASE_URL}athletes/Coach Pacifique.jpg`
-    },
-    {
-      name: "Coach Sylvan",
-      role: "Gymnastics Coach",
-      experience: "1 Year",
-      specialty: "Floor & Vault Training",
-      image: `${import.meta.env.BASE_URL}athletes/Coach Sylvan.jpg`
-    },
-    {
-      name: "Coach Tracy",
-      role: "Assistant Coach",
-      experience: "3 Years",
-      specialty: "Core Technique & Flexibility",
-      image: `${import.meta.env.BASE_URL}athletes/Coach Tracy.jpg`
-    },
-    {
-      name: "Fille",
-      role: "Academy Receptionist",
-      experience: "Admin Expert",
-      specialty: "Student Relations",
-      image: `${import.meta.env.BASE_URL}athletes/Receptionist Fille.jpg`
-    },
-    {
-      name: "Mama boy",
-      role: "Safeguarding Officer",
-      experience: "Welfare Guard",
-      specialty: "Safety Oversight",
-      image: `${import.meta.env.BASE_URL}athletes/Safeguarding Officer.jpg`
-    }
-  ];
-
 
   return (
     <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
@@ -239,116 +190,91 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="py-24 bg-gray-50/50 dark:bg-cerulean-blue-900 border-y border-gray-100 dark:border-white/10 transition-colors duration-300">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-20 px-4">
-            <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Our Core <span className="text-bright-sun-600 dark:text-bright-sun-300">Values</span></h2>
-            <p className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] text-sm">The principles that guide our growth.</p>
+      {/* Core Values Section – exact match to reference: dark blue banner, logo + gold lines, title, five cards with colored headers + avatar + dark blue text */}
+      <section className="relative overflow-hidden border-y border-gray-200 dark:border-white/10">
+        {/* Top dark blue banner strip */}
+        <div className="h-3 md:h-4 bg-cerulean-blue-900 dark:bg-cerulean-blue-950" aria-hidden />
+
+        {/* Light blue background with subtle splatter/dots texture */}
+        <div className="relative bg-sky-100/90 dark:bg-cerulean-blue-900/80 py-12 md:py-16">
+          <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none" aria-hidden>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.6)_1px,transparent_1px)] bg-[length:24px_24px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[length:32px_32px]" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {coreValues.map((value, index) => (
-              <motion.div
-                key={value.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`group bg-white bg-gradient-to-br ${value.color} dark:bg-cerulean-blue-900/90 border border-gray-100 dark:border-white/20 rounded-[2.5rem] p-10 text-center shadow-sm dark:shadow-lg dark:shadow-black/20 transition-all duration-500 hover:scale-105 cursor-default hover:shadow-2xl`}
-              >
-                <div className={`inline-flex items-center justify-center w-20 h-20 ${value.iconColor} bg-gray-50 dark:bg-cerulean-blue-800 rounded-2xl mb-8 shadow-inner group-hover:rotate-12 transition-transform`}>
-                  <value.icon size={36} />
-                </div>
-                <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white mb-4 uppercase italic tracking-tight">{value.name}</h3>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest leading-loose">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Management Team Section - circular overlapping layout */}
-      <section className="py-32 relative overflow-hidden bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-16 text-center underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-            Management team
-          </h2>
-          <div className="flex flex-col lg:flex-row gap-20 items-center mb-32">
-            <div className="lg:w-1/2 relative flex justify-center lg:justify-end items-center min-h-[380px] lg:min-h-[420px]">
-              {/* Larger circle - team (right/top in reference) */}
-              <div className="relative z-10 w-full max-w-[340px] lg:max-w-[380px] aspect-square rounded-full overflow-hidden border-[10px] border-white dark:border-cerulean-blue-900 shadow-2xl transition-transform duration-1000 hover:scale-[1.02] hover:shadow-bright-sun-500/10 dark:hover:shadow-bright-sun-300/10">
-                <img
-                  src={`${import.meta.env.BASE_URL}athletes/team.JPG`}
-                  alt="Our Team"
-                  className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/30 to-transparent pointer-events-none"></div>
-              </div>
-              {/* Smaller overlapping circle - Head Karate Coach (bottom-left, in front of main circle) */}
-              <div className="absolute left-[5%] bottom-[2%] lg:left-[8%] lg:bottom-[4%] z-20 w-[180px] h-[180px] lg:w-[220px] lg:h-[220px] rounded-full overflow-hidden border-[8px] border-white dark:border-cerulean-blue-900 shadow-2xl group hidden sm:block">
-                <img
-                  src={`${import.meta.env.BASE_URL}athletes/Khalif.PNG`}
-                  alt="Coach Kharif - Head Karate Coach"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-              </div>
-              {/* Subtle accent shape (top-right) - matches reference */}
-              <div className="absolute top-0 right-0 w-32 h-32 lg:w-40 lg:h-40 bg-gray-100 dark:bg-white/5 rounded-full blur-3xl -z-10" aria-hidden></div>
-            </div>
-
-            <div className="lg:w-1/2 text-left">
-              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}>
-                <span className="text-bright-sun-600 dark:text-bright-sun-500 font-black text-sm block mb-4 uppercase tracking-[0.5em]">Visionary Team</span>
-                <h2 className="text-6xl md:text-8xl font-black text-cerulean-blue-900 dark:text-white leading-[0.85] uppercase tracking-tighter mb-10 italic">
-                  CHAMPIONS <br />
-                  <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black">FOR </span>LIFE
-                </h2>
-                <div className="h-2 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mb-10 rounded-full"></div>
-                <p className="text-xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed max-w-xl transition-colors">
-                  Meet the elite educators and masters dedicated to transforming Rwandan sport through excellence and holistic development.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-12 gap-y-24">
-            {coaches.map((coach, index) => (
-              <motion.div
-                key={coach.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative"
-              >
-                 <div className="relative mb-10 w-full aspect-square max-w-[280px] mx-auto">
-                  <div className="relative w-full h-full rounded-full overflow-hidden border-[8px] border-white dark:border-cerulean-blue-900 shadow-2xl transition-all duration-700 group-hover:shadow-bright-sun-600/20">
+          <div className="container mx-auto px-4 max-w-6xl relative z-10">
+            {/* Central logo with gold ring + horizontal gold lines (like reference) */}
+            <div className="flex flex-col items-center mb-8">
+              <div className="relative flex items-center justify-center gap-4 w-full max-w-md">
+                <span className="flex-1 h-1 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full max-w-[80px] md:max-w-[120px]" aria-hidden />
+                <div className="relative shrink-0">
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full p-2 bg-bright-sun-400 dark:bg-bright-sun-500 ring-4 ring-cerulean-blue-800 dark:ring-cerulean-blue-700 shadow-xl">
                     <img
-                      src={coach.image}
-                      alt={coach.name}
-                      className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                      src={`${import.meta.env.BASE_URL}champion-logo.png`}
+                      alt="The Champions Sport Academy"
+                      className="w-full h-full rounded-full object-contain bg-cerulean-blue-800 dark:bg-cerulean-blue-900"
                     />
                   </div>
-                  <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-3xl bg-bright-sun-400 dark:bg-bright-sun-300 shadow-xl flex items-center justify-center text-gray-900 transition-all duration-500 group-hover:rotate-12 z-10 border-4 border-white dark:border-cerulean-blue-900">
-                    <IconUserCheck size={32} />
-                  </div>
                 </div>
+                <span className="flex-1 h-1 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full max-w-[80px] md:max-w-[120px]" aria-hidden />
+              </div>
 
-                <div className="text-center space-y-3 relative z-10">
-                  <span className="text-bright-sun-600 dark:text-bright-sun-500 text-[10px] font-black uppercase tracking-[0.4em]">
-                    {coach.role}
-                  </span>
-                  <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter italic leading-none group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors duration-500">
-                    {coach.name}
-                  </h3>
-                  <div className="flex flex-col text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 space-y-1">
-                    <span>{coach.specialty}</span>
-                    <span className="text-bright-sun-600 dark:text-bright-sun-300 italic tracking-tight text-xs">{coach.experience} EXPERIENCE</span>
-                  </div>
+              {/* Title framed by gold lines */}
+              <div className="text-center mt-8 space-y-1">
+                <div className="flex items-center justify-center gap-4 mb-2">
+                  <span className="w-16 md:w-24 h-0.5 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full" aria-hidden />
+                  <h2 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-wide">
+                    The Core Values of
+                  </h2>
+                  <span className="w-16 md:w-24 h-0.5 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full" aria-hidden />
                 </div>
-              </motion.div>
-            ))}
+                <h3 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight">
+                  The Champions Sports Academy
+                </h3>
+                <p className="text-bright-sun-600 dark:text-bright-sun-400 font-bold italic text-base md:text-lg mt-1">
+                  We Are The Champions for Life
+                </p>
+              </div>
+            </div>
+
+            {/* Five value cards: colored header bar, circular avatar on light blue, dark blue tagline (exact reference layout) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
+              {coreValues.map((value, index) => (
+                <motion.div
+                  key={value.name}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06 }}
+                  className="flex flex-col rounded-xl overflow-hidden bg-white/90 dark:bg-cerulean-blue-900/50 shadow-lg border border-sky-200/60 dark:border-white/10"
+                >
+                  {/* Colored header bar – value name in white, capitalized */}
+                  <div className={`${valueHeaderBg[index]} px-3 py-2.5 md:py-3 text-center shrink-0`}>
+                    <h4 className="text-sm md:text-base font-black text-white uppercase tracking-tight">
+                      {value.name}
+                    </h4>
+                  </div>
+
+                  {/* Circular avatar on light blue circle (like reference icon area) */}
+                  <div className="flex justify-center pt-5 pb-3 px-4">
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-sky-200/80 dark:bg-cerulean-blue-700/60 border-2 border-sky-300/80 dark:border-cerulean-blue-600 overflow-hidden flex items-center justify-center shadow-inner">
+                      <img
+                        src={value.avatar}
+                        alt={value.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Tagline in dark blue (like reference) */}
+                  <div className="flex-1 px-4 pb-5 pt-0 text-center min-h-[3.5rem] flex items-start justify-center">
+                    <p className="text-xs md:text-sm text-cerulean-blue-900 dark:text-cerulean-blue-100 font-medium leading-snug">
+                      {value.tagline}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
