@@ -72,9 +72,9 @@ const HeroSection = () => {
                         onContextMenu={(e) => e.preventDefault()}
                         aria-hidden
                     />
-                    {/* Light overlay so video stays visible; subtle tint for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/30 to-transparent dark:from-cerulean-blue-950/75 dark:via-cerulean-blue-950/40 dark:to-cerulean-blue-950/15" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50 dark:to-cerulean-blue-950/60" />
+                    {/* Light overlay so video stays visible and clear */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent dark:from-cerulean-blue-950/55 dark:via-cerulean-blue-950/25 dark:to-cerulean-blue-950/10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/40 dark:to-cerulean-blue-950/45" />
                 </div>
 
                 {/* Animated decorative elements - hidden on mobile for performance */}
@@ -91,16 +91,19 @@ const HeroSection = () => {
                         </div>
                     </div>
 
-                    {/* Mobile-optimized Title with adjusted sizes */}
-                    <div className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight drop-shadow-2xl">
-                        <div className="flex flex-wrap gap-x-2 md:gap-x-4">
+                    {/* One line above */}
+                    <p className={`text-sm sm:text-base md:text-lg text-cerulean-blue-800 dark:text-gray-200 font-semibold uppercase tracking-widest drop-shadow-lg ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+                        The Champion Sport Academy
+                    </p>
+
+                    {/* Title: We Are The Champions For Life */}
+                    <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight drop-shadow-2xl">
+                        <div className="flex flex-wrap gap-x-2 md:gap-x-3 gap-y-1">
                             {["We Are The", "Champions", "For", "Life"].map((word, index) => (
                                 <span
                                     key={index}
                                     className={`inline-block animate-word ${animate ? 'active' : ''}`}
-                                    style={{
-                                        animationDelay: `${index * 150}ms`,
-                                    }}
+                                    style={{ animationDelay: `${index * 150}ms` }}
                                 >
                                     {word.toLowerCase() === 'champions' ? (
                                         <span className="bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 dark:from-bright-sun-200 dark:via-bright-sun-300 dark:to-bright-sun-200 bg-clip-text text-transparent animate-gradient">
@@ -114,12 +117,15 @@ const HeroSection = () => {
                         </div>
                     </div>
 
-                    {/* Enhanced Subtitle */}
-                    <div className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 max-w-2xl leading-relaxed font-medium">
-                        <p className={`fade-in-text ${animate ? 'active' : ''}`}
-                            style={{ animationDelay: '1200ms' }}>
-                            The Champions Sports Academy Ltd (CSA) is a professional, values-driven sport and physical literacy organization founded in 2017 in Kigali, Rwanda.
-                            The Academy operates as both a structured sport enterprise and a social impact institution, delivering high-quality sport and education services while contributing to national sport development.
+                    {/* One line below */}
+                    <p className={`text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 font-medium drop-shadow-lg max-w-2xl ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`} style={{ transitionDelay: '400ms' }}>
+                        Excellence in Sport & Life — Kigali, Rwanda
+                    </p>
+
+                    {/* Subtitle - optional longer description */}
+                    <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed mt-2">
+                        <p className={`fade-in-text ${animate ? 'active' : ''}`} style={{ animationDelay: '600ms' }}>
+                            Values-driven sport and physical literacy organization founded in 2017. Delivering high-quality sport and education while contributing to national sport development.
                         </p>
                     </div>
 

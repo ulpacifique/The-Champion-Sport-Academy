@@ -336,16 +336,93 @@ const Founder = () => {
                 </div>
             </section>
 
-            {/* 4. Sport Events Management */}
+            {/* 4. Sport Events Management — images from public/Events */}
             <section id="sport-events-management" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
                         Sport Events Management
                     </h2>
-                    <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                        <p>Noël Nkuranyabahizi is a Sport Events Manager and International Elite Sports Coach with significant experience in the organization and management of national and international sport events. He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, where he leads the development of sport programmes, competitions, and youth sport initiatives.</p>
-                        <p>He has managed and coordinated major national and international sport events, contributing to event planning, technical coordination, and operational management. Notably, he served as Event Manager for the African Rhythmic Gymnastics Championships held in Rwanda, supporting the successful organization of this continental competition.</p>
-                        <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese, further strengthening his expertise in sport event management and Olympic sport systems.</p>
+
+                    <div className="space-y-12 md:space-y-16">
+                        {/* 1: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT.jfif`} alt="Sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Noël Nkuranyabahizi is a Sport Events Manager and International Elite Sports Coach with significant experience in the organization and management of national and international sport events. He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, where he leads the development of sport programmes, competitions, and youth sport initiatives.</p>
+                            </div>
+                        </div>
+
+                        {/* 2: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT 1.jfif`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He has managed and coordinated major national and international sport events, contributing to event planning, technical coordination, and operational management. Notably, he served as Event Manager for the African Rhythmic Gymnastics Championships held in Rwanda, supporting the successful organization of this continental competition.</p>
+                            </div>
+                        </div>
+
+                        {/* 3: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT3.jfif`} alt="Event management" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese, further strengthening his expertise in sport event management and Olympic sport systems.</p>
+                            </div>
+                        </div>
+
+                        {/* 4: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT5.jfif`} alt="Sport events at CSA" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Event planning, technical coordination, and operational management are at the heart of delivering successful competitions and programmes for athletes and communities.</p>
+                            </div>
+                        </div>
+
+                        {/* 5: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT8.jfif`} alt="Championships and competitions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>From local programmes to continental events like the African Rhythmic Gymnastics Championships, the academy contributes to sport development at every level.</p>
+                            </div>
+                        </div>
+
+                        {/* 6: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENT9.jfif`} alt="Olympic and sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Olympic values and event management expertise combine to create lasting impact in youth sport and elite competition.</p>
+                            </div>
+                        </div>
+
+                        {/* 7: words left, photo right */}
+                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/EVENTS.jfif`} alt="Events at The Champions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Through sport events, The Champions Sports Academy builds bridges between communities, athletes, and the broader sport system.</p>
+                            </div>
+                        </div>
+
+                        {/* 8: photo left, words right */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                            <div className="w-full md:w-2/5 shrink-0">
+                                <img src={`${import.meta.env.BASE_URL}Events/Romeo Image_14.JPG`} alt="Sport events moment" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                            </div>
+                            <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Excellence in sport event management—supporting athletes, coaches, and the next generation of leaders in sport.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
