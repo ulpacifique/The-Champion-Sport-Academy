@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IconX } from "@tabler/icons-react";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import ForgotPassword from "./Auth/ForgotPassword";
@@ -148,111 +147,87 @@ const AuthPages = ({ onClose }: { onClose?: () => void }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-fade-in">
-            {/* Main Card */}
-            <div className={`relative w-full transition-all duration-500 ease-out my-8 ${currentPage === "register" ? "max-w-2xl" : "max-w-md"
-                }`}>
-                {/* Close Button */}
-                {onClose && (
-                    <button
-                        onClick={onClose}
-                        className="absolute -top-4 -right-4 z-50 w-10 h-10 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 active:scale-90 transition-all border-2 border-white/20"
-                    >
-                        <IconX size={20} />
-                    </button>
-                )}
+        <div className={`w-full transition-all duration-500 ease-out ${currentPage === "register" ? "max-w-2xl" : "max-w-md"}`}>
+            {/* Card: solid background, no overlay */}
+            <div className="relative bg-white dark:bg-cerulean-blue-900/95 border border-gray-200 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden min-h-[420px]">
+                {/* Top accent */}
+                <div className="h-1 bg-gradient-to-r from-bright-sun-400 via-bright-sun-300 to-bright-sun-400 dark:from-bright-sun-500 dark:via-bright-sun-400 dark:to-bright-sun-500" />
 
-                {/* Glass Card */}
-                <div className="relative bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden min-h-[500px]">
-                    {/* Decorative Gradients */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-bright-sun-100 via-bright-sun-200 to-bright-sun-300"></div>
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-bright-sun-300/10 rounded-full blur-3xl"></div>
-                    <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-bright-sun-200/10 rounded-full blur-3xl"></div>
+                <div className="p-8 sm:p-10 relative">
+                    {/* Error/Success Messages */}
+                    {(error || success) && (
+                        <div className={`mb-6 p-4 rounded-xl text-sm font-medium flex items-center gap-3 shadow-lg ${error
+                            ? "bg-red-500/15 dark:bg-red-500/20 border border-red-500/30 text-red-700 dark:text-red-200"
+                            : "bg-green-500/15 dark:bg-green-500/20 border border-green-500/30 text-green-700 dark:text-green-200"
+                            }`}>
+                            <div className={`w-2 h-2 rounded-full shrink-0 ${error ? "bg-red-500" : "bg-green-500"}`} />
+                            <span>{error || success}</span>
+                        </div>
+                    )}
 
-                    {/* Content Area */}
-                    <div className="p-8 relative z-10">
-                        {/* Error/Success Messages */}
-                        {(error || success) && (
-                            <div className={`mb-6 p-4 rounded-xl text-sm font-medium flex items-center gap-3 animate-slide-down shadow-lg ${error
-                                ? "bg-red-500/20 border border-red-500/30 text-red-200"
-                                : "bg-green-500/20 border border-green-500/30 text-green-200"
-                                }`}>
-                                <div className={`w-2 h-2 rounded-full ${error ? "bg-red-400" : "bg-green-400"}`}></div>
-                                {error || success}
-                            </div>
-                        )}
+                    {currentPage === "login" && (
+                        <Login
+                            onLoginSuccess={() => { }}
+                            onNavigateToRegister={() => {
+                                setCurrentPage("register");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            onNavigateToForgot={() => {
+                                setCurrentPage("forgot");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            loading={loading}
+                            error={error}
+                            setError={setError}
+                            handleLoginAPI={handleLoginAPI}
+                        />
+                    )}
 
-                        {/* Page Content */}
-                        {currentPage === "login" && (
-                            <Login
-                                onLoginSuccess={() => { }}
-                                onNavigateToRegister={() => {
-                                    setCurrentPage("register");
-                                    setError("");
-                                    setSuccess("");
-                                }}
-                                onNavigateToForgot={() => {
-                                    setCurrentPage("forgot");
-                                    setError("");
-                                    setSuccess("");
-                                }}
-                                loading={loading}
-                                error={error}
-                                setError={setError}
-                                handleLoginAPI={handleLoginAPI}
-                            />
-                        )}
+                    {currentPage === "register" && (
+                        <SignUp
+                            onRegisterSuccess={() => { }}
+                            onNavigateToLogin={() => {
+                                setCurrentPage("login");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            loading={loading}
+                            error={error}
+                            setError={setError}
+                            handleRegisterAPI={handleRegisterAPI}
+                        />
+                    )}
 
-                        {currentPage === "register" && (
-                            <SignUp
-                                onRegisterSuccess={() => { }}
-                                onNavigateToLogin={() => {
-                                    setCurrentPage("login");
-                                    setError("");
-                                    setSuccess("");
-                                }}
-                                loading={loading}
-                                error={error}
-                                setError={setError}
-                                handleRegisterAPI={handleRegisterAPI}
-                            />
-                        )}
-
-                        {currentPage === "forgot" && (
-                            <ForgotPassword
-                                onNavigateToLogin={() => {
-                                    setCurrentPage("login");
-                                    setError("");
-                                    setSuccess("");
-                                }}
-                                loading={loading}
-                                error={error}
-                                setError={setError}
-                                setSuccess={setSuccess}
-                            />
-                        )}
-                    </div>
+                    {currentPage === "forgot" && (
+                        <ForgotPassword
+                            onNavigateToLogin={() => {
+                                setCurrentPage("login");
+                                setError("");
+                                setSuccess("");
+                            }}
+                            loading={loading}
+                            error={error}
+                            setError={setError}
+                            setSuccess={setSuccess}
+                        />
+                    )}
                 </div>
             </div>
 
             <style>{`
-                @keyframes fade-in {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
                 @keyframes fade-in-up {
                     from { opacity: 0; transform: translateY(20px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
                 @keyframes slide-down {
-                     from { opacity: 0; transform: translateY(-10px); }
+                    from { opacity: 0; transform: translateY(-10px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
                 .animate-fade-in { animation: fade-in 0.3s ease-out; }
                 .animate-fade-in-up { animation: fade-in-up 0.5s ease-out; }
                 .animate-slide-down { animation: slide-down 0.3s ease-out; }
-                .animate-spin-slow { animation: spin 3s linear infinite; }
-                .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             `}</style>
         </div>
     );

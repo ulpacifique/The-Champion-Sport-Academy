@@ -151,23 +151,22 @@ const ForgotPassword = ({
         <div className="animate-fade-in-up">
             <button
                 onClick={onNavigateToLogin}
-                className="absolute top-0 left-0 text-blue-200/60 hover:text-white flex items-center gap-2 hover:-translate-x-1 transition-all duration-300 group"
+                className="text-gray-500 dark:text-blue-200/60 hover:text-gray-700 dark:hover:text-white flex items-center gap-2 transition-all duration-300 group mb-4"
             >
-                <div className="bg-white/5 p-2 rounded-full group-hover:bg-white/10">
+                <div className="bg-gray-100 dark:bg-white/5 p-2 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-white/10">
                     <IconArrowLeft size={16} />
                 </div>
                 <span className="text-sm font-medium">Back to Login</span>
             </button>
 
-            <div className="text-center mb-8 mt-10">
-                <div className={`w-16 h-16 rounded-full mx-auto flex items-center justify-center shadow-lg mb-6 animate-pulse-slow ${step === 1 ? "bg-gradient-to-br from-blue-400 to-cyan-500 shadow-blue-500/30" : "bg-gradient-to-br from-bright-sun-200 to-bright-sun-300 shadow-bright-sun-200/30"
-                    }`}>
+            <div className="text-center mb-8 mt-2">
+                <div className={`w-16 h-16 rounded-full mx-auto flex items-center justify-center shadow-lg mb-6 animate-pulse-slow ${step === 1 ? "bg-gradient-to-br from-blue-400 to-cyan-500 shadow-blue-500/30" : "bg-gradient-to-br from-bright-sun-400 to-bright-sun-500 dark:from-bright-sun-200 dark:to-bright-sun-300 shadow-bright-sun-200/30"}`}>
                     {step === 1 ? <IconSend className="text-white w-8 h-8 ml-1" /> : <IconShieldCheck className="text-white w-8 h-8" />}
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-2">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     {step === 1 ? "Forgot Password?" : "Reset Password"}
                 </h2>
-                <p className="text-blue-200/70 text-sm max-w-xs mx-auto">
+                <p className="text-gray-500 dark:text-blue-200/70 text-sm max-w-xs mx-auto">
                     {step === 1
                         ? "Enter your email address and we'll send you an OTP to reset your password."
                         : `We've sent a 6-digit code to ${email}. Enter it below along with your new password.`
@@ -177,76 +176,64 @@ const ForgotPassword = ({
 
             <div className="space-y-5">
                 {step === 1 ? (
-                    /* Step 1: Email Input */
                     <div className="group">
-                        <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">Email Address</label>
-                        <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <IconMail className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
+                        <label className="block text-gray-600 dark:text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">Email Address</label>
+                        <div className="relative">
+                            <IconMail className="absolute left-4 top-3.5 text-gray-400 dark:text-blue-200/70 z-10" size={20} />
                             <input
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-blue-400/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
+                                className="w-full pl-12 pr-4 py-3.5 bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-500 dark:focus:border-bright-sun-300/50 focus:ring-2 focus:ring-bright-sun-200/20 dark:focus:ring-transparent transition-all"
                                 placeholder="your.email@example.com"
                                 disabled={loading}
                             />
                         </div>
                     </div>
                 ) : (
-                    /* Step 2: OTP and Password Inputs */
                     <>
                         <div className="group">
-                            <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">6-Digit OTP</label>
-                            <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <IconShieldCheck className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
+                            <label className="block text-gray-600 dark:text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">6-Digit OTP</label>
+                            <div className="relative">
+                                <IconShieldCheck className="absolute left-4 top-3.5 text-gray-400 dark:text-blue-200/70 z-10" size={20} />
                                 <input
                                     type="text"
                                     maxLength={6}
                                     value={otp}
                                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                                    className="w-full pl-12 pr-4 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner tracking-[0.5em] font-bold text-center"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-500 dark:focus:border-bright-sun-300/50 focus:ring-2 focus:ring-bright-sun-200/20 dark:focus:ring-transparent transition-all tracking-[0.5em] font-bold text-center"
                                     placeholder="000000"
                                     disabled={loading}
                                 />
                             </div>
                         </div>
-
                         <div className="group">
-                            <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">New Password</label>
-                            <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <IconLock className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
+                            <label className="block text-gray-600 dark:text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">New Password</label>
+                            <div className="relative">
+                                <IconLock className="absolute left-4 top-3.5 text-gray-400 dark:text-blue-200/70 z-10" size={20} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
-                                    placeholder="*************"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-500 dark:focus:border-bright-sun-300/50 focus:ring-2 focus:ring-bright-sun-200/20 dark:focus:ring-transparent transition-all"
+                                    placeholder="••••••••"
                                     disabled={loading}
                                 />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-3.5 text-blue-200/50 hover:text-bright-sun-200 z-10 transition-colors"
-                                >
+                                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-3.5 text-gray-400 dark:text-blue-200/50 hover:text-bright-sun-600 dark:hover:text-bright-sun-200 z-10 transition-colors">
                                     {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
                                 </button>
                             </div>
                         </div>
-
                         <div className="group">
-                            <label className="block text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">Confirm Password</label>
-                            <div className="relative transition-all duration-300 transform group-hover:-translate-y-1">
-                                <div className="absolute inset-0 bg-gradient-to-r from-bright-sun-200/20 to-bright-sun-300/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <IconLock className="absolute left-4 top-3.5 text-blue-200/70 z-10" size={20} />
+                            <label className="block text-gray-600 dark:text-blue-100 text-xs font-bold uppercase tracking-wider mb-2">Confirm Password</label>
+                            <div className="relative">
+                                <IconLock className="absolute left-4 top-3.5 text-gray-400 dark:text-blue-200/70 z-10" size={20} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full pl-12 pr-12 py-3.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-300/50 focus:bg-black/30 backdrop-blur-md transition-all shadow-inner"
-                                    placeholder="*************"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-blue-200/30 focus:outline-none focus:border-bright-sun-500 dark:focus:border-bright-sun-300/50 focus:ring-2 focus:ring-bright-sun-200/20 dark:focus:ring-transparent transition-all"
+                                    placeholder="••••••••"
                                     disabled={loading}
                                 />
                             </div>
@@ -257,9 +244,9 @@ const ForgotPassword = ({
                 <button
                     onClick={step === 1 ? handleRequestOTP : handleResetPassword}
                     disabled={loading}
-                    className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transform hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:transform-none ${step === 1
+                    className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transform hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:transform-none ${step === 1
                         ? "bg-gradient-to-r from-blue-500 to-cyan-600 shadow-blue-500/25 hover:shadow-blue-500/40"
-                        : "bg-gradient-to-r from-bright-sun-100 via-bright-sun-200 to-bright-sun-300 shadow-bright-sun-300/25 hover:shadow-bright-sun-300/40"}`}
+                        : "bg-gradient-to-r from-bright-sun-400 to-bright-sun-500 dark:from-bright-sun-200 dark:to-bright-sun-300 shadow-bright-sun-300/25 hover:shadow-bright-sun-300/40"}`}
                 >
                     {loading ? (
                         <div className="flex items-center justify-center gap-2">
@@ -278,7 +265,7 @@ const ForgotPassword = ({
                             setError("");
                             setSuccess("");
                         }}
-                        className="w-full py-2 text-sm text-blue-200/50 hover:text-white transition-colors"
+                        className="w-full py-2 text-sm text-gray-500 dark:text-blue-200/50 hover:text-gray-700 dark:hover:text-white transition-colors"
                         disabled={loading}
                     >
                         Try a different email?

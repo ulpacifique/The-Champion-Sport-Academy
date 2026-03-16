@@ -1,31 +1,32 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthPages from "./AuthPages";
-import HeroSection from "../LandingPage/HeroSection";
 
 const AuthPageWrapper = () => {
     const navigate = useNavigate();
 
     const handleClose = () => {
-        navigate('/'); // Redirect to home when closed
+        navigate("/");
     };
 
-    // Open modal on mount
-    useEffect(() => {
-        // Modal is managed by the wrapper visibility
-    }, []);
-
     return (
-        <div className="min-h-screen relative">
-            {/* HeroSection in background with blur effect */}
-            <div className="absolute inset-0">
-                <HeroSection />
-                {/* Blur overlay - like portrait mode bokeh effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-lg"></div>
+        <div className="min-h-screen w-full flex flex-col bg-gradient-to-br from-cerulean-blue-900 via-cerulean-blue-800 to-cerulean-blue-900 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-950">
+            {/* Top bar: back to home */}
+            <div className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-4">
+                <Link
+                    to="/"
+                    className="flex items-center gap-2 text-white/80 hover:text-white font-medium text-sm transition-colors"
+                >
+                    <span className="inline-block w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">←</span>
+                    Back to home
+                </Link>
+                <Link to="/" className="flex items-center gap-2">
+                    <img src={`${import.meta.env.BASE_URL}champion-logo.png`} alt="Champion" className="w-10 h-10 object-contain" />
+                    <span className="text-white font-bold uppercase tracking-tight hidden sm:inline">Champions Academy</span>
+                </Link>
             </div>
 
-            {/* Auth Modal in foreground */}
-            <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+            {/* Main content: centered auth form */}
+            <div className="flex-1 flex items-center justify-center p-4 sm:p-6">
                 <AuthPages onClose={handleClose} />
             </div>
         </div>

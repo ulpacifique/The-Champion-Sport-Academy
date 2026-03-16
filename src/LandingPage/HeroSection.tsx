@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import AuthPages from "../Page/AuthPages";
 
 const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/champVideo.mp4`;
 
 const HeroSection = () => {
     const [animate, setAnimate] = useState(false);
-    const [showAuthModal, setShowAuthModal] = useState(false);
     const heroRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -129,11 +127,6 @@ const HeroSection = () => {
 
                 </div>
             </div>
-
-            {/* Auth Modal Overlay */}
-            {showAuthModal && (
-                <AuthPages onClose={() => setShowAuthModal(false)} />
-            )}
         </>
     );
 };
