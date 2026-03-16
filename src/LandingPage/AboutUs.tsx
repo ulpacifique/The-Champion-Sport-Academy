@@ -224,62 +224,18 @@ const AboutUs = () => {
             <div className="h-1.5 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mx-auto rounded-full"></div>
           </div>
 
-          <div className="space-y-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="bg-gray-50 dark:bg-cerulean-blue-900/20 border border-gray-100 dark:border-white/5 p-12 rounded-[3rem] backdrop-blur-sm shadow-xl"
-            >
-              <h3 className="text-3xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8 transition-colors">Summary (2017–2026)</h3>
-              <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium">
-                Founded in 2017 in Remera, Kigali, by Noel Nkuranyabahizi, <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black">The Champions Sports Academy Ltd</span> (CSA) began as a structured, values-based karate academy dedicated to empowering children and youth through sport. From the outset, the Academy positioned sport not merely as competition, but as a platform for discipline, character formation, leadership, and lifelong well-being.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                { year: "2017–2020: Foundation", desc: "During its foundational phase, CSA established strong operational and philosophical roots. The Academy launched its flagship initiatives, including the Champions Weekend Program and Best Holidays Sports for Children." },
-                { year: "2021–2022: Expansion", desc: "In 2021, CSA marked a key milestone with its first participation in the National Karate Competition. In 2022, the Academy formalized Senior and Junior Teams and expanded geographically." },
-                { year: "2023–2024: Transformation", desc: "By 2023, CSA achieved recognition as the leading karate club in Rwanda and successfully placed athletes on the National Team. Host of the first National Karate Championship for Children." },
-                { year: "2025–2026: Consolidation", desc: "CSA strengthened its long-term strategic direction through structured business planning, governance enhancement, and sustainability frameworks. Positioned as a professional sport enterprise." }
-              ].map((period, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-gray-50/50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5 p-10 rounded-[2.5rem] hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 transition-all group"
-                >
-                  <h3 className="text-bright-sun-600 dark:text-bright-sun-400 font-black text-xl mb-4 uppercase italic tracking-tight group-hover:translate-x-2 transition-transform">{period.year}</h3>
-                  <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 font-medium">{period.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-cerulean-blue-900 p-12 rounded-[3rem] shadow-2xl group transition-colors duration-1000 border border-gray-100 dark:border-white/10"
-            >
-              <h3 className="text-cerulean-blue-900 dark:text-white font-black text-2xl mb-8 uppercase italic tracking-tighter flex items-center gap-4">
-                <IconMedal size={32} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                Evolution Status by 2026
-              </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {[
-                  "Karate performance pathways",
-                  "Gymnastics and physical literacy foundations",
-                  "Coaching education and national capacity",
-                  "Event organization and sport system contribution"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center space-x-4 text-cerulean-blue-900/90 dark:text-white/80 font-black uppercase tracking-tight text-sm">
-                    <div className="w-2.5 h-2.5 bg-bright-sun-600 dark:bg-bright-sun-300 rounded-full shrink-0 shadow-lg" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl bg-gray-50 dark:bg-cerulean-blue-900/20"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}athletes/History.jpeg`}
+              alt="The Champions Sports Academy Ltd 2017–2026: A Journey of Growth, Impact & Leadership"
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
         </div>
       </section>
 
