@@ -30,7 +30,7 @@
     "deploy": "gh-pages -d build -r https://github.com/ulpacifique/The-Champion-Sport-Academy.git"
   },
   "devDependencies": {
-    "@types/node": "^16.18.126",
+    "@types/node": "^20.0.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.7.0",
