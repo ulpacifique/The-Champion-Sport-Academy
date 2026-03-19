@@ -1,5 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+const GYMNASTICS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/gymnastics.mp4`;
 import {
     IconCalendar,
     IconMapPin,
@@ -64,6 +66,21 @@ const Gymnastics = () => {
     const [loadingGallery, setLoadingGallery] = useState(true);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
+    const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const video = heroVideoRef.current;
+        if (!video) return;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        const play = () => video.play().catch(() => {});
+        play();
+        video.addEventListener('canplay', play);
+        return () => video.removeEventListener('canplay', play);
+    }, []);
+
     useEffect(() => {
         const fetchGallery = async () => {
             try {
@@ -123,17 +140,22 @@ const Gymnastics = () => {
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
-            {/* Hero Section */}
+            {/* Hero Section – background video (gymnastics.mp4 from athletes folder) */}
             <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-                <div className="absolute inset-0 bg-white/50 dark:bg-cerulean-blue-900/70 z-10"></div>
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/Champions.jfif)`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
-                ></div>
+                <div className="absolute inset-0 z-10 bg-white/25 dark:bg-cerulean-blue-900/40 pointer-events-none" aria-hidden />
+                <div className="absolute inset-0 z-0">
+                    <video
+                        ref={heroVideoRef}
+                        src={GYMNASTICS_VIDEO_SRC}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        preload="auto"
+                        aria-hidden
+                    />
+                </div>
 
                 <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
                     <motion.div
@@ -141,13 +163,7 @@ const Gymnastics = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs">
-                            <IconAward size={16} />
-                            <span>The Champions Gymnastics</span>
-                        </div>
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[20px] decoration-8">
-                            The Champions  <span className="text-bright-sun-600 dark:text-bright-sun-300 italic">Gymnastics</span>
-                        </h1>
+                        
                     </motion.div>
                 </div>
             </section>
