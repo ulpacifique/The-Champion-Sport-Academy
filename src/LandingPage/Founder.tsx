@@ -474,7 +474,7 @@ const Founder = () => {
                         {/* 2: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/EVENT 1.jfif`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img src={`${import.meta.env.BASE_URL}Events/metre.jpeg`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He has managed and coordinated major national and international sport events, contributing to event planning, technical coordination, and operational management. Notably, he served as Event Manager for the African Rhythmic Gymnastics Championships held in Rwanda, supporting the successful organization of this continental competition.</p>
