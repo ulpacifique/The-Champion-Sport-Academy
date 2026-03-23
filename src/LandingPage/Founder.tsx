@@ -304,9 +304,12 @@ const Founder = () => {
             {/* 2. Sport Coaching — one photo per row, alternate: words left/photo right, then photo left/words right */}
             <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        International Elite Sports Coach
-                    </h2>
+                <h1 className="text-4xl md:text-6xl font-extrabold mb-12 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
+  A Triple Professional Identity in Sport Leadership
+</h1>
+<h1 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+  1.International Elite Sports Coach
+</h1>
 
                     <div className="space-y-12 md:space-y-16">
                         {/* 1: words left, photo right */}
@@ -404,8 +407,8 @@ const Founder = () => {
             {/* 3. Professional Social Worker in Sport — one photo per row, alternate left/right (photos from SocialWork) */}
             <section id="social-worker-in-sport" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Professional Social Worker in Sport
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+                        2.Professional Social Worker in Sport
                     </h2>
 
                     <div className="space-y-12 md:space-y-16">
@@ -456,8 +459,8 @@ const Founder = () => {
             {/* 4. Sport Events Management — images from public/Events */}
             <section id="sport-events-management" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-12 uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Sport Events Management
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+                        3.Sport Events Management
                     </h2>
 
                     <div className="space-y-12 md:space-y-16">
