@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
-const GYMNASTICS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/gymnastics.mp4`;
 import {
     IconCalendar,
     IconMapPin,
@@ -22,6 +20,9 @@ import Header from '../Header/Header';
 import { coreValuesData } from '../Data/coreValues';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
+
+const GYMNASTICS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/gymnastics.mp4`;
+const HERO_TYPING_PHRASE = "WE ARE THE CHAMPIONS FOR LIFE";
 
 const Gymnastics = () => {
     // Animation variants
@@ -67,6 +68,34 @@ const Gymnastics = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
     const heroVideoRef = useRef<HTMLVideoElement>(null);
+    const [heroTypedLength, setHeroTypedLength] = useState(0);
+
+    // Typewriter loop for hero phrase (left & right)
+    useEffect(() => {
+        let cancelled = false;
+        const typeCharDelay = 70;
+        const pauseAtEndMs = 2200;
+        const pauseBeforeRestartMs = 400;
+
+        const run = async () => {
+            while (!cancelled) {
+                for (let i = 0; i <= HERO_TYPING_PHRASE.length; i++) {
+                    if (cancelled) return;
+                    setHeroTypedLength(i);
+                    await new Promise((r) => setTimeout(r, typeCharDelay));
+                }
+                if (cancelled) return;
+                await new Promise((r) => setTimeout(r, pauseAtEndMs));
+                if (cancelled) return;
+                setHeroTypedLength(0);
+                await new Promise((r) => setTimeout(r, pauseBeforeRestartMs));
+            }
+        };
+        run();
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     useEffect(() => {
         const video = heroVideoRef.current;
@@ -140,14 +169,23 @@ const Gymnastics = () => {
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
-            {/* Hero Section – background video (gymnastics.mp4 from athletes folder) */}
-            <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+            {/* Hero Section – background video + big horizontal typewriter text on left & right */}
+            <section className="relative min-h-[90vh] flex items-center py-20 px-2 sm:px-4 md:px-8 lg:px-16 overflow-hidden">
+                <style>{`
+                    @keyframes gym-cursor-blink {
+                        0%, 49% { opacity: 1; }
+                        50%, 100% { opacity: 0; }
+                    }
+                    .gym-hero-cursor {
+                        animation: gym-cursor-blink 0.85s step-end infinite;
+                    }
+                `}</style>
                 <div className="absolute inset-0 z-10 bg-white/25 dark:bg-cerulean-blue-900/40 pointer-events-none" aria-hidden />
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 bg-black/5 dark:bg-black/20">
                     <video
                         ref={heroVideoRef}
                         src={GYMNASTICS_VIDEO_SRC}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 w-full h-full object-contain object-center"
                         muted
                         loop
                         playsInline
@@ -157,14 +195,43 @@ const Gymnastics = () => {
                     />
                 </div>
 
-                <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
+                {/* Overlay row: left & right = big horizontal typing; center = clear for video */}
+                <div className="absolute inset-0 z-[15] flex items-stretch pointer-events-none select-none">
+                    <div className="w-[26%] sm:w-[24%] md:w-[22%] min-w-[120px] sm:min-w-[160px] flex items-center justify-center px-1 sm:px-3 py-8">
+                        <p
+                            className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white drop-shadow-md"
+                            style={{
+                                fontSize: 'clamp(0.95rem, 2.8vw, 2.75rem)',
+                                textShadow: '0 2px 12px rgba(255,255,255,0.5)',
+                            }}
+                            aria-live="polite"
+                        >
+                            {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
+                            <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 font-light ml-0.5">|</span>
+                        </p>
+                    </div>
+                    <div className="flex-1 min-w-0" aria-hidden />
+                    <div className="w-[26%] sm:w-[24%] md:w-[22%] min-w-[120px] sm:min-w-[160px] flex items-center justify-center px-1 sm:px-3 py-8">
+                        <p
+                            className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white drop-shadow-md"
+                            style={{
+                                fontSize: 'clamp(0.95rem, 2.8vw, 2.75rem)',
+                                textShadow: '0 2px 12px rgba(255,255,255,0.5)',
+                            }}
+                            aria-live="polite"
+                        >
+                            {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
+                            <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 font-light ml-0.5">|</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div className="relative z-20 max-w-7xl mx-auto w-full text-center pointer-events-none">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
-                    >
-                        
-                    </motion.div>
+                    />
                 </div>
             </section>
 

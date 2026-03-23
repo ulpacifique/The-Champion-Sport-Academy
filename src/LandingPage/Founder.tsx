@@ -24,6 +24,7 @@ const COACHES = [
 ];
 
 const COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coach.mp4`;
+const COACHING_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coaching.mp4`;
 
 const FOUNDER_BIO = [
     "Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.",
@@ -202,14 +203,37 @@ const Founder = () => {
                     <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 text-center">
                         Coach <span className="text-bright-sun-600 dark:text-bright-sun-300">in Action</span>
                     </h2>
-                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20">
+                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20 flex justify-center items-center">
                         <video
-                            className="w-full aspect-video object-cover"
+                            className="w-full max-w-md mx-auto max-h-[85vh] h-auto object-contain"
                             src={COACH_VIDEO_SRC}
                             controls
                             playsInline
                             preload="metadata"
                             aria-label="Coach video from The Champions Sports Academy"
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="max-w-4xl mx-auto mt-16 md:mt-24"
+                >
+                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 text-center">
+                        <span className="text-bright-sun-600 dark:text-bright-sun-300">Coaching</span>
+                    </h2>
+                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20 flex justify-center items-center">
+                        <video
+                            className="w-full max-w-md mx-auto max-h-[85vh] h-auto object-contain"
+                            src={COACHING_VIDEO_SRC}
+                            controls
+                            playsInline
+                            preload="metadata"
+                            aria-label="Coaching video from The Champions Sports Academy"
                         >
                             Your browser does not support the video tag.
                         </video>
