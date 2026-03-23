@@ -28,6 +28,14 @@ const COACHING_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coachin
 const RWANDA_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Rwanda karate.mp4")}`;
 const LEGACY_KARATE_ATHLETE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("My Legacy as a Karate Athlete.mp4")}`;
 const DEVELOPING_YOUTH_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Developing Youth throught Karate.mp4")}`;
+const COACH_NOEL_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coachNoel.mp4`;
+const SIX_COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/sixCoach.mp4`;
+
+/** Portrait clips under “Our Founder: Chief Instructor and Gymnastics Coach” */
+const FOUNDER_HEADLINE_PORTRAIT_VIDEOS: { src: string; ariaLabel: string }[] = [
+    { src: COACH_NOEL_VIDEO_SRC, ariaLabel: "Our Founder — Chief Instructor and Gymnastics Coach" },
+    { src: SIX_COACH_VIDEO_SRC, ariaLabel: "Our Founder — coaching team" },
+];
 
 /** Founder video gallery items (optional caption = longer text under video) */
 const FOUNDER_VIDEO_ITEMS: {
@@ -226,7 +234,7 @@ const Founder = () => {
             {/* Video gallery – 3 columns: 2 videos | 2 videos | 1 video */}
             <section className="w-full py-12 md:py-20 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
                 <div className="px-4 md:px-8 lg:px-12 mb-8 md:mb-10">
-                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">
+                    <h2 className="text-4xl md:text-6xl font-extrabold mb-12 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
                     From Athlete to Coach Developer:  <span className="text-bright-sun-600 dark:text-bright-sun-300"> The Legacy of My Karate Journey</span>
                     </h2>
                 </div>
@@ -287,7 +295,7 @@ const Founder = () => {
                 </motion.div>
             </section>
 
-            {/* 1. Founder's Journey — headline only (photo gallery removed) */}
+            {/* 1. Founder's Journey — headline + two portrait videos (side by side on md+) */}
             <div id="founder-journey" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300 scroll-mt-24">
                 <div className="text-center px-4">
                     <motion.div {...fadeInUp}>
@@ -297,6 +305,29 @@ const Founder = () => {
                                 Chief Instructor and Gymnastics Coach
                             </span>
                         </h2>
+                        <div className="mt-10 md:mt-12 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 justify-items-center md:justify-items-stretch items-start">
+                            {FOUNDER_HEADLINE_PORTRAIT_VIDEOS.map((item) => (
+                                <div
+                                    key={item.src}
+                                    className="w-full max-w-[min(100%,20rem)] sm:max-w-xs md:max-w-none mx-auto md:mx-0"
+                                >
+                                    <div className="rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 h-full flex flex-col">
+                                        <div className="aspect-[9/16] max-h-[min(75vh,640px)] w-full flex items-center justify-center bg-black/40">
+                                            <video
+                                                className="w-full h-full max-h-[min(75vh,640px)] object-contain"
+                                                src={item.src}
+                                                controls
+                                                playsInline
+                                                preload="metadata"
+                                                aria-label={item.ariaLabel}
+                                            >
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </motion.div>
                 </div>
             </div>
