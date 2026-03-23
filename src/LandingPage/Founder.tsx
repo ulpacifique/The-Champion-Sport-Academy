@@ -57,7 +57,7 @@ const FOUNDER_VIDEO_ITEMS: {
         id: "coach",
         title: "Coach in Action",
         caption:
-            "Certified Karate Coach Development\nSports Science • Values • WKF Rules\nIn partnership with Rwanda Karate Federation (FERWAKA)\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+            "Grateful to My Sensei and Coaches\nThank you for your continuous guidance and contribution to my karate journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
         src: COACH_VIDEO_SRC,
         layout: "landscape",
     },
@@ -65,7 +65,7 @@ const FOUNDER_VIDEO_ITEMS: {
         id: "legacy",
         title: "My Legacy as a Karate Athlete",
         caption:
-            "Grateful to My Sensei and Coaches\nThank you for your continuous guidance and contribution to my karate journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+            "My Legacy as an Athlete\nProud to have represented the Rwanda National Karate Team and Rwanda National University in both Kata and Kumite.\nGrateful to my coaches and teammates for their support, guidance, and shared journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
         src: LEGACY_KARATE_ATHLETE_VIDEO_SRC,
         layout: "landscape",
     },
@@ -73,7 +73,7 @@ const FOUNDER_VIDEO_ITEMS: {
         id: "rwanda-karate",
         title: "Rwanda Karate",
         caption:
-            "My Legacy as an Athlete\n\nProud to have represented the Rwanda National Karate Team and Rwanda National University in both Kata and Kumite.\n\nGrateful to my coaches and teammates for their support, guidance, and shared journey.\n\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+            "Certified Karate Coach Development\nSports Science • Values • WKF Rules\nIn partnership with Rwanda Karate Federation (FERWAKA)\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
         src: RWANDA_KARATE_VIDEO_SRC,
         layout: "landscape",
     },
