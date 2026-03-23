@@ -20,7 +20,7 @@ const COACHES = [
     { name: "Coach Sylvan", role: "Gymnastics Coach", experience: "1 Year", specialty: "Floor & Vault Training", image: `${import.meta.env.BASE_URL}athletes/Coach Sylvan.jpg` },
     { name: "Coach Tracy", role: "Assistant Coach", experience: "3 Years", specialty: "Core Technique & Flexibility", image: `${import.meta.env.BASE_URL}athletes/Coach Tracy.jpg` },
     { name: "Fille", role: "Academy Receptionist", experience: "Admin Expert", specialty: "Student Relations", image: `${import.meta.env.BASE_URL}athletes/Receptionist Fille.jpg` },
-    { name: "Mama boy", role: "Safeguarding Officer", experience: "Welfare Guard", specialty: "Safety Oversight", image: `${import.meta.env.BASE_URL}athletes/Safeguarding Officer.jpg` },
+    { name: "Mama Bonfils", role: "Safeguarding Officer", experience: "Welfare Guard", specialty: "Safety Oversight", image: `${import.meta.env.BASE_URL}athletes/Safeguarding Officer.jpg` },
 ];
 
 const COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coach.mp4`;
@@ -29,18 +29,54 @@ const RWANDA_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${
 const LEGACY_KARATE_ATHLETE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("My Legacy as a Karate Athlete.mp4")}`;
 const DEVELOPING_YOUTH_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Developing Youth throught Karate.mp4")}`;
 
-/** Netflix-style row: title, src, layout for Founder video gallery */
+/** Netflix-style row: title, src, layout for Founder video gallery (optional caption = longer text under video) */
 const FOUNDER_VIDEO_ITEMS: {
     id: string;
     title: string;
+    caption?: string;
     src: string;
     layout: "landscape" | "portrait";
 }[] = [
-    { id: "coach", title: "Coach in Action", src: COACH_VIDEO_SRC, layout: "landscape" },
-    { id: "coaching", title: "Coaching", src: COACHING_VIDEO_SRC, layout: "landscape" },
-    { id: "rwanda-karate", title: "Rwanda Karate", src: RWANDA_KARATE_VIDEO_SRC, layout: "landscape" },
-    { id: "legacy", title: "My Legacy as a Karate Athlete", src: LEGACY_KARATE_ATHLETE_VIDEO_SRC, layout: "landscape" },
-    { id: "developing-youth", title: "Developing Youth through Karate", src: DEVELOPING_YOUTH_KARATE_VIDEO_SRC, layout: "landscape" },
+    {
+        id: "developing-youth",
+        title: "Developing Youth through Karate",
+        caption:
+            "A legacy of developing children through sport and values.\n\nAs an International Elite Sport Coach, I am committed to building skills, character, and confidence—creating champions for life.",
+        src: DEVELOPING_YOUTH_KARATE_VIDEO_SRC,
+        layout: "landscape",
+    },
+    {
+        id: "coaching",
+        title: "Coaching",
+        caption:
+            "Noël Nkuranyabahizi, International Elite Sports Coach—developing athletes from foundation to elite, nationally and internationally, building champions for sport and life.",
+        src: COACHING_VIDEO_SRC,
+        layout: "landscape",
+    },
+    {
+        id: "coach",
+        title: "Coach in Action",
+        caption:
+            "Certified Karate Coach Development\nSports Science • Values • WKF Rules\nIn partnership with Rwanda Karate Federation (FERWAKA)\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+        src: COACH_VIDEO_SRC,
+        layout: "landscape",
+    },
+    {
+        id: "legacy",
+        title: "My Legacy as a Karate Athlete",
+        caption:
+            "Grateful to My Sensei and Coaches\nThank you for your continuous guidance and contribution to my karate journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+        src: LEGACY_KARATE_ATHLETE_VIDEO_SRC,
+        layout: "landscape",
+    },
+    {
+        id: "rwanda-karate",
+        title: "Rwanda Karate",
+        caption:
+            "My Legacy as an Athlete\n\nProud to have represented the Rwanda National Karate Team and Rwanda National University in both Kata and Kumite.\n\nGrateful to my coaches and teammates for their support, guidance, and shared journey.\n\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
+        src: RWANDA_KARATE_VIDEO_SRC,
+        layout: "landscape",
+    },
 ];
 
 const FOUNDER_BIO = [
@@ -301,14 +337,20 @@ const Founder = () => {
                                         controls
                                         playsInline
                                         preload="metadata"
-                                        aria-label={item.title}
+                                        aria-label={item.caption ?? item.title}
                                     >
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
                             </div>
-                            <p className="mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1">
-                                {item.title}
+                            <p
+                                className={
+                                    item.caption
+                                        ? "mt-3 text-center text-xs sm:text-sm md:text-[0.9375rem] font-semibold text-cerulean-blue-900 dark:text-white tracking-normal leading-relaxed whitespace-pre-line px-1 max-w-[min(100%,28rem)] mx-auto"
+                                        : "mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1"
+                                }
+                            >
+                                {item.caption ?? item.title}
                             </p>
                         </div>
                     ))}
