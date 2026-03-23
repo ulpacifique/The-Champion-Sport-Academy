@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconChevronDown, IconChevronUp, IconUsers, IconUser, IconUserCheck } from "@tabler/icons-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconCircleChevronLeft, IconCircleChevronRight, IconTrophy, IconChevronDown, IconChevronUp, IconUsers, IconUser, IconUserCheck } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -26,6 +26,22 @@ const COACHES = [
 const COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coach.mp4`;
 const COACHING_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coaching.mp4`;
 const RWANDA_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Rwanda karate.mp4")}`;
+const LEGACY_KARATE_ATHLETE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("My Legacy as a Karate Athlete.mp4")}`;
+const DEVELOPING_YOUTH_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Developing Youth throught Karate.mp4")}`;
+
+/** Netflix-style row: title, src, layout for Founder video gallery */
+const FOUNDER_VIDEO_ITEMS: {
+    id: string;
+    title: string;
+    src: string;
+    layout: "landscape" | "portrait";
+}[] = [
+    { id: "coach", title: "Coach in Action", src: COACH_VIDEO_SRC, layout: "landscape" },
+    { id: "coaching", title: "Coaching", src: COACHING_VIDEO_SRC, layout: "landscape" },
+    { id: "rwanda-karate", title: "Rwanda Karate", src: RWANDA_KARATE_VIDEO_SRC, layout: "landscape" },
+    { id: "legacy", title: "My Legacy as a Karate Athlete", src: LEGACY_KARATE_ATHLETE_VIDEO_SRC, layout: "landscape" },
+    { id: "developing-youth", title: "Developing Youth through Karate", src: DEVELOPING_YOUTH_KARATE_VIDEO_SRC, layout: "landscape" },
+];
 
 const FOUNDER_BIO = [
     "Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.",
@@ -41,6 +57,26 @@ const Founder = () => {
     const [activeTab, setActiveTab] = useState<FounderTab>("founder");
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
     const [bioExpanded, setBioExpanded] = useState(false);
+    const founderVideoRowRef = useRef<HTMLDivElement>(null);
+    const [videoRowScrollEdge, setVideoRowScrollEdge] = useState({ atStart: true, atEnd: false });
+
+    const updateFounderVideoRowScroll = useCallback(() => {
+        const el = founderVideoRowRef.current;
+        if (!el) return;
+        const { scrollLeft, scrollWidth, clientWidth } = el;
+        const pad = 2;
+        setVideoRowScrollEdge({
+            atStart: scrollLeft <= pad,
+            atEnd: scrollLeft + clientWidth >= scrollWidth - pad,
+        });
+    }, []);
+
+    const scrollFounderVideos = useCallback((direction: "left" | "right") => {
+        const el = founderVideoRowRef.current;
+        if (!el) return;
+        const delta = Math.round(el.clientWidth * 0.75);
+        el.scrollBy({ left: direction === "left" ? -delta : delta, behavior: "smooth" });
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
@@ -82,6 +118,23 @@ const Founder = () => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedImage, handlePrevious, handleNext]);
+
+    useEffect(() => {
+        if (activeTab !== "founder") return;
+        const el = founderVideoRowRef.current;
+        if (!el) return;
+        const run = () => updateFounderVideoRowScroll();
+        run();
+        el.addEventListener("scroll", run, { passive: true });
+        window.addEventListener("resize", run);
+        const ro = new ResizeObserver(run);
+        ro.observe(el);
+        return () => {
+            el.removeEventListener("scroll", run);
+            window.removeEventListener("resize", run);
+            ro.disconnect();
+        };
+    }, [activeTab, updateFounderVideoRowScroll]);
 
     return (
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
@@ -193,78 +246,74 @@ const Founder = () => {
                 </div>
             </div>
 
-            {/* Coach video (landscape) – coach.mp4 from OurFounderGallery */}
-            <div className="container mx-auto px-4 py-16 md:py-24">
+            {/* Video gallery – Netflix-style horizontal row (scroll + snap); scrollbar hidden, circle-chevron controls */}
+            <section className="w-full py-12 md:py-20 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
+                <style>{`
+                    .founder-video-row { scrollbar-width: none; -ms-overflow-style: none; }
+                    .founder-video-row::-webkit-scrollbar { display: none; }
+                `}</style>
+                <div className="px-4 md:px-8 lg:px-12 mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">
+                        Stories <span className="text-bright-sun-600 dark:text-bright-sun-300">&amp; Videos</span>
+                    </h2>
+                    <div className="flex items-center justify-center sm:justify-end gap-2 shrink-0" role="group" aria-label="Scroll videos">
+                        <button
+                            type="button"
+                            onClick={() => scrollFounderVideos("left")}
+                            disabled={videoRowScrollEdge.atStart}
+                            className="p-1 rounded-full text-cerulean-blue-900 dark:text-white bg-white dark:bg-white/10 border-2 border-gray-200 dark:border-white/15 shadow-md hover:bg-bright-sun-100 dark:hover:bg-bright-sun-400/20 hover:border-bright-sun-400 disabled:opacity-35 disabled:pointer-events-none transition-all active:scale-95"
+                            aria-label="Scroll videos left"
+                        >
+                            <IconCircleChevronLeft size={40} stroke={1.5} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => scrollFounderVideos("right")}
+                            disabled={videoRowScrollEdge.atEnd}
+                            className="p-1 rounded-full text-cerulean-blue-900 dark:text-white bg-white dark:bg-white/10 border-2 border-gray-200 dark:border-white/15 shadow-md hover:bg-bright-sun-100 dark:hover:bg-bright-sun-400/20 hover:border-bright-sun-400 disabled:opacity-35 disabled:pointer-events-none transition-all active:scale-95"
+                            aria-label="Scroll videos right"
+                        >
+                            <IconCircleChevronRight size={40} stroke={1.5} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                        </button>
+                    </div>
+                </div>
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    ref={founderVideoRowRef}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-5xl mx-auto"
+                    className="founder-video-row flex gap-4 md:gap-6 overflow-x-auto overflow-y-hidden pb-6 pl-4 md:pl-8 lg:pl-12 pr-4 md:pr-8 lg:pr-12 scroll-smooth snap-x snap-mandatory"
                 >
-                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 text-center">
-                        Coach <span className="text-bright-sun-600 dark:text-bright-sun-300">in Action</span>
-                    </h2>
-                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20">
-                        <video
-                            className="w-full aspect-video object-cover"
-                            src={COACH_VIDEO_SRC}
-                            controls
-                            playsInline
-                            preload="metadata"
-                            aria-label="Coach video from The Champions Sports Academy"
+                    {FOUNDER_VIDEO_ITEMS.map((item, index) => (
+                        <div
+                            key={item.id}
+                            className="flex-shrink-0 w-[78vw] sm:w-[55vw] md:w-[38vw] lg:w-[28vw] xl:w-[24vw] max-w-md snap-start"
                         >
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                            <div className="group rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl hover:z-10 hover:border-bright-sun-500/40">
+                                <div className={item.layout === "landscape" ? "aspect-video w-full" : "aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"}>
+                                    <video
+                                        className={
+                                            item.layout === "landscape"
+                                                ? "w-full h-full object-cover"
+                                                : "w-full h-full max-h-[min(70vh,520px)] object-contain"
+                                        }
+                                        src={item.src}
+                                        controls
+                                        playsInline
+                                        preload="metadata"
+                                        aria-label={item.title}
+                                    >
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                            <p className="mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1">
+                                {item.title}
+                            </p>
+                        </div>
+                    ))}
                 </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="max-w-4xl mx-auto mt-16 md:mt-24"
-                >
-                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 text-center">
-                        <span className="text-bright-sun-600 dark:text-bright-sun-300">Coaching</span>
-                    </h2>
-                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20 flex justify-center items-center">
-                        <video
-                            className="w-full max-w-md mx-auto max-h-[85vh] h-auto object-contain"
-                            src={COACHING_VIDEO_SRC}
-                            controls
-                            playsInline
-                            preload="metadata"
-                            aria-label="Coaching video from The Champions Sports Academy"
-                        >
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </motion.div>
-
-                {/* Landscape: Rwanda Karate – OurFounderGallery */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="max-w-5xl mx-auto mt-16 md:mt-24"
-                >
-                    <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 text-center">
-                        Rwanda <span className="text-bright-sun-600 dark:text-bright-sun-300">Karate</span>
-                    </h2>
-                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/20">
-                        <video
-                            className="w-full aspect-video object-cover"
-                            src={RWANDA_KARATE_VIDEO_SRC}
-                            controls
-                            playsInline
-                            preload="metadata"
-                            aria-label="Rwanda Karate video from The Champions Sports Academy"
-                        >
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </motion.div>
-            </div>
+            </section>
 
             {/* 1. Founder's Journey (past) */}
             <div id="founder-journey" className="container mx-auto px-4 py-32 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300 scroll-mt-24">

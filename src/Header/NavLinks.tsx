@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconLayoutGrid, IconX } from "@tabler/icons-react";
 
 const NavLinks = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -105,10 +105,14 @@ const NavLinks = () => {
             {/* Mobile Hamburger Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden w-10 h-10 flex items-center justify-center text-cerulean-blue-900 dark:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl transition-all border border-gray-200 dark:border-white/5 active:scale-90"
+                className="md:hidden w-11 h-11 flex items-center justify-center text-cerulean-blue-900 dark:text-white bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl transition-all border border-gray-200 dark:border-white/5 active:scale-90"
                 aria-label="Toggle menu"
             >
-                {isOpen ? <IconX size={24} className="text-bright-sun-600 dark:text-bright-sun-300" /> : <IconMenu2 size={24} />}
+                {isOpen ? (
+                    <IconX size={28} stroke={2} className="text-bright-sun-600 dark:text-bright-sun-300" />
+                ) : (
+                    <IconLayoutGrid size={28} stroke={1.75} className="text-cerulean-blue-900 dark:text-white" />
+                )}
             </button>
 
             {/* Mobile Navigation Menu */}
