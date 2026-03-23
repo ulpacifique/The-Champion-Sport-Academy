@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconCircleChevronLeft, IconCircleChevronRight, IconTrophy, IconChevronDown, IconChevronUp, IconUsers, IconUser, IconUserCheck } from "@tabler/icons-react";
+import { useState, useEffect, useCallback } from "react";
+import { IconPhoto, IconSparkles, IconX, IconChevronLeft, IconChevronRight, IconTrophy, IconChevronDown, IconChevronUp, IconUsers, IconUser, IconUserCheck } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -29,7 +29,7 @@ const RWANDA_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${
 const LEGACY_KARATE_ATHLETE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("My Legacy as a Karate Athlete.mp4")}`;
 const DEVELOPING_YOUTH_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Developing Youth throught Karate.mp4")}`;
 
-/** Netflix-style row: title, src, layout for Founder video gallery (optional caption = longer text under video) */
+/** Founder video gallery items (optional caption = longer text under video) */
 const FOUNDER_VIDEO_ITEMS: {
     id: string;
     title: string;
@@ -79,6 +79,13 @@ const FOUNDER_VIDEO_ITEMS: {
     },
 ];
 
+/** 3 columns: 2 videos | 2 videos | 1 video */
+const FOUNDER_VIDEO_COLUMNS = [
+    FOUNDER_VIDEO_ITEMS.slice(0, 2),
+    FOUNDER_VIDEO_ITEMS.slice(2, 4),
+    FOUNDER_VIDEO_ITEMS.slice(4, 5),
+];
+
 const FOUNDER_BIO = [
     "Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.",
     "He became the first karate coach in the world to receive an Olympic Solidarity Scholarship for Coaches after karate was included in the Olympic Games programme. This prestigious scholarship enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international coaching programme for elite sport coaches.",
@@ -93,26 +100,6 @@ const Founder = () => {
     const [activeTab, setActiveTab] = useState<FounderTab>("founder");
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
     const [bioExpanded, setBioExpanded] = useState(false);
-    const founderVideoRowRef = useRef<HTMLDivElement>(null);
-    const [videoRowScrollEdge, setVideoRowScrollEdge] = useState({ atStart: true, atEnd: false });
-
-    const updateFounderVideoRowScroll = useCallback(() => {
-        const el = founderVideoRowRef.current;
-        if (!el) return;
-        const { scrollLeft, scrollWidth, clientWidth } = el;
-        const pad = 2;
-        setVideoRowScrollEdge({
-            atStart: scrollLeft <= pad,
-            atEnd: scrollLeft + clientWidth >= scrollWidth - pad,
-        });
-    }, []);
-
-    const scrollFounderVideos = useCallback((direction: "left" | "right") => {
-        const el = founderVideoRowRef.current;
-        if (!el) return;
-        const delta = Math.round(el.clientWidth * 0.75);
-        el.scrollBy({ left: direction === "left" ? -delta : delta, behavior: "smooth" });
-    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
@@ -154,23 +141,6 @@ const Founder = () => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedImage, handlePrevious, handleNext]);
-
-    useEffect(() => {
-        if (activeTab !== "founder") return;
-        const el = founderVideoRowRef.current;
-        if (!el) return;
-        const run = () => updateFounderVideoRowScroll();
-        run();
-        el.addEventListener("scroll", run, { passive: true });
-        window.addEventListener("resize", run);
-        const ro = new ResizeObserver(run);
-        ro.observe(el);
-        return () => {
-            el.removeEventListener("scroll", run);
-            window.removeEventListener("resize", run);
-            ro.disconnect();
-        };
-    }, [activeTab, updateFounderVideoRowScroll]);
 
     return (
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
@@ -282,76 +252,65 @@ const Founder = () => {
                 </div>
             </div>
 
-            {/* Video gallery – Netflix-style horizontal row (scroll + snap); scrollbar hidden, circle-chevron controls */}
+            {/* Video gallery – 3 columns: 2 videos | 2 videos | 1 video */}
             <section className="w-full py-12 md:py-20 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
-                <style>{`
-                    .founder-video-row { scrollbar-width: none; -ms-overflow-style: none; }
-                    .founder-video-row::-webkit-scrollbar { display: none; }
-                `}</style>
-                <div className="px-4 md:px-8 lg:px-12 mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div className="px-4 md:px-8 lg:px-12 mb-8 md:mb-10">
                     <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">
-                        Stories <span className="text-bright-sun-600 dark:text-bright-sun-300">&amp; Videos</span>
+                    From Athlete to Coach Developer:  <span className="text-bright-sun-600 dark:text-bright-sun-300"> The Legacy of My Karate Journey</span>
                     </h2>
-                    <div className="flex items-center justify-center sm:justify-end gap-2 shrink-0" role="group" aria-label="Scroll videos">
-                        <button
-                            type="button"
-                            onClick={() => scrollFounderVideos("left")}
-                            disabled={videoRowScrollEdge.atStart}
-                            className="p-1 rounded-full text-cerulean-blue-900 dark:text-white bg-white dark:bg-white/10 border-2 border-gray-200 dark:border-white/15 shadow-md hover:bg-bright-sun-100 dark:hover:bg-bright-sun-400/20 hover:border-bright-sun-400 disabled:opacity-35 disabled:pointer-events-none transition-all active:scale-95"
-                            aria-label="Scroll videos left"
-                        >
-                            <IconCircleChevronLeft size={40} stroke={1.5} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => scrollFounderVideos("right")}
-                            disabled={videoRowScrollEdge.atEnd}
-                            className="p-1 rounded-full text-cerulean-blue-900 dark:text-white bg-white dark:bg-white/10 border-2 border-gray-200 dark:border-white/15 shadow-md hover:bg-bright-sun-100 dark:hover:bg-bright-sun-400/20 hover:border-bright-sun-400 disabled:opacity-35 disabled:pointer-events-none transition-all active:scale-95"
-                            aria-label="Scroll videos right"
-                        >
-                            <IconCircleChevronRight size={40} stroke={1.5} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                        </button>
-                    </div>
                 </div>
                 <motion.div
-                    ref={founderVideoRowRef}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="founder-video-row flex gap-4 md:gap-6 overflow-x-auto overflow-y-hidden pb-6 pl-4 md:pl-8 lg:pl-12 pr-4 md:pr-8 lg:pr-12 scroll-smooth snap-x snap-mandatory"
+                    className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
                 >
-                    {FOUNDER_VIDEO_ITEMS.map((item, index) => (
+                    {FOUNDER_VIDEO_COLUMNS.map((columnItems, colIndex) => (
                         <div
-                            key={item.id}
-                            className="flex-shrink-0 w-[78vw] sm:w-[55vw] md:w-[38vw] lg:w-[28vw] xl:w-[24vw] max-w-md snap-start"
+                            key={`founder-video-col-${colIndex}`}
+                            className={
+                                colIndex === 2
+                                    ? "flex flex-col gap-8 lg:gap-10 min-w-0 md:col-span-2 lg:col-span-1 md:max-w-xl md:mx-auto lg:max-w-none"
+                                    : "flex flex-col gap-8 lg:gap-10 min-w-0"
+                            }
                         >
-                            <div className="group rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl hover:z-10 hover:border-bright-sun-500/40">
-                                <div className={item.layout === "landscape" ? "aspect-video w-full" : "aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"}>
-                                    <video
+                            {columnItems.map((item) => (
+                                <div key={item.id} className="w-full min-w-0">
+                                    <div className="group rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl hover:z-10 hover:border-bright-sun-500/40">
+                                        <div
+                                            className={
+                                                item.layout === "landscape"
+                                                    ? "aspect-video w-full"
+                                                    : "aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"
+                                            }
+                                        >
+                                            <video
+                                                className={
+                                                    item.layout === "landscape"
+                                                        ? "w-full h-full object-cover"
+                                                        : "w-full h-full max-h-[min(70vh,520px)] object-contain"
+                                                }
+                                                src={item.src}
+                                                controls
+                                                playsInline
+                                                preload="metadata"
+                                                aria-label={item.caption ?? item.title}
+                                            >
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </div>
+                                    <p
                                         className={
-                                            item.layout === "landscape"
-                                                ? "w-full h-full object-cover"
-                                                : "w-full h-full max-h-[min(70vh,520px)] object-contain"
+                                            item.caption
+                                                ? "mt-3 text-left sm:text-center text-xs sm:text-sm md:text-[0.9375rem] font-semibold text-cerulean-blue-900 dark:text-white tracking-normal leading-relaxed whitespace-pre-line px-0.5"
+                                                : "mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1"
                                         }
-                                        src={item.src}
-                                        controls
-                                        playsInline
-                                        preload="metadata"
-                                        aria-label={item.caption ?? item.title}
                                     >
-                                        Your browser does not support the video tag.
-                                    </video>
+                                        {item.caption ?? item.title}
+                                    </p>
                                 </div>
-                            </div>
-                            <p
-                                className={
-                                    item.caption
-                                        ? "mt-3 text-center text-xs sm:text-sm md:text-[0.9375rem] font-semibold text-cerulean-blue-900 dark:text-white tracking-normal leading-relaxed whitespace-pre-line px-1 max-w-[min(100%,28rem)] mx-auto"
-                                        : "mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1"
-                                }
-                            >
-                                {item.caption ?? item.title}
-                            </p>
+                            ))}
                         </div>
                     ))}
                 </motion.div>
