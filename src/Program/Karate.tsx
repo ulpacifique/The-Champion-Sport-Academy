@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
+    IconCalendar,
     IconMapPin,
     IconStar,
     IconCheck,
@@ -10,8 +11,19 @@ import {
 import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 
-const KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/karate.mp4`;
+const KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/abaChamp302.mp4`;
 const CLASS_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/Class.jpg`;
+const HERO_BOYS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/Boys.mp4`;
+const HERO_GIRLS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/Girls.mp4`;
+
+/** Session times — home classes + weekend blocks */
+const KARATE_SESSION_SCHEDULE: { id: string; dayLabel: string; sessionTitle: string; timeLabel: string }[] = [
+    { id: 'mf-home', dayLabel: 'Monday – Friday', sessionTitle: 'Home Classes (Individual/Group)', timeLabel: 'By Appointment' },
+    { id: 'sat-am', dayLabel: 'Saturday', sessionTitle: 'Weekend Training (Morning)', timeLabel: '10:00 AM – 12:00 PM' },
+    { id: 'sat-pm', dayLabel: 'Saturday', sessionTitle: 'Weekend Training (Afternoon)', timeLabel: '3:00 PM – 5:00 PM' },
+    { id: 'sun-am', dayLabel: 'Sunday', sessionTitle: 'Weekend Training (Morning)', timeLabel: '10:00 AM – 12:00 PM' },
+    { id: 'sun-pm', dayLabel: 'Sunday', sessionTitle: 'Weekend Training (Afternoon)', timeLabel: '3:00 PM – 5:00 PM' },
+];
 
 const Karate = () => {
     const fadeInUp = {
@@ -35,8 +47,8 @@ const Karate = () => {
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
-            {/* Hero */}
-            <section className="relative min-h-[90vh] flex items-center py-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+            {/* Hero — karate1.jpeg background; portrait Boys.mp4 left, copy center, Girls.mp4 right */}
+            <section className="relative min-h-[90vh] flex items-center py-16 md:py-20 px-4 md:px-6 lg:px-12 overflow-hidden">
                 <div className="absolute inset-0 bg-white/50 dark:bg-cerulean-blue-900/70 z-10" />
                 <div
                     className="absolute inset-0 z-0"
@@ -46,21 +58,55 @@ const Karate = () => {
                         backgroundPosition: 'center',
                     }}
                 />
-                <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[20px] decoration-8">
-                            Champions Karate
-                            <span className="text-bright-sun-600 dark:text-bright-sun-300 italic"> for Life Programme</span>
-                        </h1>
-                        <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs">
-                            <IconShield size={16} />
-                            <span>Building champions in sport and life through discipline, physical literacy, and excellence</span>
+                <div className="relative z-20 w-full max-w-[1400px] mx-auto">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-5 xl:gap-10">
+                        {/* Boys — left on desktop */}
+                        <div className="order-2 lg:order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex justify-center lg:justify-end">
+                            <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
+                                <video
+                                    className="w-full h-full object-cover"
+                                    src={HERO_BOYS_VIDEO_SRC}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    preload="metadata"
+                                    aria-label="Karate — boys programme"
+                                />
+                            </div>
                         </div>
-                    </motion.div>
+                        {/* Title — center */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1 }}
+                            className="order-1 lg:order-2 flex-1 min-w-0 text-center px-2 lg:px-4"
+                        >
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[12px] md:underline-offset-[20px] decoration-4 md:decoration-8">
+                                Champions Karate
+                                <span className="text-bright-sun-600 dark:text-bright-sun-300 italic"> for Life Programme</span>
+                            </h1>
+                            <div className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 font-black uppercase tracking-widest text-[10px] sm:text-xs max-w-xl mx-auto">
+                                <IconShield size={16} className="shrink-0" />
+                                <span>Building champions in sport and life through discipline, physical literacy, and excellence</span>
+                            </div>
+                        </motion.div>
+                        {/* Girls — right on desktop */}
+                        <div className="order-3 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex justify-center lg:justify-start">
+                            <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
+                                <video
+                                    className="w-full h-full object-cover"
+                                    src={HERO_GIRLS_VIDEO_SRC}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    preload="metadata"
+                                    aria-label="Karate — girls programme"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -73,7 +119,7 @@ const Karate = () => {
                             <div className="relative order-2 lg:order-1 flex justify-center lg:justify-start">
                                 <div className="absolute -inset-4 bg-bright-sun-600/10 dark:bg-bright-sun-300/10 blur-[80px] rounded-full lg:block hidden" />
                                 <div className="relative w-full max-w-[min(100%,22rem)] sm:max-w-sm">
-                                    <div className="rounded-[2rem] overflow-hidden border-[10px] border-gray-50 dark:border-cerulean-blue-900 shadow-2xl bg-black aspect-[9/16] max-h-[min(85vh,720px)]">
+                                    <div className="rounded-[2rem] overflow-hidden border-[10px] border-gray-50 dark:border-cerulean-blue-900 shadow-2xl bg-black aspect-[1/1] max-h-[min(85vh,720px)]">
                                         <video
                                             className="w-full h-full object-cover"
                                             src={KARATE_VIDEO_SRC}
@@ -82,7 +128,7 @@ const Karate = () => {
                                             muted
                                             playsInline
                                             preload="metadata"
-                                            aria-label="Karate training at The Champions Sports Academy"
+                                            aria-label="OUr Achievements"
                                         />
                                     </div>
                                 </div>
@@ -309,6 +355,35 @@ const Karate = () => {
                                         <span className="text-gray-600 dark:text-gray-300 font-medium">{row.detail}</span>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="mt-14 md:mt-16">
+                                <div className="flex items-center gap-3 mb-6 text-gray-600 dark:text-gray-300">
+                                    <IconCalendar className="text-bright-sun-600 dark:text-bright-sun-300 shrink-0" size={28} />
+                                    <h3 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tight">
+                                        Session schedule
+                                    </h3>
+                                </div>
+                                <div className="space-y-4">
+                                    {KARATE_SESSION_SCHEDULE.map((slot) => (
+                                        <div
+                                            key={slot.id}
+                                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-5 md:p-6 rounded-2xl bg-gray-50/80 dark:bg-cerulean-blue-900/50 border border-gray-200 dark:border-white/10"
+                                        >
+                                            <div>
+                                                <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-bright-sun-600 dark:text-bright-sun-300 mb-1">
+                                                    {slot.dayLabel}
+                                                </div>
+                                                <div className="font-black text-cerulean-blue-900 dark:text-white text-sm md:text-base">
+                                                    {slot.sessionTitle}
+                                                </div>
+                                            </div>
+                                            <div className="text-bright-sun-700 dark:text-bright-sun-300 font-black text-sm md:text-base sm:text-right sm:min-w-[12rem]">
+                                                {slot.timeLabel}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     </div>
