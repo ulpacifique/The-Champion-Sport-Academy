@@ -61,7 +61,7 @@ const Karate = () => {
                 <div className="relative z-20 w-full max-w-[1400px] mx-auto">
                     <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-5 xl:gap-10">
                         {/* Boys — left on desktop */}
-                        <div className="order-2 lg:order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex justify-center lg:justify-end">
+                        <div className="order-2 lg:order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex flex-col items-center lg:items-end gap-3">
                             <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
                                 <video
                                     className="w-full h-full object-cover"
@@ -71,9 +71,12 @@ const Karate = () => {
                                     muted
                                     playsInline
                                     preload="metadata"
-                                    aria-label="Karate — boys programme"
+                                    aria-label="Meet Nshuti, Male Champion 2025"
                                 />
                             </div>
+                            <p className="text-center lg:text-right w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-950 dark:text-white drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-snug max-w-[14rem]">
+                                Meet Nshuti Male Champion 2025
+                            </p>
                         </div>
                         {/* Title — center */}
                         <motion.div
@@ -92,7 +95,7 @@ const Karate = () => {
                             </div>
                         </motion.div>
                         {/* Girls — right on desktop */}
-                        <div className="order-3 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex justify-center lg:justify-start">
+                        <div className="order-3 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex flex-col items-center lg:items-start gap-3">
                             <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
                                 <video
                                     className="w-full h-full object-cover"
@@ -102,9 +105,12 @@ const Karate = () => {
                                     muted
                                     playsInline
                                     preload="metadata"
-                                    aria-label="Karate — girls programme"
+                                    aria-label="Meet Noémie, Female Champion 2025"
                                 />
                             </div>
+                            <p className="text-center lg:text-left w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-950 dark:text-white drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-snug max-w-[14rem]">
+                                Meet Noémie Female Champion 2025
+                            </p>
                         </div>
                     </div>
                 </div>
