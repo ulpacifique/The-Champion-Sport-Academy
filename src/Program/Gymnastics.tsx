@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import {
     IconCalendar,
     IconMapPin,
-    IconCheck,
     IconShield,
-    IconLeaf,
-    IconFriends,
-    IconHeartHandshake,
     IconTrophy,
     IconAward,
     IconChevronRight,
@@ -17,7 +13,7 @@ import {
 } from '@tabler/icons-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../Header/Header';
-import { coreValuesData } from '../Data/coreValues';
+import { GymnasticsProgrammeContent } from './GymnasticsProgrammeContent';
 import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
 
@@ -32,35 +28,6 @@ const Gymnastics = () => {
         viewport: { once: true },
         transition: { duration: 0.6 }
     };
-
-    // Gymnastics programs data
-    const programs = [
-        {
-            title: "Weekend Training (Ages 3-17)",
-            description: "Fundamental movement skills and physical literacy in a fun, safe environment",
-            features: ["Basic Movement Skills", "Balance & Coordination", "Social Development", "Body Awareness"],
-            icon: <IconHeartHandshake size={24} />,
-            schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${import.meta.env.BASE_URL}athletes/team.JPG`
-        },
-        {
-            title: "Private Home Classes",
-            description: "Developing gymnastics skills, strength, and flexibility through personalized training",
-            features: ["Personalized Attention", "Strength Development", "Flexibility", "Rapid Progress"],
-            icon: <IconTrophy size={24} />,
-            schedule: "Mon - Fri: Available by appointment",
-            image: `${import.meta.env.BASE_URL}athletes/athlete-2.jpg`
-        },
-        {
-            title: "Advanced Gymnastics",
-            description: "Competitive training and advanced skill development for performance-oriented athletes",
-            features: ["Advanced Techniques", "Competition Prep", "Strength Conditioning", "Mental Training"],
-            icon: <IconAward size={24} />,
-            schedule: "Sat & Sun: 10:00 AM - 12:00 PM & 3:00 PM - 5:00 PM",
-            image: `${import.meta.env.BASE_URL}athletes/athlete-1.jpg`
-        }
-    ];
-
 
     // Gallery State
     const [galleryImages, setGalleryImages] = useState<any[]>([]);
@@ -155,16 +122,6 @@ const Gymnastics = () => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedImageIndex, handlePrevious, handleNext]);
 
-    // Core Values (shared data + local icons)
-    const valueIcons = [
-        <IconShield size={24} key="d" />,
-        <IconFriends size={24} key="f" />,
-        <IconHeartHandshake size={24} key="t" />,
-        <IconLeaf size={24} key="r" />,
-        <IconTrophy size={24} key="e" />,
-    ];
-    const coreValues = coreValuesData.map((v, i) => ({ ...v, icon: valueIcons[i] }));
-
     return (
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
@@ -226,163 +183,29 @@ const Gymnastics = () => {
                     </div>
                 </div>
 
-                <div className="relative z-20 max-w-7xl mx-auto w-full text-center pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-10 md:pb-16 pointer-events-none">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                    />
+                        transition={{ duration: 0.8 }}
+                        className="max-w-4xl mx-auto text-center space-y-2 md:space-y-3"
+                    >
+                        <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.35em] text-cerulean-blue-900 dark:text-white drop-shadow-[0_1px_8px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                            THE CHAMPIONS SPORTS ACADEMY
+                        </p>
+                        <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter leading-tight drop-shadow-[0_1px_8px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+                            Artistic Gymnastics Programme{' '}
+                            <span className="text-bright-sun-600 dark:text-bright-sun-300">(Ages 3–17)</span>
+                        </h1>
+                        <p className="text-sm md:text-lg font-medium italic text-gray-900 dark:text-gray-100 drop-shadow-sm">
+                            A Long-Term Development Programme for Sport and Life
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
             <main>
-                {/* About Section */}
-                <section className="py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid lg:grid-cols-2 gap-20 items-center">
-                            <motion.div {...fadeInUp}>
-                                <span className="text-bright-sun-600 dark:text-bright-sun-500 font-black text-xs uppercase tracking-[0.4em] mb-4 block">Holistic Development</span>
-                                <h2 className="text-4xl md:text-6xl font-black mb-8 text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                                    Developing <span className="text-bright-sun-600 dark:text-bright-sun-300">Champions</span> For Life
-                                </h2>
-                                <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed font-medium transition-colors">
-                                    The Champions Sports Academy is a leading values-driven institution dedicated to the holistic development of children and youth through the power of gymnastics.
-                                </p>
-                                <div className="space-y-4 mb-12">
-                                    {[
-                                        "Inclusive & safe training environment",
-                                        "Focus on physical literacy & movement",
-                                        "Educational and ethical foundations",
-                                        "Character development & discipline"
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-center text-gray-700 dark:text-gray-200 font-bold uppercase tracking-tight text-sm bg-gray-50 dark:bg-cerulean-blue-900/40 p-5 rounded-2xl border border-gray-100 dark:border-white/10 group hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 transition-all shadow-sm">
-                                            <div className="w-10 h-10 rounded-xl bg-bright-sun-600/10 dark:bg-bright-sun-300/20 flex items-center justify-center mr-4 shrink-0 group-hover:scale-110 transition-transform">
-                                                <IconCheck size={20} className="text-bright-sun-600 dark:text-bright-sun-300" />
-                                            </div>
-                                            {item}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="grid grid-cols-2 gap-12 border-t border-gray-100 dark:border-white/10 pt-12">
-                                    <div>
-                                        <div className="text-5xl font-black text-cerulean-blue-900 dark:text-white mb-2 italic tracking-tighter">300+</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] font-black">Active Students</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-5xl font-black text-cerulean-blue-900 dark:text-white mb-2 italic tracking-tighter">15+</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] font-black">Expert Coaches</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="relative group"
-                            >
-                                <div className="absolute -inset-6 bg-bright-sun-600/10 dark:bg-bright-sun-300/10 blur-[100px] rounded-full"></div>
-                                <div className="relative rounded-[3rem] overflow-hidden border-[12px] border-gray-50 dark:border-cerulean-blue-900 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-                                    <img
-                                        src={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`}
-                                        alt="Gymnastics training"
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                    />
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Programs Section */}
-                <section className="py-32 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-white/[0.02] transition-colors duration-300">
-                    <div className="max-w-7xl mx-auto">
-                        <motion.div
-                            {...fadeInUp}
-                            className="text-center mb-24"
-                        >
-                            <h2 className="text-4xl md:text-7xl font-black mb-6 text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Class <span className="text-bright-sun-600 dark:text-bright-sun-300">Programs</span></h2>
-                            <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-bold uppercase tracking-widest leading-loose">Age-appropriate training designed for long-term development</p>
-                        </motion.div>
-
-                        <div className="space-y-40">
-                            {programs.map((program, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 50 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 lg:gap-24 items-center`}
-                                >
-                                    <div className="flex-1 relative group w-full">
-                                        <div className="relative rounded-[3.5rem] overflow-hidden aspect-[4/3] shadow-2xl border-[8px] border-white dark:border-cerulean-blue-900 transition-all duration-700 group-hover:shadow-bright-sun-500/10 dark:group-hover:shadow-bright-sun-300/10 group-hover:-rotate-1">
-                                            <img
-                                                src={program.image}
-                                                alt={program.title}
-                                                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-cerulean-blue-950/80 via-transparent to-transparent opacity-60"></div>
-                                            <div className="absolute top-8 left-8 bg-bright-sun-400 dark:bg-bright-sun-300 p-6 rounded-[2rem] shadow-2xl z-10 transition-transform group-hover:scale-110 group-hover:rotate-6">
-                                                <div className="text-gray-900">
-                                                    {program.icon}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1 space-y-8 w-full">
-                                        <div className="text-bright-sun-600 dark:text-bright-sun-500 font-black text-xs uppercase tracking-[0.5em]">Module 0{index + 1}</div>
-                                        <h3 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white leading-tight">{program.title}</h3>
-                                        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8 font-medium">
-                                            "{program.description}"
-                                        </p>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left pt-4">
-                                            {program.features.map((feature, i) => (
-                                                <div key={i} className="flex items-center gap-3 text-gray-700 dark:text-gray-300 group/item">
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-bright-sun-600 dark:bg-bright-sun-300 group-hover/item:scale-150 transition-transform shadow-xl shadow-bright-sun-500/20"></div>
-                                                    <span className="font-bold uppercase tracking-tight text-sm">{feature}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="pt-10 border-t border-gray-100 dark:border-white/10 flex flex-col sm:flex-row gap-8 items-center">
-                                            <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-gray-500 dark:text-bright-sun-300">
-                                                <IconCalendar className="text-bright-sun-600 dark:text-bright-sun-300" size={20} />
-                                                <span>{program.schedule}</span>
-                                            </div>
-                                            <Link to="/register" className="px-10 py-5 bg-cerulean-blue-900 dark:bg-bright-sun-300 text-white dark:text-gray-900 rounded-3xl font-black transition-all hover:scale-105 shadow-xl uppercase italic tracking-tighter text-lg w-full sm:w-auto text-center">Join Class</Link>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-
-                {/* Core Values */}
-                <section className="py-32 px-4 md:px-8 lg:px-16 text-cerulean-blue-900 dark:text-white transition-colors duration-300 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-white dark:bg-cerulean-blue-900"></div>
-                    <div className="max-w-7xl mx-auto relative z-10">
-                        <div className="grid lg:grid-cols-5 gap-8">
-                            {coreValues.map((value, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: i * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="flex flex-col items-center text-center p-10 bg-gray-50 dark:bg-cerulean-blue-900/90 rounded-[2.5rem] border border-gray-100 dark:border-white/20 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 transition-all shadow-sm dark:shadow-lg dark:shadow-black/20 group cursor-help"
-                                >
-                                    <div className="w-16 h-16 bg-white dark:bg-cerulean-blue-800 text-bright-sun-600 dark:text-bright-sun-300 rounded-[1.25rem] flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
-                                        {value.icon}
-                                    </div>
-                                    <h3 className="text-xl font-black mb-4 text-cerulean-blue-900 dark:text-white uppercase italic tracking-tight">{value.name}</h3>
-                                    <p className="text-[10px] font-black text-gray-500 dark:text-gray-400 leading-loose uppercase tracking-[0.2em]">{value.description}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <GymnasticsProgrammeContent instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`} />
 
                 {/* Schedule & Location */}
                 <section className="py-32 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-white/[0.02] transition-colors duration-300">
