@@ -12,7 +12,7 @@ const NavLinks = () => {
         { name: "What We Do", url: "/events", type: "route" }, // New Events page link
         { name: "Karate", url: "/karate", type: "route" },
         { name: "Gymnastics", url: "/gymnastics", type: "route" },
-        { name: "LeadershipTeam", url: "/founder", type: "route" },
+        { name: "Our Founder", url: "/founder", type: "route" },
         { name: "Contact", url: "/contact", type: "route" },
     ];
 

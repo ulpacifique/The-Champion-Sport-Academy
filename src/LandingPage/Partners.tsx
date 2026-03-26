@@ -1,9 +1,9 @@
 import Marquee from "react-fast-marquee";
 import { trustedBy } from "../Data/TrustedbyData";
 
-const TrustedBy = () => {
+const Partners = () => {
     return (
-        <div className="mt-20 pb-5">
+        <div className="mt-20 pb-16 md:pb-24">
             <div className="text-4xl text-center mb-10 font-semibold text-cerulean-blue-900 dark:text-white">
                 Trusted by <span className="text-bright-sun-600 dark:text-bright-sun-300">Leading</span> Organizations
             </div>
@@ -13,11 +13,7 @@ const TrustedBy = () => {
                         key={index}
                         className="mx-8 px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-xl cursor-pointer transition-colors duration-300"
                     >
-                        <img
-                            className="h-14"
-                            src={`/${org}.png`}
-                            alt={org}
-                        />
+                        <img className="h-14" src={`/${org}.png`} alt={org} />
                     </div>
                 ))}
             </Marquee>
@@ -25,4 +21,4 @@ const TrustedBy = () => {
     );
 };
 
-export default TrustedBy;
+export default Partners;

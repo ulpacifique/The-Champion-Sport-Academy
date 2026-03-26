@@ -1,27 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
-import { IconSparkles, IconTrophy, IconChevronDown, IconChevronUp, IconUsers, IconUser, IconUserCheck } from "@tabler/icons-react";
+import { useState, useEffect } from "react";
+import { IconSparkles, IconTrophy, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-
-type FounderTab = "founder" | "team";
-
-const BOARD_MEMBERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
-const MANAGEMENT_TEAM = [
-    { role: "Head Coach", name: "Head Coach" },
-    { role: "Manager", name: "Manager" },
-    { role: "Secretary", name: "Secretary" },
-];
-
-const COACHES = [
-    { name: "Coach Kharif", role: "Head Karate Coach", experience: "Expert Trainer", specialty: "Youth Development & Karate", image: `${import.meta.env.BASE_URL}athletes/Khalif.PNG` },
-    { name: "Coach Dushime Sharifu", role: "National Team Athlete", experience: "10+ Years", specialty: "Acrobatics & Fitness", image: `${import.meta.env.BASE_URL}athletes/Dushime.jpg` },
-    { name: "Coach ABAYISENGA Paremonique", role: "Certified National Coach", experience: "12+ Years", specialty: "Artistic & Rhythmic", image: `${import.meta.env.BASE_URL}athletes/palmonique.jpg` },
-    { name: "Coach Pacifique", role: "Instructor", experience: "3+ Years", specialty: "Taekwondo & Gymnastics", image: `${import.meta.env.BASE_URL}athletes/Coach Pacifique.jpg` },
-    { name: "Coach Sylvan", role: "Gymnastics Coach", experience: "1 Year", specialty: "Floor & Vault Training", image: `${import.meta.env.BASE_URL}athletes/Coach Sylvan.jpg` },
-    { name: "Coach Tracy", role: "Assistant Coach", experience: "3 Years", specialty: "Core Technique & Flexibility", image: `${import.meta.env.BASE_URL}athletes/Coach Tracy.jpg` },
-    { name: "Fille", role: "Academy Receptionist", experience: "Admin Expert", specialty: "Student Relations", image: `${import.meta.env.BASE_URL}athletes/Receptionist Fille.jpg` },
-    { name: "Mama Bonfils", role: "Safeguarding Officer", experience: "Welfare Guard", specialty: "Safety Oversight", image: `${import.meta.env.BASE_URL}athletes/Safeguarding Officer.jpg` },
-];
 
 const COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coach.mp4`;
 const COACHING_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coaching.mp4`;
@@ -105,7 +86,6 @@ const FOUNDER_BIO = [
 
 const Founder = () => {
     const [animate, setAnimate] = useState(false);
-    const [activeTab, setActiveTab] = useState<FounderTab>("founder");
     const [bioExpanded, setBioExpanded] = useState(false);
 
     useEffect(() => {
@@ -125,30 +105,6 @@ const Founder = () => {
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
             <Header />
 
-            {/* Tabs: Our Founder | Team */}
-            <div className="sticky top-20 z-50 bg-white/95 dark:bg-cerulean-blue-900/95 backdrop-blur border-b border-gray-200 dark:border-white/10">
-                <div className="container mx-auto px-4 py-4 flex gap-2">
-                    <button
-                        type="button"
-                        onClick={() => setActiveTab("founder")}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wide text-sm transition-all ${activeTab === "founder" ? "bg-bright-sun-500 dark:bg-bright-sun-400 text-gray-900 shadow-lg" : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20"}`}
-                    >
-                        <IconSparkles size={20} />
-                        Our Founder
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setActiveTab("team")}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wide text-sm transition-all ${activeTab === "team" ? "bg-bright-sun-500 dark:bg-bright-sun-400 text-gray-900 shadow-lg" : "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20"}`}
-                    >
-                        <IconUsers size={20} />
-                        Board of Directors & Team
-                    </button>
-                </div>
-            </div>
-
-            {activeTab === "founder" && (
-            <>
             {/* Founder & CEO Section */}
             <div className="container mx-auto px-4 py-32">
                 <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-8 md:p-20 backdrop-blur-md shadow-sm dark:shadow-none transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -567,102 +523,7 @@ const Founder = () => {
                     </div>
                 </div>
             </section>
-
-            </>
-            )}
-
-            {activeTab === "team" && (
-            <div className="container mx-auto px-4 py-16 md:py-24">
-                {/* Board of Directors – 8 people (A–H), parents with a role in The Champions Sports Academy */}
-                <section className="mb-20">
-                    <h2 className="text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-2 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Board of Directors
-                    </h2>
-                    
-                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-6">
-                        {BOARD_MEMBERS.map((name, index) => (
-                            <motion.div
-                                key={name}
-                                initial={{ opacity: 0, y: 12 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.05 }}
-                                className="bg-gray-50 dark:bg-cerulean-blue-800/40 border border-gray-200 dark:border-white/10 rounded-2xl p-6 text-center shadow-sm"
-                            >
-                                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-bright-sun-500/20 dark:bg-bright-sun-400/20 border-2 border-bright-sun-500 dark:border-bright-sun-400 flex items-center justify-center">
-                                    <IconUser className="text-bright-sun-600 dark:text-bright-sun-300" size={28} />
-                                </div>
-                                <span className="text-xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight">{name}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Management Team – Head Coach, Manager, Secretary */}
-                <section>
-                    <h2 className="text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-2 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Management Team
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-                        {MANAGEMENT_TEAM.map((member, index) => (
-                            <motion.div
-                                key={member.role}
-                                initial={{ opacity: 0, y: 12 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="bg-white dark:bg-cerulean-blue-800/40 border-2 border-cerulean-blue-700 dark:border-cerulean-blue-500 rounded-2xl p-8 text-center shadow-lg"
-                            >
-                                <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-bright-sun-500/20 dark:bg-bright-sun-400/20 border-2 border-bright-sun-500 dark:border-bright-sun-400 flex items-center justify-center">
-                                    <IconUser className="text-bright-sun-600 dark:text-bright-sun-300" size={36} />
-                                </div>
-                                <h3 className="text-xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight mb-1">{member.role}</h3>
-                                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">{member.name}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Coaches – moved from About Us */}
-                <section className="mt-20">
-                    <h2 className="text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-2 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4">
-                        Coaches
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-24 mt-14">
-                        {COACHES.map((coach, index) => (
-                            <motion.div
-                                key={coach.name}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.06 }}
-                                className="group relative text-center"
-                            >
-                                <div className="relative mb-10 w-full aspect-square max-w-[280px] mx-auto">
-                                    <div className="relative w-full h-full rounded-full overflow-hidden border-[8px] border-white dark:border-cerulean-blue-900 shadow-2xl transition-all duration-700 group-hover:shadow-bright-sun-600/20">
-                                        <img
-                                            src={coach.image}
-                                            alt={coach.name}
-                                            className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                                        />
-                                    </div>
-                                    <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-3xl bg-bright-sun-400 dark:bg-bright-sun-300 shadow-xl flex items-center justify-center text-gray-900 transition-all duration-500 group-hover:rotate-12 z-10 border-4 border-white dark:border-cerulean-blue-900">
-                                        <IconUserCheck size={32} />
-                                    </div>
-                                </div>
-                                <span className="text-bright-sun-600 dark:text-bright-sun-500 text-[10px] font-black uppercase tracking-[0.4em] block mb-1">
-                                    {coach.role}
-                                </span>
-                                <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter italic leading-none group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors duration-500 mb-2">
-                                    {coach.name}
-                                </h3>
-                                <div className="flex flex-col text-[11px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 space-y-1">
-                                    <span>{coach.specialty}</span>
-                                    <span className="text-bright-sun-600 dark:text-bright-sun-300 italic tracking-tight text-xs">{coach.experience} EXPERIENCE</span>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-            </div>
-            )}
+            <Footer />
         </div>
     );
 };

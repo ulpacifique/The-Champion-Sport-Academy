@@ -26,17 +26,22 @@ const Contact = () => {
             <Header />
 
             {/* Hero Section */}
-            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gray-50 dark:bg-cerulean-blue-900">
+            <section className="relative py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gray-100 dark:bg-cerulean-blue-950">
                 <div
-                    className="absolute inset-0 opacity-10 dark:opacity-[0.07] z-0"
+                    className="absolute inset-0 z-0"
                     style={{
                         backgroundImage: `url(${import.meta.env.BASE_URL}athletes/competion.jpg)`,
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center'
+                        backgroundPosition: 'center',
                     }}
-                ></div>
+                />
+                {/* Softer scrim so the photo stays visible; text stays readable */}
+                <div
+                    className="absolute inset-0 z-[1] bg-gradient-to-b from-white/55 via-white/35 to-gray-100/75 dark:from-cerulean-blue-950/65 dark:via-cerulean-blue-900/50 dark:to-cerulean-blue-950/80"
+                    aria-hidden
+                />
 
-                <div className="relative z-10 max-w-7xl mx-auto text-center">
+                <div className="relative z-10 max-w-7xl mx-auto text-center drop-shadow-sm">
                     <span className="inline-flex items-center px-4 py-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 rounded-full text-xs font-black uppercase tracking-widest mb-4">
                         Get in Touch
                     </span>

@@ -17,6 +17,22 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { coreValuesData } from "../Data/coreValues";
+import { TeamOrganizationContent } from "./TeamOrganizationContent";
+
+const STRATEGIC_PARTNERS: { name: string; type: string; initials: string }[] = [
+  { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner", initials: "FK" },
+  { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner", initials: "FG" },
+  { name: "Rwanda National Olympic & Sports Committee (RNOSC)", type: "National Olympic Committee", initials: "RN" },
+  { name: "Ministry of Sports", type: "Government Partner", initials: "MS" },
+  { name: "National Olympic & Sports Academy", type: "National Partner", initials: "NA" },
+  { name: "World Karate Federation (WKF)", type: "International Partner", initials: "WK" },
+  { name: "International Olympic Committee (IOC)", type: "International Partner", initials: "IO" },
+  { name: "International Olympic Academy (IOA)", type: "International Partner", initials: "IA" },
+  { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network", initials: "AS" },
+  { name: "USA Karate", type: "International Partner", initials: "US" },
+  { name: "5280 Gymnastics", type: "International Partner", initials: "52" },
+  { name: "Gasore Serge Foundation", type: "Foundation", initials: "GS" },
+];
 
 const AboutUs = () => {
   const [animate, setAnimate] = useState(false);
@@ -279,7 +295,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
+      {/* Strategic Partners: carousel, then board / management / coaches */}
       <section className="py-32 bg-gray-50/50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-24 px-4">
@@ -290,37 +306,46 @@ const AboutUs = () => {
           </div>
 
           <Carousel
-            slideSize={{ base: '100%', sm: '50%', md: '25%' }}
-            slideGap={{ base: 'md', sm: 'xl' }}
+            slideSize={{ base: '100%', sm: '50%', md: '33.333%' }}
+            slideGap={{ base: 'md', sm: 'lg' }}
             loop
             align="start"
-            className="[&_.mantine-Carousel-control]:bg-white dark:[&_.mantine-Carousel-control]:bg-cerulean-blue-800 [&_.mantine-Carousel-control]:shadow-xl [&_.mantine-Carousel-control]:border-none [&_.mantine-Carousel-control]:text-bright-sun-600 dark:[&_.mantine-Carousel-control]:text-bright-sun-300"
-            nextControlIcon={<IconArrowRight size={24} />}
-            previousControlIcon={<IconArrowLeft size={24} />}
+            className="[&_.mantine-Carousel-control]:h-11 [&_.mantine-Carousel-control]:w-11 [&_.mantine-Carousel-control]:rounded-full [&_.mantine-Carousel-control]:bg-white [&_.mantine-Carousel-control]:shadow-lg dark:[&_.mantine-Carousel-control]:bg-cerulean-blue-800 [&_.mantine-Carousel-control]:border [&_.mantine-Carousel-control]:border-gray-200 dark:[&_.mantine-Carousel-control]:border-white/10 [&_.mantine-Carousel-control]:text-cerulean-blue-900 dark:[&_.mantine-Carousel-control]:text-bright-sun-300"
+            nextControlIcon={<IconArrowRight size={20} stroke={1.75} />}
+            previousControlIcon={<IconArrowLeft size={20} stroke={1.75} />}
           >
-            {[
-              { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner", icon: "🥋" },
-              { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner", icon: "🤸" },
-              { name: "RNOSC", type: "National Olympic Committee", icon: "🏅" },
-              { name: "Ministry of Sports", type: "Government Partner", icon: "🏛️" },
-              { name: "National Olympic & Sports Academy", type: "National Partner", icon: "🎓" },
-              { name: "World Karate Federation (WKF)", type: "International Partner", icon: "🌍" },
-              { name: "International Olympic Committee (IOC)", type: "International Partner", icon: "⚡" },
-              { name: "International Olympic Academy (IOA)", type: "International Partner", icon: "🏛️" },
-              { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network", icon: "🤝" },
-              { name: "USA Karate", type: "International Partner", icon: "🇺🇸" },
-              { name: "5280 Gymnastics", type: "International Partner", icon: "🤸‍♀️" },
-              { name: "Gasore Serge Foundation", type: "Foundation", icon: "❤️" },
-            ].map((partner, index) => (
-              <Carousel.Slide key={index}>
-                <div className="bg-white dark:bg-cerulean-blue-900/40 border-[6px] border-white dark:border-cerulean-blue-900 p-8 rounded-[3rem] h-full flex flex-col items-center justify-center text-center shadow-xl hover:scale-105 transition-transform duration-500 group min-h-[280px]">
-                  <div className="text-6xl mb-6 group-hover:scale-110 transition-transform">{partner.icon}</div>
-                  <h4 className="text-lg font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-2 group-hover:text-bright-sun-600 dark:group-hover:text-bright-sun-300 transition-colors">{partner.name}</h4>
-                  <span className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">{partner.type}</span>
-                </div>
+            {STRATEGIC_PARTNERS.map((partner, index) => (
+              <Carousel.Slide key={`${partner.initials}-${index}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.35 }}
+                  className="group h-full min-h-[200px] rounded-2xl border border-gray-200/90 bg-white p-6 shadow-sm transition-all duration-300 hover:border-bright-sun-500/50 hover:shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/35 dark:hover:border-bright-sun-400/35 md:min-h-[220px] md:p-8"
+                >
+                  <div className="flex h-full flex-col gap-5 md:flex-row md:items-stretch md:gap-6">
+                    <div
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cerulean-blue-900 text-xs font-black tracking-tight text-bright-sun-300 shadow-inner dark:bg-white/10 dark:text-bright-sun-200 md:h-14 md:w-14 md:text-sm"
+                      aria-hidden
+                    >
+                      {partner.initials}
+                    </div>
+                    <div className="min-w-0 flex flex-1 flex-col justify-center text-left">
+                      <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-bright-sun-600 dark:text-bright-sun-400">
+                        {partner.type}
+                      </p>
+                      <h4 className="text-[15px] font-bold leading-snug text-cerulean-blue-900 dark:text-white md:text-base">
+                        {partner.name}
+                      </h4>
+                      <span className="mt-4 h-px w-10 bg-bright-sun-500/60 transition-all group-hover:w-14 dark:bg-bright-sun-400/50" aria-hidden />
+                    </div>
+                  </div>
+                </motion.div>
               </Carousel.Slide>
             ))}
           </Carousel>
+
+          <TeamOrganizationContent />
         </div>
       </section>
 
