@@ -1,4 +1,4 @@
-
+import { Suspense } from 'react';
 import './App.css';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
@@ -42,7 +42,15 @@ function App() {
               autoClose={5000}
             />
             <IdleTimeout>
-              <AppRoutes />
+              <Suspense
+                fallback={
+                  <div className="flex min-h-[50vh] items-center justify-center bg-white font-semibold text-cerulean-blue-900 dark:bg-cerulean-blue-900 dark:text-white">
+                    Loading…
+                  </div>
+                }
+              >
+                <AppRoutes />
+              </Suspense>
             </IdleTimeout>
           </MantineProvider>
         </BrowserRouter>

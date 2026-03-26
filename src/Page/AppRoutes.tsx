@@ -1,20 +1,23 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './HomePage';
-import AdminRouter from '../Admin/AdminRouter';
-import SportsDisciplines from '../LandingPage/SportsDisciplines';
-import Contact from '../LandingPage/contact';
-import Footer from '../Footer/Footer';
-import AuthPageWrapper from './AuthPageWrapper';
-import EventPage from './EventPages';
 import ProtectedRoute from './ProtectedRoute';
-import AboutUs from '../LandingPage/AboutUs';
-import CoachRouter from '../Coach/CoachRouter';
-import ParentRouter from '../Parents/ParentRouter';
-import ManagerRouter from '../Manager/ManagerRouter';
-import Karate from '../Program/Karate';
-import Gymnastics from '../Program/Gymnastics';
-import Founder from '../LandingPage/Founder';
 import Header from '../Header/Header';
+
+const HomePage = lazy(() => import('./HomePage'));
+const EventPage = lazy(() => import('./EventPages'));
+const Karate = lazy(() => import('../Program/Karate'));
+const Gymnastics = lazy(() => import('../Program/Gymnastics'));
+const Founder = lazy(() => import('../LandingPage/Founder'));
+const Contact = lazy(() => import('../LandingPage/contact'));
+const SportsDisciplines = lazy(() => import('../LandingPage/SportsDisciplines'));
+const AuthPageWrapper = lazy(() => import('./AuthPageWrapper'));
+const AboutUs = lazy(() => import('../LandingPage/AboutUs'));
+const Footer = lazy(() => import('../Footer/Footer'));
+const AdminRouter = lazy(() => import('../Admin/AdminRouter'));
+const CoachRouter = lazy(() => import('../Coach/CoachRouter'));
+const ParentRouter = lazy(() => import('../Parents/ParentRouter'));
+const ManagerRouter = lazy(() => import('../Manager/ManagerRouter'));
+
 function AppRoutes() {
   return (
     <Routes>
