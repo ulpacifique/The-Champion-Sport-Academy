@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { IconCheck, IconStar } from '@tabler/icons-react';
 
@@ -53,8 +54,48 @@ const StageCard = ({
     </div>
 );
 
+/** Portrait clip beside Programme Objectives (Prince.mp4 from Gymnastics.tsx). */
+const ObjectivesPortraitVideo = ({ src }: { src: string }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        const play = () => video.play().catch(() => {});
+        play();
+        video.addEventListener('canplay', play);
+        return () => video.removeEventListener('canplay', play);
+    }, [src]);
+    return (
+        <motion.div {...fadeInUp} className="w-full flex justify-center lg:justify-end lg:sticky lg:top-28 shrink-0">
+            <div className="relative w-full max-w-[260px] sm:max-w-[300px] aspect-[9/16] rounded-[2rem] overflow-hidden border-[6px] border-white dark:border-cerulean-blue-800 shadow-2xl ring-1 ring-gray-200/80 dark:ring-white/10 bg-black">
+                <video
+                    ref={videoRef}
+                    src={src}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    preload="auto"
+                    aria-label="Gymnastics programme highlight"
+                />
+            </div>
+        </motion.div>
+    );
+};
+
 /** Programme copy for Gymnastics page (sections 1–10) */
-export const GymnasticsProgrammeContent = ({ instructionImageUrl }: { instructionImageUrl: string }) => (
+export const GymnasticsProgrammeContent = ({
+    instructionImageUrl,
+    objectivesPortraitVideoUrl,
+}: {
+    instructionImageUrl: string;
+    objectivesPortraitVideoUrl?: string;
+}) => (
     <>
         {/* 1. Programme identity */}
         <section className={`${sectionShell} relative overflow-hidden bg-gray-50/50 dark:bg-white/[0.02]`}>
@@ -136,42 +177,47 @@ export const GymnasticsProgrammeContent = ({ instructionImageUrl }: { instructio
             </div>
         </section>
 
-        {/* 3. Objectives */}
+        {/* 3. Objectives + portrait video (right on large screens) */}
         <section className={`${sectionShell} bg-gray-50/50 dark:bg-white/[0.02]`}>
-            <div className={maxW}>
-                <motion.div {...fadeInUp}>
-                    <SectionTitle n="3.">Programme Objectives</SectionTitle>
-                    <div className="space-y-8">
-                        <div>
-                            <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Physical objectives</h3>
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-                                <li>Develop strength, flexibility, balance, coordination, and agility</li>
-                                <li>Improve posture, body control, and movement efficiency</li>
-                            </ul>
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-start">
+                    <motion.div {...fadeInUp} className="min-w-0">
+                        <SectionTitle n="3.">Programme Objectives</SectionTitle>
+                        <div className="space-y-8">
+                            <div>
+                                <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Physical objectives</h3>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+                                    <li>Develop strength, flexibility, balance, coordination, and agility</li>
+                                    <li>Improve posture, body control, and movement efficiency</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Technical objectives</h3>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+                                    <li>Build strong foundations in floor exercise</li>
+                                    <li>Progress safely to apparatus work (beam, bars, vault, rings)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Educational objectives</h3>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+                                    <li>Promote discipline, focus, and responsibility</li>
+                                    <li>Develop confidence and resilience</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Health &amp; well-being objectives</h3>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
+                                    <li>Encourage active lifestyles</li>
+                                    <li>Support mental and emotional well-being through sport</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Technical objectives</h3>
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-                                <li>Build strong foundations in floor exercise</li>
-                                <li>Progress safely to apparatus work (beam, bars, vault, rings)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Educational objectives</h3>
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-                                <li>Promote discipline, focus, and responsibility</li>
-                                <li>Develop confidence and resilience</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-black text-bright-sun-600 dark:text-bright-sun-300 mb-3 uppercase tracking-tight text-sm">Health &amp; well-being objectives</h3>
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-200">
-                                <li>Encourage active lifestyles</li>
-                                <li>Support mental and emotional well-being through sport</li>
-                            </ul>
-                        </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                    {objectivesPortraitVideoUrl ? (
+                        <ObjectivesPortraitVideo src={objectivesPortraitVideoUrl} />
+                    ) : null}
+                </div>
             </div>
         </section>
 

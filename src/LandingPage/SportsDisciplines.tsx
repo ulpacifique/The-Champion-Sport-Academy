@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
     IconActivity,
     IconArrowRight,
@@ -189,6 +189,8 @@ const integrationFlow = [
     "Service 5 (Equipment) → Drives scalable long-term profit",
 ];
 
+const WHAT_WE_DO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("what we do.mp4")}`;
+
 const competitiveAdvantageBullets = [
     "Strong leadership expertise (international coaching, Olympic education, social work in sport)",
     "Proven impact and credibility in Rwanda",
@@ -198,10 +200,24 @@ const competitiveAdvantageBullets = [
 
 const SportsDisciplines = () => {
     const [animate, setAnimate] = useState(false);
+    const heroVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
         return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        const video = heroVideoRef.current;
+        if (!video) return;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        const play = () => video.play().catch(() => {});
+        play();
+        video.addEventListener("canplay", play);
+        return () => video.removeEventListener("canplay", play);
     }, []);
 
     const achievements = [
@@ -227,31 +243,51 @@ const SportsDisciplines = () => {
 
     return (
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-32 pb-20 transition-colors duration-300">
-            {/* Hero — What We Do / Core Services Portfolio */}
-            <div className="container mx-auto px-4 mb-16 text-center">
-                <div
-                    className={`inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs transition-all duration-700 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-                >
-                    <IconActivity size={16} />
-                    <span>What We Do</span>
+            {/* Hero — What We Do (top); row: Academy (left) | video | Core Services (right) */}
+            <section className="relative mb-16 overflow-hidden px-4 sm:px-6">
+                <div className="rounded-[2rem] bg-gray-100/90 dark:bg-cerulean-blue-900/90 px-3 py-6 sm:py-8 md:py-10">
+                    <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:gap-10">
+                        <div
+                            className={`inline-flex items-center space-x-2 bg-bright-sun-600/15 dark:bg-bright-sun-300/25 text-bright-sun-700 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/25 dark:border-bright-sun-300/35 font-black uppercase tracking-widest text-xs transition-all duration-700 backdrop-blur-sm ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                        >
+                            <IconActivity size={16} />
+                            <span>What We Do</span>
+                        </div>
+
+                        <div
+                            className={`grid w-full items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6 lg:gap-10 ${animate ? "opacity-100" : "opacity-0"}`}
+                        >
+                            <h1
+                                className={`order-1 text-balance text-center text-lg font-black uppercase italic leading-snug tracking-tight text-cerulean-blue-900 md:text-right md:text-xl md:leading-tight lg:text-2xl xl:text-3xl dark:text-white transition-all duration-1000 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                            >
+                                The Champions Sports Academy
+                            </h1>
+
+                            <div
+                                className="relative order-2 mx-auto w-full max-w-[min(92vw,380px)] shrink-0 aspect-[9/16] overflow-hidden rounded-[2rem] shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/40 dark:ring-white/10 md:mx-0"
+                            >
+                                <video
+                                    ref={heroVideoRef}
+                                    src={WHAT_WE_DO_VIDEO_SRC}
+                                    className="h-full w-full object-cover"
+                                    muted
+                                    loop
+                                    playsInline
+                                    autoPlay
+                                    preload="auto"
+                                    aria-hidden
+                                />
+                            </div>
+
+                            <h2
+                                className={`order-3 text-balance text-center text-lg font-black uppercase italic leading-snug tracking-tight text-bright-sun-600 md:text-left md:text-xl md:leading-tight lg:text-2xl xl:text-3xl dark:text-bright-sun-300 transition-all duration-1000 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                            >
+                                Core Services Portfolio
+                            </h2>
+                        </div>
+                    </div>
                 </div>
-                <h1
-                    className={`text-3xl md:text-5xl lg:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-4 uppercase italic tracking-tighter transition-all duration-1000 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-                >
-                    The Champions Sports Academy –{" "}
-                    <span className="text-bright-sun-600 dark:text-bright-sun-300">Core Services Portfolio</span>
-                </h1>
-                <p
-                    className={`text-lg md:text-xl font-bold text-cerulean-blue-800 dark:text-cerulean-blue-200 mb-4 transition-all duration-1000 delay-100 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-                >
-                    A Dual Impact &amp; Profit Model
-                </p>
-                <p
-                    className={`text-base md:text-lg font-medium text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-300 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-                >
-                    Comprehensive sports development from grassroots programmes to institutional design, events, education, and equipment — built for impact and sustainable growth.
-                </p>
-            </div>
+            </section>
 
             {/* Portfolio services */}
             <div className="container mx-auto px-4 max-w-5xl space-y-10 mb-24">

@@ -204,7 +204,10 @@ const Gymnastics = () => {
             </section>
 
             <main>
-                <GymnasticsProgrammeContent instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`} />
+                <GymnasticsProgrammeContent
+                    instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`}
+                    objectivesPortraitVideoUrl={`${import.meta.env.BASE_URL}athletes/Prince.mp4`}
+                />
 
                 {/* Schedule & Location */}
                 <section className="py-32 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-white/[0.02] transition-colors duration-300">
