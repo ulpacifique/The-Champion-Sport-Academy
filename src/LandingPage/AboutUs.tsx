@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
-import { Carousel } from "@mantine/carousel";
+import Marquee from "react-fast-marquee";
 import {
   IconTrophy,
   IconTarget,
   IconUsers,
-  IconHeart,
-  IconShield,
-  IconActivity,
   IconSparkles,
   IconMedal,
   IconUserCheck,
-  IconArrowLeft,
-  IconArrowRight,
   IconCertificate,
   IconWorld
 } from "@tabler/icons-react";
@@ -19,19 +14,19 @@ import { motion } from "framer-motion";
 import { coreValuesData } from "../Data/coreValues";
 import { TeamOrganizationContent } from "./TeamOrganizationContent";
 
-const STRATEGIC_PARTNERS: { name: string; type: string; initials: string }[] = [
-  { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner", initials: "FK" },
-  { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner", initials: "FG" },
-  { name: "Rwanda National Olympic & Sports Committee (RNOSC)", type: "National Olympic Committee", initials: "RN" },
-  { name: "Ministry of Sports", type: "Government Partner", initials: "MS" },
-  { name: "National Olympic & Sports Academy", type: "National Partner", initials: "NA" },
-  { name: "World Karate Federation (WKF)", type: "International Partner", initials: "WK" },
-  { name: "International Olympic Committee (IOC)", type: "International Partner", initials: "IO" },
-  { name: "International Olympic Academy (IOA)", type: "International Partner", initials: "IA" },
-  { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network", initials: "AS" },
-  { name: "USA Karate", type: "International Partner", initials: "US" },
-  { name: "5280 Gymnastics", type: "International Partner", initials: "52" },
-  { name: "Gasore Serge Foundation", type: "Foundation", initials: "GS" },
+const STRATEGIC_PARTNERS: { name: string; type: string }[] = [
+  { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner" },
+  { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner" },
+  { name: "Rwanda National Olympic & Sports Committee (RNOSC)", type: "National Olympic Committee" },
+  { name: "Ministry of Sports", type: "Government Partner" },
+  { name: "National Olympic & Sports Academy", type: "National Partner" },
+  { name: "World Karate Federation (WKF)", type: "International Partner" },
+  { name: "International Olympic Committee (IOC)", type: "International Partner" },
+  { name: "International Olympic Academy (IOA)", type: "International Partner" },
+  { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network" },
+  { name: "USA Karate", type: "International Partner" },
+  { name: "5280 Gymnastics", type: "International Partner" },
+  { name: "Gasore Serge Foundation", type: "Foundation" },
 ];
 
 const AboutUs = () => {
@@ -81,12 +76,52 @@ const AboutUs = () => {
               className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xs"
             >
               <IconTarget size={16} />
-              <span>Our Legacy of Excellence</span>
+              <span>WE ARE THE CHAMPIONS FOR LIFE</span>
             </motion.div>
-
-            <h1 className={`text-5xl md:text-8xl font-black text-cerulean-blue-900 dark:text-white mb-8 leading-tight tracking-tighter uppercase italic transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              Vision <span className="text-bright-sun-600 dark:text-bright-sun-300">&</span> Mission
-            </h1>
+         {/* Designing by me  */}
+         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-cerulean-blue-50/30 to-white dark:from-gray-900 dark:via-cerulean-blue-950/20 dark:to-gray-900 p-8 shadow-lg border border-cerulean-blue-100 dark:border-cerulean-blue-900/50">
+  
+  {/* Decorative accent */}
+  <div className="absolute top-0 right-0 w-32 h-32 bg-cerulean-blue-500/10 rounded-full blur-3xl"></div>
+  <div className="absolute bottom-0 left-0 w-40 h-40 bg-cerulean-blue-400/10 rounded-full blur-3xl"></div>
+  
+  {/* Quote/Accent mark */}
+  <div className="relative mb-6">
+    <span className="text-6xl font-serif text-cerulean-blue-300 dark:text-cerulean-blue-800 absolute -top-2 -left-2 opacity-50">"</span>
+  </div>
+  
+  {/* Main Content */}
+  <div className="relative space-y-5">
+    <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-base md:text-lg">
+      <span className="font-extrabold text-cerulean-blue-700 dark:text-cerulean-blue-400 text-xl md:text-2xl block mb-3">
+        The Champions Sports Academy
+      </span>
+      <span className="font-semibold text-cerulean-blue-900 dark:text-cerulean-blue-300">
+        is a leading sports organization
+      </span>{' '}
+      promoting inclusive sport, physical literacy, and values-based education for all.
+    </p>
+    
+    <p className="text-gray-600 dark:text-gray-300 leading-relaxed pl-4 border-l-4 border-cerulean-blue-500">
+      Founded in 2017 in Kigali, Rwanda, it combines coaching excellence, sport science, and well-being to develop individuals, communities, and sport systems.
+    </p>
+    
+    <div className="bg-cerulean-blue-50/50 dark:bg-cerulean-blue-950/30 rounded-xl p-5 my-4">
+      <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+        <span className="font-bold text-cerulean-blue-800 dark:text-cerulean-blue-300">With a strong focus on children and youth</span>{' '}
+        while serving all ages, the Academy creates lasting social impact while driving sustainable growth and contributing to the national sport system and economy.
+      </p>
+    </div>
+  </div>
+  
+  {/* Decorative bottom element */}
+  <div className="relative mt-6 flex gap-2 justify-end">
+    <div className="h-1 w-12 bg-cerulean-blue-400 rounded-full"></div>
+    <div className="h-1 w-6 bg-cerulean-blue-300 rounded-full"></div>
+    <div className="h-1 w-3 bg-cerulean-blue-200 rounded-full"></div>
+  </div>
+</div>
+            
             <div className="h-1.5 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mx-auto rounded-full mb-12"></div>
           </div>
 
@@ -206,146 +241,79 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Core Values Section – exact match to reference: dark blue banner, logo + gold lines, title, five cards with colored headers + avatar + dark blue text */}
-      <section className="relative overflow-hidden border-y border-gray-200 dark:border-white/10">
-        {/* Top dark blue banner strip */}
-        <div className="h-3 md:h-4 bg-cerulean-blue-900 dark:bg-cerulean-blue-950" aria-hidden />
-
-        {/* Light blue background with subtle splatter/dots texture */}
-        <div className="relative bg-sky-100/90 dark:bg-cerulean-blue-900/80 py-12 md:py-16">
-          <div className="absolute inset-0 opacity-40 dark:opacity-20 pointer-events-none" aria-hidden>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.6)_1px,transparent_1px)] bg-[length:24px_24px]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.4)_1px,transparent_1px)] bg-[length:32px_32px]" />
-          </div>
-
-          <div className="container mx-auto px-4 max-w-6xl relative z-10">
-            {/* Central logo with gold ring + horizontal gold lines (like reference) */}
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative flex items-center justify-center gap-4 w-full max-w-md">
-                <span className="flex-1 h-1 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full max-w-[80px] md:max-w-[120px]" aria-hidden />
-                <div className="relative shrink-0">
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full p-2 bg-bright-sun-400 dark:bg-bright-sun-500 ring-4 ring-cerulean-blue-800 dark:ring-cerulean-blue-700 shadow-xl">
-                    <img
-                      src={`${import.meta.env.BASE_URL}champion-logo.png`}
-                      alt="The Champions Sport Academy"
-                      className="w-full h-full rounded-full object-contain bg-cerulean-blue-800 dark:bg-cerulean-blue-900"
-                    />
-                  </div>
-                </div>
-                <span className="flex-1 h-1 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full max-w-[80px] md:max-w-[120px]" aria-hidden />
-              </div>
-
-              {/* Title framed by gold lines */}
-              <div className="text-center mt-8 space-y-1">
-                <div className="flex items-center justify-center gap-4 mb-2">
-                  <span className="w-16 md:w-24 h-0.5 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full" aria-hidden />
-                  <h2 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-wide">
-                    The Core Values of
-                  </h2>
-                  <span className="w-16 md:w-24 h-0.5 bg-bright-sun-500 dark:bg-bright-sun-400 rounded-full" aria-hidden />
-                </div>
-                <h3 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight">
-                  The Champions Sports Academy
-                </h3>
-                <p className="text-bright-sun-600 dark:text-bright-sun-400 font-bold italic text-base md:text-lg mt-1">
-                  We Are The Champions for Life
-                </p>
-              </div>
-            </div>
-
-            {/* Five value cards: colored header bar, circular avatar on light blue, dark blue tagline (exact reference layout) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
-              {coreValues.map((value, index) => (
-                <motion.div
-                  key={value.name}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.06 }}
-                  className="flex flex-col rounded-xl overflow-hidden bg-white/90 dark:bg-cerulean-blue-900/50 shadow-lg border border-sky-200/60 dark:border-white/10"
-                >
-                  {/* Colored header bar – value name in white, capitalized */}
-                  <div className={`${valueHeaderBg[index]} px-3 py-2.5 md:py-3 text-center shrink-0`}>
-                    <h4 className="text-sm md:text-base font-black text-white uppercase tracking-tight">
-                      {value.name}
-                    </h4>
-                  </div>
-
-                  {/* Circular avatar on light blue circle (like reference icon area) */}
-                  <div className="flex justify-center pt-5 pb-3 px-4">
-                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-sky-200/80 dark:bg-cerulean-blue-700/60 border-2 border-sky-300/80 dark:border-cerulean-blue-600 overflow-hidden flex items-center justify-center shadow-inner">
-                      <img
-                        src={value.avatar}
-                        alt={value.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Tagline in dark blue (like reference) */}
-                  <div className="flex-1 px-4 pb-5 pt-0 text-center min-h-[3.5rem] flex items-start justify-center">
-                    <p className="text-xs md:text-sm text-cerulean-blue-900 dark:text-cerulean-blue-100 font-medium leading-snug">
-                      {value.tagline}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+      {/* Core Values: logo + gold lines, five cards (colored headers, avatars, taglines). Dark: solid cerulean-blue-900 — no section border / strip lines */}
+      <section className="relative overflow-hidden bg-sky-50/95 dark:bg-cerulean-blue-900 py-16 md:py-24">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.12]"
+          aria-hidden
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(255,189,32,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(255,189,32,0.06),transparent_45%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_90%,rgba(255,255,255,0.35)_1px,transparent_1px)] bg-[length:28px_28px] dark:hidden" />
         </div>
-      </section>
 
-      {/* Strategic Partners: carousel, then board / management / coaches */}
-      <section className="py-32 bg-gray-50/50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-24 px-4">
-            <h2 className="text-4xl md:text-7xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8 leading-none">
-              Strategic <span className="text-bright-sun-600 dark:text-bright-sun-300">Partners</span>
-            </h2>
-            <p className="text-lg text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] max-w-2xl mx-auto">Collaborating with leading organizations to deliver excellence.</p>
+        <div className="relative z-10 mx-auto max-w-6xl px-4">
+          <div className="mb-12 flex flex-col items-center md:mb-16">
+            <div className="flex w-full max-w-lg items-center justify-center gap-3 md:gap-5">
+              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-r from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
+              <div className="relative shrink-0 rounded-full p-[3px] shadow-lg shadow-black/10 ring-2 ring-bright-sun-400/90 dark:ring-bright-sun-400/80 dark:shadow-black/30">
+                <div className="h-24 w-24 overflow-hidden rounded-full bg-cerulean-blue-900 md:h-28 md:w-28">
+                  <img
+                    src={`${import.meta.env.BASE_URL}champion-logo.png`}
+                    alt="The Champions Sports Academy"
+                    className="h-full w-full object-contain p-1.5"
+                  />
+                </div>
+              </div>
+              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-l from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
+            </div>
+
+            <div className="mt-8 space-y-2 text-center">
+              <div className="flex items-center justify-center gap-3 md:gap-4">
+                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
+                <h2 className="text-lg font-black uppercase tracking-[0.12em] text-cerulean-blue-900 dark:text-white md:text-xl">
+                  The Core Values of
+                </h2>
+                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
+              </div>
+              <h3 className="text-2xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-3xl lg:text-4xl">
+                The Champions Sports Academy
+              </h3>
+              <p className="text-base font-bold italic text-bright-sun-600 dark:text-bright-sun-300 md:text-lg">
+                We Are The Champions for Life
+              </p>
+            </div>
           </div>
 
-          <Carousel
-            slideSize={{ base: '100%', sm: '50%', md: '33.333%' }}
-            slideGap={{ base: 'md', sm: 'lg' }}
-            loop
-            align="start"
-            className="[&_.mantine-Carousel-control]:h-11 [&_.mantine-Carousel-control]:w-11 [&_.mantine-Carousel-control]:rounded-full [&_.mantine-Carousel-control]:bg-white [&_.mantine-Carousel-control]:shadow-lg dark:[&_.mantine-Carousel-control]:bg-cerulean-blue-800 [&_.mantine-Carousel-control]:border [&_.mantine-Carousel-control]:border-gray-200 dark:[&_.mantine-Carousel-control]:border-white/10 [&_.mantine-Carousel-control]:text-cerulean-blue-900 dark:[&_.mantine-Carousel-control]:text-bright-sun-300"
-            nextControlIcon={<IconArrowRight size={20} stroke={1.75} />}
-            previousControlIcon={<IconArrowLeft size={20} stroke={1.75} />}
-          >
-            {STRATEGIC_PARTNERS.map((partner, index) => (
-              <Carousel.Slide key={`${partner.initials}-${index}`}>
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.35 }}
-                  className="group h-full min-h-[200px] rounded-2xl border border-gray-200/90 bg-white p-6 shadow-sm transition-all duration-300 hover:border-bright-sun-500/50 hover:shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/35 dark:hover:border-bright-sun-400/35 md:min-h-[220px] md:p-8"
-                >
-                  <div className="flex h-full flex-col gap-5 md:flex-row md:items-stretch md:gap-6">
-                    <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cerulean-blue-900 text-xs font-black tracking-tight text-bright-sun-300 shadow-inner dark:bg-white/10 dark:text-bright-sun-200 md:h-14 md:w-14 md:text-sm"
-                      aria-hidden
-                    >
-                      {partner.initials}
-                    </div>
-                    <div className="min-w-0 flex flex-1 flex-col justify-center text-left">
-                      <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-bright-sun-600 dark:text-bright-sun-400">
-                        {partner.type}
-                      </p>
-                      <h4 className="text-[15px] font-bold leading-snug text-cerulean-blue-900 dark:text-white md:text-base">
-                        {partner.name}
-                      </h4>
-                      <span className="mt-4 h-px w-10 bg-bright-sun-500/60 transition-all group-hover:w-14 dark:bg-bright-sun-400/50" aria-hidden />
-                    </div>
-                  </div>
-                </motion.div>
-              </Carousel.Slide>
-            ))}
-          </Carousel>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
+            {coreValues.map((value, index) => (
+              <motion.div
+                key={value.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.06 }}
+                className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200/80 dark:bg-cerulean-blue-950/85 dark:shadow-lg dark:shadow-black/20 dark:ring-white/[0.07]"
+              >
+                <div className={`${valueHeaderBg[index]} px-3 py-2.5 text-center md:py-3`}>
+                  <h4 className="text-xs font-black uppercase tracking-tight text-white md:text-sm">
+                    {value.name}
+                  </h4>
+                </div>
 
-          <TeamOrganizationContent />
+                <div className="flex justify-center bg-sky-100/80 px-4 pb-3 pt-5 dark:bg-transparent">
+                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-inner ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-white/15 dark:bg-cerulean-blue-900/60 dark:ring-white/10">
+                    <img src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+
+                <div className="flex min-h-[3.75rem] flex-1 items-start justify-center bg-white px-3 pb-5 pt-1 text-center dark:bg-transparent">
+                  <p className="text-xs font-medium leading-snug text-cerulean-blue-900 dark:text-gray-100 md:text-sm">
+                    {value.tagline}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -386,6 +354,43 @@ const AboutUs = () => {
               <p className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-tight">International Standards → Strategic Alliances</p>
             </motion.div>
           </div>
+        </div>
+        <TeamOrganizationContent />
+      </section>
+      {/* Strategic Partners: marquee, then board / management / coaches */}
+      <section className="border-t border-gray-100 bg-gray-50/50 py-12 transition-colors dark:border-white/5 dark:bg-white/[0.02] md:py-16">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="mb-8 px-4 text-center md:mb-10">
+            <h2 className="mb-4 text-3xl font-black uppercase italic leading-none tracking-tighter text-cerulean-blue-900 underline decoration-bright-sun-600 decoration-4 underline-offset-8 dark:text-white dark:decoration-bright-sun-300 md:text-5xl lg:text-6xl">
+              Strategic <span className="text-bright-sun-600 dark:text-bright-sun-300">Partners</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-sm font-bold uppercase tracking-[0.25em] text-gray-500 dark:text-gray-400">
+              Collaborating with leading organizations to deliver excellence.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-gray-200/80 bg-white/80 py-4 dark:border-white/10 dark:bg-cerulean-blue-900/30">
+            <Marquee pauseOnHover speed={45}>
+              {STRATEGIC_PARTNERS.map((partner, index) => (
+                <div
+                  key={`${partner.name}-${index}`}
+                  className="mx-8 flex items-center gap-3 md:mx-12"
+                >
+                  <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.2em] text-bright-sun-600 dark:text-bright-sun-400">
+                    {partner.type}
+                  </span>
+                  <span className="text-bright-sun-500/70 dark:text-bright-sun-400/50" aria-hidden>
+                    ·
+                  </span>
+                  <span className="whitespace-nowrap text-base font-bold text-cerulean-blue-900 dark:text-white md:text-lg">
+                    {partner.name}
+                  </span>
+                </div>
+              ))}
+            </Marquee>
+          </div>
+
+          
         </div>
       </section>
     </div>

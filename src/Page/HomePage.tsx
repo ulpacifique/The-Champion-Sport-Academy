@@ -1,8 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import HeroSection from "../LandingPage/HeroSection";
-import Partners from "../LandingPage/Partners";
-
 import AboutUs from "../LandingPage/AboutUs";
 
 const HomePage = () => {
@@ -16,10 +14,6 @@ const HomePage = () => {
             </section>
             <section id="aboutUs" className="scroll-mt-24">
                 <AboutUs />
-            </section>
-
-            <section id="partners" className="scroll-mt-24">
-                <Partners />
             </section>
 
             {/* <section id="sports-disciplines" className="scroll-mt-24">

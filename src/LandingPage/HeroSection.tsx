@@ -108,20 +108,9 @@ const HeroSection = () => {
                     <div className="h-8 md:h-60" />
 
                     {/* Tagline: Excellence in Sport & Life — Kigali, Rwanda */}
-                    <p className={`text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-200 font-medium drop-shadow-lg mb-6 ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`} style={{ transitionDelay: '400ms' }}>
-                        Excellence in Sport & Life — Kigali, Rwanda
-                    </p>
+                    
 
-                    {/* Subtitle – full wording unchanged */}
-                    <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed mx-auto">
-                        <p className={`fade-in-text ${animate ? 'active' : ''}`} style={{ animationDelay: '600ms' }}>
-                            Values-driven sport and physical literacy organization founded in 2017. Delivering high-quality sport and education while contributing to national sport development.
-                        </p>
-                    </div>
-
-
-
-                    {/* Feature Highlights Section - Stack vertically on mobile */}
+                    
 
                 </div>
             </div>
