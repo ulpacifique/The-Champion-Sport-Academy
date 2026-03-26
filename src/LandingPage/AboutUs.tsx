@@ -73,13 +73,13 @@ const AboutUs = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xs"
+              className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xl"
             >
-              <IconTarget size={16} />
+              <IconTarget size={40} />
               <span>WE ARE THE CHAMPIONS FOR LIFE</span>
             </motion.div>
          {/* Designing by me  */}
-         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-cerulean-blue-50/30 to-white dark:from-gray-900 dark:via-cerulean-blue-950/20 dark:to-gray-900 p-8 shadow-lg border border-cerulean-blue-100 dark:border-cerulean-blue-900/50">
+         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-cerulean-blue-50/30 to-white dark:from-bright-sun-400 dark:via-bright-sun-500/20 dark:to-bright-sun-400 p-8 shadow-lg border border-cerulean-blue-100 dark:border-bright-sun-400/50">
   
   {/* Decorative accent */}
   <div className="absolute top-0 right-0 w-32 h-32 bg-cerulean-blue-500/10 rounded-full blur-3xl"></div>
