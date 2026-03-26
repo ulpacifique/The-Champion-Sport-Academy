@@ -9,7 +9,6 @@ import Payments from "./Payments";
 import Messages from "./Messages";
 import Settings from "./Settings";
 import HelpSupport from "./HelpSupport";
-import AdminVideoPage from "./AdminVideoPage";
 import EventsManagement from "./EventsManagement";
 import GalleryManagement from "./GalleryManagement";
 
@@ -30,8 +29,6 @@ const AdminRouter = () => {
                 return <Payments />;
             case "events":
                 return <EventsManagement />;
-            case "videos":
-                return <AdminVideoPage />;
             case "messages":
                 return <Messages />;
             case "gallery":

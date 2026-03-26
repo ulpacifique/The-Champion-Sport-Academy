@@ -7,8 +7,6 @@ import {
   IconSparkles,
   IconMedal,
   IconUserCheck,
-  IconCertificate,
-  IconWorld
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { coreValuesData } from "../Data/coreValues";
@@ -79,7 +77,7 @@ const AboutUs = () => {
               <span>WE ARE THE CHAMPIONS FOR LIFE</span>
             </motion.div>
          {/* Designing by me  */}
-         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-cerulean-blue-50/30 to-white dark:from-bright-sun-400 dark:via-bright-sun-500/20 dark:to-bright-sun-400 p-8 shadow-lg border border-cerulean-blue-100 dark:border-bright-sun-400/50">
+         <div className="relative overflow-hidden rounded-2xl  dark:from-white dark:via-bright-sun-500/20 dark:to-bright-sun-400 p-8 shadow-lg border border-cerulean-blue-100 dark:border-bright-sun-400/50">
   
   {/* Decorative accent */}
   <div className="absolute top-0 right-0 w-32 h-32 bg-cerulean-blue-500/10 rounded-full blur-3xl"></div>
@@ -317,44 +315,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Ecosystem Highlights */}
       <section className="py-24 px-4 bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="p-12 bg-gray-50 dark:bg-cerulean-blue-900/20 border border-gray-100 dark:border-white/5 rounded-[3rem] text-center group"
-            >
-              <div className="w-16 h-16 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-bright-sun-600/20">
-                <IconUsers className="text-bright-sun-600 dark:text-bright-sun-300" size={32} />
-              </div>
-              <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-4">Athlete Journey</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-tight">Physical Literacy → Skill Development → Competition</p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="p-12 bg-gray-50 dark:bg-cerulean-blue-900/20 border border-gray-100 dark:border-white/5 rounded-[3rem] text-center group"
-            >
-              <div className="w-16 h-16 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-bright-sun-600/20">
-                <IconCertificate className="text-bright-sun-600 dark:text-bright-sun-300" size={32} />
-              </div>
-              <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-4">Coach Mastery</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-tight">Certification → Mentoring → Leadership</p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="p-12 bg-gray-50 dark:bg-cerulean-blue-900/20 border border-gray-100 dark:border-white/5 rounded-[3rem] text-center group"
-            >
-              <div className="w-16 h-16 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-bright-sun-600/20">
-                <IconWorld className="text-bright-sun-600 dark:text-bright-sun-300" size={32} />
-              </div>
-              <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-4">Global Network</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold uppercase tracking-tight">International Standards → Strategic Alliances</p>
-            </motion.div>
-          </div>
-        </div>
         <TeamOrganizationContent />
       </section>
       {/* Strategic Partners: marquee, then board / management / coaches */}

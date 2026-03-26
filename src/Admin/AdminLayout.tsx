@@ -12,7 +12,6 @@ import {
     IconMessage,
     IconBell,
     IconHelp,
-    IconVideo,
     IconPhoto
 } from "@tabler/icons-react";
 import Header from "../Header/Header";
@@ -56,7 +55,6 @@ const AdminLayout = ({
         { id: "programs", label: "Programs", icon: <IconCalendarEvent size={20} /> },
         { id: "payments", label: "Payments", icon: <IconCash size={20} /> },
         { id: "events", label: "Events & News", icon: <IconCalendarEvent size={20} /> },
-        { id: "videos", label: "Training Videos", icon: <IconVideo size={20} /> },
         { id: "gallery", label: "Gallery", icon: <IconPhoto size={20} /> },
         { id: "messages", label: "Messages", icon: <IconMessage size={20} />, badge: unreadMessages > 0 ? unreadMessages : undefined },
     ];

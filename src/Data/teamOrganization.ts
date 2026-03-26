@@ -1,11 +1,9 @@
-/** Board letters / placeholders, management roles, and coach roster — used only in About Us (Strategic Partners → team sections). */
+/** Managers and coach roster — used only in About Us (Strategic Partners → team sections). */
 
-export const BOARD_MEMBERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
-
-export const MANAGEMENT_TEAM = [
-    { role: "Head Coach", name: "Head Coach" },
-    { role: "Manager", name: "Manager" },
-    { role: "Secretary", name: "Secretary" },
+export const MANAGERS = [
+    { role: "Operational Manager" },
+    { role: "Programme and Projects Manager" },
+    { role: "Administration and Finance Manager" },
 ];
 
 export const COACHES = [

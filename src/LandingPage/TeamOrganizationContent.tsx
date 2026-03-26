@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { IconUser, IconUserCheck, IconCrown, IconBriefcase, IconTrophy } from "@tabler/icons-react";
-import { BOARD_MEMBERS, COACHES, MANAGEMENT_TEAM } from "../Data/teamOrganization";
+import { COACHES, MANAGERS } from "../Data/teamOrganization";
 
-/** Renders Board → Management → Coaches. Used once: About Us, under Strategic Partners (after carousel). */
+/** Renders Board → Managers → Coaches. Used once: About Us, under Strategic Partners (after carousel). */
 export const TeamOrganizationContent = () => (
     <div className="w-full max-w-7xl mx-auto pt-16 md:pt-24 mt-12 md:mt-16">
         {/* Board of Directors Section */}
@@ -15,55 +15,136 @@ export const TeamOrganizationContent = () => (
                     Board of <span className="text-bright-sun-600 dark:text-bright-sun-400">Directors</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-bright-sun-500 to-cerulean-blue-500 mx-auto rounded-full"></div>
+                <p className="mt-6 text-lg md:text-xl font-semibold italic text-cerulean-blue-800 dark:text-cerulean-blue-200">
+                    The Champions Sports Academy
+                </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-6 md:gap-8">
-                {BOARD_MEMBERS.map((member, index) => (
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ delay: index * 0.05, duration: 0.5 }}
-                        whileHover={{ y: -8 }}
-                        className="group relative bg-gradient-to-br from-white to-gray-50 dark:from-cerulean-blue-900/30 dark:to-cerulean-blue-800/20 border border-gray-200 dark:border-white/10 rounded-2xl p-6 text-center shadow-sm hover:shadow-xl transition-all duration-300"
-                    >
-                        {/* Decorative gradient overlay */}
-                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-bright-sun-500/0 to-bright-sun-500/0 group-hover:from-bright-sun-500/5 group-hover:to-bright-sun-500/10 transition-all duration-500"></div>
-                        
-                        <div className="relative">
-                            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-bright-sun-500/20 to-bright-sun-400/20 dark:from-bright-sun-400/20 dark:to-bright-sun-300/20 border-2 border-bright-sun-500 dark:border-bright-sun-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <IconUser className="text-bright-sun-600 dark:text-bright-sun-300" size={32} />
-                            </div>
-                            <div className="space-y-2">
-                                <span className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight block">
-                                    {member}
-                                </span>
-                                <div className="h-0.5 w-12 bg-gradient-to-r from-bright-sun-500 to-transparent mx-auto rounded-full"></div>
-                                <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider block">
-                                    Director
-                                </span>
-                            </div>
-                        </div>
-                    </motion.div>
-                ))}
+            <div className="max-w-4xl mx-auto mb-16 md:mb-20 space-y-10 px-4">
+                <p className="text-center text-gray-700 dark:text-gray-300 leading-relaxed">
+                    At <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong>, the Board of Directors provides{" "}
+                    <strong>strategic leadership, governance, and oversight</strong>, ensuring the organization delivers both{" "}
+                    <strong>sustainable growth</strong> and <strong>lasting social impact through sport</strong>.
+                </p>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent" aria-hidden />
+
+                <div className="space-y-6">
+                    <h3 className="flex items-center gap-2 text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
+                        <span className="text-2xl" aria-hidden>🔵</span>
+                        Governance Leadership
+                    </h3>
+                    <ul className="space-y-5 text-gray-700 dark:text-gray-300">
+                        <li>
+                            <p className="font-bold text-cerulean-blue-900 dark:text-white">Chairperson of the Board</p>
+                            <p className="mt-1 text-sm md:text-base leading-relaxed">
+                                Provides overall leadership of the Board, ensuring strategic direction, effective governance, and alignment with the Academy’s vision and mission.
+                            </p>
+                        </li>
+                        <li>
+                            <p className="font-bold text-cerulean-blue-900 dark:text-white">Vice Chairperson of the Board</p>
+                            <p className="mt-1 text-sm md:text-base leading-relaxed">
+                                Supports the Chairperson and ensures continuity of leadership, contributing to coordination and effectiveness of Board functions.
+                            </p>
+                        </li>
+                        <li>
+                            <p className="font-bold text-cerulean-blue-900 dark:text-white">Board Secretary</p>
+                            <p className="mt-1 text-sm md:text-base leading-relaxed">
+                                Oversees governance processes, ensures compliance, and manages Board documentation, meetings, and institutional records.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="space-y-6">
+                    <h3 className="flex items-center gap-2 text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
+                        <span className="text-2xl" aria-hidden>🟡</span>
+                        Executive Leadership
+                    </h3>
+                    <div className="rounded-2xl border border-bright-sun-200 dark:border-bright-sun-500/30 bg-gradient-to-br from-bright-sun-50/80 to-white dark:from-cerulean-blue-900/40 dark:to-cerulean-blue-800/20 p-6 md:p-8">
+                        <p className="font-bold text-cerulean-blue-900 dark:text-white">CEO / Executive Director</p>
+                        <p className="mt-2 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                            Leads the Academy’s operations and implements the strategic direction set by the Board, ensuring alignment between programmes, business growth, and social impact.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="space-y-6">
+                    <h3 className="flex items-center gap-2 text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
+                        <span className="text-2xl" aria-hidden>🟡</span>
+                        Strategic Directors
+                    </h3>
+                    <ul className="space-y-5 text-gray-700 dark:text-gray-300">
+                        <li>
+                            <p className="font-bold text-cerulean-blue-900 dark:text-white">Director of Legal &amp; Governance</p>
+                            <p className="mt-1 text-sm md:text-base leading-relaxed">
+                                Ensures compliance with legal frameworks and governance standards, manages risk, and supports ethical and transparent operations.
+                            </p>
+                        </li>
+                        <li>
+                            <p className="font-bold text-cerulean-blue-900 dark:text-white">Director of Marketing &amp; Partnerships</p>
+                            <p className="mt-1 text-sm md:text-base leading-relaxed">
+                                Leads branding, communication, and strategic partnerships, driving visibility, sponsorship, and organizational growth.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent" aria-hidden />
+
+                <div className="space-y-4">
+                    <h3 className="text-lg font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
+                        Director of Programmes &amp; Projects
+                    </h3>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed">
+                        Oversees the design and implementation of sport programmes and projects, ensuring alignment with physical literacy, long-term athlete development, and the Academy’s core values.
+                    </p>
+                </div>
+
+                <div className="space-y-6">
+                    <h3 className="flex items-center gap-2 text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
+                        <span className="text-2xl" aria-hidden>⚪</span>
+                        Board Members (Advisory &amp; Expertise)
+                    </h3>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed">
+                        The Board is supported by additional members who bring specialized expertise in areas such as:
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-2 text-sm md:text-base text-gray-700 dark:text-gray-300 list-disc list-inside marker:text-bright-sun-500">
+                        <li>Finance &amp; Investment</li>
+                        <li>Sport Development &amp; Coaching</li>
+                        <li>Social Impact &amp; Safeguarding</li>
+                        <li>Infrastructure &amp; Innovation</li>
+                        <li>Education &amp; Research</li>
+                        <li>International Relations</li>
+                    </ul>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed">
+                        These members strengthen strategic decision-making and support the Academy’s long-term development.
+                    </p>
+                </div>
+
+                <div className="rounded-2xl border border-cerulean-blue-200 dark:border-cerulean-blue-600/40 bg-cerulean-blue-50/50 dark:bg-cerulean-blue-900/30 p-6 md:p-8">
+                    <p className="text-center text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed">
+                        The Board of Directors ensures that <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong> operates with integrity, professionalism, and strategic focus, positioning the organization as a{" "}
+                        <strong>leading model of sport development, education, and innovation at national, regional, and international levels</strong>.
+                    </p>
+                </div>
             </div>
         </section>
 
-        {/* Management Team Section */}
+        {/* Managers Section */}
         <section className="mb-28">
             <div className="text-center mb-12">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cerulean-blue-600 to-cerulean-blue-700 shadow-lg mb-4">
                     <IconBriefcase className="text-white" size={32} />
                 </div>
                 <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter mb-3">
-                    Management <span className="text-bright-sun-600 dark:text-bright-sun-400">Team</span>
+                    <span className="text-bright-sun-600 dark:text-bright-sun-400">Managers</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-cerulean-blue-500 to-bright-sun-500 mx-auto rounded-full"></div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {MANAGEMENT_TEAM.map((member, index) => (
+                {MANAGERS.map((member, index) => (
                     <motion.div
                         key={member.role}
                         initial={{ opacity: 0, y: 30 }}
@@ -80,13 +161,10 @@ export const TeamOrganizationContent = () => (
                             <div className="w-24 h-24 mx-auto mb-5 rounded-full bg-gradient-to-br from-bright-sun-500/30 to-bright-sun-400/30 dark:from-bright-sun-400/30 dark:to-bright-sun-300/30 border-3 border-bright-sun-500 dark:border-bright-sun-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <IconUser className="text-bright-sun-600 dark:text-bright-sun-300" size={40} />
                             </div>
-                            <h3 className="text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight mb-2">
+                            <h3 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight mb-2 leading-snug">
                                 {member.role}
                             </h3>
-                            <div className="w-12 h-0.5 bg-bright-sun-500 mx-auto mb-3 rounded-full"></div>
-                            <p className="text-gray-600 dark:text-gray-300 text-base font-medium">
-                                {member.name}
-                            </p>
+                            <div className="w-12 h-0.5 bg-bright-sun-500 mx-auto rounded-full"></div>
                         </div>
                     </motion.div>
                 ))}
@@ -176,11 +254,3 @@ export const TeamOrganizationContent = () => (
     </div>
 );
 
-// Add this to your global CSS or tailwind config for spinning animation
-// @keyframes spin-slow {
-//   from { transform: rotate(0deg); }
-//   to { transform: rotate(360deg); }
-// }
-// .animate-spin-slow {
-//   animation: spin-slow 20s linear infinite;
-// }

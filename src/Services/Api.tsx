@@ -35,42 +35,6 @@ api.interceptors.request.use(
   }
 );
 
-// ... rest of your code stays exactly the same
-// Video API calls with file upload
-export const videoAPI = {
-  // Get all videos
-  getAllVideos: () => api.get('/videos'),
-
-  // Get videos by category
-  getVideosByCategory: (category: string) =>
-    api.get(`/videos/category/${category}`),
-
-  // Get all categories
-  getCategories: () => api.get('/videos/categories'),
-
-  // Create video with file upload
-  createVideo: (formData: FormData) =>
-    api.post('/videos', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }),
-
-  // Update video with file upload
-  updateVideo: (id: number, formData: FormData) =>
-    api.put(`/videos/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }),
-
-  // Delete video
-  deleteVideo: (id: number) => api.delete(`/videos/${id}`),
-
-  // Increment views
-  incrementViews: (id: number) => api.post(`/videos/${id}/view`),
-};
-
 // Child/Student API
 export const childAPI = {
   // Get all children (with optional filters)

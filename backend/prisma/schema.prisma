@@ -217,21 +217,6 @@ model Payment {
   @@map("payments")
 }
 
-model Video {
-  id           BigInt    @id @default(autoincrement())
-  title        String    @db.VarChar(255)
-  description  String?
-  videoUrl     String    @map("video_url") @db.VarChar(255)
-  thumbnailUrl String?   @map("thumbnail_url") @db.VarChar(255)
-  duration     String    @db.VarChar(255)
-  category     String    @db.VarChar(255)
-  views        Int?      @default(0)
-  createdAt    DateTime? @map("created_at") @db.Timestamp(6)
-  isActive     Boolean?  @map("is_active") @default(true)
-
-  @@map("videos")
-}
-
 model Gallery {
   id           BigInt    @id @default(autoincrement())
   title        String?   @db.VarChar(255)
