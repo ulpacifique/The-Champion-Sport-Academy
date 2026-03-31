@@ -190,6 +190,7 @@ const integrationFlow = [
 ];
 
 const WHAT_WE_DO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("what we do.mp4")}`;
+const WHAT_MP4_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/what.mp4`;
 
 const competitiveAdvantageBullets = [
     "Strong leadership expertise (international coaching, Olympic education, social work in sport)",
@@ -201,6 +202,7 @@ const competitiveAdvantageBullets = [
 const SportsDisciplines = () => {
     const [animate, setAnimate] = useState(false);
     const heroVideoRef = useRef<HTMLVideoElement>(null);
+    const spotlightVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
@@ -209,6 +211,19 @@ const SportsDisciplines = () => {
 
     useEffect(() => {
         const video = heroVideoRef.current;
+        if (!video) return;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        const play = () => video.play().catch(() => {});
+        play();
+        video.addEventListener("canplay", play);
+        return () => video.removeEventListener("canplay", play);
+    }, []);
+
+    useEffect(() => {
+        const video = spotlightVideoRef.current;
         if (!video) return;
         video.muted = true;
         video.loop = true;
@@ -284,6 +299,43 @@ const SportsDisciplines = () => {
                             >
                                 Core Services Portfolio
                             </h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Spotlight — what.mp4 (portrait), bridges hero → core services */}
+            <section className="mb-20 px-4 sm:px-6" aria-labelledby="spotlight-heading">
+                <div className="mx-auto max-w-6xl rounded-[2rem] border border-gray-200/90 bg-gray-50/90 dark:border-white/10 dark:bg-cerulean-blue-900/35 px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-14">
+                    <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 xl:gap-16">
+                        <div className="space-y-4 text-center lg:text-left">
+                            <p className="text-xs font-black uppercase tracking-widest text-bright-sun-600 dark:text-bright-sun-400">
+                                The Champions Sports Academy
+                            </p>
+                            <h2
+                                id="spotlight-heading"
+                                className="text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl"
+                            >
+                                Excellence in motion
+                            </h2>
+                            <p className="mx-auto max-w-lg text-sm leading-relaxed text-gray-600 dark:text-gray-300 lg:mx-0">
+                                A glimpse of training, energy, and community across our programmes — before you explore each service in detail below.
+                            </p>
+                        </div>
+                        <div className="flex justify-center lg:justify-end">
+                            <div className="relative w-full max-w-[min(92vw,380px)] aspect-[9/16] overflow-hidden rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.35)] ring-1 ring-white/30 dark:ring-white/10">
+                                <video
+                                    ref={spotlightVideoRef}
+                                    src={WHAT_MP4_VIDEO_SRC}
+                                    className="h-full w-full object-cover"
+                                    muted
+                                    loop
+                                    playsInline
+                                    autoPlay
+                                    preload="auto"
+                                    aria-label="The Champions Sports Academy in action"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
