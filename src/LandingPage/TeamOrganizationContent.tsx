@@ -40,40 +40,22 @@ function OrgAssistantPill() {
 
 /** Renders Board → Managers → Coaches. Used once: About Us, under Strategic Partners (after carousel). */
 export const TeamOrganizationContent = () => (
-    <div className="w-full max-w-7xl mx-auto pt-16 md:pt-24 mt-12 md:mt-16">
+    <div className="w-full max-w-7xl mx-auto pt-0">
         {/* Board of Directors Section */}
         <section className="mb-28">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-bright-sun-500 to-bright-sun-600 shadow-lg mb-4">
                     <IconCrown className="text-white" size={32} />
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter mb-3">
-                    Leader<span className="text-bright-sun-600 dark:text-bright-sun-400">ship</span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter mb-3">
+                    Board of <span className="text-bright-sun-600 dark:text-bright-sun-400">Directors</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-bright-sun-500 to-cerulean-blue-500 mx-auto rounded-full"></div>
-                <p className="mt-6 text-lg md:text-xl font-semibold italic text-cerulean-blue-800 dark:text-cerulean-blue-200">
-                    The Champions Sports Academy
-                </p>
             </div>
 
             <div className="max-w-6xl mx-auto mb-16 md:mb-20 space-y-14 px-4">
-                <p className="text-center text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                    At <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong>, the Board of Directors provides{" "}
-                    <strong>strategic leadership, governance, and oversight</strong>, ensuring the organization delivers both{" "}
-                    <strong>sustainable growth</strong> and <strong>lasting social impact through sport</strong>.
-                </p>
-
-                {/* Organizational structure (chart) — directly below Board intro */}
-                <div className="mt-10 mb-14 md:mb-16 max-w-5xl mx-auto px-4">
-                    <div className="mb-10 flex flex-col items-center gap-4 rounded-2xl border border-cerulean-blue-900/20 bg-cerulean-blue-900 px-4 py-5 text-center shadow-lg sm:flex-row sm:justify-center sm:gap-6 sm:py-6 sm:text-left">
-                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-500/60 bg-white/10">
-                            <IconCrown className="text-bright-sun-400" size={36} />
-                        </div>
-                        <p className="font-black uppercase italic tracking-[0.12em] text-bright-sun-400 sm:text-lg md:text-xl">
-                            The Champions Sports Academy
-                        </p>
-                    </div>
-
+                {/* Organizational structure (chart) */}
+                <div className="mb-14 md:mb-16 max-w-5xl mx-auto px-4">
                     <div className="flex flex-col items-center gap-0">
                         <OrgBoxWhite className="w-full max-w-sm">Board of Directors</OrgBoxWhite>
                         <div className={orgLine} aria-hidden />
@@ -164,10 +146,6 @@ export const TeamOrganizationContent = () => (
                                         <h4 className="text-base font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-lg leading-snug">
                                             {item.role}
                                         </h4>
-                                        <div className="mx-auto my-4 h-0.5 w-12 rounded-full bg-gradient-to-r from-bright-sun-500 to-cerulean-blue-500" />
-                                        <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-[15px]">
-                                            {item.description}
-                                        </p>
                                     </div>
                                 </motion.div>
                             ))}
@@ -200,13 +178,6 @@ export const TeamOrganizationContent = () => (
                     </ul>
                     <p className="text-center text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base">
                         These members strengthen strategic decision-making and support the Academy’s long-term development.
-                    </p>
-                </div>
-
-                <div className="rounded-2xl border border-cerulean-blue-200 dark:border-cerulean-blue-600/40 bg-cerulean-blue-50/50 dark:bg-cerulean-blue-900/30 p-6 md:p-8">
-                    <p className="text-center text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed">
-                        The Board of Directors ensures that <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong> operates with integrity, professionalism, and strategic focus, positioning the organization as a{" "}
-                        <strong>leading model of sport development, education, and innovation at national, regional, and international levels</strong>.
                     </p>
                 </div>
             </div>

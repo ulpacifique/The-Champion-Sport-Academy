@@ -315,7 +315,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="py-24 px-4 bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
+      <section className="px-4 pt-10 pb-16 md:pt-12 md:pb-20 bg-white dark:bg-cerulean-blue-900 transition-colors duration-300">
         <TeamOrganizationContent />
       </section>
       {/* Strategic Partners: marquee, then board / management / coaches */}
