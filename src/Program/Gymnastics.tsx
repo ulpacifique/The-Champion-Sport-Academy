@@ -125,8 +125,8 @@ const Gymnastics = () => {
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
-            {/* Hero Section – background video + big horizontal typewriter text on left & right */}
-            <section className="relative min-h-[90vh] flex items-center py-20 px-2 sm:px-4 md:px-8 lg:px-16 overflow-hidden">
+            {/* Hero — square 1:1 video; typewriter left & right of video; titles below */}
+            <section className="relative overflow-hidden bg-gradient-to-b from-gray-50/90 to-white py-12 px-3 sm:px-6 md:py-16 md:px-8 lg:px-12 dark:from-cerulean-blue-950 dark:to-cerulean-blue-900">
                 <style>{`
                     @keyframes gym-cursor-blink {
                         0%, 49% { opacity: 1; }
@@ -136,67 +136,65 @@ const Gymnastics = () => {
                         animation: gym-cursor-blink 0.85s step-end infinite;
                     }
                 `}</style>
-                <div className="absolute inset-0 z-10 bg-white/25 dark:bg-cerulean-blue-900/40 pointer-events-none" aria-hidden />
-                <div className="absolute inset-0 z-0 bg-black/5 dark:bg-black/20">
-                    <video
-                        ref={heroVideoRef}
-                        src={GYMNASTICS_VIDEO_SRC}
-                        className="absolute inset-0 w-full h-full object-contain object-center"
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                        preload="auto"
-                        aria-hidden
-                    />
-                </div>
-
-                {/* Overlay row: left & right = big horizontal typing; center = clear for video */}
-                <div className="absolute inset-0 z-[15] flex items-stretch pointer-events-none select-none">
-                    <div className="w-[26%] sm:w-[24%] md:w-[22%] min-w-[120px] sm:min-w-[160px] flex items-center justify-center px-1 sm:px-3 py-8">
-                        <p
-                            className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white drop-shadow-md"
-                            style={{
-                                fontSize: 'clamp(0.95rem, 2.8vw, 2.75rem)',
-                                textShadow: '0 2px 12px rgba(255,255,255,0.5)',
-                            }}
-                            aria-live="polite"
-                        >
-                            {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
-                            <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 font-light ml-0.5">|</span>
-                        </p>
+                <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-6 md:gap-8">
+                    {/* Left typewriter | square video | right typewriter */}
+                    <div className="flex w-full flex-row flex-nowrap items-center justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
+                        <div className="flex min-h-[5rem] min-w-0 flex-[1_1_22%] items-center justify-center px-0.5 sm:px-2 md:min-h-[7rem] lg:min-h-[8rem]">
+                            <p
+                                className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white"
+                                style={{
+                                    fontSize: 'clamp(0.55rem, 2.2vw, 2.75rem)',
+                                    textShadow: '0 1px 8px rgba(255,255,255,0.6)',
+                                }}
+                                aria-live="polite"
+                            >
+                                {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
+                                <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 ml-0.5 font-light">|</span>
+                            </p>
+                        </div>
+                        <div className="relative w-[min(42vw,20rem)] shrink-0 sm:w-[min(38vw,22rem)] md:w-[min(34vw,24rem)] lg:w-[min(30vw,26rem)]">
+                            <div className="aspect-square w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/90 bg-black shadow-xl shadow-cerulean-blue-900/15 ring-2 ring-cerulean-blue-900/5 dark:border-white/20 dark:shadow-black/40 dark:ring-white/10">
+                                <video
+                                    ref={heroVideoRef}
+                                    src={GYMNASTICS_VIDEO_SRC}
+                                    className="h-full w-full object-cover object-center"
+                                    muted
+                                    loop
+                                    playsInline
+                                    autoPlay
+                                    preload="auto"
+                                    aria-label="Artistic gymnastics programme highlight"
+                                />
+                            </div>
+                        </div>
+                        <div className="flex min-h-[5rem] min-w-0 flex-[1_1_22%] items-center justify-center px-0.5 sm:px-2 md:min-h-[7rem] lg:min-h-[8rem]" aria-hidden>
+                            <p
+                                className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white"
+                                style={{
+                                    fontSize: 'clamp(0.55rem, 2.2vw, 2.75rem)',
+                                    textShadow: '0 1px 8px rgba(255,255,255,0.6)',
+                                }}
+                            >
+                                {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
+                                <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 ml-0.5 font-light">|</span>
+                            </p>
+                        </div>
                     </div>
-                    <div className="flex-1 min-w-0" aria-hidden />
-                    <div className="w-[26%] sm:w-[24%] md:w-[22%] min-w-[120px] sm:min-w-[160px] flex items-center justify-center px-1 sm:px-3 py-8">
-                        <p
-                            className="text-center font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white drop-shadow-md"
-                            style={{
-                                fontSize: 'clamp(0.95rem, 2.8vw, 2.75rem)',
-                                textShadow: '0 2px 12px rgba(255,255,255,0.5)',
-                            }}
-                            aria-live="polite"
-                        >
-                            {HERO_TYPING_PHRASE.slice(0, heroTypedLength)}
-                            <span className="gym-hero-cursor text-bright-sun-600 dark:text-bright-sun-400 font-light ml-0.5">|</span>
-                        </p>
-                    </div>
-                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-10 md:pb-16 pointer-events-none">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="max-w-4xl mx-auto text-center space-y-2 md:space-y-3"
+                        className="w-full max-w-4xl text-center space-y-2 md:space-y-3"
                     >
-                        <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.35em] text-cerulean-blue-900 dark:text-white drop-shadow-[0_1px_8px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                        <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.35em] text-cerulean-blue-800 dark:text-cerulean-blue-100">
                             THE CHAMPIONS SPORTS ACADEMY
                         </p>
-                        <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter leading-tight drop-shadow-[0_1px_8px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+                        <h1 className="text-xl sm:text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter leading-tight">
                             Artistic Gymnastics Programme{' '}
                             <span className="text-bright-sun-600 dark:text-bright-sun-300">(Ages 3–17)</span>
                         </h1>
-                        <p className="text-sm md:text-lg font-medium italic text-gray-900 dark:text-gray-100 drop-shadow-sm">
+                        <p className="text-sm md:text-lg font-medium italic text-gray-800 dark:text-gray-200">
                             A Long-Term Development Programme for Sport and Life
                         </p>
                     </motion.div>
@@ -205,7 +203,7 @@ const Gymnastics = () => {
 
             <main>
                 <GymnasticsProgrammeContent
-                    instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpg`}
+                    instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpeg`}
                     objectivesPortraitVideoUrl={`${import.meta.env.BASE_URL}athletes/Prince.mp4`}
                 />
 
