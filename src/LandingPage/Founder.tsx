@@ -106,9 +106,9 @@ const Founder = () => {
             <Header />
 
             {/* Founder & CEO Section */}
-            <div className="container mx-auto px-4 py-32">
-                <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-8 md:p-20 backdrop-blur-md shadow-sm dark:shadow-none transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            <div className="container mx-auto px-4 md:px-6 py-16 md:py-20">
+                <div className={`bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 lg:p-14 backdrop-blur-md shadow-sm dark:shadow-none transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
                         <div className="relative group shrink-0 flex flex-col items-center">
                             {/* Outer ring + shadow stack for depth */}
                             <div className="relative">
@@ -133,17 +133,17 @@ const Founder = () => {
                         </div>
 
                         <div className="flex-1 text-center lg:text-left">
-                            <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xs">
+                            <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-5 md:mb-6 font-black uppercase tracking-widest text-xs">
                                 <IconSparkles size={16} />
                                 <span>Visionary Leadership</span>
                             </div>
 
                             <h1 className="text-5xl md:text-7xl font-black text-cerulean-blue-900 dark:text-white mb-4 leading-none uppercase italic tracking-tighter underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Noël Nkuranyabahizi</h1>
-                            <div className="text-bright-sun-600 dark:text-bright-sun-300 text-2xl font-black mb-10 uppercase tracking-widest italic tracking-tighter">Founder & CEO</div>
+                            <div className="text-bright-sun-600 dark:text-bright-sun-300 text-2xl font-black mb-6 md:mb-8 uppercase tracking-widest italic tracking-tighter">Founder & CEO</div>
 
-                            <div className="max-w-4xl mb-12">
-                                <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed font-medium">
-                                <p className="border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8 italic">
+                            <div className="max-w-4xl mb-8 md:mb-10">
+                                <div className="space-y-4 md:space-y-5 text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed font-medium">
+                                <p className="border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-6 italic">
                                         {FOUNDER_BIO[0]}
                                     </p>
                                     <AnimatePresence initial={false}>
@@ -153,7 +153,7 @@ const Founder = () => {
                                                 animate={{ height: "auto", opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
                                                 transition={{ duration: 0.3 }}
-                                                className="space-y-6 overflow-hidden"
+                                                className="space-y-4 md:space-y-5 overflow-hidden"
                                             >
                                                 {FOUNDER_BIO.slice(1).map((para, i) => (
                                                     <p key={i}>{para}</p>
@@ -165,7 +165,7 @@ const Founder = () => {
                                 <button
                                     type="button"
                                     onClick={() => setBioExpanded((v) => !v)}
-                                    className="mt-8 inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm border-2 border-cerulean-blue-900/30 dark:border-white/30 bg-white dark:bg-white/10 text-cerulean-blue-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/20 transition-all"
+                                    className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-black uppercase tracking-widest text-sm border-2 border-cerulean-blue-900/30 dark:border-white/30 bg-white dark:bg-white/10 text-cerulean-blue-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/20 transition-all"
                                 >
                                     {bioExpanded ? (
                                         <>
@@ -188,9 +188,9 @@ const Founder = () => {
             </div>
 
             {/* Video gallery – 3 columns: 2 videos | 2 videos | 1 video */}
-            <section className="w-full py-12 md:py-20 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
-                <div className="px-4 md:px-8 lg:px-12 mb-8 md:mb-10">
-                    <h2 className="text-4xl md:text-6xl font-extrabold mb-12 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
+            <section className="w-full py-8 md:py-12 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
+                <div className="px-4 md:px-6 lg:px-10 mb-6 md:mb-8">
+                    <h2 className="text-4xl md:text-6xl font-extrabold mb-6 md:mb-8 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
                     From Athlete to Coach Developer:  <span className="text-bright-sun-600 dark:text-bright-sun-300"> The Legacy of My Karate Journey</span>
                     </h2>
                 </div>
@@ -205,8 +205,8 @@ const Founder = () => {
                             key={`founder-video-col-${colIndex}`}
                             className={
                                 colIndex === 2
-                                    ? "flex flex-col gap-8 lg:gap-10 min-w-0 md:col-span-2 lg:col-span-1 md:max-w-xl md:mx-auto lg:max-w-none"
-                                    : "flex flex-col gap-8 lg:gap-10 min-w-0"
+                                    ? "flex flex-col gap-6 lg:gap-8 min-w-0 md:col-span-2 lg:col-span-1 md:max-w-xl md:mx-auto lg:max-w-none"
+                                    : "flex flex-col gap-6 lg:gap-8 min-w-0"
                             }
                         >
                             {columnItems.map((item) => (
@@ -252,7 +252,7 @@ const Founder = () => {
             </section>
 
             {/* 1. Founder's Journey — headline + two portrait videos (side by side on md+) */}
-            <div id="founder-journey" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300 scroll-mt-24">
+            <div id="founder-journey" className="container mx-auto px-4 md:px-6 py-12 md:py-16 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300 scroll-mt-24">
                 <div className="text-center px-4">
                     <motion.div {...fadeInUp}>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-2 text-cerulean-blue-900 dark:text-white underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-4 md:decoration-8 max-w-5xl mx-auto leading-tight">
@@ -261,7 +261,7 @@ const Founder = () => {
                                 Chief Instructor and Gymnastics Coach
                             </span>
                         </h2>
-                        <div className="mt-10 md:mt-12 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 justify-items-center md:justify-items-stretch items-start">
+                        <div className="mt-8 md:mt-10 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 justify-items-center md:justify-items-stretch items-start">
                             {FOUNDER_HEADLINE_PORTRAIT_VIDEOS.map((item) => (
                                 <div
                                     key={item.src}
@@ -289,18 +289,18 @@ const Founder = () => {
             </div>
 
             {/* 2. Sport Coaching — one photo per row, alternate: words left/photo right, then photo left/words right */}
-            <section id="sport-coaching" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
+            <section id="sport-coaching" className="container mx-auto px-4 md:px-6 py-12 md:py-16 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                <h1 className="text-4xl md:text-6xl font-extrabold mb-12 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
+                <h1 className="text-4xl md:text-6xl font-extrabold mb-8 md:mb-10 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
   A Triple Professional Identity in Sport Leadership
 </h1>
-<h1 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+<h1 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-8 md:mb-10 border-b-2 border-bright-sun-600 pb-3 inline-block">
   1.International Elite Sports Coach
 </h1>
 
-                    <div className="space-y-12 md:space-y-16">
+                    <div className="space-y-8 md:space-y-12">
                         {/* 1: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/IM1.jfif`} alt="Team coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -310,7 +310,7 @@ const Founder = () => {
                         </div>
 
                         {/* 2: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/championn.jpeg`} alt="Team Rwanda" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -320,7 +320,7 @@ const Founder = () => {
                         </div>
 
                         {/* 3: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/team rwanda.jpeg`} alt="Elite coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -330,7 +330,7 @@ const Founder = () => {
                         </div>
 
                         {/* 4: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/team.jfif`} alt="In camp" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -340,7 +340,7 @@ const Founder = () => {
                         </div>
 
                         {/* 5: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/award.jfif`} alt="In stade" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -350,7 +350,7 @@ const Founder = () => {
                         </div>
 
                         {/* 6: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/International olyompics.jpeg`} alt="Award" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -360,7 +360,7 @@ const Founder = () => {
                         </div>
 
                         {/* 7: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/developing.jpeg`} alt="Team" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -370,7 +370,7 @@ const Founder = () => {
                         </div>
 
                         {/* 8: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}coahing/IN.jpeg`} alt="Graduation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -380,7 +380,7 @@ const Founder = () => {
                         </div>
 
                         {/* 9: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Meet the people and moments behind our academy—team sessions, awards, and the path to mastery.</p>
@@ -392,15 +392,15 @@ const Founder = () => {
             
 
             {/* 3. Professional Social Worker in Sport — one photo per row, alternate left/right (photos from SocialWork) */}
-            <section id="social-worker-in-sport" className="container mx-auto px-4 py-20 md:py-28 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
+            <section id="social-worker-in-sport" className="container mx-auto px-4 md:px-6 py-12 md:py-16 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-8 md:mb-10 border-b-2 border-bright-sun-600 pb-3 inline-block">
                         2.Professional Social Worker in Sport
                     </h2>
 
-                    <div className="space-y-12 md:space-y-16">
+                    <div className="space-y-8 md:space-y-12">
                         {/* 1: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}SocialWork/global Dialogue.jfif`} alt="Sport International Symposium" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -410,7 +410,7 @@ const Founder = () => {
                         </div>
 
                         {/* 2: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}SocialWork/Sport International Symposium.jfif`} alt="Global dialogue on sport and social development" className="w-full rounded-2xl shadow-xl object-cover aspect-[3/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -420,7 +420,7 @@ const Founder = () => {
                         </div>
 
                         {/* 3: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}SocialWork/member Of Alliance.jfif`} alt="Member of Alliance of Social Workers in Sport" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -430,7 +430,7 @@ const Founder = () => {
                         </div>
 
                         {/* 4: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}SocialWork/highLevelDegree.jfif`} alt="High level degree and expertise" className="w-full rounded-2xl shadow-xl object-cover aspect-[2/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -444,15 +444,15 @@ const Founder = () => {
             </section>
 
             {/* 4. Sport Events Management — images from public/Events */}
-            <section id="sport-events-management" className="container mx-auto px-4 py-20 md:py-28 scroll-mt-24">
+            <section id="sport-events-management" className="container mx-auto px-4 md:px-6 py-12 md:py-16 scroll-mt-24">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-12 border-b-2 border-bright-sun-600 pb-4 inline-block">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 mb-8 md:mb-10 border-b-2 border-bright-sun-600 pb-3 inline-block">
                         3.Sport Events Management
                     </h2>
 
-                    <div className="space-y-12 md:space-y-16">
+                    <div className="space-y-8 md:space-y-12">
                         {/* 1: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/EVENT3.jfif`} alt="Sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -462,7 +462,7 @@ const Founder = () => {
                         </div>
 
                         {/* 2: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/metre.jpeg`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -472,7 +472,7 @@ const Founder = () => {
                         </div>
 
                         {/* 3: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/masterDegree.jpeg`} alt="Event management" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -482,7 +482,7 @@ const Founder = () => {
                         </div>
 
                         {/* 4: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/EVENT8.jfif`} alt="Sport events at CSA" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -492,7 +492,7 @@ const Founder = () => {
                         </div>
 
                         {/* 5: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/EVENTS.jfif`} alt="Championships and competitions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -502,7 +502,7 @@ const Founder = () => {
                         </div>
 
                         {/* 6: photo left, words right */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/EVENT9.jfif`} alt="Olympic and sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
@@ -512,7 +512,7 @@ const Founder = () => {
                         </div>
 
                         {/* 7: words left, photo right */}
-                        <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-10 items-center">
+                        <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
                                 <img src={`${import.meta.env.BASE_URL}Events/kk.jpeg`} alt="Events at The Champions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>

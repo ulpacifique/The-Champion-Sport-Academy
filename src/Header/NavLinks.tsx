@@ -13,6 +13,7 @@ const NavLinks = () => {
         { name: "Karate", url: "/karate", type: "route" },
         { name: "Gymnastics", url: "/gymnastics", type: "route" },
         { name: "Our Founder", url: "/founder", type: "route" },
+        { name: "Events", url: "/event", type: "route" },
         { name: "Contact", url: "/contact", type: "route" },
     ];
 
@@ -60,13 +61,13 @@ const NavLinks = () => {
     return (
         <>
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center justify-center gap-1 lg:gap-2 h-full">
+            <div className="hidden min-w-0 w-full md:flex md:flex-nowrap md:items-center md:justify-center md:gap-0 lg:gap-0.5 xl:gap-1 h-full">
                 {links.map((link, index) => {
                     const isActive = link.type === "hash" ? isHashActive(link.url) : isRouteActive(link.url);
 
                     const LinkContent = (
-                        <div className="relative flex flex-col items-center justify-center h-full px-3 lg:px-4 group cursor-pointer">
-                            <span className={`text-sm lg:text-base font-bold tracking-tight transition-all duration-300 whitespace-nowrap ${isActive ? "text-bright-sun-600 dark:text-bright-sun-300" : "text-gray-500 dark:text-gray-300 group-hover:text-cerulean-blue-900 dark:group-hover:text-white"
+                        <div className="relative flex flex-col items-center justify-center h-full px-1.5 md:px-2 lg:px-2.5 xl:px-3 group cursor-pointer">
+                            <span className={`text-[11px] sm:text-xs lg:text-sm xl:text-[15px] font-bold tracking-tight transition-all duration-300 whitespace-nowrap ${isActive ? "text-bright-sun-600 dark:text-bright-sun-300" : "text-gray-500 dark:text-gray-300 group-hover:text-cerulean-blue-900 dark:group-hover:text-white"
                                 }`}>
                                 {link.name}
                             </span>

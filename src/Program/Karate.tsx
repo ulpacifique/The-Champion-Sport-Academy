@@ -12,7 +12,9 @@ import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 
 const KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/abaChamp302.mp4`;
-const CLASS_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/Class.jpg`;
+const CLASS_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/karate1.jpeg`;
+const ADULT_KARATE_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("adult karate.jpeg")}`;
+const YOUNG_KARATE_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("young karate.jpeg")}`;
 const HERO_BOYS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/Boys.mp4`;
 const HERO_GIRLS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/Girls.mp4`;
 
@@ -33,11 +35,11 @@ const Karate = () => {
         transition: { duration: 0.6 },
     };
 
-    const sectionShell = 'py-16 md:py-24 px-4 md:px-8 lg:px-16';
+    const sectionShell = 'py-10 md:py-16 px-4 md:px-6 lg:px-10';
     const maxW = 'max-w-5xl mx-auto';
 
     const SectionTitle = ({ n, children }: { n: string; children: ReactNode }) => (
-        <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 md:mb-8 border-l-4 border-bright-sun-500 pl-4 md:pl-6">
+        <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-4 md:mb-6 border-l-4 border-bright-sun-500 pl-3 md:pl-5">
             <span className="text-bright-sun-600 dark:text-bright-sun-400 not-italic mr-2">{n}</span>
             {children}
         </h2>
@@ -48,7 +50,7 @@ const Karate = () => {
             <Header />
 
             {/* Hero — karate1.jpeg background; portrait Boys.mp4 left, copy center, Girls.mp4 right */}
-            <section className="relative min-h-[90vh] flex items-center py-16 md:py-20 px-4 md:px-6 lg:px-12 overflow-hidden">
+            <section className="relative min-h-[85vh] flex items-center py-10 md:py-12 px-4 md:px-5 lg:px-8 overflow-hidden">
                 <div className="absolute inset-0 bg-white/50 dark:bg-cerulean-blue-900/70 z-10" />
                 <div
                     className="absolute inset-0 z-0"
@@ -59,7 +61,7 @@ const Karate = () => {
                     }}
                 />
                 <div className="relative z-20 w-full max-w-[1400px] mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-5 xl:gap-10">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-4 xl:gap-8">
                         {/* Boys — left on desktop */}
                         <div className="order-2 lg:order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex flex-col items-center lg:items-end gap-3">
                             <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
@@ -85,7 +87,7 @@ const Karate = () => {
                             transition={{ duration: 1 }}
                             className="order-1 lg:order-2 flex-1 min-w-0 text-center px-2 lg:px-4"
                         >
-                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[12px] md:underline-offset-[20px] decoration-4 md:decoration-8">
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 md:mb-6 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[12px] md:underline-offset-[20px] decoration-4 md:decoration-8">
                                 Champions Karate
                                 <span className="text-bright-sun-600 dark:text-bright-sun-300 italic"> for Life Programme</span>
                             </h1>
@@ -121,7 +123,7 @@ const Karate = () => {
                 <section className={`${sectionShell} relative overflow-hidden bg-gray-50/50 dark:bg-white/[0.02]`}>
                     <div className="absolute top-0 right-0 w-96 h-96 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                     <div className="max-w-7xl mx-auto">
-                        <motion.div {...fadeInUp} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                        <motion.div {...fadeInUp} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                             <div className="relative order-2 lg:order-1 flex justify-center lg:justify-start">
                                 <div className="absolute -inset-4 bg-bright-sun-600/10 dark:bg-bright-sun-300/10 blur-[80px] rounded-full lg:block hidden" />
                                 <div className="relative w-full max-w-[min(100%,22rem)] sm:max-w-sm">
@@ -163,7 +165,7 @@ const Karate = () => {
                     <div className="max-w-7xl mx-auto">
                         <motion.div
                             {...fadeInUp}
-                            className="grid lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-center"
+                            className="grid lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 lg:items-start"
                         >
                             <div className="min-w-0">
                                 <SectionTitle n="3.">Our Philosophy</SectionTitle>
@@ -187,12 +189,30 @@ const Karate = () => {
                                     <li>— Individual differences</li>
                                     <li>— Safety and well-being</li>
                                 </ul>
+                                <div className="mt-8">
+                                    <div className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-100 shadow-md dark:border-white/10 dark:bg-black/20 aspect-[4/3] max-w-xl">
+                                        <img
+                                            src={YOUNG_KARATE_IMAGE_SRC}
+                                            alt="Young karate practitioners at The Champions Sports Academy"
+                                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="w-full max-w-xl mx-auto lg:max-w-none lg:justify-self-end">
-                                <div className="relative rounded-[2rem] overflow-hidden border-[10px] border-gray-100 dark:border-cerulean-blue-900/80 shadow-2xl aspect-[4/3] bg-gray-100 dark:bg-black/20">
+                            <div className="flex w-full max-w-xl flex-col gap-5 lg:gap-6 mx-auto lg:max-w-none lg:justify-self-end">
+                                <div className="relative rounded-[2rem] overflow-hidden border-[10px] border-gray-100 dark:border-cerulean-blue-900/80 shadow-2xl aspect-[5/3] bg-gray-100 dark:bg-black/20">
                                     <img
                                         src={CLASS_IMAGE_SRC}
                                         alt="Karate class at The Champions Sports Academy"
+                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div className="relative rounded-[2rem] overflow-hidden border-[10px] border-gray-100 dark:border-cerulean-blue-900/80 shadow-2xl aspect-[5/3] bg-gray-100 dark:bg-black/20">
+                                    <img
+                                        src={ADULT_KARATE_IMAGE_SRC}
+                                        alt="Adult karate training at The Champions Sports Academy"
                                         className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                                         loading="lazy"
                                     />
@@ -217,7 +237,7 @@ const Karate = () => {
                                 ].map((v) => (
                                     <div
                                         key={v.title}
-                                        className="p-6 md:p-8 rounded-2xl bg-white dark:bg-cerulean-blue-900/50 border border-gray-100 dark:border-white/10 shadow-sm"
+                                        className="p-5 md:p-6 rounded-2xl bg-white dark:bg-cerulean-blue-900/50 border border-gray-100 dark:border-white/10 shadow-sm"
                                     >
                                         <div className="flex items-center gap-2 text-bright-sun-600 dark:text-bright-sun-300 mb-3">
                                             {v.icon}
@@ -265,7 +285,7 @@ const Karate = () => {
                     <div className={maxW}>
                         <motion.div {...fadeInUp}>
                             <SectionTitle n="6.">Programme Streams</SectionTitle>
-                            <div className="space-y-8">
+                            <div className="space-y-6">
                                 {[
                                     {
                                         title: 'Beginner Programme (Ages 4–8)',
@@ -307,7 +327,7 @@ const Karate = () => {
                     <div className={maxW}>
                         <motion.div {...fadeInUp}>
                             <SectionTitle n="7.">Technical Areas of Training</SectionTitle>
-                            <div className="grid md:grid-cols-2 gap-8">
+                            <div className="grid md:grid-cols-2 gap-6">
                                 {[
                                     { h: 'Kihon (Fundamentals)', p: 'Stances, punches, kicks, blocks' },
                                     { h: 'Kata (Forms)', p: 'Technique, rhythm, and expression' },
@@ -349,21 +369,21 @@ const Karate = () => {
                     <div className={maxW}>
                         <motion.div {...fadeInUp}>
                             <SectionTitle n="9.">Weekly Training Structure</SectionTitle>
-                            <div className="space-y-6">
+                            <div className="space-y-4">
                                 {[
                                     { age: 'Ages 3–7', detail: '2 sessions/week (2 hours) — Fun and karate literacy' },
                                     { age: 'Ages 8–12', detail: '2 sessions/week (120 min)' },
                                     { age: 'Ages 12–17', detail: '3 sessions/week (120 min)' },
                                     { age: 'Competitive Athletes', detail: '4 sessions/week + conditioning' },
                                 ].map((row) => (
-                                    <div key={row.age} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-6 rounded-2xl bg-white dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10">
+                                    <div key={row.age} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4 md:p-5 rounded-2xl bg-white dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10">
                                         <span className="font-black text-cerulean-blue-900 dark:text-white uppercase italic">{row.age}</span>
                                         <span className="text-gray-600 dark:text-gray-300 font-medium">{row.detail}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="mt-14 md:mt-16">
+                            <div className="mt-10 md:mt-12">
                                 <div className="flex items-center gap-3 mb-6 text-gray-600 dark:text-gray-300">
                                     <IconCalendar className="text-bright-sun-600 dark:text-bright-sun-300 shrink-0" size={28} />
                                     <h3 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tight">
@@ -374,7 +394,7 @@ const Karate = () => {
                                     {KARATE_SESSION_SCHEDULE.map((slot) => (
                                         <div
                                             key={slot.id}
-                                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-5 md:p-6 rounded-2xl bg-gray-50/80 dark:bg-cerulean-blue-900/50 border border-gray-200 dark:border-white/10"
+                                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4 md:p-5 rounded-2xl bg-gray-50/80 dark:bg-cerulean-blue-900/50 border border-gray-200 dark:border-white/10"
                                         >
                                             <div>
                                                 <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-bright-sun-600 dark:text-bright-sun-300 mb-1">
@@ -432,7 +452,7 @@ const Karate = () => {
                     <div className={maxW}>
                         <motion.div {...fadeInUp}>
                             <SectionTitle n="12.">Coaching Excellence</SectionTitle>
-                            <div className="mb-8 p-6 md:p-8 rounded-2xl bg-cerulean-blue-900 dark:bg-white/5 text-white border border-white/10">
+                            <div className="mb-6 p-5 md:p-6 rounded-2xl bg-cerulean-blue-900 dark:bg-white/5 text-white border border-white/10">
                                 <p className="text-bright-sun-300 font-black text-sm uppercase tracking-widest mb-2">Led by</p>
                                 <p className="text-2xl md:text-3xl font-black italic mb-2">Noël Nkuranyabahizi</p>
                                 <ul className="text-cerulean-blue-100 space-y-1 text-sm md:text-base">
@@ -500,18 +520,18 @@ const Karate = () => {
                 </section>
 
                 {/* 16. CTA */}
-                <section className={`${sectionShell} pb-32`}>
+                <section className={`${sectionShell} pb-20 md:pb-24`}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="max-w-6xl mx-auto bg-bright-sun-400 dark:bg-bright-sun-300 rounded-[3rem] p-12 md:p-20 text-center text-gray-900 shadow-[0_40px_100px_rgba(250,204,21,0.25)] relative overflow-hidden"
+                        className="max-w-6xl mx-auto bg-bright-sun-400 dark:bg-bright-sun-300 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-12 lg:p-14 text-center text-gray-900 shadow-[0_40px_100px_rgba(250,204,21,0.25)] relative overflow-hidden"
                     >
                         <SectionTitle n="16.">Call to Action</SectionTitle>
-                        <h2 className="text-3xl md:text-5xl font-black mb-8 uppercase italic tracking-tighter">
+                        <h2 className="text-3xl md:text-5xl font-black mb-6 md:mb-8 uppercase italic tracking-tighter">
                             Join The Champions Karate Programme Today
                         </h2>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                             <Link
                                 to="/register"
                                 className="px-10 py-5 bg-cerulean-blue-900 text-white rounded-2xl font-black text-lg hover:scale-[1.02] transition-all shadow-xl uppercase italic"

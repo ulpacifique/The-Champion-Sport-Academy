@@ -71,9 +71,9 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-white/95 dark:bg-cerulean-blue-900/95 backdrop-blur-md px-4 sm:px-6 lg:px-8 text-cerulean-blue-900 dark:text-white h-20 sm:h-24 flex justify-between items-center sticky top-0 z-[100] border-b border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300">
-            {/* Logo & Brand */}
-            <Link to="/" className="flex gap-3 sm:gap-4 items-center group">
+        <header className="w-full bg-white/95 dark:bg-cerulean-blue-900/95 backdrop-blur-md px-3 sm:px-4 lg:px-6 text-cerulean-blue-900 dark:text-white h-20 sm:h-24 flex min-w-0 items-center justify-between gap-2 sticky top-0 z-[100] border-b border-gray-100 dark:border-white/5 shadow-2xl transition-all duration-300">
+            {/* Logo & Brand — does not shrink */}
+            <Link to="/" className="flex shrink-0 gap-2 sm:gap-3 lg:gap-4 items-center group min-w-0">
                 <div className="relative">
                     <div className="absolute -inset-1 bg-bright-sun-300/20 rounded-full blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
                     <img src="/champion-logo.png" alt="champion" className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain transition-transform duration-500 group-hover:scale-105" />
@@ -96,13 +96,13 @@ const Header = () => {
                 </div>
             </Link>
 
-            {/* Navigation Links */}
-            <div className="hidden md:block flex-1 max-w-2xl mx-8">
+            {/* Navigation Links — min-w-0 lets this column shrink so Login/theme stay visible */}
+            <div className="hidden min-w-0 flex-1 justify-center px-0 md:block md:overflow-x-auto md:[scrollbar-width:none] md:[-ms-overflow-style:none] md:[&::-webkit-scrollbar]:hidden lg:px-1 xl:px-2">
                 <NavLinks />
             </div>
 
-            {/* Right Side Actions */}
-            <div className="flex gap-3 sm:gap-4 items-center">
+            {/* Right Side Actions — never shrink */}
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
                 {/* Conditional User/Login */}
                 {user ? (
                     <Menu shadow="xl" width={240} position="bottom-end" withArrow transitionProps={{ transition: 'pop-top-right' }}>
@@ -174,14 +174,14 @@ const Header = () => {
                         </Menu.Dropdown>
                     </Menu>
                 ) : (
-                    <div className="flex gap-2 items-center">
-                        <Link to="/auth">
+                    <div className="flex shrink-0 gap-2 items-center">
+                        <Link to="/auth" className="shrink-0">
                             <Button
                                 variant="gradient"
                                 gradient={{ from: 'brightSun.3', to: 'brightSun.5', deg: 45 }}
-                                size="md"
+                                size="sm"
                                 radius="xl"
-                                className="font-bold uppercase tracking-widest text-cerulean-blue-950 transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_20px_rgba(255,191,0,0.3)] shadow-lg sm:px-8"
+                                className="font-bold uppercase tracking-wide text-cerulean-blue-950 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,191,0,0.3)] shadow-lg px-4 sm:px-6 sm:text-sm"
                             >
                                 Login
                             </Button>
@@ -192,7 +192,7 @@ const Header = () => {
                 {/* Theme Toggle Button */}
                 <div 
                     onClick={toggleTheme}
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 dark:bg-white/5 flex items-center justify-center rounded-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/10 border border-gray-200 dark:border-white/5 transition-all duration-300 group shadow-sm dark:shadow-none"
+                    className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 bg-gray-100 dark:bg-white/5 flex items-center justify-center rounded-xl sm:rounded-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/10 border border-gray-200 dark:border-white/5 transition-all duration-300 group shadow-sm dark:shadow-none"
                     title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 >
                     {theme === 'dark' ? (

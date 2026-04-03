@@ -14,6 +14,7 @@ const FOOTER_NAV = [
     { label: "Who We Are", to: "/" },
     { label: "What We Do", to: "/events" },
     { label: "Our Founder", to: "/founder" },
+    { label: "Events", to: "/event" },
     { label: "Contact", to: "/contact" },
 ] as const;
 

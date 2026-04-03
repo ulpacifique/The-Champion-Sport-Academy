@@ -114,12 +114,7 @@ const SportsDisciplines = () => {
             <section className="relative mb-10 overflow-hidden px-4 sm:px-6 md:mb-12">
                 <div className="rounded-[2rem] bg-gray-100/90 dark:bg-cerulean-blue-900/90 px-3 py-6 sm:py-8 md:py-10">
                     <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:gap-10">
-                        <div
-                            className={`inline-flex items-center space-x-2 bg-bright-sun-600/15 dark:bg-bright-sun-300/25 text-bright-sun-700 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/25 dark:border-bright-sun-300/35 font-black uppercase tracking-widest text-xs transition-all duration-700 backdrop-blur-sm ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-                        >
-                            <IconActivity size={16} />
-                            <span>What We Do</span>
-                        </div>
+                       
 
                         <div
                             className={`grid w-full items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6 lg:gap-10 ${animate ? "opacity-100" : "opacity-0"}`}
@@ -131,7 +126,7 @@ const SportsDisciplines = () => {
                             </h1>
 
                             <div
-                                className="relative order-2 mx-auto w-full max-w-[min(92vw,380px)] shrink-0 aspect-[9/16] overflow-hidden rounded-[2rem] shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/40 dark:ring-white/10 md:mx-0"
+                                className="relative order-2 mx-auto w-full max-w-[min(92vw,380px)] shrink-0 aspect-[10/11] overflow-hidden rounded-[2rem] shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/40 dark:ring-white/10 md:mx-0"
                             >
                                 <video
                                     ref={heroVideoRef}
