@@ -76,50 +76,7 @@ const AboutUs = () => {
               <IconTarget size={40} />
               <span>WE ARE THE CHAMPIONS FOR LIFE</span>
             </motion.div>
-         {/* Designing by me  */}
-         <div className="relative overflow-hidden rounded-2xl  dark:from-white dark:via-bright-sun-500/20 dark:to-bright-sun-400 p-8 shadow-lg border border-cerulean-blue-100 dark:border-bright-sun-400/50">
-  
-  {/* Decorative accent */}
-  <div className="absolute top-0 right-0 w-32 h-32 bg-cerulean-blue-500/10 rounded-full blur-3xl"></div>
-  <div className="absolute bottom-0 left-0 w-40 h-40 bg-cerulean-blue-400/10 rounded-full blur-3xl"></div>
-  
-  {/* Quote/Accent mark */}
-  <div className="relative mb-6">
-    <span className="text-6xl font-serif text-cerulean-blue-300 dark:text-cerulean-blue-800 absolute -top-2 -left-2 opacity-50">"</span>
-  </div>
-  
-  {/* Main Content */}
-  <div className="relative space-y-5">
-    <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-base md:text-lg">
-      <span className="font-extrabold text-cerulean-blue-700 dark:text-cerulean-blue-400 text-xl md:text-2xl block mb-3">
-        The Champions Sports Academy
-      </span>
-      <span className="font-semibold text-cerulean-blue-900 dark:text-cerulean-blue-300">
-        is a leading sports organization
-      </span>{' '}
-      promoting inclusive sport, physical literacy, and values-based education for all.
-    </p>
-    
-    <p className="text-gray-600 dark:text-gray-300 leading-relaxed pl-4 border-l-4 border-cerulean-blue-500">
-      Founded in 2017 in Kigali, Rwanda, it combines coaching excellence, sport science, and well-being to develop individuals, communities, and sport systems.
-    </p>
-    
-    <div className="bg-cerulean-blue-50/50 dark:bg-cerulean-blue-950/30 rounded-xl p-5 my-4">
-      <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
-        <span className="font-bold text-cerulean-blue-800 dark:text-cerulean-blue-300">With a strong focus on children and youth</span>{' '}
-        while serving all ages, the Academy creates lasting social impact while driving sustainable growth and contributing to the national sport system and economy.
-      </p>
-    </div>
-  </div>
-  
-  {/* Decorative bottom element */}
-  <div className="relative mt-6 flex gap-2 justify-end">
-    <div className="h-1 w-12 bg-cerulean-blue-400 rounded-full"></div>
-    <div className="h-1 w-6 bg-cerulean-blue-300 rounded-full"></div>
-    <div className="h-1 w-3 bg-cerulean-blue-200 rounded-full"></div>
-  </div>
-</div>
-            
+
             <div className="h-1.5 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mx-auto rounded-full mb-12"></div>
           </div>
 

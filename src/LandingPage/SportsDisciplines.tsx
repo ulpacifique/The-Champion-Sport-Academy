@@ -109,9 +109,9 @@ const SportsDisciplines = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-32 pb-20 transition-colors duration-300">
+        <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-20 pb-16 sm:pt-4 sm:pb-20 transition-colors duration-300">
             {/* Hero — What We Do (top); row: Academy (left) | video | Core Services (right) */}
-            <section className="relative mb-16 overflow-hidden px-4 sm:px-6">
+            <section className="relative mb-10 overflow-hidden px-4 sm:px-6 md:mb-12">
                 <div className="rounded-[2rem] bg-gray-100/90 dark:bg-cerulean-blue-900/90 px-3 py-6 sm:py-8 md:py-10">
                     <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:gap-10">
                         <div
@@ -165,7 +165,7 @@ const SportsDisciplines = () => {
                     The Champions Sports Academy
                 </p>
             </div>
-            <div className="container mx-auto px-4 max-w-5xl space-y-6 mb-24">
+            <div className="container mx-auto px-4 max-w-5xl space-y-6 mb-14 md:mb-16">
                 {portfolioServices.map((service) => (
                     <article
                         key={service.n}
@@ -192,7 +192,7 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Integrated Strategic Positioning */}
-            <div className="container mx-auto px-4 max-w-5xl mb-24">
+            <div className="container mx-auto px-4 max-w-5xl mb-12 md:mb-14">
                 <div className="rounded-[2rem] border border-gray-100 dark:border-white/10 bg-gray-50/80 dark:bg-cerulean-blue-900/40 p-8 md:p-12">
                     <h2 className="text-2xl md:text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter text-center mb-2">
                         Integrated Strategic Positioning
@@ -215,7 +215,7 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Competitive Advantage */}
-            <div className="container mx-auto px-4 max-w-5xl mb-24">
+            <div className="container mx-auto px-4 max-w-5xl mb-12 md:mb-14">
                 <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter text-center mb-10">
                     Competitive Advantage of{" "}
                     <span className="text-bright-sun-600 dark:text-bright-sun-300">The Champions Sports Academy</span>
@@ -233,7 +233,7 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Final Strategic Statement */}
-            <div className="container mx-auto px-4 max-w-5xl mb-24">
+            <div className="container mx-auto px-4 max-w-5xl mb-8 md:mb-10">
                 <div className="rounded-[2rem] border-2 border-bright-sun-500/30 bg-gradient-to-br from-bright-sun-50/90 to-white dark:from-cerulean-blue-800/60 dark:to-cerulean-blue-900/80 p-8 md:p-12 text-center shadow-lg dark:shadow-none">
                     <p className="text-xs font-black uppercase tracking-widest text-bright-sun-700 dark:text-bright-sun-300 mb-4">
                         For Investors &amp; Board
@@ -275,11 +275,11 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Achievements */}
-            <div className="container mx-auto px-4 py-32">
-                <div className="bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-12 md:p-20 shadow-sm dark:shadow-none relative overflow-hidden">
+            <div className="container mx-auto px-4 pt-10 pb-14 md:pt-12 md:pb-16">
+                <div className="bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-sm dark:shadow-none relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 blur-3xl -z-10"></div>
 
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-8 md:mb-10">
                         <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs">
                             <IconTrophy size={16} />
                             <span>Milestones</span>
@@ -309,7 +309,7 @@ const SportsDisciplines = () => {
             </div>
 
             {/* Our Commitment */}
-            <div className="container mx-auto px-4 py-32">
+            <div className="container mx-auto px-4 pt-12 pb-16 md:pt-16 md:pb-20">
                 <div
                     className={`bg-white dark:bg-cerulean-blue-800 border border-gray-100 dark:border-white/10 rounded-[3.5rem] p-12 md:p-24 text-center transition-all duration-1000 shadow-2xl ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                 >
