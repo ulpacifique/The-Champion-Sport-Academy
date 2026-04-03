@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { IconUser, IconUserCheck, IconCrown, IconBriefcase, IconTrophy } from "@tabler/icons-react";
 import {
@@ -6,6 +7,36 @@ import {
     COACHES,
     MANAGERS,
 } from "../Data/teamOrganization";
+
+const orgLine = "mx-auto h-6 w-px shrink-0 bg-cerulean-blue-900/35 dark:bg-bright-sun-400/40";
+
+function OrgBoxWhite({ children, className = "" }: { children: ReactNode; className?: string }) {
+    return (
+        <div
+            className={`rounded-xl border-2 border-cerulean-blue-900 bg-white px-3 py-3 text-center shadow-sm dark:border-bright-sun-500/35 dark:bg-white/[0.06] ${className}`}
+        >
+            <div className="text-[10px] font-black uppercase leading-tight tracking-tight text-cerulean-blue-900 dark:text-white sm:text-xs md:text-sm">
+                {children}
+            </div>
+        </div>
+    );
+}
+
+function OrgBoxBlue({ children, className = "" }: { children: ReactNode; className?: string }) {
+    return (
+        <div className={`rounded-xl bg-cerulean-blue-900 px-3 py-3 text-center shadow-md dark:ring-1 dark:ring-white/10 ${className}`}>
+            <div className="text-[10px] font-black uppercase leading-tight tracking-wide text-white sm:text-xs">{children}</div>
+        </div>
+    );
+}
+
+function OrgAssistantPill() {
+    return (
+        <div className="mt-2 rounded-lg bg-cerulean-blue-900 px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-wider text-white sm:text-[10px]">
+            Assistant Coaches
+        </div>
+    );
+}
 
 /** Renders Board → Managers → Coaches. Used once: About Us, under Strategic Partners (after carousel). */
 export const TeamOrganizationContent = () => (
@@ -17,7 +48,7 @@ export const TeamOrganizationContent = () => (
                     <IconCrown className="text-white" size={32} />
                 </div>
                 <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter mb-3">
-                    Board of <span className="text-bright-sun-600 dark:text-bright-sun-400">Directors</span>
+                    Leader<span className="text-bright-sun-600 dark:text-bright-sun-400">ship</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-bright-sun-500 to-cerulean-blue-500 mx-auto rounded-full"></div>
                 <p className="mt-6 text-lg md:text-xl font-semibold italic text-cerulean-blue-800 dark:text-cerulean-blue-200">
@@ -32,12 +63,78 @@ export const TeamOrganizationContent = () => (
                     <strong>sustainable growth</strong> and <strong>lasting social impact through sport</strong>.
                 </p>
 
+                {/* Organizational structure (chart) — directly below Board intro */}
+                <div className="mt-10 mb-14 md:mb-16 max-w-5xl mx-auto px-4">
+                    <div className="mb-10 flex flex-col items-center gap-4 rounded-2xl border border-cerulean-blue-900/20 bg-cerulean-blue-900 px-4 py-5 text-center shadow-lg sm:flex-row sm:justify-center sm:gap-6 sm:py-6 sm:text-left">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-500/60 bg-white/10">
+                            <IconCrown className="text-bright-sun-400" size={36} />
+                        </div>
+                        <p className="font-black uppercase italic tracking-[0.12em] text-bright-sun-400 sm:text-lg md:text-xl">
+                            The Champions Sports Academy
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-0">
+                        <OrgBoxWhite className="w-full max-w-sm">Board of Directors</OrgBoxWhite>
+                        <div className={orgLine} aria-hidden />
+                        <OrgBoxWhite className="w-full max-w-sm">Chief Executive Officer (CEO)</OrgBoxWhite>
+                        <div className={orgLine} aria-hidden />
+
+                        <div className="grid w-full gap-8 pt-2 lg:grid-cols-2 lg:gap-10">
+                            {/* Programmes branch */}
+                            <div className="flex flex-col items-center">
+                                <OrgBoxBlue className="w-full max-w-md">
+                                    Programmes &amp; Projects Manager
+                                </OrgBoxBlue>
+                                <div className={orgLine} aria-hidden />
+                                <div className="grid w-full max-w-xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-3">
+                                    <div className="flex flex-col items-stretch">
+                                        <OrgBoxWhite>Karate Head Coach</OrgBoxWhite>
+                                        <OrgAssistantPill />
+                                    </div>
+                                    <div className="flex flex-col items-stretch">
+                                        <OrgBoxWhite>Gymnastics Head Coach</OrgBoxWhite>
+                                        <OrgAssistantPill />
+                                    </div>
+                                    <div className="flex flex-col items-stretch sm:col-span-1">
+                                        <OrgBoxWhite>Multi-Sports Head Coach</OrgBoxWhite>
+                                        <OrgAssistantPill />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Administration branch */}
+                            <div className="flex flex-col items-center">
+                                <OrgBoxBlue className="w-full max-w-md">
+                                    Administrative &amp; Finance Manager
+                                </OrgBoxBlue>
+                                <div className={orgLine} aria-hidden />
+                                <OrgBoxWhite className="w-full max-w-md">Events &amp; Education Coordinator</OrgBoxWhite>
+                            </div>
+                        </div>
+
+                        <div className={orgLine} aria-hidden />
+                        <OrgBoxWhite className="mt-1 w-full max-w-3xl">
+                            <span className="block">Support Staff</span>
+                            <span className="mt-2 block text-[9px] font-semibold normal-case tracking-normal text-gray-600 dark:text-gray-300 sm:text-[10px]">
+                                (Logistics, Communication, Safeguarding)
+                            </span>
+                        </OrgBoxWhite>
+                    </div>
+                </div>
+
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent" aria-hidden />
 
                 {BOARD_PROFILE_GROUPS.map((group, groupIndex) => (
                     <div key={group.title} className="space-y-8">
-                        <h3 className="flex flex-wrap items-center justify-center gap-2 text-center text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-2xl">
-                            <span className="text-2xl" aria-hidden>
+                        <h3
+                            className={`flex flex-wrap items-center justify-center gap-2 text-center font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white ${
+                                groupIndex === 0
+                                    ? "text-2xl sm:text-3xl md:text-4xl"
+                                    : "text-xl md:text-2xl"
+                            }`}
+                        >
+                            <span className={groupIndex === 0 ? "text-3xl sm:text-4xl" : "text-2xl"} aria-hidden>
                                 {group.emoji}
                             </span>
                             {group.title}
@@ -127,7 +224,7 @@ export const TeamOrganizationContent = () => (
                 <div className="w-24 h-1 bg-gradient-to-r from-cerulean-blue-500 to-bright-sun-500 mx-auto rounded-full"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {MANAGERS.map((member, index) => (
                     <motion.div
                         key={member.role}

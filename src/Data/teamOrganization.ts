@@ -11,7 +11,7 @@ export type BoardProfileGroup = {
 /** Board of Directors — profile cards + advisory copy (About Us). */
 export const BOARD_PROFILE_GROUPS: BoardProfileGroup[] = [
     {
-        title: "Governance Leadership",
+        title: "Board of Directors",
         emoji: "🔵",
         items: [
             {
@@ -81,7 +81,6 @@ export const BOARD_ADVISORY_EXPERTISE = [
 ];
 
 export const MANAGERS = [
-    { role: "Operational Manager" },
     { role: "Programme and Projects Manager" },
     { role: "Administration and Finance Manager" },
 ];

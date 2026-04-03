@@ -1,19 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 
-const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/champVideo.mp4`;
+const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/wedo.mp4`;
+
+const HEADLINE_LEFT = "We Are The";
+const HEADLINE_RIGHT = ["Champions", "For", "Life"] as const;
 
 const HeroSection = () => {
     const [animate, setAnimate] = useState(false);
     const heroRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    // Trigger animation when component mounts
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
-    // Force video to play: direct ref, no async URL. Run on mount and on every event that signals readiness.
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
@@ -54,64 +55,68 @@ const HeroSection = () => {
 
     return (
         <>
-<div ref={heroRef} className="relative flex flex-col items-center justify-start pt-4 sm:pt-6 md:pt-8 px-4 sm:px-6 md:px-10 py-12 md:py-16 min-h-[90vh] md:min-h-[85vh] overflow-hidden">
-                {/* Background Video - loop, visible with light overlay */}
-                <div className="absolute inset-0 z-0">
-                    <video
-                        ref={videoRef}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="auto"
-                        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-                        src={HERO_VIDEO_SRC}
-                        onContextMenu={(e) => e.preventDefault()}
-                        aria-hidden
-                    />
-                    {/* Light overlay so video stays visible and clear */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent dark:from-cerulean-blue-950/55 dark:via-cerulean-blue-950/25 dark:to-cerulean-blue-950/10" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/40 dark:to-cerulean-blue-950/45" />
-                </div>
+            <div
+                ref={heroRef}
+                className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden bg-white px-4 py-12 sm:px-6 sm:pt-8 md:min-h-[85vh] md:px-10 md:py-16 dark:bg-cerulean-blue-900"
+            >
+                <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-6 xl:gap-10">
+                    {/* Left: titles */}
+                    <div className="flex w-full flex-col items-center text-center lg:min-w-0 lg:max-w-xl lg:flex-1 lg:items-start lg:text-left">
+                        <p
+                            className={`mb-3 whitespace-nowrap text-sm font-semibold uppercase tracking-widest text-cerulean-blue-800 dark:text-white/90 sm:text-base md:text-lg ${
+                                animate ? "opacity-100" : "opacity-0"
+                            } transition-opacity duration-500`}
+                        >
+                            The Champion Sport Academy
+                        </p>
 
-                {/* Animated decorative elements - hidden on mobile for performance */}
-                <div className="hidden md:block absolute top-20 right-20 w-72 h-72 bg-bright-sun-300/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="hidden md:block absolute bottom-20 right-40 w-96 h-96 bg-cerulean-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                        <div className="mb-2 text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-6xl">
+                            <span
+                                className={`inline-block animate-word ${animate ? "active" : ""}`}
+                                style={{ animationDelay: "0ms" }}
+                            >
+                                <span className="uppercase text-cerulean-blue-900 dark:text-white">{HEADLINE_LEFT}</span>
+                            </span>
+                        </div>
+                    </div>
 
-                {/* Content: title first and centered, up near header */}
-                <div className="relative z-10 flex flex-col items-center text-center w-full max-w-8xl">
-                    {/* One line above the title */}
-                    <p className={`text-sm sm:text-base md:text-lg text-cerulean-blue-800 dark:text-gray-200 font-semibold uppercase tracking-widest drop-shadow-lg whitespace-nowrap mb-3 ${animate ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
-                        The Champion Sport Academy
-                    </p>
+                    {/* Center: portrait video (balanced by flex-1 columns on left/right at lg+) */}
+                    <div className="flex w-full shrink-0 justify-center lg:w-auto">
+                        <div className="relative aspect-[9/16] w-full max-w-[min(100%,280px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 sm:max-w-[300px] md:max-w-[min(42vw,320px)] dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="auto"
+                                className="pointer-events-none h-full w-full select-none object-cover"
+                                src={HERO_VIDEO_SRC}
+                                onContextMenu={(e) => e.preventDefault()}
+                            />
+                        </div>
+                    </div>
 
-                    {/* First: We Are The Champions For Life — centered, at top */}
-                    <div className="text-3xl sm:text-4xl md:text-6xl lg:text-5xl font-bold leading-tight drop-shadow-2xl mb-4 md:mb-6">
-                        <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3 gap-y-1">
-                            {["We Are The", "Champions", "For", "Life"].map((word, index) => (
+                    {/* Right: Champions / For / Life */}
+                    <div className="flex min-w-0 w-full flex-1 flex-col items-end text-right">
+                        <div className="text-3xl font-bold leading-[1.1] drop-shadow-sm sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-6xl">
+                            {HEADLINE_RIGHT.map((word, index) => (
                                 <span
-                                    key={index}
-                                    className={`inline-block animate-word ${animate ? 'active' : ''}`}
-                                    style={{ animationDelay: `${index * 150}ms` }}
+                                    key={word}
+                                    className={`block animate-word ${animate ? "active" : ""}`}
+                                    style={{ animationDelay: `${(index + 1) * 150}ms` }}
                                 >
-                                    {word.toLowerCase() === 'champions' ? (
-                                        <span className="bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 dark:from-bright-sun-200 dark:via-bright-sun-300 dark:to-bright-sun-200 bg-clip-text text-transparent animate-gradient">
+                                    {word.toLowerCase() === "champions" ? (
+                                        <span className="animate-gradient bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 bg-clip-text text-transparent dark:from-bright-sun-300 dark:via-bright-sun-400 dark:to-bright-sun-300">
                                             {word}
                                         </span>
                                     ) : (
-                                        <span className="text-cerulean-blue-900 dark:text-white uppercase">{word}</span>
+                                        <span className="uppercase text-cerulean-blue-900 dark:text-white">{word}</span>
                                     )}
                                 </span>
                             ))}
                         </div>
                     </div>
-                    <div className="h-8 md:h-60" />
-
-                    {/* Tagline: Excellence in Sport & Life — Kigali, Rwanda */}
-                    
-
-                    
-
                 </div>
             </div>
         </>

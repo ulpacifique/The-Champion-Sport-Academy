@@ -290,21 +290,21 @@ const AboutUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.06 }}
-                className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200/80 dark:bg-cerulean-blue-950/85 dark:shadow-lg dark:shadow-black/20 dark:ring-white/[0.07]"
+                className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200/80 dark:bg-gradient-to-b dark:from-cerulean-blue-800 dark:via-cerulean-blue-900 dark:to-[#121a44] dark:shadow-[0_14px_32px_-10px_rgba(17,39,86,0.55),0_5px_0_0_rgba(10,26,72,0.55),inset_0_1px_0_rgba(120,165,255,0.12)] dark:ring-cerulean-blue-700/30"
               >
-                <div className={`${valueHeaderBg[index]} px-3 py-2.5 text-center md:py-3`}>
+                <div className={`${valueHeaderBg[index]} px-3 py-2.5 text-center shadow-[inset_0_-2px_4px_rgba(0,0,0,0.15)] md:py-3`}>
                   <h4 className="text-xs font-black uppercase tracking-tight text-white md:text-sm">
                     {value.name}
                   </h4>
                 </div>
 
-                <div className="flex justify-center bg-sky-100/80 px-4 pb-3 pt-5 dark:bg-transparent">
-                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-inner ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-white/15 dark:bg-cerulean-blue-900/60 dark:ring-white/10">
+                <div className="flex justify-center bg-sky-100/80 px-4 pb-3 pt-5 dark:bg-cerulean-blue-950/95 dark:shadow-[inset_0_6px_18px_rgba(8,22,70,0.45)]">
+                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-[0_4px_12px_rgba(15,23,42,0.12),inset_0_2px_6px_rgba(255,255,255,0.85)] ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-cerulean-blue-600/35 dark:bg-cerulean-blue-900 dark:shadow-[0_8px_22px_rgba(12,30,90,0.5),inset_0_2px_12px_rgba(5,18,60,0.35),inset_0_-1px_0_rgba(130,170,255,0.1)] dark:ring-cerulean-blue-700/25">
                     <img src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
                   </div>
                 </div>
 
-                <div className="flex min-h-[3.75rem] flex-1 items-start justify-center bg-white px-3 pb-5 pt-1 text-center dark:bg-transparent">
+                <div className="flex min-h-[3.75rem] flex-1 items-start justify-center bg-white px-3 pb-5 pt-1 text-center dark:bg-[#141d4a] dark:shadow-[inset_0_1px_0_rgba(130,170,255,0.08)]">
                   <p className="text-xs font-medium leading-snug text-cerulean-blue-900 dark:text-gray-100 md:text-sm">
                     {value.tagline}
                   </p>

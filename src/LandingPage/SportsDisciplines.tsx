@@ -5,7 +5,6 @@ import {
     IconShield,
     IconCertificate,
     IconCalendarEvent,
-    IconShoppingCart,
     IconUsers,
     IconTrophy,
     IconMedal,
@@ -13,184 +12,65 @@ import {
     IconStar,
     IconClipboardList,
     IconHeart,
+    IconRun,
+    IconBarbell,
 } from "@tabler/icons-react";
 
+/** Core Services — aligned with CSA flyer (icon + title + short description). */
 type PortfolioService = {
     n: number;
     title: string;
-    tagline: string;
     description: string;
     icon: typeof IconActivity;
-    accent: string;
-    keyProgrammes?: string[];
-    servicesInclude?: string[];
-    eventTypes?: string[];
-    keyAreas?: string[];
-    focusAreas?: string[];
-    clients?: string[];
-    valueProposition?: string[];
-    revenueModel?: string[];
-    impact?: string[];
-    strategicAdvantage?: string[];
-    strategicVision?: string[];
 };
 
 const portfolioServices: PortfolioService[] = [
     {
         n: 1,
-        title: "Youth Development Through Sport & Physical Literacy (Flagship Service)",
-        tagline: "Core Impact Engine + Stable Revenue Stream",
+        title: "Children & Youth Development through Sport & Physical Literacy",
         description:
-            "A structured, values-based multi-sport development programme for children (ages 3–17), integrating Long-Term Athlete Development (LTAD) and Olympic Education.",
-        icon: IconActivity,
-        accent: "from-blue-500/10 to-blue-600/5 border-blue-500/20",
-        keyProgrammes: [
-            "Weekend Programmes (Gymnastics, Karate, Multisport)",
-            "Holiday Camps (High-volume revenue + visibility)",
-            "School-Based Programmes (B2B contracts with schools)",
-            "Home/Private Coaching (Premium service)",
-        ],
-        valueProposition: [
-            "Builds physical literacy + life skills",
-            "Aligns with education and health systems",
-            "Creates long-term athlete and customer pipeline",
-        ],
-        revenueModel: [
-            "Monthly subscriptions (recurring income)",
-            "School contracts (institutional revenue)",
-            "Premium private coaching fees",
-        ],
-        impact: [
-            "Youth development, health, discipline, and inclusion",
-            "Direct alignment with national sport and education priorities",
-        ],
+            "Structured programmes for children and youth (ages 3–17), developing physical, technical, and life skills.",
+        icon: IconRun,
     },
     {
         n: 2,
-        title: "Sports Programmes Design & Management",
-        tagline: "Scalable Expertise-Based Revenue Stream",
+        title: "Sport Programmes Design & Management",
         description:
-            "Professional design, implementation, and management of sport programmes for institutions.",
+            "Professional design, implementation, and management of sport programmes for schools, institutions, and federations.",
         icon: IconClipboardList,
-        accent: "from-purple-500/10 to-purple-600/5 border-purple-500/20",
-        servicesInclude: [
-            "Curriculum development (schools, federations, NGOs)",
-            "LTAD-based programme structuring",
-            "Grassroots to performance pathway design",
-            "Monitoring & evaluation systems",
-        ],
-        clients: [
-            "Schools (local & international)",
-            "Federations (e.g., FERWAKA, FERWAGY)",
-            "Government institutions",
-            "NGOs & international organizations",
-        ],
-        revenueModel: ["Consultancy fees (high-margin)", "Long-term programme management contracts"],
-        impact: [
-            "Raises national coaching and programme standards",
-            "Supports system-level sport development",
-        ],
     },
     {
         n: 3,
-        title: "Sports Events Organization & Management",
-        tagline: "High-Visibility + Sponsorship-Driven Revenue Engine",
+        title: "Sport Events Organization & Management",
         description:
-            "Professional organization of national and international sport events, aligned with Olympic standards.",
+            "Planning and delivery of competitions, camps, and sport events at local, national, and international levels.",
         icon: IconCalendarEvent,
-        accent: "from-green-500/10 to-green-600/5 border-green-500/20",
-        eventTypes: [
-            "National Championships (Karate, Gymnastics)",
-            "Children’s Sport Festivals & Camps",
-            "Coaching & Certification Events",
-            "Corporate & Community Sport Events",
-        ],
-        revenueModel: [
-            "Sponsorships & partnerships",
-            "Participation fees",
-            "Event hosting contracts",
-            "Media & branding rights",
-        ],
-        strategicAdvantage: [
-            "Positions CSA as a national leader in sport events",
-            "Builds brand authority and partnerships",
-        ],
-        impact: [
-            "Talent identification and development",
-            "Community engagement and sport promotion",
-        ],
     },
     {
         n: 4,
-        title: "Sport Consultancy, Education & Well-being",
-        tagline: "High-Value Knowledge & Social Impact Service",
+        title: "Coaching Programmes & Consultancy in Sport, Social Change and Well-being",
         description:
-            "A specialized service combining coaching education, sport science, and mental well-being in sport.",
+            "Development of coaches, sport systems, and communities through coaching education, consultancy, mental health, and well-being programmes that use sport as a tool for social impact.",
         icon: IconHeart,
-        accent: "from-bright-sun-500/10 to-bright-sun-600/5 border-bright-sun-500/30",
-        keyAreas: [
-            "Coach education & certification programmes",
-            "Safe Sport & safeguarding training",
-            "Athlete and coach mental health & well-being programmes",
-            "Olympic education programmes",
-            "Leadership in sport (values-based coaching)",
-        ],
-        clients: [
-            "Coaches and clubs",
-            "Schools and universities",
-            "Federations and sport organizations",
-            "Corporate organizations (well-being programmes)",
-        ],
-        revenueModel: [
-            "Training fees and certification programmes",
-            "Institutional consultancy contracts",
-            "Workshops and seminars",
-        ],
-        impact: [
-            "Addresses critical gap in mental health in sport (Rwanda & region)",
-            "Builds a qualified and ethical coaching workforce",
-        ],
     },
     {
         n: 5,
-        title: "Sports Equipment Supply & Development (Made in Rwanda Initiative)",
-        tagline: "Growth Engine + Long-Term Profit Expansion",
+        title: "Sport Equipment Supply & Development",
         description:
-            "Development, sourcing, and distribution of affordable, safe, and locally adapted sports equipment.",
-        icon: IconShoppingCart,
-        accent: "from-orange-500/10 to-orange-600/5 border-orange-500/20",
-        focusAreas: [
-            "Gymnastics equipment (e.g., mats, beams, air tracks)",
-            "Karate equipment (e.g., tatami, protective gear)",
-            "School sport kits",
-        ],
-        strategicVision: [
-            "Develop “Made in Rwanda” sports equipment",
-            "Reduce dependency on imports",
-            "Supply schools, clubs, and federations",
-        ],
-        revenueModel: [
-            "Direct sales (B2C and B2B)",
-            "Institutional supply contracts",
-            "Equipment leasing for events",
-        ],
-        impact: [
-            "Improves access to quality sport infrastructure",
-            "Supports local industry and economic development",
-        ],
+            "Provision and development of sport equipment with a focus on scalable solutions and Made in Rwanda production.",
+        icon: IconBarbell,
     },
 ];
 
 const integrationFlow = [
-    "Service 1 (Youth Programmes) → Builds market base & impact",
-    "Service 2 (Programme Design) → Expands institutional reach",
-    "Service 3 (Events) → Enhances visibility & partnerships",
-    "Service 4 (Consultancy & Well-being) → Establishes authority & expertise",
-    "Service 5 (Equipment) → Drives scalable long-term profit",
+    "Children & youth development → foundation for lifelong participation",
+    "Programme design & management → institutional and federation reach",
+    "Events → visibility, talent, and partnerships",
+    "Coaching & well-being → social impact and healthy systems",
+    "Equipment → access and Made in Rwanda growth",
 ];
 
 const WHAT_WE_DO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("what we do.mp4")}`;
-const WHAT_MP4_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/what.mp4`;
 
 const competitiveAdvantageBullets = [
     "Strong leadership expertise (international coaching, Olympic education, social work in sport)",
@@ -202,7 +82,6 @@ const competitiveAdvantageBullets = [
 const SportsDisciplines = () => {
     const [animate, setAnimate] = useState(false);
     const heroVideoRef = useRef<HTMLVideoElement>(null);
-    const spotlightVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const timer = setTimeout(() => setAnimate(true), 100);
@@ -222,39 +101,12 @@ const SportsDisciplines = () => {
         return () => video.removeEventListener("canplay", play);
     }, []);
 
-    useEffect(() => {
-        const video = spotlightVideoRef.current;
-        if (!video) return;
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute("playsinline", "");
-        const play = () => video.play().catch(() => {});
-        play();
-        video.addEventListener("canplay", play);
-        return () => video.removeEventListener("canplay", play);
-    }, []);
-
     const achievements = [
         { title: "National Champions", count: "15", icon: IconTrophy },
         { title: "International Awards", count: "8", icon: IconAward },
         { title: "Certified Coaches", count: "25+", icon: IconCertificate },
         { title: "Community Events", count: "50+", icon: IconMedal },
     ];
-
-    const ListBlock = ({ title, items }: { title: string; items: string[] }) => (
-        <div className="space-y-2">
-            <h4 className="text-xs font-black uppercase tracking-widest text-bright-sun-600 dark:text-bright-sun-400">{title}</h4>
-            <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                {items.map((line) => (
-                    <li key={line} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-bright-sun-500" />
-                        <span>{line}</span>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
 
     return (
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-32 pb-20 transition-colors duration-300">
@@ -304,81 +156,35 @@ const SportsDisciplines = () => {
                 </div>
             </section>
 
-            {/* Spotlight — what.mp4 (portrait), bridges hero → core services */}
-            <section className="mb-20 px-4 sm:px-6" aria-labelledby="spotlight-heading">
-                <div className="mx-auto max-w-6xl rounded-[2rem] border border-gray-200/90 bg-gray-50/90 dark:border-white/10 dark:bg-cerulean-blue-900/35 px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-14">
-                    <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 xl:gap-16">
-                        <div className="space-y-4 text-center lg:text-left">
-                            <p className="text-xs font-black uppercase tracking-widest text-bright-sun-600 dark:text-bright-sun-400">
-                                The Champions Sports Academy
-                            </p>
-                            <h2
-                                id="spotlight-heading"
-                                className="text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl"
-                            >
-                                Excellence in motion
-                            </h2>
-                            <p className="mx-auto max-w-lg text-sm leading-relaxed text-gray-600 dark:text-gray-300 lg:mx-0">
-                                A glimpse of training, energy, and community across our programmes — before you explore each service in detail below.
-                            </p>
-                        </div>
-                        <div className="flex justify-center lg:justify-end">
-                            <div className="relative w-full max-w-[min(92vw,380px)] aspect-[9/16] overflow-hidden rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.35)] ring-1 ring-white/30 dark:ring-white/10">
-                                <video
-                                    ref={spotlightVideoRef}
-                                    src={WHAT_MP4_VIDEO_SRC}
-                                    className="h-full w-full object-cover"
-                                    muted
-                                    loop
-                                    playsInline
-                                    autoPlay
-                                    preload="auto"
-                                    aria-label="The Champions Sports Academy in action"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Portfolio services */}
-            <div className="container mx-auto px-4 max-w-5xl space-y-10 mb-24">
+            {/* Core Services — flyer-aligned copy */}
+            <div className="container mx-auto px-4 max-w-3xl mb-12 text-center">
+                <h2 className="text-3xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-4xl">
+                    Core <span className="text-bright-sun-600 dark:text-bright-sun-300">Services</span>
+                </h2>
+                <p className="mt-3 text-sm font-medium uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                    The Champions Sports Academy
+                </p>
+            </div>
+            <div className="container mx-auto px-4 max-w-5xl space-y-6 mb-24">
                 {portfolioServices.map((service) => (
                     <article
                         key={service.n}
-                        className={`relative overflow-hidden rounded-[2rem] border bg-gradient-to-br ${service.accent} bg-white/80 dark:bg-cerulean-blue-900/50 p-8 md:p-10 shadow-sm dark:shadow-none`}
+                        className="relative overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-sm dark:border-white/10 dark:bg-cerulean-blue-900/30 dark:shadow-none"
                     >
-                        <div className="flex flex-col md:flex-row md:items-start gap-6">
-                            <div
-                                className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-gray-100 dark:border-white/10 bg-white dark:bg-cerulean-blue-800/60 shadow-sm`}
-                            >
-                                <service.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={36} />
+                        <div className="flex flex-col gap-5 p-6 sm:flex-row sm:items-start sm:gap-6 sm:p-8">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-500/40 bg-bright-sun-500/10 dark:border-bright-sun-400/50 dark:bg-bright-sun-500/15">
+                                <service.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={28} stroke={1.75} />
                             </div>
-                            <div className="min-w-0 flex-1 space-y-6">
-                                <div>
-                                    <span className="text-xs font-black text-bright-sun-600 dark:text-bright-sun-400 uppercase tracking-widest">
-                                        Service {service.n}
-                                    </span>
-                                    <h2 className="mt-1 text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tight leading-snug">
-                                        {service.title}
-                                    </h2>
-                                    <p className="mt-2 text-sm font-bold text-bright-sun-700 dark:text-bright-sun-300">{service.tagline}</p>
-                                    <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">{service.description}</p>
-                                </div>
-
-                                <div className="grid gap-8 sm:grid-cols-2">
-                                    {service.keyProgrammes && <ListBlock title="Key Programmes" items={service.keyProgrammes} />}
-                                    {service.servicesInclude && <ListBlock title="Services Include" items={service.servicesInclude} />}
-                                    {service.eventTypes && <ListBlock title="Event Types" items={service.eventTypes} />}
-                                    {service.keyAreas && <ListBlock title="Key Areas" items={service.keyAreas} />}
-                                    {service.focusAreas && <ListBlock title="Focus Areas" items={service.focusAreas} />}
-                                    {service.clients && <ListBlock title="Clients" items={service.clients} />}
-                                    {service.valueProposition && <ListBlock title="Value Proposition" items={service.valueProposition} />}
-                                    {service.revenueModel && <ListBlock title="Revenue Model" items={service.revenueModel} />}
-                                    {service.strategicAdvantage && <ListBlock title="Strategic Advantage" items={service.strategicAdvantage} />}
-                                    {service.strategicVision && <ListBlock title="Strategic Vision" items={service.strategicVision} />}
-                                    {service.impact && <ListBlock title="Impact" items={service.impact} />}
-                                </div>
+                            <div className="min-w-0 flex-1 text-left">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-bright-sun-600 dark:text-bright-sun-400">
+                                    Service {service.n}
+                                </p>
+                                <h3 className="mt-1 text-lg font-black leading-snug text-cerulean-blue-900 dark:text-white md:text-xl">
+                                    {service.title}
+                                </h3>
+                                <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+                                    {service.description}
+                                </p>
                             </div>
                         </div>
                     </article>
