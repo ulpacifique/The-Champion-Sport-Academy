@@ -183,7 +183,7 @@ const Header = () => {
                                 radius="xl"
                                 className="font-bold uppercase tracking-wide text-cerulean-blue-950 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,191,0,0.3)] shadow-lg px-4 sm:px-6 sm:text-sm"
                             >
-                                Login
+                                Access
                             </Button>
                         </Link>
                     </div>
