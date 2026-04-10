@@ -102,6 +102,29 @@ const Event = () => (
                                 </div>
                             ))}
                         </div>
+                        <div className="mx-auto mt-6 max-w-3xl md:mt-8">
+                            <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
+                                <iframe
+                                    className="absolute inset-0 h-full w-full"
+                                    src="https://www.youtube.com/embed/Ayj1lSBqvbs?rel=0&modestbranding=1&loop=1&playlist=Ayj1lSBqvbs"
+                                    title="The Champions National Children Karate Training — YouTube"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p className="mt-3 text-center">
+                                <a
+                                    href="https://youtu.be/Ayj1lSBqvbs?si=Gw3mf1hjAuXck7sC"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                                >
+                                    Open on YouTube
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </motion.section>
 
