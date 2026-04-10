@@ -71,15 +71,6 @@ export const BOARD_PROFILE_GROUPS: BoardProfileGroup[] = [
     },
 ];
 
-export const BOARD_ADVISORY_EXPERTISE = [
-    "Finance & Investment",
-    "Sport Development & Coaching",
-    "Social Impact & Safeguarding",
-    "Infrastructure & Innovation",
-    "Education & Research",
-    "International Relations",
-];
-
 export const MANAGERS = [
     { role: "Programme and Projects Manager" },
     { role: "Administration and Finance Manager" },

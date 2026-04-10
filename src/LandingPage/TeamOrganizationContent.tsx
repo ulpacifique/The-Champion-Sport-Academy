@@ -1,12 +1,7 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { IconUser, IconUserCheck, IconCrown, IconBriefcase, IconTrophy } from "@tabler/icons-react";
-import {
-    BOARD_ADVISORY_EXPERTISE,
-    BOARD_PROFILE_GROUPS,
-    COACHES,
-    MANAGERS,
-} from "../Data/teamOrganization";
+import { BOARD_PROFILE_GROUPS, COACHES, MANAGERS } from "../Data/teamOrganization";
 
 const orgLine = "mx-auto h-6 w-px shrink-0 bg-cerulean-blue-900/35 dark:bg-bright-sun-400/40";
 
@@ -152,34 +147,6 @@ export const TeamOrganizationContent = () => (
                         </div>
                     </div>
                 ))}
-
-                <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent" aria-hidden />
-
-                <div className="space-y-6 rounded-2xl border border-gray-200 bg-white/80 p-6 dark:border-white/10 dark:bg-cerulean-blue-900/25 md:p-10">
-                    <h3 className="flex flex-wrap items-center justify-center gap-2 text-center text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white">
-                        <span className="text-2xl" aria-hidden>
-                            ⚪
-                        </span>
-                        Board Members (Advisory &amp; Expertise)
-                    </h3>
-                    <p className="text-center text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base">
-                        The Board is supported by additional members who bring specialized expertise in areas such as:
-                    </p>
-                    <ul className="mx-auto grid max-w-3xl grid-cols-1 gap-2 text-sm sm:grid-cols-2 md:text-base">
-                        {BOARD_ADVISORY_EXPERTISE.map((line) => (
-                            <li
-                                key={line}
-                                className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                            >
-                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
-                                <span>{line}</span>
-                            </li>
-                        ))}
-                    </ul>
-                    <p className="text-center text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base">
-                        These members strengthen strategic decision-making and support the Academy’s long-term development.
-                    </p>
-                </div>
             </div>
         </section>
 
