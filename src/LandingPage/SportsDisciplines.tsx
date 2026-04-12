@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import {
     IconActivity,
-    IconArrowRight,
     IconShield,
     IconCertificate,
     IconCalendarEvent,
@@ -184,89 +183,6 @@ const SportsDisciplines = () => {
                         </div>
                     </article>
                 ))}
-            </div>
-
-            {/* Integrated Strategic Positioning */}
-            <div className="container mx-auto px-4 max-w-5xl mb-12 md:mb-14">
-                <div className="rounded-[2rem] border border-gray-100 dark:border-white/10 bg-gray-50/80 dark:bg-cerulean-blue-900/40 p-8 md:p-12">
-                    <h2 className="text-2xl md:text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter text-center mb-2">
-                        Integrated Strategic Positioning
-                    </h2>
-                    <p className="text-center text-sm font-black uppercase tracking-widest text-bright-sun-600 dark:text-bright-sun-400 mb-10">
-                        How the Services Work Together
-                    </p>
-                    <ul className="space-y-4 max-w-3xl mx-auto">
-                        {integrationFlow.map((line) => (
-                            <li
-                                key={line}
-                                className="flex items-start gap-3 rounded-2xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-cerulean-blue-800/30 px-4 py-3 text-sm md:text-base text-gray-800 dark:text-gray-200 font-medium"
-                            >
-                                <IconArrowRight className="shrink-0 text-bright-sun-600 dark:text-bright-sun-400 mt-0.5" size={20} />
-                                {line}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-            {/* Competitive Advantage */}
-            <div className="container mx-auto px-4 max-w-5xl mb-12 md:mb-14">
-                <h2 className="text-2xl md:text-4xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter text-center mb-10">
-                    Competitive Advantage of{" "}
-                    <span className="text-bright-sun-600 dark:text-bright-sun-300">The Champions Sports Academy</span>
-                </h2>
-                <ul className="space-y-4">
-                    {competitiveAdvantageBullets.map((line) => (
-                        <li
-                            key={line}
-                            className="flex gap-3 text-gray-700 dark:text-gray-300 leading-relaxed border-l-4 border-bright-sun-500 pl-4 py-1"
-                        >
-                            <span className="font-medium">{line}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            {/* Final Strategic Statement */}
-            <div className="container mx-auto px-4 max-w-5xl mb-8 md:mb-10">
-                <div className="rounded-[2rem] border-2 border-bright-sun-500/30 bg-gradient-to-br from-bright-sun-50/90 to-white dark:from-cerulean-blue-800/60 dark:to-cerulean-blue-900/80 p-8 md:p-12 text-center shadow-lg dark:shadow-none">
-                    <p className="text-xs font-black uppercase tracking-widest text-bright-sun-700 dark:text-bright-sun-300 mb-4">
-                        For Investors &amp; Board
-                    </p>
-                    <h2 className="text-xl md:text-2xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tight mb-6 leading-snug">
-                        Final Strategic Statement
-                    </h2>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                        The Champions Sports Academy operates as a <strong className="text-cerulean-blue-900 dark:text-white">hybrid sport enterprise</strong> that combines:
-                    </p>
-                    <ul className="text-left max-w-2xl mx-auto space-y-2 text-gray-700 dark:text-gray-300 mb-8 text-sm md:text-base">
-                        <li className="flex gap-2">
-                            <span className="text-bright-sun-600">•</span>
-                            High-impact youth development programmes (social value)
-                        </li>
-                        <li className="flex gap-2">
-                            <span className="text-bright-sun-600">•</span>
-                            Professional sport services and consultancy (high-margin revenue)
-                        </li>
-                        <li className="flex gap-2">
-                            <span className="text-bright-sun-600">•</span>
-                            Events and equipment business (scalable commercial growth)
-                        </li>
-                    </ul>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                        This integrated model ensures:
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        {["Financial sustainability", "National relevance", "Regional and international scalability"].map((t) => (
-                            <span
-                                key={t}
-                                className="inline-block rounded-full border border-bright-sun-500/40 bg-bright-sun-100/80 dark:bg-bright-sun-900/20 px-4 py-2 text-xs font-black uppercase tracking-wider text-cerulean-blue-900 dark:text-white"
-                            >
-                                {t}
-                            </span>
-                        ))}
-                    </div>
-                </div>
             </div>
 
             {/* Achievements */}
