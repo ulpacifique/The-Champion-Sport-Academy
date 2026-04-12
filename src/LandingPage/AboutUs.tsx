@@ -258,6 +258,31 @@ const AboutUs = () => {
                   </p>
                 </div>
               </div>
+
+            <div className="mx-auto mt-8 w-full max-w-2xl sm:mt-10">
+              <div
+                className="relative w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10"
+                style={{ aspectRatio: "16 / 9" }}
+              >
+                <iframe
+                  className="absolute left-0 top-0 h-full w-full border-0"
+                  src="https://www.youtube-nocookie.com/embed/5ra6d8S61F8?rel=0&modestbranding=1&playsinline=1"
+                  title="International athlete Medals(performance)"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <p className="mt-3 max-w-xl px-2 text-center">
+                <a
+                  href="https://youtu.be/5ra6d8S61F8?si=qvnWTmkvN2md8AMy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold uppercase tracking-wide text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:tracking-widest"
+                >
+                  International athlete Medals(performance)
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>

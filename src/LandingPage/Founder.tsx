@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IconSparkles, IconTrophy, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { IconSparkles, IconTrophy, IconChevronDown, IconChevronUp, IconBrandX } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
@@ -148,6 +148,37 @@ const Founder = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Rwanda Karate Federation appreciation — X post (before “From Athlete to Coach Developer…”) */}
+            <section
+                aria-labelledby="ferwaka-appreciation-heading"
+                className="border-y border-gray-100 bg-white dark:border-white/5 dark:bg-cerulean-blue-900/25"
+            >
+                <div className="container mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-14">
+                    <h3
+                        id="ferwaka-appreciation-heading"
+                        className="mb-4 text-center text-xs font-black uppercase tracking-[0.2em] text-bright-sun-600 dark:text-bright-sun-300"
+                    >
+                        Rwanda Karate Federation
+                    </h3>
+                    <div className="rounded-2xl border border-gray-200 bg-gray-50/80 p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.04] md:p-8">
+                        <p className="text-center text-base leading-relaxed text-gray-700 dark:text-gray-200 md:text-lg">
+                            The Rwanda Karate Federation extends sincere appreciation to Coach Noel Nkuranyabahizi for his steadfast commitment and years of service from 2015 to 2023.
+                        </p>
+                        <div className="mt-6 flex justify-center">
+                            <a
+                                href="https://x.com/i/status/1735208978995347527"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-xl border-2 border-cerulean-blue-900/20 bg-white px-5 py-3 text-sm font-bold text-cerulean-blue-900 transition-colors hover:bg-gray-50 dark:border-white/20 dark:bg-cerulean-blue-950/50 dark:text-white dark:hover:bg-white/10"
+                            >
+                                <IconBrandX size={20} className="shrink-0 opacity-90" aria-hidden />
+                                View on X
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Video gallery – 3 columns: 2 videos | 2 videos | 1 video */}
             <section className="w-full py-8 md:py-12 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
