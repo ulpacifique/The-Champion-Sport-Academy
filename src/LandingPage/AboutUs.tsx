@@ -188,7 +188,7 @@ const AboutUs = () => {
             </div>
 
             <div className="mt-8 flex w-full flex-col items-stretch gap-4 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:gap-3 xl:gap-4">
-                <div className="mx-auto flex w-full max-w-[200px] flex-col items-center sm:mx-0 sm:shrink-0">
+                <div className="mx-auto flex w-full max-w-[280px] flex-col items-center sm:mx-0 sm:shrink-0">
                   <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
                     <iframe
                       className="absolute inset-0 h-full w-full"
@@ -211,7 +211,7 @@ const AboutUs = () => {
                     </a>
                   </p>
                 </div>
-                <div className="mx-auto flex w-full max-w-[200px] flex-col items-center sm:mx-0 sm:shrink-0">
+                <div className="mx-auto flex w-full max-w-[280px] flex-col items-center sm:mx-0 sm:shrink-0">
                   <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
                     <iframe
                       className="absolute inset-0 h-full w-full"
@@ -234,7 +234,7 @@ const AboutUs = () => {
                     </a>
                   </p>
                 </div>
-                <div className="mx-auto flex w-full max-w-[200px] flex-col items-center sm:mx-0 sm:shrink-0">
+                <div className="mx-auto flex  min-w-[150px] max-w-[280px] flex-col items-center sm:mx-0 sm:shrink-0">
                   <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
                     <iframe
                       className="absolute inset-0 h-full w-full"
@@ -262,7 +262,7 @@ const AboutUs = () => {
             <div className="mx-auto mt-8 w-full max-w-2xl sm:mt-10">
               <div
                 className="relative w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10"
-                style={{ aspectRatio: "16 / 9" }}
+                style={{ aspectRatio: "16/9" }}
               >
                 <iframe
                   className="absolute left-0 top-0 h-full w-full border-0"
