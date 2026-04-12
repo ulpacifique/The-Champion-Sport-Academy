@@ -4,11 +4,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 
-const COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coach.mp4`;
-const COACHING_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coaching.mp4`;
-const RWANDA_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Rwanda karate.mp4")}`;
-const LEGACY_KARATE_ATHLETE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("My Legacy as a Karate Athlete.mp4")}`;
-const DEVELOPING_YOUTH_KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/${encodeURIComponent("Developing Youth throught Karate.mp4")}`;
 const COACH_NOEL_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/coachNoel.mp4`;
 const SIX_COACH_VIDEO_SRC = `${import.meta.env.BASE_URL}OurFounderGallery/sixCoach.mp4`;
 
@@ -18,54 +13,21 @@ const FOUNDER_HEADLINE_PORTRAIT_VIDEOS: { src: string; ariaLabel: string }[] = [
     { src: SIX_COACH_VIDEO_SRC, ariaLabel: "Our Founder — coaching team" },
 ];
 
-/** Founder video gallery items (optional caption = longer text under video) */
+/** Founder video gallery — titles kept; add `youtubeEmbedUrl` when replacing local files */
 const FOUNDER_VIDEO_ITEMS: {
     id: string;
     title: string;
-    caption?: string;
-    src: string;
     layout: "landscape" | "portrait";
+    /** Optional local file */
+    src?: string;
+    /** e.g. https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1 */
+    youtubeEmbedUrl?: string;
 }[] = [
-    {
-        id: "developing-youth",
-        title: "Developing Youth through Karate",
-        caption:
-            "A legacy of developing children through sport and values.\n\nAs an International Elite Sport Coach, I am committed to building skills, character, and confidence—creating champions for life.",
-        src: DEVELOPING_YOUTH_KARATE_VIDEO_SRC,
-        layout: "landscape",
-    },
-    {
-        id: "coaching",
-        title: "Coaching",
-        caption:
-            "Noël Nkuranyabahizi, International Elite Sports Coach—developing athletes from foundation to elite, nationally and internationally, building champions for sport and life.",
-        src: COACHING_VIDEO_SRC,
-        layout: "landscape",
-    },
-    {
-        id: "coach",
-        title: "Coach in Action",
-        caption:
-            "Grateful to My Sensei and Coaches\nThank you for your continuous guidance and contribution to my karate journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
-        src: COACH_VIDEO_SRC,
-        layout: "landscape",
-    },
-    {
-        id: "legacy",
-        title: "My Legacy as a Karate Athlete",
-        caption:
-            "My Legacy as an Athlete\nProud to have represented the Rwanda National Karate Team and Rwanda National University in both Kata and Kumite.\nGrateful to my coaches and teammates for their support, guidance, and shared journey.\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
-        src: LEGACY_KARATE_ATHLETE_VIDEO_SRC,
-        layout: "landscape",
-    },
-    {
-        id: "rwanda-karate",
-        title: "Rwanda Karate",
-        caption:
-            "Certified Karate Coach Development\nSports Science • Values • WKF Rules\nIn partnership with Rwanda Karate Federation (FERWAKA)\n— Noël Nkuranyabahizi\nWe Are The Champions for Life",
-        src: RWANDA_KARATE_VIDEO_SRC,
-        layout: "landscape",
-    },
+    { id: "developing-youth", title: "Developing Youth through Karate", layout: "landscape" },
+    { id: "coaching", title: "Coaching", layout: "landscape" },
+    { id: "coach", title: "Coach in Action", layout: "landscape" },
+    { id: "legacy", title: "My Legacy as a Karate Athlete", layout: "landscape" },
+    { id: "rwanda-karate", title: "Rwanda Karate", layout: "landscape" },
 ];
 
 /** 3 columns: 2 videos | 2 videos | 1 video */
@@ -193,6 +155,54 @@ const Founder = () => {
                     <h2 className="text-4xl md:text-6xl font-extrabold mb-6 md:mb-8 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
                     From Athlete to Coach Developer:  <span className="text-bright-sun-600 dark:text-bright-sun-300"> The Legacy of My Karate Journey</span>
                     </h2>
+                    <div className="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-6 sm:max-w-3xl md:mt-8 md:gap-7 lg:max-w-5xl lg:grid-cols-2 lg:gap-8">
+                        <div className="flex min-w-0 flex-col">
+                            <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10 sm:rounded-2xl">
+                                <iframe
+                                    className="absolute inset-0 h-full w-full"
+                                    src="https://www.youtube.com/embed/Yak1QYwXhj4?rel=0&modestbranding=1&loop=1&playlist=Yak1QYwXhj4"
+                                    title="The Legacy of My Karate Journey — YouTube"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p className="mt-2 text-center sm:mt-3">
+                                <a
+                                    href="https://youtu.be/Yak1QYwXhj4?feature=shared"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[10px] font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:text-xs"
+                                >
+                                    Open on YouTube
+                                </a>
+                            </p>
+                        </div>
+                        <div className="flex min-w-0 flex-col">
+                            <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10 sm:rounded-2xl">
+                                <iframe
+                                    className="absolute inset-0 h-full w-full"
+                                    src="https://www.youtube.com/embed/tL7qN5kMznc?rel=0&modestbranding=1&loop=1&playlist=tL7qN5kMznc"
+                                    title="The Champions Sports Academy — impact video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p className="mt-2 text-center sm:mt-3">
+                                <a
+                                    href="https://youtu.be/tL7qN5kMznc?si=FvtQZY-eWA0YTSSq"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[10px] font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:text-xs"
+                                >
+                                    Open on YouTube
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <motion.div
                     initial={{ opacity: 0, y: 16 }}
@@ -215,34 +225,46 @@ const Founder = () => {
                                         <div
                                             className={
                                                 item.layout === "landscape"
-                                                    ? "aspect-video w-full"
-                                                    : "aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"
+                                                    ? "relative aspect-video w-full"
+                                                    : "relative aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"
                                             }
                                         >
-                                            <video
-                                                className={
-                                                    item.layout === "landscape"
-                                                        ? "w-full h-full object-cover"
-                                                        : "w-full h-full max-h-[min(70vh,520px)] object-contain"
-                                                }
-                                                src={item.src}
-                                                controls
-                                                playsInline
-                                                preload="metadata"
-                                                aria-label={item.caption ?? item.title}
-                                            >
-                                                Your browser does not support the video tag.
-                                            </video>
+                                            {item.youtubeEmbedUrl ? (
+                                                <iframe
+                                                    title={item.title}
+                                                    className="absolute inset-0 h-full w-full"
+                                                    src={item.youtubeEmbedUrl}
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    allowFullScreen
+                                                    loading="lazy"
+                                                />
+                                            ) : item.src ? (
+                                                <video
+                                                    className={
+                                                        item.layout === "landscape"
+                                                            ? "h-full w-full object-cover"
+                                                            : "h-full w-full max-h-[min(70vh,520px)] object-contain"
+                                                    }
+                                                    src={item.src}
+                                                    controls
+                                                    playsInline
+                                                    preload="metadata"
+                                                    aria-label={item.title}
+                                                >
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            ) : (
+                                                <div className="flex h-full min-h-[12rem] w-full flex-col items-center justify-center bg-cerulean-blue-950/35 px-4 text-center dark:bg-black/50">
+                                                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                                                        YouTube video — coming soon
+                                                    </span>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
-                                    <p
-                                        className={
-                                            item.caption
-                                                ? "mt-3 text-left sm:text-center text-xs sm:text-sm md:text-[0.9375rem] font-semibold text-cerulean-blue-900 dark:text-white tracking-normal leading-relaxed whitespace-pre-line px-0.5"
-                                                : "mt-3 text-center text-sm md:text-base font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tight line-clamp-2 px-1"
-                                        }
-                                    >
-                                        {item.caption ?? item.title}
+                                    <p className="mt-3 px-1 text-center text-sm font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-base">
+                                        {item.title}
                                     </p>
                                 </div>
                             ))}

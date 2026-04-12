@@ -161,8 +161,8 @@ const AboutUs = () => {
             ))}
           </div>
           <div className="mx-auto mt-12 max-w-6xl px-4 lg:max-w-7xl">
-            <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
-              <div className="flex min-w-0 flex-col">
+            <div className="flex flex-col items-stretch gap-8 lg:flex-row lg:items-start lg:justify-center lg:gap-8 xl:gap-10">
+              <div className="flex min-w-0 flex-1 flex-col lg:max-w-3xl">
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
                   <iframe
                     className="absolute inset-0 h-full w-full"
@@ -185,36 +185,61 @@ const AboutUs = () => {
                   </a>
                 </p>
               </div>
-              <div className="flex min-w-0 flex-col">
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
-                  <iframe
-                    className="absolute inset-0 h-full w-full"
-                    src="https://www.youtube.com/embed/tL7qN5kMznc?rel=0&modestbranding=1&loop=1&playlist=tL7qN5kMznc"
-                    title="The Champions Sports Academy — impact video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading="lazy"
-                  />
+              <div className="flex w-full shrink-0 flex-col items-stretch gap-6 sm:flex-row sm:justify-center sm:gap-5 lg:items-start lg:justify-end lg:gap-4 xl:gap-6">
+                <div className="flex w-full max-w-[280px] flex-col items-center sm:shrink-0">
+                  <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/qx32jAxUoTM?rel=0&modestbranding=1&loop=1&playlist=qx32jAxUoTM"
+                      title="The Champions Sports Academy — YouTube Short (portrait)"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-3 text-center">
+                    <a
+                      href="https://youtube.com/shorts/qx32jAxUoTM?si=ncyUihTTrUJZoElb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                    >
+                      Open Short on YouTube
+                    </a>
+                  </p>
                 </div>
-                <p className="mt-3 text-center">
-                  <a
-                    href="https://youtu.be/tL7qN5kMznc?si=FvtQZY-eWA0YTSSq"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
-                  >
-                    Open on YouTube
-                  </a>
-                </p>
+                <div className="flex w-full max-w-[280px] flex-col items-center sm:shrink-0">
+                  <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/VZA4a8e6n5I?rel=0&modestbranding=1&loop=1&playlist=VZA4a8e6n5I"
+                      title="The Champions Sports Academy — YouTube Short (additional)"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="mt-3 text-center">
+                    <a
+                      href="https://youtube.com/shorts/VZA4a8e6n5I?si=bnSydce4wib-btHZ"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                    >
+                      Open Short on YouTube
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="mx-auto mt-8 flex w-full max-w-md min-w-0 flex-col sm:max-w-lg md:mt-10 md:max-w-xl">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
+            <div className="mx-auto mt-8 flex w-full max-w-[280px] flex-col items-center sm:mt-10">
+              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200/80 bg-black shadow-xl shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10">
                 <iframe
                   className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/Yak1QYwXhj4?rel=0&modestbranding=1&loop=1&playlist=Yak1QYwXhj4"
-                  title="The Champions Sports Academy — additional impact story"
+                  src="https://www.youtube.com/embed/dsPcdxbQhCo?rel=0&modestbranding=1&loop=1&playlist=dsPcdxbQhCo"
+                  title="The Champions Sports Academy — YouTube Short"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
@@ -223,12 +248,12 @@ const AboutUs = () => {
               </div>
               <p className="mt-3 text-center">
                 <a
-                  href="https://youtu.be/Yak1QYwXhj4?feature=shared"
+                  href="https://youtube.com/shorts/dsPcdxbQhCo?si=MlbepNHpGGKViOw5"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
                 >
-                  Open on YouTube
+                  Open Short on YouTube
                 </a>
               </p>
             </div>
