@@ -1,4 +1,4 @@
-import { Avatar, Button, Indicator, Menu } from '@mantine/core';
+import { Avatar, Indicator, Menu } from '@mantine/core';
 import { IconBell, IconSettings, IconUser, IconUsersPlus, IconLogout, IconChevronDown, IconSun, IconMoon } from '@tabler/icons-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -173,21 +173,7 @@ const Header = () => {
                             </Menu.Item>
                         </Menu.Dropdown>
                     </Menu>
-                ) : (
-                    <div className="flex shrink-0 gap-2 items-center">
-                        <Link to="/auth" className="shrink-0">
-                            <Button
-                                variant="gradient"
-                                gradient={{ from: 'brightSun.3', to: 'brightSun.5', deg: 45 }}
-                                size="sm"
-                                radius="xl"
-                                className="font-bold uppercase tracking-wide text-cerulean-blue-950 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,191,0,0.3)] shadow-lg px-4 sm:px-6 sm:text-sm"
-                            >
-                                Access
-                            </Button>
-                        </Link>
-                    </div>
-                )}
+                ) : null}
 
                 {/* Theme Toggle Button */}
                 <div 
