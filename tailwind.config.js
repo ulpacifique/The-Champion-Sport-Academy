@@ -81,11 +81,17 @@ module.exports = {
           '50%': {
             boxShadow: '0 0 20px rgba(249, 155, 7, 0.6), 0 0 30px rgba(249, 155, 7, 0.4)'
           }
-        }
+        },
+        /** Clockwise rotation for Event page flyer border (positive degrees = clock direction) */
+        'flyer-border-cw': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         'breathing': 'breathing 3s ease-in-out infinite',
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite'
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'flyer-border-cw': 'flyer-border-cw 4s linear infinite',
       }
     },
   },

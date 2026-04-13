@@ -9,6 +9,7 @@ const Karate = lazy(() => import('../Program/Karate'));
 const Gymnastics = lazy(() => import('../Program/Gymnastics'));
 const Founder = lazy(() => import('../LandingPage/Founder'));
 const Event = lazy(() => import('./Event'));
+const Schedule = lazy(() => import('./Schedule'));
 const Contact = lazy(() => import('../LandingPage/contact'));
 const SportsDisciplines = lazy(() => import('../LandingPage/SportsDisciplines'));
 const AuthPageWrapper = lazy(() => import('./AuthPageWrapper'));
@@ -28,6 +29,7 @@ function AppRoutes() {
       <Route path="/Gymnastics" element={<Gymnastics />} />
       <Route path='/founder' element={<Founder />} />
       <Route path="/event" element={<Event />} />
+      <Route path="/schedule" element={<Schedule />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/auth" element={<AuthPageWrapper />} />
       <Route path="/login" element={<AuthPageWrapper />} />

@@ -22,20 +22,161 @@ const FOUNDER_VIDEO_ITEMS: {
     src?: string;
     /** e.g. https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1 */
     youtubeEmbedUrl?: string;
+    /** Optional copy shown under the title (below the video) */
+    captionLines?: string[];
+    /** Optional link under the embed (e.g. Shorts URL) */
+    youtubeWatchUrl?: string;
 }[] = [
-    { id: "developing-youth", title: "Developing Youth through Karate", layout: "landscape" },
-    { id: "coaching", title: "Coaching", layout: "landscape" },
-    { id: "coach", title: "Coach in Action", layout: "landscape" },
-    { id: "legacy", title: "My Legacy as a Karate Athlete", layout: "landscape" },
-    { id: "rwanda-karate", title: "Rwanda Karate", layout: "landscape" },
+    {
+        id: "developing-youth",
+        title: "Developing Youth through Karate",
+        layout: "portrait",
+        youtubeEmbedUrl:
+            "https://www.youtube.com/embed/6WezDw_diXU?rel=0&modestbranding=1&loop=1&playlist=6WezDw_diXU",
+        youtubeWatchUrl: "https://youtube.com/shorts/6WezDw_diXU?si=tWeCfrn7Cph92jzV",
+        captionLines: [
+            "A legacy of developing children through sport and values.",
+            "As an International Elite Sport Coach, I am committed to building skills, character, and confidence—creating champions for life.",
+            "Noël Nkuranyabahizi, International Elite Sports Coach—developing athletes from foundation to elite, nationally and internationally, building champions for sport and life.",
+        ],
+    },
+    {
+        id: "coach",
+        title: "Coach in Action",
+        layout: "portrait",
+        youtubeEmbedUrl:
+            "https://www.youtube.com/embed/Dca0Sdnu3fA?rel=0&modestbranding=1&loop=1&playlist=Dca0Sdnu3fA",
+        youtubeWatchUrl: "https://youtu.be/Dca0Sdnu3fA?si=HewV8DO2KmIIQT2u",
+        captionLines: [
+            "Grateful to My Sensei and Coaches",
+            "Thank you for your continuous guidance and contribution to my karate journey.",
+            "— Noël Nkuranyabahizi",
+            "We Are The Champions for Life",
+        ],
+    },
+    {
+        id: "legacy",
+        title: "My Legacy as an Athlete",
+        layout: "portrait",
+        youtubeEmbedUrl:
+            "https://www.youtube.com/embed/XNOmF7Rfsh8?rel=0&modestbranding=1&loop=1&playlist=XNOmF7Rfsh8",
+        youtubeWatchUrl: "https://youtu.be/XNOmF7Rfsh8?si=2kuD8jP05M2zifr5",
+        captionLines: [
+            "Proud to have represented the Rwanda National Karate Team and Rwanda National University in both Kata and Kumite.",
+            "Grateful to my coaches and teammates for their support, guidance, and shared journey.",
+            "— Noël Nkuranyabahizi",
+            "We Are The Champions for Life",
+        ],
+    },
+    {
+        id: "journey-highlight",
+        title: "Karate journey",
+        layout: "portrait",
+        youtubeEmbedUrl:
+            "https://www.youtube.com/embed/Sj97YYYxdBI?rel=0&modestbranding=1&loop=1&playlist=Sj97YYYxdBI",
+        youtubeWatchUrl: "https://youtu.be/Sj97YYYxdBI?si=ETia8i4BEGtHhqz1",
+    },
 ];
 
-/** 3 columns: 2 videos | 2 videos | 1 video */
-const FOUNDER_VIDEO_COLUMNS = [
-    FOUNDER_VIDEO_ITEMS.slice(0, 2),
-    FOUNDER_VIDEO_ITEMS.slice(2, 4),
-    FOUNDER_VIDEO_ITEMS.slice(4, 5),
-];
+type FounderJourneyVideoItem = (typeof FOUNDER_VIDEO_ITEMS)[number];
+
+/** Top row: three videos side by side */
+const FOUNDER_VIDEO_COLUMNS = FOUNDER_VIDEO_ITEMS.slice(0, 3).map((item) => [item]);
+
+/** Second row: fourth video, centered below the row of three */
+const FOUNDER_VIDEO_ITEM_BELOW = FOUNDER_VIDEO_ITEMS[3];
+
+function FounderJourneyVideoCard({ item }: { item: FounderJourneyVideoItem }) {
+    return (
+        <div className="w-full min-w-0">
+            <div className="group rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl hover:z-10 hover:border-bright-sun-500/40">
+                <div
+                    className={
+                        item.layout === "landscape"
+                            ? "relative aspect-video w-full"
+                            : "relative aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"
+                    }
+                >
+                    {item.youtubeEmbedUrl ? (
+                        <iframe
+                            title={item.title}
+                            className="absolute inset-0 h-full w-full"
+                            src={item.youtubeEmbedUrl}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            loading="lazy"
+                        />
+                    ) : item.src ? (
+                        <video
+                            className={
+                                item.layout === "landscape"
+                                    ? "h-full w-full object-cover"
+                                    : "h-full w-full max-h-[min(70vh,520px)] object-contain"
+                            }
+                            src={item.src}
+                            controls
+                            playsInline
+                            preload="metadata"
+                            aria-label={item.title}
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    ) : (
+                        <div className="flex h-full min-h-[12rem] w-full flex-col items-center justify-center bg-cerulean-blue-950/35 px-4 text-center dark:bg-black/50">
+                            <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                                YouTube video — coming soon
+                            </span>
+                        </div>
+                    )}
+                </div>
+            </div>
+            <p className="mt-3 px-1 text-center text-sm font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-base">
+                {item.title}
+            </p>
+            {item.captionLines && item.captionLines.length > 0 && (
+                <div className="mt-4 space-y-3 px-1 text-left text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+                    {item.captionLines.map((line, idx) => {
+                        const n = item.captionLines!.length;
+                        const isTagline = line.includes("Champions for Life");
+                        const isDashSignature = line.trimStart().startsWith("—");
+                        const isLastClosing = idx === n - 1 && !isTagline;
+                        return (
+                            <p
+                                key={`${item.id}-cap-${idx}`}
+                                className={
+                                    isTagline
+                                        ? "pt-1 text-center font-black uppercase tracking-[0.12em] text-bright-sun-600 dark:text-bright-sun-300 md:text-sm"
+                                        : isDashSignature
+                                          ? "border-l-4 border-bright-sun-500 pl-4 font-medium not-italic text-cerulean-blue-900 dark:text-gray-200"
+                                          : isLastClosing
+                                            ? "border-l-4 border-bright-sun-500 pl-4 font-medium text-cerulean-blue-900 dark:text-gray-200"
+                                            : "italic"
+                                }
+                            >
+                                {line}
+                            </p>
+                        );
+                    })}
+                </div>
+            )}
+            {item.youtubeWatchUrl && (
+                <p className="mt-4 text-center">
+                    <a
+                        href={item.youtubeWatchUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[10px] font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:text-xs"
+                    >
+                        {item.youtubeWatchUrl.includes("/shorts/")
+                            ? ""
+                            : ""}
+                    </a>
+                </p>
+            )}
+        </div>
+    );
+}
 
 const FOUNDER_BIO = [
     "Noël Nkuranyabahizi is the Founder and Chief Executive Officer of The Champions Sports Academy and an International Elite Sports Coach. A former elite karate athlete and Head Coach of the Rwanda National Karate Team (2015–2023), he received the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his outstanding contribution to sport development in Rwanda.",
@@ -207,7 +348,7 @@ const Founder = () => {
                 </div>
             </section>
 
-            {/* Video gallery – 3 columns: 2 videos | 2 videos | 1 video */}
+            {/* Video gallery — hero row (2) + journey grid (3 portrait embeds, 4th centered below) */}
             <section className="w-full py-8 md:py-12 bg-gradient-to-b from-gray-50/80 to-white dark:from-cerulean-blue-950/40 dark:to-cerulean-blue-900/30 border-y border-gray-100 dark:border-white/5">
                 <div className="px-4 md:px-6 lg:px-10 mb-6 md:mb-8">
                     <h2 className="text-4xl md:text-6xl font-extrabold mb-6 md:mb-8 bg-gradient-to-r from-cerulean-blue-900 to-bright-sun-600 bg-clip-text text-transparent dark:from-white dark:to-bright-sun-300">
@@ -233,7 +374,7 @@ const Founder = () => {
                                     rel="noopener noreferrer"
                                     className="text-[10px] font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:text-xs"
                                 >
-                                    Open on YouTube
+                                    Testimony of Karate Coach Sensei Bugabo
                                 </a>
                             </p>
                         </div>
@@ -256,7 +397,7 @@ const Founder = () => {
                                     rel="noopener noreferrer"
                                     className="text-[10px] font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:text-xs"
                                 >
-                                    Open on YouTube
+                                    Speech of President of Rwanda karate federation
                                 </a>
                             </p>
                         </div>
@@ -266,69 +407,31 @@ const Founder = () => {
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+                    className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 pb-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
                 >
                     {FOUNDER_VIDEO_COLUMNS.map((columnItems, colIndex) => (
                         <div
                             key={`founder-video-col-${colIndex}`}
-                            className={
-                                colIndex === 2
-                                    ? "flex flex-col gap-6 lg:gap-8 min-w-0 md:col-span-2 lg:col-span-1 md:max-w-xl md:mx-auto lg:max-w-none"
-                                    : "flex flex-col gap-6 lg:gap-8 min-w-0"
-                            }
+                            className="flex min-w-0 flex-col gap-6 lg:gap-8"
                         >
                             {columnItems.map((item) => (
-                                <div key={item.id} className="w-full min-w-0">
-                                    <div className="group rounded-xl overflow-hidden border-2 border-gray-200 dark:border-white/15 shadow-xl bg-black/90 dark:bg-black/60 transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl hover:z-10 hover:border-bright-sun-500/40">
-                                        <div
-                                            className={
-                                                item.layout === "landscape"
-                                                    ? "relative aspect-video w-full"
-                                                    : "relative aspect-[9/16] max-h-[min(70vh,520px)] w-full mx-auto flex items-center justify-center bg-black/40"
-                                            }
-                                        >
-                                            {item.youtubeEmbedUrl ? (
-                                                <iframe
-                                                    title={item.title}
-                                                    className="absolute inset-0 h-full w-full"
-                                                    src={item.youtubeEmbedUrl}
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    referrerPolicy="strict-origin-when-cross-origin"
-                                                    allowFullScreen
-                                                    loading="lazy"
-                                                />
-                                            ) : item.src ? (
-                                                <video
-                                                    className={
-                                                        item.layout === "landscape"
-                                                            ? "h-full w-full object-cover"
-                                                            : "h-full w-full max-h-[min(70vh,520px)] object-contain"
-                                                    }
-                                                    src={item.src}
-                                                    controls
-                                                    playsInline
-                                                    preload="metadata"
-                                                    aria-label={item.title}
-                                                >
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            ) : (
-                                                <div className="flex h-full min-h-[12rem] w-full flex-col items-center justify-center bg-cerulean-blue-950/35 px-4 text-center dark:bg-black/50">
-                                                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                                                        YouTube video — coming soon
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <p className="mt-3 px-1 text-center text-sm font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-base">
-                                        {item.title}
-                                    </p>
-                                </div>
+                                <FounderJourneyVideoCard key={item.id} item={item} />
                             ))}
                         </div>
                     ))}
                 </motion.div>
+                {FOUNDER_VIDEO_ITEM_BELOW && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 pb-6 pt-6 lg:pt-8 flex justify-center"
+                    >
+                        <div className="w-full max-w-[min(100%,24rem)]">
+                            <FounderJourneyVideoCard item={FOUNDER_VIDEO_ITEM_BELOW} />
+                        </div>
+                    </motion.div>
+                )}
             </section>
 
             {/* 1. Founder's Journey — headline + two portrait videos (side by side on md+) */}

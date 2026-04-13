@@ -10,6 +10,11 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
 const BASE = import.meta.env.BASE_URL;
+/** Featured alongside National Children Karate Training embed */
+const EVENTS_HOSTING_SPOTLIGHT_EMBED =
+    "https://www.youtube.com/embed/OdhBViMDGGk?rel=0&modestbranding=1&loop=1&playlist=OdhBViMDGGk&playsinline=1";
+const EVENTS_HOSTING_SPOTLIGHT_WATCH = "https://youtu.be/OdhBViMDGGk?si=zPCOfuPcKQ_mffzJ";
+const UPCOMING_EVENTS_FLYER_SRC = `${BASE}${encodeURIComponent("upcoming events.jpeg")}`;
 const SUMMER_CAMP_VIDEOS = [`${BASE}athletes/k1.mp4`, `${BASE}athletes/k2.mp4`, `${BASE}athletes/k3.mp4`] as const;
 const ISHOW_VIDEO_SRC = `${BASE}athletes/ishow.mp4`;
 
@@ -28,6 +33,40 @@ const Event = () => (
         <Header />
 
         <main className="mx-auto max-w-6xl px-4 pb-14 pt-20 sm:px-5 md:pb-16 md:pt-24">
+            {/* Gymnastics2026 flyer — hero spotlight */}
+            <motion.figure
+                {...fadeUp}
+                className="relative z-0 mx-auto mb-8 max-w-[min(100%,20rem)] sm:max-w-sm md:mb-10 md:max-w-md"
+            >
+                <div
+                    className="pointer-events-none absolute -inset-2 -z-10 rounded-3xl bg-gradient-to-br from-bright-sun-400/35 via-bright-sun-300/10 to-cerulean-blue-500/25 opacity-90 blur-xl dark:from-bright-sun-400/20 dark:via-bright-sun-300/5 dark:to-cerulean-blue-400/15"
+                    aria-hidden
+                />
+                {/* Rotating conic gradient behind a thin ring — inner layer spins clockwise only (translate stays on outer, avoids transform clash) */}
+                <div className="relative overflow-hidden rounded-xl p-[3px] sm:rounded-2xl">
+                    <div
+                        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[200%] max-w-none -translate-x-1/2 -translate-y-1/2"
+                        aria-hidden
+                    >
+                        <div
+                            className="h-full w-full origin-center bg-[conic-gradient(from_0deg,#fbbf24_0deg,#0ea5e9_120deg,#f59e0b_220deg,#0369a1_300deg,#fbbf24_360deg)] motion-safe:animate-flyer-border-cw motion-reduce:animate-none dark:bg-[conic-gradient(from_0deg,#fcd34d_0deg,#38bdf8_120deg,#fbbf24_220deg,#0ea5e9_300deg,#fcd34d_360deg)]"
+                        />
+                    </div>
+                    <div className="relative z-10 overflow-hidden rounded-[10px] border border-bright-sun-400/35 bg-cerulean-blue-950/5 shadow-[0_20px_50px_-18px_rgba(15,23,42,0.3),0_0_0_1px_rgba(251,191,36,0.12)] ring-1 ring-bright-sun-300/20 dark:border-bright-sun-300/35 dark:bg-black/25 dark:shadow-[0_20px_50px_-14px_rgba(0,0,0,0.6)] dark:ring-bright-sun-400/12 sm:rounded-[14px]">
+                        <img
+                            src={UPCOMING_EVENTS_FLYER_SRC}
+                            alt="The Champions Sport Academy — Champions Gymnastics Programme, upcoming events 2026: National Gymnastics Festival, Summer Camp, and Level Grading &amp; Competition"
+                            className="block w-full object-contain"
+                            decoding="async"
+                            fetchPriority="high"
+                        />
+                    </div>
+                </div>
+                <figcaption className="mt-3 text-center text-[10px] font-black uppercase tracking-[0.2em] text-bright-sun-700 dark:text-bright-sun-300 sm:text-xs">
+                    Champions Gymnastics — Upcoming Events 2026
+                </figcaption>
+            </motion.figure>
+
             {/* Sports Events Organization & Management — required copy */}
             <motion.section {...fadeUp} className="relative mb-10 overflow-hidden rounded-[1.75rem] border border-cerulean-blue-100/80 bg-gradient-to-br from-white via-white to-bright-sun-50/40 p-6 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.12)] dark:border-white/10 dark:from-cerulean-blue-900/90 dark:via-cerulean-blue-900/70 dark:to-bright-sun-900/20 dark:shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-7 md:mb-12 md:rounded-[2rem] md:p-8">
                 <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/10" aria-hidden />
@@ -102,28 +141,55 @@ const Event = () => (
                                 </div>
                             ))}
                         </div>
-                        <div className="mx-auto mt-6 max-w-3xl md:mt-8">
-                            <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
-                                <iframe
-                                    className="absolute inset-0 h-full w-full"
-                                    src="https://www.youtube.com/embed/Ayj1lSBqvbs?rel=0&modestbranding=1&loop=1&playlist=Ayj1lSBqvbs"
-                                    title="The Champions National Children Karate Training — YouTube"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    loading="lazy"
-                                />
+                        <div className="mx-auto mt-6 max-w-5xl md:mt-8">
+                            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-6 lg:gap-8">
+                                <div className="min-w-0">
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
+                                        <iframe
+                                            className="absolute inset-0 h-full w-full border-0"
+                                            src="https://www.youtube.com/embed/Ayj1lSBqvbs?rel=0&modestbranding=1&loop=1&playlist=Ayj1lSBqvbs"
+                                            title="The Champions National Children Karate Training — YouTube"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerPolicy="strict-origin-when-cross-origin"
+                                            allowFullScreen
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                    <p className="mt-3 text-center">
+                                        <a
+                                            href="https://youtu.be/Ayj1lSBqvbs?si=Gw3mf1hjAuXck7sC"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                                        >
+                                            Open on YouTube
+                                        </a>
+                                    </p>
+                                </div>
+                                <div className="min-w-0">
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
+                                        <iframe
+                                            className="absolute inset-0 h-full w-full border-0"
+                                            src={EVENTS_HOSTING_SPOTLIGHT_EMBED}
+                                            title="The Champions Sports Academy — events spotlight"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerPolicy="strict-origin-when-cross-origin"
+                                            allowFullScreen
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                    <p className="mt-3 text-center">
+                                        <a
+                                            href={EVENTS_HOSTING_SPOTLIGHT_WATCH}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                                        >
+                                            Open on YouTube
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
-                            <p className="mt-3 text-center">
-                                <a
-                                    href="https://youtu.be/Ayj1lSBqvbs?si=Gw3mf1hjAuXck7sC"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
-                                >
-                                    Open on YouTube
-                                </a>
-                            </p>
                         </div>
                     </div>
                 </motion.section>

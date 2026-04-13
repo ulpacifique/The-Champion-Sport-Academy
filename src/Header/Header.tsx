@@ -175,6 +175,13 @@ const Header = () => {
                     </Menu>
                 ) : null}
 
+                <Link
+                    to="/schedule"
+                    className="inline-flex shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-400/80 bg-bright-sun-300 px-3 py-2 text-[10px] font-black uppercase tracking-wide text-cerulean-blue-950 shadow-md shadow-bright-sun-500/25 transition-all hover:bg-bright-sun-400 hover:shadow-lg hover:shadow-bright-sun-500/35 active:scale-95 dark:border-bright-sun-300 dark:bg-bright-sun-300 dark:text-cerulean-blue-950 dark:shadow-bright-sun-400/20 dark:hover:bg-bright-sun-400 sm:px-4 sm:text-[11px] md:text-xs"
+                >
+                    Explore
+                </Link>
+
                 {/* Theme Toggle Button */}
                 <div 
                     onClick={toggleTheme}
