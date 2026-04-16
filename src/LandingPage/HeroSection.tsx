@@ -6,11 +6,13 @@ const HEADLINE_WORDS = ["We Are The", "Champions", "For", "Life"] as const;
 
 const HERO_ABOUT_PARAGRAPHS: readonly ReactNode[] = [
     <>
-        <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong> is a leading sports organization promoting inclusive sport, physical literacy, and values-based education for all.
+        <strong className="text-cerulean-blue-900 dark:text-white">WE ARE THE CHAMPIONS FOR LIFE
+
+</strong> The Champions Sports Academy Ltd is a leading sports company based in Kigali, Rwanda, dedicated to advancing inclusive sport, physical literacy, and values-based education.
     </>,
-    <>Founded in 2017 in Kigali, Rwanda, it combines coaching excellence, sport science, and well-being to develop individuals, communities, and sport systems.</>,
+    <>Founded in 2017, the Academy delivers professional services in youth development, sport programme design and management, event organization, and coaching education at national and international levels, combining coaching excellence, sport science, and well-being to achieve high-quality outcomes.</>,
     <>
-        With a strong focus on children and youth while serving all ages, the Academy creates lasting social impact while driving sustainable growth and contributing to the national sport system and economy.
+          Positioned as a centre of excellence in sport development, the Academy serves individuals, communities, and institutions while contributing to the strengthening of sport systems.
     </>,
 ];
 
