@@ -316,29 +316,31 @@ const AboutUs = () => {
             className="mx-auto mb-14 max-w-3xl space-y-5 px-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:mb-16 md:text-lg"
           >
             <p>
-              <strong className="font-bold text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong> was born from a transformative
+              <strong className="font-bold text-cerulean-blue-900 dark:text-white">The Champions Sports Academy Ltd</strong> was inspired by a transformative
               experience in <strong className="text-cerulean-blue-900 dark:text-white">2017</strong> at the{" "}
               <strong className="text-cerulean-blue-900 dark:text-white">Cycle International du Sport d&apos;Élite (CISéL)</strong> at Sports Academy Lausanne,
-              made possible through an <strong className="text-cerulean-blue-900 dark:text-white">Olympic Solidarity Coaching Scholarship</strong> awarded to Noel Nkuranyabahizi.
-              the <strong className="text-cerulean-blue-900 dark:text-white">International Olympic Committee</strong>. As one of the first karate coaches
-              globally to benefit from this programme, this experience provided advanced expertise in sport sciences, coaching, and performance systems—while
-              shaping a leadership philosophy grounded in excellence, discipline, and impact.
+              made possible through an <strong className="text-cerulean-blue-900 dark:text-white">Olympic Solidarity Scholarship</strong> awarded by the{" "}
+              <strong className="text-cerulean-blue-900 dark:text-white">International Olympic Committee</strong> to Noël Nkuranyabahizi.
             </p>
             <p>
-              Under the guidance of <strong className="text-cerulean-blue-900 dark:text-white">Dr. Hicham Montasser</strong>, Director of Sports Academy
-              Lausanne—who recognized discipline, consistency, and commitment to impactful work behind the scenes by calling our founder a{" "}
-              <span className="italic text-cerulean-blue-900 dark:text-white">&ldquo;bosseur de l&apos;ombre&rdquo;</span>—this journey strengthened the vision
-              to transform knowledge into meaningful action.
+              This international exposure shaped a vision grounded in excellence, discipline, and impact, and revealed a critical gap in Rwanda—the
+              insufficient presence of an integrated pathway linking youth development, athlete performance, and coach education.
             </p>
             <p>
-              Upon returning to Rwanda, a critical gap was identified: the absence of a structured pathway linking youth development, coach education, and
-              elite performance. In response, <strong className="text-cerulean-blue-900 dark:text-white">The Champions Karate Academy</strong> was founded in
-              2017 and later evolved into <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy</strong>—a multi-sport
-              institution combining social impact with a sustainable development model.
+              During this experience, <strong className="text-cerulean-blue-900 dark:text-white">Dr. Hicham Montasser</strong>, Director of Sports Academy
+              Lausanne, recognized Noël&apos;s consistency, commitment, and impactful work behind the scenes, describing him as a{" "}
+              <span className="italic text-cerulean-blue-900 dark:text-white">&ldquo;bosseur de l&apos;ombre&rdquo;</span>. This recognition further reinforced a
+              leadership philosophy centered on dedication, humility, and meaningful impact, and strengthened the ambition to transform knowledge into action.
+            </p>
+            <p>
+              In response, the Academy was founded in <strong className="text-cerulean-blue-900 dark:text-white">2017</strong> and evolved into{" "}
+              <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy Ltd</strong>—a sports business and social impact company
+              committed to developing youth, enhancing performance, professionalizing coaches, using sport as a tool for positive social change, and ensuring
+              long-term sustainability through a structured business model.
             </p>
             <p className="border-l-4 border-bright-sun-500 pl-4 md:pl-5">
-              Today, supported by key national institutions, the Academy stands as a model of excellence and a growing global hub for inclusive sport and physical
-              literacy—demonstrating how education, vision, and action can create lasting social and economic impact.
+              Today, the Academy stands as an integrated multi-sport institution, capable of translating vision into concrete and sustainable results that
+              generate both social and economic impact.
             </p>
           </motion.div>
 
