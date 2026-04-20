@@ -5,7 +5,6 @@ import {
     IconMapPin,
     IconStar,
     IconCheck,
-    IconShield,
     IconWorld,
 } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
@@ -51,21 +50,12 @@ const Karate = () => {
         <div className="bg-white dark:bg-cerulean-blue-900 text-cerulean-blue-900 dark:text-white selection:bg-bright-sun-300 selection:text-gray-900 custom-scrollbar transition-colors duration-300">
             <Header />
 
-            {/* Hero — karate1.jpeg background; portrait Boys.mp4 left, copy center, Girls.mp4 right */}
-            <section className="relative min-h-[85vh] flex items-center py-10 md:py-12 px-4 md:px-5 lg:px-8 overflow-hidden">
-                <div className="absolute inset-0 bg-white/50 dark:bg-cerulean-blue-900/70 z-10" />
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `url(${import.meta.env.BASE_URL}athletes/karate1.jpeg)`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <div className="relative z-20 w-full max-w-[1400px] mx-auto">
+            {/* Hero — Boys video | KarateProgram2.jpeg | Girls video */}
+            <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-b from-gray-50/95 to-white py-10 md:py-12 px-4 md:px-5 lg:px-8 dark:from-cerulean-blue-950 dark:to-cerulean-blue-900">
+                <div className="relative w-full max-w-[1400px] mx-auto">
                     <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-4 xl:gap-8">
                         {/* Boys — left on desktop */}
-                        <div className="order-2 lg:order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex flex-col items-center lg:items-end gap-3">
+                        <div className="order-1 w-full max-w-[min(100%,16rem)] sm:max-w-[17rem] lg:w-[min(280px,26vw)] shrink-0 flex flex-col items-center lg:items-end gap-3">
                             <div className="w-full rounded-2xl overflow-hidden border-4 border-white/90 dark:border-white/15 shadow-2xl bg-black/80 aspect-[9/16] max-h-[min(72vh,640px)] ring-1 ring-black/10 dark:ring-white/10">
                                 <video
                                     className="w-full h-full object-cover"
@@ -78,24 +68,25 @@ const Karate = () => {
                                     aria-label="Meet Nshuti, Male Champion 2025"
                                 />
                             </div>
-                            <p className="text-center lg:text-right w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-950 dark:text-white drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-snug max-w-[14rem]">
+                            <p className="text-center lg:text-right w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white leading-snug max-w-[14rem]">
                                 Meet Nshuti Male Champion 2025
                             </p>
                         </div>
-                        {/* Title — center */}
+                        {/* Center — programme photo */}
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1 }}
-                            className="order-1 lg:order-2 flex-1 min-w-0 text-center px-2 lg:px-4"
+                            transition={{ duration: 0.8 }}
+                            className="order-2 w-full max-w-[min(100%,22rem)] sm:max-w-[23rem] md:max-w-[24rem] lg:w-[min(380px,34vw)] shrink-0"
                         >
-                            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-4 md:mb-6 leading-tight uppercase tracking-tighter decoration-bright-sun-600 dark:decoration-bright-sun-300 underline underline-offset-[12px] md:underline-offset-[20px] decoration-4 md:decoration-8">
-                                Champions Karate
-                                <span className="text-bright-sun-600 dark:text-bright-sun-300 italic"> for Life Programme</span>
-                            </h1>
-                            <div className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 font-black uppercase tracking-widest text-[10px] sm:text-xs max-w-xl mx-auto">
-                                <IconShield size={16} className="shrink-0" />
-                                <span>Building champions in sport and life through discipline, physical literacy, and excellence</span>
+                            <div className="w-full rounded-2xl overflow-hidden border-4 border-cerulean-blue-200/90 shadow-2xl ring-1 ring-cerulean-blue-900/10 dark:border-white/20 dark:ring-white/10 aspect-auto max-h-[min(84vh,780px)] bg-gray-100 dark:bg-black/40">
+                                <img
+                                    src={KARATE_PROGRAM_IMAGE_1}
+                                    alt="Champions Karate programme"
+                                    className="h-full w-full object-cover object-center"
+                                    loading="eager"
+                                    decoding="async"
+                                />
                             </div>
                         </motion.div>
                         {/* Girls — right on desktop */}
@@ -112,7 +103,7 @@ const Karate = () => {
                                     aria-label="Meet Noémie, Female Champion 2025"
                                 />
                             </div>
-                            <p className="text-center lg:text-left w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-950 dark:text-white drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] leading-snug max-w-[14rem]">
+                            <p className="text-center lg:text-left w-full text-xs sm:text-sm font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white leading-snug max-w-[14rem]">
                                 Meet Noémie Female Champion 2025
                             </p>
                         </div>
@@ -122,22 +113,9 @@ const Karate = () => {
 
             <main>
                 <section className="border-b border-gray-100 bg-white px-4 py-10 dark:border-white/5 dark:bg-cerulean-blue-900 sm:px-6 md:px-8 md:py-14 lg:px-12">
-                    <div className="mx-auto grid max-w-6xl gap-6 sm:gap-8 md:grid-cols-2">
+                    <div className="mx-auto max-w-md md:max-w-lg">
                         <motion.figure
                             {...fadeInUp}
-                            className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
-                        >
-                            <img
-                                src={KARATE_PROGRAM_IMAGE_1}
-                                alt="Champions Karate programme"
-                                className="h-full w-full object-cover object-center"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </motion.figure>
-                        <motion.figure
-                            {...fadeInUp}
-                            transition={{ ...fadeInUp.transition, delay: 0.08 }}
                             className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
                         >
                             <img
