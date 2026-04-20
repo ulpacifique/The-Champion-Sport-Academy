@@ -125,21 +125,46 @@ export const TeamOrganizationContent = () => (
                         >
                             {group.items.map((item, idx) => (
                                 <motion.div
-                                    key={item.role}
+                                    key={`${group.title}-${idx}`}
                                     initial={{ opacity: 0, y: 24 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, amount: 0.12 }}
                                     transition={{ delay: (groupIndex * 0.05 + idx) * 0.06, duration: 0.45 }}
-                                    whileHover={{ y: -6 }}
-                                    className="group relative flex flex-col items-center rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 dark:border-white/10 dark:from-cerulean-blue-900/30 dark:to-cerulean-blue-800/20 p-6 md:p-8 text-center shadow-sm transition-all duration-300 hover:border-bright-sun-500/40 hover:shadow-xl dark:hover:border-bright-sun-400/30"
+                                    whileHover={item.vacant ? undefined : { y: -6 }}
+                                    className={`group relative flex flex-col items-center rounded-2xl p-6 text-center shadow-sm transition-all duration-300 md:p-8 ${
+                                        item.vacant
+                                            ? "border-2 border-dashed border-gray-300 bg-gray-50/80 dark:border-white/20 dark:bg-cerulean-blue-900/15"
+                                            : "border border-gray-200 bg-gradient-to-br from-white to-gray-50 hover:border-bright-sun-500/40 hover:shadow-xl dark:border-white/10 dark:from-cerulean-blue-900/30 dark:to-cerulean-blue-800/20 dark:hover:border-bright-sun-400/30"
+                                    }`}
                                 >
-                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-bright-sun-500/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:from-bright-sun-500/5 group-hover:opacity-100" />
+                                    {!item.vacant && (
+                                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-bright-sun-500/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:from-bright-sun-500/5 group-hover:opacity-100" />
+                                    )}
                                     <div className="relative flex w-full flex-col items-center">
-                                        <div className="mb-5 flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-500 bg-gradient-to-br from-bright-sun-500/20 to-bright-sun-400/20 dark:border-bright-sun-400 dark:from-bright-sun-400/20 dark:to-bright-sun-300/20 transition-transform duration-300 group-hover:scale-105">
-                                            <IconUser className="text-bright-sun-600 dark:text-bright-sun-300" size={40} />
+                                        <div
+                                            className={`mb-5 flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-2 transition-transform duration-300 ${
+                                                item.vacant
+                                                    ? "border-gray-300 bg-gray-100 dark:border-white/15 dark:bg-white/5"
+                                                    : "border-bright-sun-500 bg-gradient-to-br from-bright-sun-500/20 to-bright-sun-400/20 group-hover:scale-105 dark:border-bright-sun-400 dark:from-bright-sun-400/20 dark:to-bright-sun-300/20"
+                                            }`}
+                                        >
+                                            <IconUser
+                                                className={
+                                                    item.vacant
+                                                        ? "text-gray-400 dark:text-gray-500"
+                                                        : "text-bright-sun-600 dark:text-bright-sun-300"
+                                                }
+                                                size={40}
+                                            />
                                         </div>
-                                        <h4 className="text-base font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-lg leading-snug">
-                                            {item.role}
+                                        <h4
+                                            className={`text-base font-black uppercase tracking-tight md:text-lg leading-snug ${
+                                                item.vacant
+                                                    ? "text-gray-500 dark:text-gray-400"
+                                                    : "text-cerulean-blue-900 dark:text-white"
+                                            }`}
+                                        >
+                                            {item.vacant ? "Profile to be announced" : item.role}
                                         </h4>
                                     </div>
                                 </motion.div>

@@ -1,6 +1,11 @@
 /** Managers and coach roster — used only in About Us (Strategic Partners → team sections). */
 
-export type BoardProfileItem = { role: string; description: string };
+export type BoardProfileItem = {
+    role: string;
+    description: string;
+    /** When true, card is a placeholder (no named appointee yet). */
+    vacant?: boolean;
+};
 
 export type BoardProfileGroup = {
     title: string;
@@ -8,7 +13,7 @@ export type BoardProfileGroup = {
     items: BoardProfileItem[];
 };
 
-/** Board of Directors — profile cards + advisory copy (About Us). */
+/** Board & commissions — profile cards (About Us). */
 export const BOARD_PROFILE_GROUPS: BoardProfileGroup[] = [
     {
         title: "Board of Directors",
@@ -20,53 +25,37 @@ export const BOARD_PROFILE_GROUPS: BoardProfileGroup[] = [
                     "Provides overall leadership of the Board, ensuring strategic direction, effective governance, and alignment with the Academy’s vision and mission.",
             },
             {
-                role: "Vice Chairperson of the Board",
+                role: "Vice Chairperson",
                 description:
                     "Supports the Chairperson and ensures continuity of leadership, contributing to coordination and effectiveness of Board functions.",
             },
             {
-                role: "Board Secretary",
-                description:
-                    "Oversees governance processes, ensures compliance, and manages Board documentation, meetings, and institutional records.",
-            },
-        ],
-    },
-    {
-        title: "Executive Leadership",
-        emoji: "🟡",
-        items: [
-            {
-                role: "CEO / Executive Director",
+                role: "Chief Executive Officer (CEO) / Executive Director",
                 description:
                     "Leads the Academy’s operations and implements the strategic direction set by the Board, ensuring alignment between programmes, business growth, and social impact.",
             },
         ],
     },
     {
-        title: "Strategic Directors",
-        emoji: "🟡",
+        title: "Legal & Governance Commission",
+        emoji: "⚖️",
         items: [
-            {
-                role: "Director of Legal & Governance",
-                description:
-                    "Ensures compliance with legal frameworks and governance standards, manages risk, and supports ethical and transparent operations.",
-            },
-            {
-                role: "Director of Marketing & Partnerships",
-                description:
-                    "Leads branding, communication, and strategic partnerships, driving visibility, sponsorship, and organizational growth.",
-            },
+            { role: "", description: "", vacant: true },
+            { role: "", description: "", vacant: true },
         ],
     },
     {
-        title: "Programmes & Projects",
-        emoji: "🟡",
+        title: "Programmes & Development",
+        emoji: "📋",
+        items: [{ role: "", description: "", vacant: true }],
+    },
+    {
+        title: "Marketing, Branding & Partnerships Commission",
+        emoji: "📣",
         items: [
-            {
-                role: "Director of Programmes & Projects",
-                description:
-                    "Oversees the design and implementation of sport programmes and projects, ensuring alignment with physical literacy, long-term athlete development, and the Academy’s core values.",
-            },
+            { role: "", description: "", vacant: true },
+            { role: "", description: "", vacant: true },
+            { role: "", description: "", vacant: true },
         ],
     },
 ];
