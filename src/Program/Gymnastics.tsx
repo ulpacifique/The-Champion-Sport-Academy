@@ -17,6 +17,8 @@ import { galleryAPI } from '../api/galleryAPI';
 import { ASSET_BASE_URL } from '../Services/Api';
 
 const GYMNASTICS_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/gymnastics.mp4`;
+const GYM_PROGRAM_IMAGE_1 = `${import.meta.env.BASE_URL}program/gymProgram1.jpeg`;
+const GYM_PROGRAM_IMAGE_2 = `${import.meta.env.BASE_URL}program/gymProgram2.jpeg`;
 const HERO_TYPING_PHRASE = "WE ARE THE CHAMPIONS FOR LIFE";
 
 const Gymnastics = () => {
@@ -202,6 +204,36 @@ const Gymnastics = () => {
             </section>
 
             <main>
+                <section className="border-b border-gray-100 bg-white px-4 py-10 dark:border-white/5 dark:bg-cerulean-blue-900 sm:px-6 md:px-8 md:py-14 lg:px-12">
+                    <div className="mx-auto grid max-w-6xl gap-6 sm:gap-8 md:grid-cols-2">
+                        <motion.figure
+                            {...fadeInUp}
+                            className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
+                        >
+                            <img
+                                src={GYM_PROGRAM_IMAGE_1}
+                                alt="Artistic gymnastics programme"
+                                className="h-full w-full object-cover object-center"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </motion.figure>
+                        <motion.figure
+                            {...fadeInUp}
+                            transition={{ ...fadeInUp.transition, delay: 0.08 }}
+                            className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
+                        >
+                            <img
+                                src={GYM_PROGRAM_IMAGE_2}
+                                alt="Artistic gymnastics programme"
+                                className="h-full w-full object-cover object-center"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </motion.figure>
+                    </div>
+                </section>
+
                 <GymnasticsProgrammeContent
                     instructionImageUrl={`${import.meta.env.BASE_URL}athletes/Instruction.jpeg`}
                     objectivesPortraitVideoUrl={`${import.meta.env.BASE_URL}athletes/Prince.mp4`}

@@ -88,9 +88,9 @@ const HeroSection = () => {
                     </div>
 
                     {/* Right (desktop): landscape image, then about */}
-                    <div className="flex w-full min-w-0 max-w-xl flex-col items-start text-left sm:max-w-2xl lg:w-auto lg:max-w-[min(100%,36rem)] lg:flex-none">
+                    <div className="flex w-full min-w-0 max-w-xl flex-col items-start text-left sm:max-w-2xl lg:w-auto lg:max-w-[min(190%,36rem)] lg:flex-none">
                         <div className="relative w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
-                            <div className="relative aspect-[11/3] min-h-[150px] w-full sm:min-h-[200px]">
+                            <div className="relative aspect-auto min-h-[180px] w-full sm:min-h-[200px]">
                                 <img
                                     src={HERO_IMAGE_SRC}
                                     alt=""

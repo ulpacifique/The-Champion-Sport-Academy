@@ -12,6 +12,8 @@ import { motion } from 'framer-motion';
 import Header from '../Header/Header';
 
 const KARATE_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/abaChamp302.mp4`;
+const KARATE_PROGRAM_IMAGE_1 = `${import.meta.env.BASE_URL}program/Karateprogram1.jpeg`;
+const KARATE_PROGRAM_IMAGE_2 = `${import.meta.env.BASE_URL}program/KarateProgram2.jpeg`;
 const CLASS_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/karate1.jpeg`;
 const ADULT_KARATE_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("adult karate.jpeg")}`;
 const YOUNG_KARATE_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/${encodeURIComponent("young karate.jpeg")}`;
@@ -119,6 +121,36 @@ const Karate = () => {
             </section>
 
             <main>
+                <section className="border-b border-gray-100 bg-white px-4 py-10 dark:border-white/5 dark:bg-cerulean-blue-900 sm:px-6 md:px-8 md:py-14 lg:px-12">
+                    <div className="mx-auto grid max-w-6xl gap-6 sm:gap-8 md:grid-cols-2">
+                        <motion.figure
+                            {...fadeInUp}
+                            className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
+                        >
+                            <img
+                                src={KARATE_PROGRAM_IMAGE_1}
+                                alt="Champions Karate programme"
+                                className="h-full w-full object-cover object-center"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </motion.figure>
+                        <motion.figure
+                            {...fadeInUp}
+                            transition={{ ...fadeInUp.transition, delay: 0.08 }}
+                            className="aspect-[2/3] overflow-hidden rounded-[2rem] border border-gray-100 bg-gray-50/50 shadow-lg shadow-cerulean-blue-900/5 dark:border-white/10 dark:bg-white/[0.02] dark:shadow-black/30"
+                        >
+                            <img
+                                src={KARATE_PROGRAM_IMAGE_2}
+                                alt="Champions Karate programme"
+                                className="h-full w-full object-cover object-center"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </motion.figure>
+                    </div>
+                </section>
+
                 {/* 2. Programme overview + portrait video */}
                 <section className={`${sectionShell} relative overflow-hidden bg-gray-50/50 dark:bg-white/[0.02]`}>
                     <div className="absolute top-0 right-0 w-96 h-96 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
