@@ -66,7 +66,7 @@ export const MANAGERS = [
 ];
 
 export const COACHES = [
-    { name: " Harif",sname: "NIYITANGA", role: " Karate Head  Coach", experience: "Expert Trainer", specialty: "Youth Development & Karate", image: `${import.meta.env.BASE_URL}athletes/Khalif.PNG` },
+    { name: " Khalif",sname: "NIYITANGA", role: " Karate Head  Coach", experience: "Expert Trainer", specialty: "Youth Development & Karate", image: `${import.meta.env.BASE_URL}athletes/Kharif.PNG` },
     { name: "Coach   Sharifu",sname: " DUSHIME", role: "Gymnastics Head Coach", experience: "10+ Years", specialty: "Acrobatics & Fitness", image: `${import.meta.env.BASE_URL}athletes/Dushime.jpg` },
     { name: "Coach  Paremonique",sname: " ABAYISENGA", role: "Gymnastics Coach", experience: "12+ Years", specialty: "Artistic & Rhythmic", image: `${import.meta.env.BASE_URL}athletes/palmonique.jpg` },
     { name: "Coach Pacifique,",sname: " UWIHIRWE ", role: "Gymnastics Coach", experience: "3+ Years", specialty: "Taekwondo & Gymnastics", image: `${import.meta.env.BASE_URL}athletes/Coach Pacifique.jpg` },

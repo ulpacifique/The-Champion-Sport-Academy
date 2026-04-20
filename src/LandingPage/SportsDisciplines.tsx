@@ -231,8 +231,8 @@ const SportsDisciplines = () => {
 
                         <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-8 uppercase italic tracking-tighter">Our Commitment</h2>
 
-                        <p className="text-gray-600 dark:text-gray-200 text-xl md:text-2xl font-medium mb-16 leading-relaxed">
-                            At The Champions Sports Academy, we believe sport is more than competition. It is an educational and social force that shapes healthier individuals and stronger communities.
+                        <p className="text-gray-600 dark:text-gray-200 text-xl md:text-2xl font-medium mb-16 leading-relaxed text-balance">
+                        Our work aligns with SDG 3 (Good Health and Well-being), SDG 4 (Quality Education), and SDG 8 (Decent Work and Economic Growth), contributing to Rwanda’s Vision 2050 by promoting health, delivering values-based education, and positioning sport as a driver of economic development and sustainable business growth.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

@@ -43,7 +43,7 @@ export const TeamOrganizationContent = () => (
                     <IconCrown className="text-white" size={32} />
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase tracking-tighter mb-3">
-                    Board of <span className="text-bright-sun-600 dark:text-bright-sun-400">Directors</span>
+                The champions sport academy  <span className="text-bright-sun-600 dark:text-bright-sun-400">leadership structure</span>
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-bright-sun-500 to-cerulean-blue-500 mx-auto rounded-full"></div>
             </div>
