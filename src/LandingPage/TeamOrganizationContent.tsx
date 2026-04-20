@@ -123,7 +123,10 @@ export const TeamOrganizationContent = () => (
                                     : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                             }`}
                         >
-                            {group.items.map((item, idx) => (
+                            {group.items.map((item, idx) => {
+                                const directorNumber =
+                                    item.vacant ? group.items.slice(0, idx).filter((i) => i.vacant).length + 1 : 0;
+                                return (
                                 <motion.div
                                     key={`${group.title}-${idx}`}
                                     initial={{ opacity: 0, y: 24 }}
@@ -164,11 +167,12 @@ export const TeamOrganizationContent = () => (
                                                     : "text-cerulean-blue-900 dark:text-white"
                                             }`}
                                         >
-                                            {item.vacant ? "Profile to be announced" : item.role}
+                                            {item.vacant ? `Director ${directorNumber}` : item.role}
                                         </h4>
                                     </div>
                                 </motion.div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 ))}
