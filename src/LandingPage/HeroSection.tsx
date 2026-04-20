@@ -72,7 +72,7 @@ const HeroSection = () => {
                 <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-8">
                     {/* Left (desktop): portrait video — unchanged position */}
                     <div className="flex w-full shrink-0 justify-center lg:w-auto">
-                        <div className="relative aspect-[1/1] w-full max-w-[min(100%,260px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 sm:max-w-[280px] md:max-w-[min(50vw,420px)] lg:max-w-[min(44vw,440px)] dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
+                        <div className="relative aspect-[7/9] w-full max-w-[min(100%,200px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 sm:max-w-[280px] md:max-w-[min(50vw,420px)] lg:max-w-[min(44vw,440px)] dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
                             <video
                                 ref={videoRef}
                                 autoPlay
