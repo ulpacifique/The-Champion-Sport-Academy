@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 
 const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/wedo.mp4`;
-
-const HEADLINE_WORDS = ["We Are The", "Champions", "For", "Life"] as const;
+const HERO_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/we.jpeg`;
 
 const HERO_ABOUT_PARAGRAPHS: readonly ReactNode[] = [
     <>
@@ -71,7 +70,7 @@ const HeroSection = () => {
         className="relative flex min-h-[85vh] flex-col overflow-hidden bg-white px-4 py-6 sm:px-5 sm:py-6 md:min-h-[80vh] md:px-8 md:py-10 dark:bg-cerulean-blue-900"
     >
                 <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-8">
-                    {/* Left (desktop): portrait video */}
+                    {/* Left (desktop): portrait video — unchanged position */}
                     <div className="flex w-full shrink-0 justify-center lg:w-auto">
                         <div className="relative aspect-[1/1] w-full max-w-[min(100%,260px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 sm:max-w-[280px] md:max-w-[min(50vw,420px)] lg:max-w-[min(44vw,440px)] dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
                             <video
@@ -88,25 +87,17 @@ const HeroSection = () => {
                         </div>
                     </div>
 
-                    {/* Right (desktop): headline + about copy — left-aligned to column edge */}
+                    {/* Right (desktop): landscape image, then about */}
                     <div className="flex w-full min-w-0 max-w-xl flex-col items-start text-left sm:max-w-2xl lg:w-auto lg:max-w-[min(100%,36rem)] lg:flex-none">
-                        <div className="w-full text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-6xl">
-                            <div className="flex flex-wrap justify-start gap-x-2 gap-y-1 md:gap-x-3">
-                                {HEADLINE_WORDS.map((word, index) => (
-                                    <span
-                                        key={word}
-                                        className={`inline-block animate-word ${animate ? "active" : ""}`}
-                                        style={{ animationDelay: `${index * 150}ms` }}
-                                    >
-                                        {word.toLowerCase() === "champions" ? (
-                                            <span className="animate-gradient bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 bg-clip-text text-transparent dark:from-bright-sun-300 dark:via-bright-sun-400 dark:to-bright-sun-300">
-                                                {word}
-                                            </span>
-                                        ) : (
-                                            <span className="uppercase text-cerulean-blue-900 dark:text-white">{word}</span>
-                                        )}
-                                    </span>
-                                ))}
+                        <div className="relative w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
+                            <div className="relative aspect-[11/3] min-h-[150px] w-full sm:min-h-[200px]">
+                                <img
+                                    src={HERO_IMAGE_SRC}
+                                    alt=""
+                                    className="absolute inset-0 h-full w-full object-cover object-center"
+                                    draggable={false}
+                                    onContextMenu={(e) => e.preventDefault()}
+                                />
                             </div>
                         </div>
 

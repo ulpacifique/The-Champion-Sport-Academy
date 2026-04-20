@@ -75,9 +75,13 @@ const Header = () => {
             {/* Logo & Brand — does not shrink */}
             <Link to="/" className="flex shrink-0 gap-2 sm:gap-3 lg:gap-4 items-center group min-w-0">
                 <div className="relative">
-                    <div className="absolute -inset-1 bg-bright-sun-300/20 rounded-full blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                    <img src="/champion-logo.png" alt="champion" className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain transition-transform duration-500 group-hover:scale-105" />
-                </div>
+                <div className="absolute -inset-1 bg-bright-sun-300/20 rounded-full blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+<img 
+  src="/logo.jpeg" 
+  alt="champion" 
+  className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-cover rounded-full transition-transform duration-500 group-hover:scale-105" 
+/>
+                                    </div>
                 <div className="flex flex-col justify-center">
                     {/* Full name on larger screens */}
                     <div className="hidden lg:block text-2xl xl:text-3xl font-black tracking-tighter leading-tight bg-gradient-to-r from-bright-sun-200 to-bright-sun-400 bg-clip-text text-transparent italic uppercase">
