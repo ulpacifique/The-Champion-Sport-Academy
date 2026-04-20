@@ -3,10 +3,6 @@ import Marquee from "react-fast-marquee";
 import {
   IconTrophy,
   IconTarget,
-  IconUsers,
-  IconSparkles,
-  IconMedal,
-  IconUserCheck,
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { coreValuesData } from "../Data/coreValues";
@@ -49,15 +45,6 @@ const AboutUs = () => {
     "bg-cerulean-blue-700 dark:bg-cerulean-blue-600", // Teamwork
     "bg-sky-400 dark:bg-cerulean-blue-400",          // Respect
     "bg-amber-500 dark:bg-bright-sun-500",           // Excellence
-  ];
-
-
-  // Statistics
-  const stats = [
-    { value: "4,300+", label: "Children & Youth Reached", value2: "10,000+", label2: "Indirectly reached", icon: IconUsers, color: "text-blue-600 dark:text-blue-400" },
-    { value: "600+", label: "Coaches Trained & Mentored", icon: IconUserCheck, color: "text-bright-sun-600 dark:text-bright-sun-300" },
-    { value: "223+", label: "Medals Won", icon: IconMedal, color: "text-green-600 dark:text-green-400" },
-    { value: "18", label: "Trophies Won", icon: IconTrophy, color: "text-purple-600 dark:text-purple-400" },
   ];
 
   return (
@@ -129,38 +116,15 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-24 bg-gray-50/50 dark:bg-white/[0.02] border-y border-gray-100 dark:border-white/5 transition-colors duration-300">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-20 px-4">
-            <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">Impact  <span className="text-bright-sun-600 dark:text-bright-sun-300"></span></h2>
-            <p className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em] text-sm">Quantifying our reach across Rwanda.</p>
+      {/* Testimonials — YouTube embeds */}
+      <section className="border-y border-gray-100 bg-gray-50/50 py-24 transition-colors dark:border-white/5 dark:bg-white/[0.02]">
+        <div className="container mx-auto max-w-7xl px-4">
+          <div className="mb-12 px-4 text-center md:mb-16">
+            <h2 className="text-3xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 underline decoration-bright-sun-600 decoration-4 underline-offset-8 dark:text-white dark:decoration-bright-sun-300 md:text-5xl lg:text-6xl">
+              Testimonials
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] p-10 text-center shadow-sm dark:shadow-none transition-all duration-500 hover:scale-105 group"
-              >
-                <div className={`inline-flex items-center justify-center w-20 h-20 ${stat.color} bg-gray-50 dark:bg-cerulean-blue-800 rounded-2xl mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner`}>
-                  <stat.icon size={40} />
-                </div>
-                <div className="text-5xl font-black text-cerulean-blue-900 dark:text-white mb-3 italic tracking-tighter uppercase">{stat.value}</div>
-                <div className="text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest text-[10px] leading-relaxed">{stat.label}</div>
-                {stat.value2 && (
-                  <div className="mt-8 pt-8 border-t border-gray-100 dark:border-white/5">
-                    <div className="text-4xl font-black text-cerulean-blue-900 dark:text-white mb-2 italic tracking-tighter uppercase">{stat.value2}</div>
-                    <div className="text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest text-[10px] leading-relaxed">{stat.label2}</div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-          <div className="mx-auto mt-12 max-w-4xl px-4">
+          <div className="mx-auto max-w-4xl px-4">
             {/* Landscape embed on its own row so flex never squeezes the iframe to zero width */}
             <div className="mx-auto w-full max-w-2xl">
               <div
@@ -284,78 +248,6 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-           {/* Professional History Section */}
-      <section className="py-24 px-4 relative overflow-hidden">
-        <div className="container mx-auto max-w-7xl">
-          <div className="mb-12 px-4 text-center md:mb-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xs"
-            >
-              <IconSparkles size={16} />
-              <span>Our Evolutionary Path</span>
-            </motion.div>
-            <h2 className="text-4xl md:text-7xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter mb-6 leading-none">
-              Professional <span className="text-bright-sun-600 dark:text-bright-sun-300">History</span>
-            </h2>
-            <div className="mx-auto h-1.5 w-32 rounded-full bg-bright-sun-600 dark:bg-bright-sun-300" />
-            <h3 className="mx-auto mt-10 max-w-3xl text-xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-2xl">
-              Our Inspiration &amp; Foundation
-            </h3>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mx-auto mb-14 max-w-3xl space-y-5 px-4 text-base leading-relaxed text-gray-700 dark:text-gray-300 md:mb-16 md:text-lg"
-          >
-            <p>
-              <strong className="font-bold text-cerulean-blue-900 dark:text-white">The Champions Sports Academy Ltd</strong> was inspired by a transformative
-              experience in <strong className="text-cerulean-blue-900 dark:text-white">2017</strong> at the{" "}
-              <strong className="text-cerulean-blue-900 dark:text-white">Cycle International du Sport d&apos;Élite (CISéL)</strong> at Sports Academy Lausanne,
-              made possible through an <strong className="text-cerulean-blue-900 dark:text-white">Olympic Solidarity Scholarship</strong> awarded by the{" "}
-              <strong className="text-cerulean-blue-900 dark:text-white">International Olympic Committee</strong> to Noël Nkuranyabahizi.
-            </p>
-            <p>
-              This international exposure shaped a vision grounded in excellence, discipline, and impact, and revealed a critical gap in Rwanda—the
-              insufficient presence of an integrated pathway linking youth development, athlete performance, and coach education.
-            </p>
-            <p>
-              During this experience, <strong className="text-cerulean-blue-900 dark:text-white">Dr. Hicham Montasser</strong>, Director of Sports Academy
-              Lausanne, recognized Noël&apos;s consistency, commitment, and impactful work behind the scenes, describing him as a{" "}
-              <span className="italic text-cerulean-blue-900 dark:text-white">&ldquo;bosseur de l&apos;ombre&rdquo;</span>. This recognition further reinforced a
-              leadership philosophy centered on dedication, humility, and meaningful impact, and strengthened the ambition to transform knowledge into action.
-            </p>
-            <p>
-              In response, the Academy was founded in <strong className="text-cerulean-blue-900 dark:text-white">2017</strong> and evolved into{" "}
-              <strong className="text-cerulean-blue-900 dark:text-white">The Champions Sports Academy Ltd</strong>—a sports business and social impact company
-              committed to developing youth, enhancing performance, professionalizing coaches, using sport as a tool for positive social change, and ensuring
-              long-term sustainability through a structured business model.
-            </p>
-            <p className="border-l-4 border-bright-sun-500 pl-4 md:pl-5">
-              Today, the Academy stands as an integrated multi-sport institution, capable of translating vision into concrete and sustainable results that
-              generate both social and economic impact.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl bg-gray-50 dark:bg-cerulean-blue-900/20"
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}athletes/History.jpeg`}
-              alt="The Champions Sports Academy Ltd 2017–2026: A Journey of Growth, Impact & Leadership"
-              className="w-full h-auto object-contain"
-            />
-          </motion.div>
         </div>
       </section>
 

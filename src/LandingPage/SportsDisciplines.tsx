@@ -7,12 +7,14 @@ import {
     IconUsers,
     IconTrophy,
     IconMedal,
-    IconAward,
     IconStar,
     IconClipboardList,
     IconHeart,
     IconRun,
     IconBarbell,
+    IconChartBar,
+    IconCircleCheck,
+    IconBulb,
 } from "@tabler/icons-react";
 
 /** Core Services — aligned with CSA flyer (icon + title + short description). */
@@ -78,6 +80,38 @@ const competitiveAdvantageBullets = [
     "Alignment with: Olympic values; LTAD frameworks; National and global sport policies",
 ];
 
+const IMPACT_NUMBERS: { count: string; label: string; icon: typeof IconUsers }[] = [
+    { count: "4,300+", label: "Children & Youth Reached", icon: IconUsers },
+    { count: "10,000+", label: "Indirect Beneficiaries", icon: IconChartBar },
+    { count: "600+", label: "Coaches Trained & Mentored", icon: IconCertificate },
+    { count: "223+", label: "Medals Won", icon: IconMedal },
+    { count: "18", label: "Trophies Won", icon: IconTrophy },
+];
+
+const KEY_ACHIEVEMENT_LINES = [
+    "Recognized as a reference academy in Rwanda for youth sport development and coaching excellence",
+    "Developed athletes progressing to national teams and high-performance pathways",
+    "Successfully organized national competitions, training camps, and major sport events",
+    "Contributed to the professionalization of coaching through structured education and certification initiatives",
+    "Expanded into a multi-sport academy, integrating karate, gymnastics, and physical literacy",
+    "Built strong collaborations with clubs, schools, federations, and international partners",
+];
+
+const CONTRIBUTION_BULLETS = [
+    "Strengthen youth development pathways and talent identification systems",
+    "Promote health, well-being, and values-based education",
+    "Enhance coaching capacity and sport programme quality",
+    "Support national sport development and economic growth through sport",
+];
+
+const INSPIRATION_FOUNDATION_PARAGRAPHS: string[] = [
+    "The Champions Sports Academy Ltd was inspired by a transformative experience in 2017 at the Cycle International du Sport d'Élite (CISéL) at Sports Academy Lausanne, made possible through an Olympic Solidarity Scholarship awarded by the International Olympic Committee to Noël Nkuranyabahizi.",
+    "This international exposure shaped a vision grounded in excellence, discipline, and impact, and revealed a critical gap in Rwanda—the insufficient presence of an integrated pathway linking youth development, athlete performance, and coach education.",
+    "During this experience, Dr. Hicham Montasser, Director of Sports Academy Lausanne, recognized Noël's consistency, commitment, and impactful work behind the scenes, describing him as a “bosseur de l'ombre”. This recognition further reinforced a leadership philosophy centered on dedication, humility, and meaningful impact, and strengthened the ambition to transform knowledge into action.",
+    "In response, the Academy was founded in 2017 and evolved into The Champions Sports Academy Ltd—a sports business and social impact company committed to developing youth, enhancing performance, professionalizing coaches, using sport as a tool for positive social change, and ensuring long-term sustainability through a structured business model.",
+    "Today, the Academy stands as an integrated multi-sport institution, capable of translating vision into concrete and sustainable results that generate both social and economic impact.",
+];
+
 const SportsDisciplines = () => {
     const [animate, setAnimate] = useState(false);
     const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -99,13 +133,6 @@ const SportsDisciplines = () => {
         video.addEventListener("canplay", play);
         return () => video.removeEventListener("canplay", play);
     }, []);
-
-    const achievements = [
-        { title: "National Champions", count: "15", icon: IconTrophy },
-        { title: "International Awards", count: "8", icon: IconAward },
-        { title: "Certified Coaches", count: "25+", icon: IconCertificate },
-        { title: "Community Events", count: "50+", icon: IconMedal },
-    ];
 
     return (
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-20 pb-16 sm:pt-4 sm:pb-20 transition-colors duration-300">
@@ -185,38 +212,90 @@ const SportsDisciplines = () => {
                 ))}
             </div>
 
-            {/* Achievements */}
-            <div className="container mx-auto px-4 pt-10 pb-14 md:pt-12 md:pb-16">
-                <div className="bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-sm dark:shadow-none relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-bright-sun-600/5 dark:bg-bright-sun-300/5 blur-3xl -z-10"></div>
-
-                    <div className="text-center mb-8 md:mb-10">
-                        <div className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-6 font-black uppercase tracking-widest text-xs">
-                            <IconTrophy size={16} />
-                            <span>Milestones</span>
+            {/* Our Inspiration & Foundation */}
+            <div className="container mx-auto max-w-4xl px-4 pb-14 md:pb-16">
+                <section className="rounded-[3rem] border border-bright-sun-500/20 bg-gradient-to-br from-bright-sun-50/80 to-white p-8 shadow-sm dark:border-bright-sun-400/15 dark:from-cerulean-blue-900/50 dark:to-cerulean-blue-800/25 md:p-12 lg:p-14">
+                    <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
+                        <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-bright-sun-300/50 bg-bright-sun-500/10 dark:border-bright-sun-400/30 dark:bg-bright-sun-400/10">
+                            <IconBulb className="text-bright-sun-600 dark:text-bright-sun-300" size={36} stroke={1.5} aria-hidden />
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-cerulean-blue-900 dark:text-white mb-6 uppercase italic tracking-tighter">Our Achievements</h2>
-                        <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto uppercase tracking-wide">
-                            Impact that speaks for itself.
-                        </p>
+                        <h2 className="text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl lg:text-4xl">
+                            Our Inspiration &amp; Foundation
+                        </h2>
                     </div>
+                    <div className="space-y-5 text-left text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:space-y-6 md:text-base">
+                        {INSPIRATION_FOUNDATION_PARAGRAPHS.map((para, i) => (
+                            <p key={i} className="text-pretty first:mt-0">
+                                {para}
+                            </p>
+                        ))}
+                    </div>
+                </section>
+            </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {achievements.map((achievement, index) => (
+            {/* Our Impact in Numbers, Key Achievements, Our Contribution */}
+            <div className="container mx-auto max-w-5xl space-y-14 px-4 pt-0 pb-14 md:space-y-20 md:pb-16">
+                <section className="relative overflow-hidden rounded-[3rem] border border-gray-100 bg-gray-50 p-8 shadow-sm dark:border-white/10 dark:bg-cerulean-blue-900/40 dark:shadow-none md:p-12 lg:p-14">
+                    <div className="absolute right-0 top-0 -z-10 h-64 w-64 rounded-full bg-bright-sun-600/5 blur-3xl dark:bg-bright-sun-300/5" aria-hidden />
+                    <h2 className="mb-10 flex flex-wrap items-center justify-center gap-3 text-center text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-4xl">
+                        <span className="text-3xl md:text-4xl" aria-hidden>
+                            🔷
+                        </span>
+                        Our Impact in Numbers
+                    </h2>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+                        {IMPACT_NUMBERS.map((row, index) => (
                             <div
-                                key={achievement.title}
-                                className={`bg-white dark:bg-cerulean-blue-800/40 border border-gray-100 dark:border-white/10 rounded-3xl p-8 text-center transition-all duration-500 hover:scale-[1.05] hover:shadow-xl shadow-sm dark:shadow-none group ${animate ? "opacity-100" : "opacity-0"}`}
-                                style={{ animationDelay: `${1000 + index * 200}ms` }}
+                                key={row.label}
+                                className={`group rounded-3xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:shadow-lg dark:border-white/10 dark:bg-cerulean-blue-800/40 ${animate ? "opacity-100" : "opacity-0"}`}
+                                style={{ animationDelay: `${400 + index * 80}ms` }}
                             >
-                                <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-50 dark:bg-cerulean-blue-900/50 rounded-2xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
-                                    <achievement.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={40} />
+                                <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50 shadow-inner transition-transform group-hover:scale-105 dark:bg-cerulean-blue-900/50">
+                                    <row.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={30} stroke={1.75} />
                                 </div>
-                                <div className="text-5xl font-black text-cerulean-blue-900 dark:text-white mb-3 italic tracking-tighter">{achievement.count}</div>
-                                <div className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">{achievement.title}</div>
+                                <div className="mb-2 text-3xl font-black italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-4xl">
+                                    {row.count}
+                                </div>
+                                <div className="text-[11px] font-bold uppercase leading-snug tracking-wider text-gray-500 dark:text-gray-400">{row.label}</div>
                             </div>
                         ))}
                     </div>
-                </div>
+                </section>
+
+                <section className="rounded-[3rem] border border-gray-100 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-cerulean-blue-800/30 md:p-12 lg:p-14">
+                    <h2 className="mb-8 flex flex-wrap items-center gap-3 text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl">
+                        <span className="text-3xl" aria-hidden>
+                            🔷
+                        </span>
+                        Key Achievements
+                    </h2>
+                    <ul className="space-y-4 text-left">
+                        {KEY_ACHIEVEMENT_LINES.map((line) => (
+                            <li key={line} className="flex gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:text-base">
+                                <IconCircleCheck className="mt-1 shrink-0 text-bright-sun-600 dark:text-bright-sun-400" size={22} stroke={1.75} aria-hidden />
+                                <span>{line}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <section className="rounded-[3rem] border border-gray-100 bg-gray-50/80 p-8 dark:border-white/10 dark:bg-cerulean-blue-900/35 md:p-12 lg:p-14">
+                    <h2 className="mb-6 flex flex-wrap items-center gap-3 text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl">
+                        <span className="text-3xl" aria-hidden>
+                            🔷
+                        </span>
+                        Our Contribution
+                    </h2>
+                    <p className="mb-6 text-base font-semibold text-cerulean-blue-900 dark:text-white md:text-lg">Through our programmes and services, we:</p>
+                    <ul className="space-y-4 text-left">
+                        {CONTRIBUTION_BULLETS.map((line) => (
+                            <li key={line} className="flex gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:text-base">
+                                <IconCircleCheck className="mt-1 shrink-0 text-bright-sun-600 dark:text-bright-sun-400" size={22} stroke={1.75} aria-hidden />
+                                <span>{line}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
             </div>
 
             {/* Our Commitment */}
