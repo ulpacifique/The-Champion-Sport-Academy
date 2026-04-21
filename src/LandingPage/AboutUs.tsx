@@ -54,6 +54,67 @@ const AboutUs = () => {
       <section className="relative py-24 px-4 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-bright-sun-300/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="container mx-auto max-w-7xl relative z-10">
+          {/* Core Values intro — before Vision & Mission */}
+          <div className="mb-16 flex flex-col items-center md:mb-20">
+            <div className="flex w-full max-w-lg items-center justify-center gap-3 md:gap-5">
+              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-r from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
+              <div className="relative shrink-0 rounded-full p-[3px] shadow-lg shadow-black/10 ring-2 ring-bright-sun-400/90 dark:ring-bright-sun-400/80 dark:shadow-black/30">
+                <div className="h-24 w-24 overflow-hidden rounded-full bg-cerulean-blue-900 md:h-28 md:w-28">
+                  <img
+                    src={`${import.meta.env.BASE_URL}champion-logo.png`}
+                    alt="The Champions Sports Academy"
+                    className="h-full w-full object-contain p-1.5"
+                  />
+                </div>
+              </div>
+              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-l from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
+            </div>
+
+            <div className="mt-8 space-y-2 text-center">
+              <div className="flex items-center justify-center gap-3 md:gap-4">
+                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
+                <h2 className="text-lg font-black uppercase tracking-[0.12em] text-cerulean-blue-900 dark:text-white md:text-xl">
+                  The Core Values of
+                </h2>
+                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
+              </div>
+              <h3 className="text-2xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-3xl lg:text-4xl">
+                The Champions Sports Academy
+              </h3>
+              <p className="text-base font-bold italic text-bright-sun-600 dark:text-bright-sun-300 md:text-lg">
+                We Are The Champions for Life
+              </p>
+            </div>
+          </div>
+
+          {/* Core Values cards — before Vision & Mission */}
+          <div className="mx-auto mb-16 max-w-6xl md:mb-20">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
+              {coreValues.map((value, index) => (
+                <motion.div
+                  key={value.name}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06 }}
+                  className="flex flex-col overflow-hidden rounded-2xl border-2 border-bright-sun-500 bg-white shadow-md dark:border-bright-sun-400 dark:bg-cerulean-blue-900/40 dark:shadow-lg dark:shadow-black/15"
+                >
+                  <div className={`${valueHeaderBg[index]} px-3 py-2.5 text-center shadow-[inset_0_-2px_4px_rgba(0,0,0,0.15)] md:py-3`}>
+                    <h4 className="text-xs font-black uppercase tracking-tight text-white md:text-sm">{value.name}</h4>
+                  </div>
+                  <div className="flex justify-center bg-sky-50 px-4 pb-3 pt-5 dark:bg-cerulean-blue-800/35">
+                    <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-sm ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-cerulean-blue-400/40 dark:bg-cerulean-blue-900/50 dark:ring-cerulean-blue-600/25">
+                      <img src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
+                    </div>
+                  </div>
+                  <div className="flex min-h-[3.75rem] flex-1 items-start justify-center border-t border-gray-100 bg-gray-50/80 px-3 pb-5 pt-3 text-center dark:border-white/10 dark:bg-cerulean-blue-900/35">
+                    <p className="text-xs font-medium leading-snug text-cerulean-blue-900 dark:text-gray-200 md:text-sm">{value.tagline}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
           <div className="text-center max-w-4xl mx-auto mb-20">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -247,82 +308,6 @@ const AboutUs = () => {
                 </a>
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values: logo + gold lines, five cards (colored headers, avatars, taglines). Dark: solid cerulean-blue-900 — no section border / strip lines */}
-      <section className="relative overflow-hidden bg-sky-50/95 dark:bg-cerulean-blue-900 py-16 md:py-24">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.12]"
-          aria-hidden
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(255,189,32,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(255,189,32,0.06),transparent_45%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_90%,rgba(255,255,255,0.35)_1px,transparent_1px)] bg-[length:28px_28px] dark:hidden" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-6xl px-4">
-          <div className="mb-12 flex flex-col items-center md:mb-16">
-            <div className="flex w-full max-w-lg items-center justify-center gap-3 md:gap-5">
-              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-r from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
-              <div className="relative shrink-0 rounded-full p-[3px] shadow-lg shadow-black/10 ring-2 ring-bright-sun-400/90 dark:ring-bright-sun-400/80 dark:shadow-black/30">
-                <div className="h-24 w-24 overflow-hidden rounded-full bg-cerulean-blue-900 md:h-28 md:w-28">
-                  <img
-                    src={`${import.meta.env.BASE_URL}champion-logo.png`}
-                    alt="The Champions Sports Academy"
-                    className="h-full w-full object-contain p-1.5"
-                  />
-                </div>
-              </div>
-              <span className="h-px min-w-[48px] flex-1 bg-gradient-to-l from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
-            </div>
-
-            <div className="mt-8 space-y-2 text-center">
-              <div className="flex items-center justify-center gap-3 md:gap-4">
-                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
-                <h2 className="text-lg font-black uppercase tracking-[0.12em] text-cerulean-blue-900 dark:text-white md:text-xl">
-                  The Core Values of
-                </h2>
-                <span className="hidden h-px w-10 bg-bright-sun-500/80 dark:bg-bright-sun-400/90 sm:block md:w-16" aria-hidden />
-              </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight text-cerulean-blue-900 dark:text-white md:text-3xl lg:text-4xl">
-                The Champions Sports Academy
-              </h3>
-              <p className="text-base font-bold italic text-bright-sun-600 dark:text-bright-sun-300 md:text-lg">
-                We Are The Champions for Life
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
-            {coreValues.map((value, index) => (
-              <motion.div
-                key={value.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-200/80 dark:bg-gradient-to-b dark:from-cerulean-blue-800 dark:via-cerulean-blue-900 dark:to-[#121a44] dark:shadow-[0_14px_32px_-10px_rgba(17,39,86,0.55),0_5px_0_0_rgba(10,26,72,0.55),inset_0_1px_0_rgba(120,165,255,0.12)] dark:ring-cerulean-blue-700/30"
-              >
-                <div className={`${valueHeaderBg[index]} px-3 py-2.5 text-center shadow-[inset_0_-2px_4px_rgba(0,0,0,0.15)] md:py-3`}>
-                  <h4 className="text-xs font-black uppercase tracking-tight text-white md:text-sm">
-                    {value.name}
-                  </h4>
-                </div>
-
-                <div className="flex justify-center bg-sky-100/80 px-4 pb-3 pt-5 dark:bg-cerulean-blue-950/95 dark:shadow-[inset_0_6px_18px_rgba(8,22,70,0.45)]">
-                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-[0_4px_12px_rgba(15,23,42,0.12),inset_0_2px_6px_rgba(255,255,255,0.85)] ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-cerulean-blue-600/35 dark:bg-cerulean-blue-900 dark:shadow-[0_8px_22px_rgba(12,30,90,0.5),inset_0_2px_12px_rgba(5,18,60,0.35),inset_0_-1px_0_rgba(130,170,255,0.1)] dark:ring-cerulean-blue-700/25">
-                    <img src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
-                  </div>
-                </div>
-
-                <div className="flex min-h-[3.75rem] flex-1 items-start justify-center bg-white px-3 pb-5 pt-1 text-center dark:bg-[#141d4a] dark:shadow-[inset_0_1px_0_rgba(130,170,255,0.08)]">
-                  <p className="text-xs font-medium leading-snug text-cerulean-blue-900 dark:text-gray-100 md:text-sm">
-                    {value.tagline}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

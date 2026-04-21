@@ -138,21 +138,21 @@ const SportsDisciplines = () => {
         <div className="min-h-screen bg-white dark:bg-cerulean-blue-900 pt-20 pb-16 sm:pt-4 sm:pb-20 transition-colors duration-300">
             {/* Hero — What We Do (top); row: Academy (left) | video | Core Services (right) */}
             <section className="relative mb-10 overflow-hidden px-4 sm:px-6 md:mb-12">
-                <div className="rounded-[2rem] bg-gray-100/90 dark:bg-cerulean-blue-900/90 px-3 py-6 sm:py-8 md:py-10">
+                <div className="rounded-[2rem] border border-gray-200 bg-gray-100/90 px-3 py-6 shadow-md dark:border-cerulean-blue-700/60 dark:bg-cerulean-blue-900/90 sm:py-8 md:py-10">
                     <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:gap-10">
                        
 
                         <div
                             className={`grid w-full items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6 lg:gap-10 ${animate ? "opacity-100" : "opacity-0"}`}
                         >
-                            <h1
+                            <h2
                                 className={`order-1 text-balance text-center text-lg font-black uppercase italic leading-snug tracking-tight text-cerulean-blue-900 md:text-right md:text-xl md:leading-tight lg:text-2xl xl:text-3xl dark:text-white transition-all duration-1000 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                             >
                                 The Champions Sports Academy
-                            </h1>
+                            </h2>
 
                             <div
-                                className="relative order-2 mx-auto w-full max-w-[min(92vw,380px)] shrink-0 aspect-[10/11] overflow-hidden rounded-[2rem] shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/40 dark:ring-white/10 md:mx-0"
+                                className="relative order-2 mx-auto w-full max-w-[min(92vw,380px)] shrink-0 aspect-[10/11] overflow-hidden rounded-[2rem] border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 dark:border-white/35 dark:shadow-[0_25px_80px_-12px_rgba(0,0,0,0.35)] md:mx-0"
                             >
                                 <video
                                     ref={heroVideoRef}
@@ -190,10 +190,10 @@ const SportsDisciplines = () => {
                 {portfolioServices.map((service) => (
                     <article
                         key={service.n}
-                        className="relative overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-sm dark:border-white/10 dark:bg-cerulean-blue-900/30 dark:shadow-none"
+                        className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-cerulean-blue-700/50 dark:bg-cerulean-blue-900/30 dark:shadow-none"
                     >
                         <div className="flex flex-col gap-5 p-6 sm:flex-row sm:items-start sm:gap-6 sm:p-8">
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-500/40 bg-bright-sun-500/10 dark:border-bright-sun-400/50 dark:bg-bright-sun-500/15">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-cerulean-blue-200/90 bg-cerulean-blue-50/80 dark:border-cerulean-blue-600/45 dark:bg-cerulean-blue-800/35">
                                 <service.icon className="text-bright-sun-600 dark:text-bright-sun-300" size={28} stroke={1.75} />
                             </div>
                             <div className="min-w-0 flex-1 text-left">
@@ -214,14 +214,14 @@ const SportsDisciplines = () => {
 
             {/* Our Inspiration & Foundation */}
             <div className="container mx-auto max-w-4xl px-4 pb-14 md:pb-16">
-                <section className="rounded-[3rem] border border-bright-sun-500/20 bg-gradient-to-br from-bright-sun-50/80 to-white p-8 shadow-sm dark:border-bright-sun-400/15 dark:from-cerulean-blue-900/50 dark:to-cerulean-blue-800/25 md:p-12 lg:p-14">
+                <section className="rounded-[3rem] border-2 border-bright-sun-500 bg-gradient-to-br from-bright-sun-50/80 to-white p-8 shadow-sm dark:border-bright-sun-400 dark:from-cerulean-blue-900/50 dark:to-cerulean-blue-800/25 md:p-12 lg:p-14">
                     <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
-                        <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-bright-sun-300/50 bg-bright-sun-500/10 dark:border-bright-sun-400/30 dark:bg-bright-sun-400/10">
+                        <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-bright-sun-400/60 bg-bright-sun-500/10 dark:border-bright-sun-400 dark:bg-bright-sun-400/10">
                             <IconBulb className="text-bright-sun-600 dark:text-bright-sun-300" size={36} stroke={1.5} aria-hidden />
                         </div>
-                        <h2 className="text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl lg:text-4xl">
-                            Our Inspiration &amp; Foundation
-                        </h2>
+                        <h1 className="text-3xl font-black uppercase italic tracking-tighter text-bright-sun-600 dark:text-bright-sun-300 md:text-4xl lg:text-5xl">
+                            Our journey
+                        </h1>
                     </div>
                     <div className="space-y-5 text-left text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:space-y-6 md:text-base">
                         {INSPIRATION_FOUNDATION_PARAGRAPHS.map((para, i) => (
@@ -235,7 +235,7 @@ const SportsDisciplines = () => {
 
             {/* Our Impact in Numbers, Key Achievements, Our Contribution */}
             <div className="container mx-auto max-w-5xl space-y-14 px-4 pt-0 pb-14 md:space-y-20 md:pb-16">
-                <section className="relative overflow-hidden rounded-[3rem] border border-gray-100 bg-gray-50 p-8 shadow-sm dark:border-white/10 dark:bg-cerulean-blue-900/40 dark:shadow-none md:p-12 lg:p-14">
+                <section className="relative overflow-hidden rounded-[3rem] border-2 border-bright-sun-500 bg-gray-50 p-8 shadow-sm dark:border-bright-sun-400 dark:bg-cerulean-blue-900/40 dark:shadow-none md:p-12 lg:p-14">
                     <div className="absolute right-0 top-0 -z-10 h-64 w-64 rounded-full bg-bright-sun-600/5 blur-3xl dark:bg-bright-sun-300/5" aria-hidden />
                     <h2 className="mb-10 flex flex-wrap items-center justify-center gap-3 text-center text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-4xl">
                         <span className="text-3xl md:text-4xl" aria-hidden>
@@ -247,7 +247,7 @@ const SportsDisciplines = () => {
                         {IMPACT_NUMBERS.map((row, index) => (
                             <div
                                 key={row.label}
-                                className={`group rounded-3xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:shadow-lg dark:border-white/10 dark:bg-cerulean-blue-800/40 ${animate ? "opacity-100" : "opacity-0"}`}
+                                className={`group rounded-3xl border-2 border-bright-sun-500 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:shadow-lg dark:border-bright-sun-400 dark:bg-cerulean-blue-800/40 ${animate ? "opacity-100" : "opacity-0"}`}
                                 style={{ animationDelay: `${400 + index * 80}ms` }}
                             >
                                 <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50 shadow-inner transition-transform group-hover:scale-105 dark:bg-cerulean-blue-900/50">
@@ -262,7 +262,7 @@ const SportsDisciplines = () => {
                     </div>
                 </section>
 
-                <section className="rounded-[3rem] border border-gray-100 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-cerulean-blue-800/30 md:p-12 lg:p-14">
+                <section className="rounded-[3rem] border-2 border-bright-sun-500 bg-white p-8 shadow-sm dark:border-bright-sun-400 dark:bg-cerulean-blue-800/30 md:p-12 lg:p-14">
                     <h2 className="mb-8 flex flex-wrap items-center gap-3 text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl">
                         <span className="text-3xl" aria-hidden>
                             🔷
@@ -279,7 +279,7 @@ const SportsDisciplines = () => {
                     </ul>
                 </section>
 
-                <section className="rounded-[3rem] border border-gray-100 bg-gray-50/80 p-8 dark:border-white/10 dark:bg-cerulean-blue-900/35 md:p-12 lg:p-14">
+                <section className="rounded-[3rem] border-2 border-bright-sun-500 bg-gray-50/80 p-8 dark:border-bright-sun-400 dark:bg-cerulean-blue-900/35 md:p-12 lg:p-14">
                     <h2 className="mb-6 flex flex-wrap items-center gap-3 text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white md:text-3xl">
                         <span className="text-3xl" aria-hidden>
                             🔷
@@ -301,7 +301,7 @@ const SportsDisciplines = () => {
             {/* Our Commitment */}
             <div className="container mx-auto px-4 pt-12 pb-16 md:pt-16 md:pb-20">
                 <div
-                    className={`bg-white dark:bg-cerulean-blue-800 border border-gray-100 dark:border-white/10 rounded-[3.5rem] p-12 md:p-24 text-center transition-all duration-1000 shadow-2xl ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                    className={`rounded-[3.5rem] border-2 border-bright-sun-500 bg-white p-12 text-center shadow-2xl transition-all duration-1000 dark:border-bright-sun-400 dark:bg-cerulean-blue-800 md:p-24 ${animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                 >
                     <div className="max-w-4xl mx-auto">
                         <div className="inline-flex items-center justify-center w-24 h-24 bg-bright-sun-100 dark:bg-white/10 rounded-3xl mb-12 border border-bright-sun-200 dark:border-white/20 shadow-inner">
@@ -323,7 +323,7 @@ const SportsDisciplines = () => {
                             ].map((item) => (
                                 <div
                                     key={item.name}
-                                    className="bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-3xl p-8 hover:scale-105 transition-all duration-300 group cursor-pointer shadow-sm"
+                                    className="rounded-3xl border-2 border-bright-sun-500 bg-gray-50 p-8 shadow-sm transition-all duration-300 hover:scale-105 group cursor-pointer dark:border-bright-sun-400 dark:bg-white/5"
                                 >
                                     <item.icon className="text-bright-sun-600 dark:text-bright-sun-300 mb-4 mx-auto group-hover:scale-110 transition-transform" size={32} />
                                     <div className="text-cerulean-blue-900 dark:text-white font-black uppercase tracking-widest text-xs">{item.name}</div>
