@@ -54,8 +54,69 @@ const AboutUs = () => {
       <section className="relative py-24 px-4 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-bright-sun-300/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Core Values intro — before Vision & Mission */}
-          <div className="mb-16 flex flex-col items-center md:mb-20">
+          <div className="text-center max-w-4xl mx-auto mb-20">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xl"
+            >
+              <IconTarget size={40} />
+              <span>OUr mission and vision</span>
+            </motion.div>
+
+            <div className="h-1.5 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mx-auto rounded-full mb-12"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    
+
+            {/* Mission Card */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative group p-1 w-full"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-br from-cerulean-blue-600 to-bright-sun-600 rounded-[3rem] blur opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
+              <div className="relative bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] p-12 transition-all duration-700 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 shadow-sm">
+                <div className="flex items-center space-x-6 mb-8 text-center sm:text-left">
+                  <div className="w-20 h-20 bg-bright-sun-600 dark:bg-bright-sun-300 rounded-3xl flex items-center justify-center shadow-2xl -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                    <IconTrophy className="text-white dark:text-cerulean-blue-950" size={40} />
+                  </div>
+                  <h2 className="text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">Our Mission</h2>
+                </div>
+                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed italic border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8">
+                  "To empower people through inclusive sport, physical literacy, and values-based
+                  education programmes that promote
+                  <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black"> excellence, health, and lifelong well-being</span>"
+                </p>
+              </div>
+            </motion.div>
+            {/* Vision Card */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative group p-1 w-full"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-br from-bright-sun-600 to-cerulean-blue-600 rounded-[3rem] blur opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
+              <div className="relative bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] p-12 transition-all duration-700 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 shadow-sm">
+                <div className="flex items-center space-x-6 mb-8 text-center sm:text-left">
+                  <div className="w-20 h-20 bg-bright-sun-600 dark:bg-bright-sun-300 rounded-3xl flex items-center justify-center shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                    <IconTarget className="text-white dark:text-cerulean-blue-950" size={40} />
+                  </div>
+                  <h2 className="text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">Our Vision</h2>
+                </div>
+                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed italic border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8">
+                  "To become a global hub of inclusive sport and physical literacy that promotes
+                  <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black"> excellence, health, and lifelong well-being</span>"
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Core Values intro — after Vision & Mission */}
+          <div className="mb-16 mt-20 flex flex-col items-center md:mb-20 md:mt-24">
             <div className="flex w-full max-w-lg items-center justify-center gap-3 md:gap-5">
               <span className="h-px min-w-[48px] flex-1 bg-gradient-to-r from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
               <div className="relative shrink-0 rounded-full p-[3px] shadow-lg shadow-black/10 ring-2 ring-bright-sun-400/90 dark:ring-bright-sun-400/80 dark:shadow-black/30">
@@ -87,8 +148,8 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* Core Values cards — before Vision & Mission */}
-          <div className="mx-auto mb-16 max-w-6xl md:mb-20">
+          {/* Core Values cards — after Vision & Mission */}
+          <div className="mx-auto mb-4 max-w-6xl md:mb-8">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
               {coreValues.map((value, index) => (
                 <motion.div
@@ -115,65 +176,21 @@ const AboutUs = () => {
             </div>
           </div>
 
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center space-x-2 bg-bright-sun-600/10 dark:bg-bright-sun-300/20 text-bright-sun-600 dark:text-bright-sun-300 px-4 py-2 rounded-full border border-bright-sun-600/20 dark:border-bright-sun-300/30 mb-8 font-black uppercase tracking-widest text-xl"
-            >
-              <IconTarget size={40} />
-              <span>WE ARE THE CHAMPIONS FOR LIFE</span>
-            </motion.div>
-
-            <div className="h-1.5 w-32 bg-bright-sun-600 dark:bg-bright-sun-300 mx-auto rounded-full mb-12"></div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Vision Card */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative group p-1 w-full"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-br from-bright-sun-600 to-cerulean-blue-600 rounded-[3rem] blur opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
-              <div className="relative bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] p-12 transition-all duration-700 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 shadow-sm">
-                <div className="flex items-center space-x-6 mb-8 text-center sm:text-left">
-                  <div className="w-20 h-20 bg-bright-sun-600 dark:bg-bright-sun-300 rounded-3xl flex items-center justify-center shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                    <IconTarget className="text-white dark:text-cerulean-blue-950" size={40} />
-                  </div>
-                  <h2 className="text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">Our Vision</h2>
-                </div>
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed italic border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8">
-                  "To become a global hub of inclusive sport and physical literacy that promotes
-                  <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black"> excellence, health, and lifelong well-being</span>"
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Mission Card */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative group p-1 w-full"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-br from-cerulean-blue-600 to-bright-sun-600 rounded-[3rem] blur opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
-              <div className="relative bg-gray-50 dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 rounded-[2.5rem] p-12 transition-all duration-700 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 shadow-sm">
-                <div className="flex items-center space-x-6 mb-8 text-center sm:text-left">
-                  <div className="w-20 h-20 bg-bright-sun-600 dark:bg-bright-sun-300 rounded-3xl flex items-center justify-center shadow-2xl -rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                    <IconTrophy className="text-white dark:text-cerulean-blue-950" size={40} />
-                  </div>
-                  <h2 className="text-3xl font-black text-cerulean-blue-900 dark:text-white uppercase italic tracking-tighter">Our Mission</h2>
-                </div>
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed italic border-l-8 border-bright-sun-600 dark:border-bright-sun-300 pl-8">
-                  "To empower people through inclusive sport, physical literacy, and values-based
-                  education programmes that promote
-                  <span className="text-bright-sun-600 dark:text-bright-sun-300 font-black"> excellence, health, and lifelong well-being</span>"
-                </p>
-              </div>
-            </motion.div>
-          </div>
+          {/* Academy timeline / history infographic */}
+          <figure className="mx-auto mt-10 max-w-7xl md:mt-14">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50/50 shadow-lg dark:border-white/10 dark:bg-cerulean-blue-900/30 dark:shadow-black/20">
+              <img
+                src={`${import.meta.env.BASE_URL}athletes/History.jpeg`}
+                alt="The Champions Sports Academy Ltd, 2017–2026: a journey of growth, impact, and leadership — timeline, vision, and core values."
+                className="block h-auto w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption className="sr-only">
+              Infographic: foundation through strategic consolidation, vision statement, and core values.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
