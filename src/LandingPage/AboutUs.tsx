@@ -9,18 +9,16 @@ import { coreValuesData } from "../Data/coreValues";
 import { TeamOrganizationContent } from "./TeamOrganizationContent";
 
 const STRATEGIC_PARTNERS: { name: string; type: string }[] = [
-  { name: "Rwanda Karate Federation (FERWAKA)", type: "National Partner" },
-  { name: "Rwanda Gymnastics Federation (FERWACY)", type: "National Partner" },
-  { name: "Rwanda National Olympic & Sports Committee (RNOSC)", type: "National Olympic Committee" },
-  { name: "Ministry of Sports", type: "Government Partner" },
-  { name: "National Olympic & Sports Academy", type: "National Partner" },
-  { name: "World Karate Federation (WKF)", type: "International Partner" },
-  { name: "International Olympic Committee (IOC)", type: "International Partner" },
-  { name: "International Olympic Academy (IOA)", type: "International Partner" },
-  { name: "Alliance of Social Workers in Sport (ASWIS)", type: "International Network" },
-  { name: "USA Karate", type: "International Partner" },
-  { name: "5280 Gymnastics", type: "International Partner" },
-  { name: "Gasore Serge Foundation", type: "Foundation" },
+  { name: "Rwanda Gymnastics Federation", type: "Federation" },
+  { name: "Rwanda Karate Federation", type: "Federation" },
+  { name: "Rwanda National Olympic and Sports Committee (RNOSC)", type: "Olympic committee" },
+  { name: "MINISPORTS (Ministry of Sports)", type: "Government" },
+  { name: "Rwanda Children Christian School", type: "School" },
+  { name: "Smart Sports Shop", type: "Retail" },
+  { name: "Play Hotel", type: "Hospitality" },
+  { name: "Kihon Sport", type: "Sport & equipment" },
+  { name: "5280 Gymnastics (USA)", type: "International" },
+  { name: "IOC Young Leaders Programme (International Olympic Committee)", type: "IOC programme" },
 ];
 
 const AboutUs = () => {
@@ -339,8 +337,8 @@ const AboutUs = () => {
             <h2 className="mb-4 text-3xl font-black uppercase italic leading-none tracking-tighter text-cerulean-blue-900 underline decoration-bright-sun-600 decoration-4 underline-offset-8 dark:text-white dark:decoration-bright-sun-300 md:text-5xl lg:text-6xl">
               Strategic <span className="text-bright-sun-600 dark:text-bright-sun-300">Partners</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-bold uppercase tracking-[0.25em] text-gray-500 dark:text-gray-400">
-              Collaborating with leading organizations to deliver excellence.
+            <p className="mx-auto max-w-2xl text-sm font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 md:tracking-[0.25em]">
+              Federations, government, schools, enterprises, and international sport programmes.
             </p>
           </div>
 
