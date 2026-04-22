@@ -33,8 +33,6 @@ const SOCIAL = [
 ] as const;
 
 const Footer = () => {
-    const year = new Date().getFullYear();
-
     return (
         <footer className="relative mt-auto overflow-hidden border-t border-white/10 bg-gradient-to-b from-cerulean-blue-950 via-[#151d3f] to-cerulean-blue-950 text-white">
             <div
@@ -169,13 +167,9 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-14 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 md:flex-row">
-                    <p className="text-center text-xs text-gray-500 md:text-left">
-                        © {year} The Champions Sports Academy. All rights reserved.
-                    </p>
-                    <p className="text-center text-xs text-gray-500 md:text-right">
-                        Site by{" "}
-                        <span className="font-semibold text-bright-sun-300/90">eng.Pacifique</span>
+                <div className="mt-14 border-t border-white/10 pt-8">
+                    <p className="text-center text-xs text-gray-500 sm:text-sm">
+                        © 2026 The Champions Sports Academy. All rights reserved.
                     </p>
                 </div>
             </div>
