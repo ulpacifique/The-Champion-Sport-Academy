@@ -220,7 +220,7 @@ export const TeamOrganizationContent = () => (
         </section>
 
         {/* Coaches Section */}
-        <section className="mb-12">
+        <section className="mb-20 md:mb-28">
             <div className="text-center mb-12">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-bright-sun-500 to-bright-sun-600 shadow-lg mb-4">
                     <IconTrophy className="text-white" size={32} />
@@ -297,6 +297,25 @@ export const TeamOrganizationContent = () => (
                         </div>
                     </motion.div>
                 ))}
+            </div>
+
+            <div className="mx-auto mt-16 max-w-4xl px-4 md:mt-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5 }}
+                    className="rounded-2xl border-2 border-cerulean-blue-200 bg-gradient-to-br from-white to-gray-50 p-6 shadow-md dark:border-cerulean-blue-600/50 dark:from-cerulean-blue-900/40 dark:to-cerulean-blue-800/25 md:p-10"
+                >
+                    <h3 className="mb-4 text-center text-xl font-black uppercase tracking-tight text-bright-sun-600 dark:text-bright-sun-400 md:text-2xl">
+                        Strategic Vision
+                    </h3>
+                    <p className="text-pretty text-center text-sm font-medium leading-relaxed text-cerulean-blue-900 dark:text-gray-200 md:text-base">
+                        To become a globally recognized centre of excellence in inclusive sport and physical literacy,
+                        driving human capital development and strengthening sport systems through a sustainable hybrid
+                        model that creates lasting social and economic impact
+                    </p>
+                </motion.div>
             </div>
         </section>
     </div>

@@ -1,17 +1,22 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 
 const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}athletes/wedo.mp4`;
-const HERO_IMAGE_SRC = `${import.meta.env.BASE_URL}athletes/we.jpeg`;
+const HERO_BANNER_SRC = `${import.meta.env.BASE_URL}athletes/we.jpeg`;
 
 const HERO_ABOUT_PARAGRAPHS: readonly ReactNode[] = [
     <>
         <strong className="text-cerulean-blue-900 dark:text-white">WE ARE THE CHAMPIONS FOR LIFE
 
-</strong> The Champions Sports Academy Ltd is a leading sports company based in Kigali, Rwanda, dedicated to advancing inclusive sport, physical literacy, and values-based education.
+</strong> The Champions Sports Academy Ltd is a Kigali-based, high-performance and socio-economic impact sports organization founded in 2017 by Noel Nkuranyabahizi—International Elite Sports Coach, Olympic scholar, and social worker in sport—together with a multidisciplinary team of professionals.
+The Academy advances inclusive sport, physical literacy, and values-based education as drivers of human capital development, lifelong well-being, and sustainable socio-economic progress.
     </>,
-    <>Founded in 2017, the Academy delivers professional services in youth development, sport programme design and management, event organization, and coaching education at national and international levels, combining coaching excellence, sport science, and well-being to achieve high-quality outcomes.</>,
     <>
-          Positioned as a centre of excellence in sport development, the Academy serves individuals, communities, and institutions while contributing to the strengthening of sport systems.
+    Our work aligns with the World Health Organization (WHO )recommendations on physical activity and health, the United Nations Sustainable Development Goals notably SDG 3 (Good Health and Well-being), SDG 4 (Quality Education), and SDG 8 (Decent Work and Economic Growth), Rwanda Vision 2050, the Rwanda National Sports Development Policy, and the International Olympic Committee Olympic Agenda 2020+5, positioning sport as a catalyst for health, education, inclusion, and economic growth.
+    As a centre of excellence, we deliver integrated services in youth development, sport programme design and management, event organization, and coaching education, combining high-performance coaching, sport science, safeguarding, inclusion, and holistic well-being.</>,
+    <>
+         
+    Operating through a hybrid model that integrates social impact and sustainable business, we serve children and youth, families, institutions, and partners, creating pathways for physical literacy, talent development, character formation, and lifelong engagement in sport.
+    The Champions Sports Academy Ltd builds champions—not only for sport, but for life.
     </>,
 ];
 
@@ -65,50 +70,53 @@ const HeroSection = () => {
 
     return (
         <>
-        <div
-        ref={heroRef}
-        className="relative flex min-h-[85vh] flex-col overflow-hidden bg-white px-4 py-6 sm:px-5 sm:py-6 md:min-h-[80vh] md:px-8 md:py-10 dark:bg-cerulean-blue-900"
-    >
-                <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-8">
-                    {/* Left (desktop): portrait video — unchanged position */}
-                    <div className="flex w-full shrink-0 justify-center lg:w-auto">
-                        <div className="relative aspect-[7/9] w-full max-w-[min(100%,200px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 sm:max-w-[280px] md:max-w-[min(50vw,420px)] lg:max-w-[min(44vw,440px)] dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
-                            <video
-                                ref={videoRef}
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                preload="auto"
-                                className="pointer-events-none h-full w-full select-none object-cover"
-                                src={HERO_VIDEO_SRC}
-                                onContextMenu={(e) => e.preventDefault()}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Right (desktop): landscape image, then about */}
-                    <div className="flex w-full min-w-0 max-w-xl flex-col items-start text-left sm:max-w-2xl lg:w-auto lg:max-w-[min(190%,36rem)] lg:flex-none">
-                        <div className="relative w-full overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10">
-                            <div className="relative aspect-auto min-h-[180px] w-full sm:min-h-[200px]">
-                                <img
-                                    src={HERO_IMAGE_SRC}
-                                    alt=""
-                                    className="absolute inset-0 h-full w-full object-cover object-center"
-                                    draggable={false}
+            <div
+                ref={heroRef}
+                className="relative flex min-h-[85vh] flex-col overflow-hidden bg-white px-4 py-6 sm:px-5 sm:py-6 md:min-h-[80vh] md:px-8 md:py-10 dark:bg-cerulean-blue-900"
+            >
+                <div className="relative z-10 mx-auto w-full max-w-7xl">
+                    {/* Top-aligned row: ~40% video | ~60% banner + copy (same starting line) */}
+                    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-8 xl:gap-10">
+                        {/* Left — portrait video */}
+                        <div className="flex w-full shrink-0 justify-center lg:w-[40%] lg:justify-start lg:pt-0">
+                            <div className="relative aspect-[3/3] w-full max-w-[min(92vw,280px)] overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/10 dark:border-white/35 dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35)] dark:ring-white/10 sm:max-w-[300px] lg:max-w-none lg:self-start">
+                                <video
+                                    ref={videoRef}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload="auto"
+                                    className="pointer-events-none h-full w-full select-none object-cover"
+                                    src={HERO_VIDEO_SRC}
                                     onContextMenu={(e) => e.preventDefault()}
                                 />
                             </div>
                         </div>
 
-                        <div
-                            className={`mt-5 w-full space-y-3 text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300 sm:mt-6 sm:space-y-4 sm:text-base ${
-                                animate ? "opacity-100" : "opacity-0"
-                            } transition-opacity duration-700 delay-200`}
-                        >
-                            {HERO_ABOUT_PARAGRAPHS.map((body, i) => (
-                                <p key={i}>{body}</p>
-                            ))}
+                        {/* Right — banner image, then about (aligned to top with video) */}
+                        <div className="flex min-w-0 flex-1 flex-col gap-5 lg:w-[60%] lg:pt-0">
+                            <div className="overflow-hidden rounded-2xl border-2 border-cerulean-blue-200 bg-cerulean-blue-950 shadow-xl shadow-cerulean-blue-900/20 ring-1 ring-cerulean-blue-900/30 dark:border-white/15 dark:ring-white/10">
+                                <img
+                                    src={HERO_BANNER_SRC}
+                                    alt="The Champions Sports Academy — logo, title, values, and contact"
+                                    className="block h-auto w-full object-contain object-top"
+                                    draggable={false}
+                                    loading="eager"
+                                    decoding="async"
+                                    onContextMenu={(e) => e.preventDefault()}
+                                />
+                            </div>
+
+                            <div
+                                className={`w-full space-y-3 text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300 sm:space-y-4 sm:text-base ${
+                                    animate ? "opacity-100" : "opacity-0"
+                                } transition-opacity duration-700 delay-200`}
+                            >
+                                {HERO_ABOUT_PARAGRAPHS.map((body, i) => (
+                                    <p key={i}>{body}</p>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

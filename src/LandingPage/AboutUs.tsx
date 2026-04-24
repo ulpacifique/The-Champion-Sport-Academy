@@ -209,7 +209,7 @@ const AboutUs = () => {
               >
                 <iframe
                   className="absolute left-0 top-0 h-full w-full border-0"
-                  src="https://www.youtube-nocookie.com/embed/cpP0s5yQK0Y?rel=0&modestbranding=1&playsinline=1"
+                  src="https://www.youtube-nocookie.com/embed/KE73WmQVILM?rel=0&modestbranding=1&playsinline=1"
                   title="Testimony of Athletes and Coaches"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -217,7 +217,7 @@ const AboutUs = () => {
               </div>
               <p className="mt-3 max-w-xl px-2 text-center">
                 <a
-                  href="https://youtu.be/cpP0s5yQK0Y?si=IAqvZOUSiePUR6oP"
+                  href="https://www.youtube.com/watch?v=KE73WmQVILM"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-bold uppercase tracking-wide text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300 sm:tracking-widest"

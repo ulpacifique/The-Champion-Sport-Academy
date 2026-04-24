@@ -14,7 +14,6 @@ import {
     IconBarbell,
     IconChartBar,
     IconCircleCheck,
-    IconBulb,
 } from "@tabler/icons-react";
 
 /** Core Services — aligned with CSA flyer (icon + title + short description). */
@@ -102,14 +101,6 @@ const CONTRIBUTION_BULLETS = [
     "Promote health, well-being, and values-based education",
     "Enhance coaching capacity and sport programme quality",
     "Support national sport development and economic growth through sport",
-];
-
-const INSPIRATION_FOUNDATION_PARAGRAPHS: string[] = [
-    "The Champions Sports Academy Ltd was inspired by a transformative experience in 2017 at the Cycle International du Sport d'Élite (CISéL) at Sports Academy Lausanne, made possible through an Olympic Solidarity Scholarship awarded by the International Olympic Committee to Noël Nkuranyabahizi.",
-    "This international exposure shaped a vision grounded in excellence, discipline, and impact, and revealed a critical gap in Rwanda—the insufficient presence of an integrated pathway linking youth development, athlete performance, and coach education.",
-    "During this experience, Dr. Hicham Montasser, Director of Sports Academy Lausanne, recognized Noël's consistency, commitment, and impactful work behind the scenes, describing him as a “bosseur de l'ombre”. This recognition further reinforced a leadership philosophy centered on dedication, humility, and meaningful impact, and strengthened the ambition to transform knowledge into action.",
-    "In response, the Academy was founded in 2017 and evolved into The Champions Sports Academy Ltd—a sports business and social impact company committed to developing youth, enhancing performance, professionalizing coaches, using sport as a tool for positive social change, and ensuring long-term sustainability through a structured business model.",
-    "Today, the Academy stands as an integrated multi-sport institution, capable of translating vision into concrete and sustainable results that generate both social and economic impact.",
 ];
 
 const SportsDisciplines = () => {
@@ -212,27 +203,6 @@ const SportsDisciplines = () => {
                 ))}
             </div>
 
-            {/* Our Inspiration & Foundation */}
-            <div className="container mx-auto max-w-4xl px-4 pb-14 md:pb-16">
-                <section className="rounded-[3rem] border-2 border-bright-sun-500 bg-gradient-to-br from-bright-sun-50/80 to-white p-8 shadow-sm dark:border-bright-sun-400 dark:from-cerulean-blue-900/50 dark:to-cerulean-blue-800/25 md:p-12 lg:p-14">
-                    <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
-                        <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-bright-sun-400/60 bg-bright-sun-500/10 dark:border-bright-sun-400 dark:bg-bright-sun-400/10">
-                            <IconBulb className="text-bright-sun-600 dark:text-bright-sun-300" size={36} stroke={1.5} aria-hidden />
-                        </div>
-                        <h1 className="text-3xl font-black uppercase italic tracking-tighter text-bright-sun-600 dark:text-bright-sun-300 md:text-4xl lg:text-5xl">
-                            Our journey
-                        </h1>
-                    </div>
-                    <div className="space-y-5 text-left text-sm leading-relaxed text-gray-700 dark:text-gray-200 md:space-y-6 md:text-base">
-                        {INSPIRATION_FOUNDATION_PARAGRAPHS.map((para, i) => (
-                            <p key={i} className="text-pretty first:mt-0">
-                                {para}
-                            </p>
-                        ))}
-                    </div>
-                </section>
-            </div>
-
             {/* Our Impact in Numbers, Key Achievements, Our Contribution */}
             <div className="container mx-auto max-w-5xl space-y-14 px-4 pt-0 pb-14 md:space-y-20 md:pb-16">
                 <section className="relative overflow-hidden rounded-[3rem] border-2 border-bright-sun-500 bg-gray-50 p-8 shadow-sm dark:border-bright-sun-400 dark:bg-cerulean-blue-900/40 dark:shadow-none md:p-12 lg:p-14">
@@ -311,7 +281,15 @@ const SportsDisciplines = () => {
                         <h2 className="text-4xl md:text-6xl font-black text-cerulean-blue-900 dark:text-white mb-8 uppercase italic tracking-tighter">Our Commitment</h2>
 
                         <p className="text-gray-600 dark:text-gray-200 text-xl md:text-2xl font-medium mb-16 leading-relaxed text-balance">
-                        Our work aligns with SDG 3 (Good Health and Well-being), SDG 4 (Quality Education), and SDG 8 (Decent Work and Economic Growth), contributing to Rwanda’s Vision 2050 by promoting health, delivering values-based education, and positioning sport as a driver of economic development and sustainable business growth.
+                        Our Commitment
+
+At The Champions Sports Academy Ltd, we are committed to delivering inclusive, high-quality, and impactful sport programmes that advance physical literacy, values-based education, and lifelong well-being.
+
+Guided by our mission to empower individuals through sport, our work contributes to sustainable development and human capital growth, in alignment with the United Nations Sustainable Development Goals (SDG 3, 4, 8) and Rwanda Vision 2050.
+
+Operating through a hybrid model that integrates social impact and sustainable business, we ensure that our programmes remain accessible, professional, and scalable while strengthening the sport ecosystem.
+
+Our commitment is grounded in our core principles of Professionalism, Safeguarding, and Inclusion, ensuring excellence in delivery, the protection and well-being of participants, and equitable access to opportunities for all.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
