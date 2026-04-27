@@ -39,7 +39,14 @@ const itemUp = {
     },
 };
 
-type Slot = { day: string; title: string; time?: string; note?: string; icon: typeof IconHome };
+type Slot = {
+    day: string;
+    title: string;
+    time?: string;
+    note?: string;
+    sessions?: { group: string; time: string }[];
+    icon: typeof IconHome;
+};
 
 const weekdaySlots: Slot[] = [
     {
@@ -53,26 +60,32 @@ const weekdaySlots: Slot[] = [
 const weekendSlots: Slot[] = [
     {
         day: "Saturday",
-        title: "Weekend training (morning)",
-        time: "10:00 AM – 12:00 PM",
+        title: "Gymnastics morning training",
+        sessions: [
+            { group: "Ages 7–17", time: "09:30 – 11:30" },
+            { group: "Ages 3–6 (Active Start)", time: "10:30 – 12:00" },
+        ],
         icon: IconSun,
     },
     {
         day: "Saturday",
-        title: "Weekend training (afternoon)",
-        time: "3:00 PM – 5:00 PM",
+        title: "Afternoon training (all children)",
+        time: "15:00 – 17:00",
         icon: IconSun,
     },
     {
         day: "Sunday",
-        title: "Weekend training (morning)",
-        time: "10:00 AM – 12:00 PM",
+        title: "Gymnastics morning training",
+        sessions: [
+            { group: "Ages 7–17", time: "09:30 – 11:30" },
+            { group: "Ages 3–6 (Active Start)", time: "10:30 – 12:00" },
+        ],
         icon: IconSun,
     },
     {
         day: "Sunday",
-        title: "Weekend training (afternoon)",
-        time: "3:00 PM – 5:00 PM",
+        title: "Afternoon training (all children)",
+        time: "15:00 – 17:00",
         icon: IconSun,
     },
 ];
@@ -126,7 +139,7 @@ const Schedule = () => (
                     </span>
                 </h1>
                 <p className="mx-auto mt-3 max-w-md text-sm font-medium text-cerulean-blue-900/70 dark:text-gray-300 md:text-base">
-                    Plan your week — home sessions on weekdays, weekend training at École Notre-Dame des Anges.
+                    Plan your week — home sessions on weekdays, LTAD-aligned weekend training at École Notre-Dame des Anges.
                 </p>
             </motion.header>
 
@@ -180,6 +193,12 @@ const Schedule = () => (
                 >
                     Weekend — group training
                 </motion.h2>
+                <motion.p
+                    variants={itemUp}
+                    className="px-1 text-sm font-medium leading-relaxed text-cerulean-blue-900/70 dark:text-gray-300"
+                >
+                    Gymnastics children are organized into Ages 3–6 Active Start and Ages 7–17 Beginner, Intermediate, and Advanced levels for progressive skill development.
+                </motion.p>
                 {weekendSlots.map((slot, i) => (
                     <motion.article
                         key={`${slot.day}-${slot.title}-${i}`}
@@ -193,22 +212,41 @@ const Schedule = () => (
                             whileHover={{ scale: 1.025, y: -3 }}
                             whileTap={{ scale: 0.99 }}
                         >
-                        <div className="flex items-center justify-between gap-3">
-                            <div className="min-w-0">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-bright-sun-700 dark:text-bright-sun-300">
-                                    {slot.day}
-                                </p>
-                                <h3 className="mt-0.5 text-base font-bold text-cerulean-blue-950 dark:text-white sm:text-lg">
-                                    {slot.title}
-                                </h3>
+                            <div className="flex items-center justify-between gap-3">
+                                <div className="min-w-0">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-bright-sun-700 dark:text-bright-sun-300">
+                                        {slot.day}
+                                    </p>
+                                    <h3 className="mt-0.5 text-base font-bold text-cerulean-blue-950 dark:text-white sm:text-lg">
+                                        {slot.title}
+                                    </h3>
+                                </div>
+                                {slot.time && (
+                                    <div className="shrink-0 rounded-2xl bg-cerulean-blue-900/5 px-3 py-2 text-right dark:bg-white/10">
+                                        <IconClock size={16} className="mb-1 ml-auto text-bright-sun-600 dark:text-bright-sun-400" />
+                                        <p className="text-sm font-black tabular-nums text-cerulean-blue-900 dark:text-white">
+                                            {slot.time}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
-                            <div className="shrink-0 rounded-2xl bg-cerulean-blue-900/5 px-3 py-2 text-right dark:bg-white/10">
-                                <IconClock size={16} className="mb-1 ml-auto text-bright-sun-600 dark:text-bright-sun-400" />
-                                <p className="text-sm font-black tabular-nums text-cerulean-blue-900 dark:text-white">
-                                    {slot.time}
-                                </p>
-                            </div>
-                        </div>
+                            {slot.sessions && (
+                                <div className="mt-4 grid gap-2">
+                                    {slot.sessions.map((session) => (
+                                        <div
+                                            key={`${slot.day}-${session.group}`}
+                                            className="flex items-center justify-between gap-3 rounded-2xl bg-cerulean-blue-900/5 px-3 py-2 dark:bg-white/10"
+                                        >
+                                            <span className="text-xs font-black uppercase tracking-wide text-cerulean-blue-900/80 dark:text-gray-200">
+                                                {session.group}
+                                            </span>
+                                            <span className="text-sm font-black tabular-nums text-cerulean-blue-900 dark:text-white">
+                                                {session.time}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </motion.div>
                     </motion.article>
                 ))}

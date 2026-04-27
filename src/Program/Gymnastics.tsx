@@ -249,10 +249,10 @@ const Gymnastics = () => {
                                 <div className="space-y-4">
                                     {[
                                         { day: "Monday - Friday", time: "By Appointment", classes: "Home Classes (Individual/Group)" },
-                                        { day: "Saturday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning)" },
-                                        { day: "Saturday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon)" },
-                                        { day: "Sunday", time: "10:00 AM - 12:00 PM", classes: "Weekend Training (Morning)" },
-                                        { day: "Sunday", time: "3:00 PM - 5:00 PM", classes: "Weekend Training (Afternoon)" }
+                                        { day: "Saturday", time: "09:30 - 11:30 / 10:30 - 12:00", classes: "Morning: Ages 7-17 / Ages 3-6 Active Start" },
+                                        { day: "Saturday", time: "15:00 - 17:00", classes: "Afternoon: All Children" },
+                                        { day: "Sunday", time: "09:30 - 11:30 / 10:30 - 12:00", classes: "Morning: Ages 7-17 / Ages 3-6 Active Start" },
+                                        { day: "Sunday", time: "15:00 - 17:00", classes: "Afternoon: All Children" }
                                     ].map((s, i) => (
                                         <div key={i} className="flex justify-between items-center p-8 rounded-3xl bg-white dark:bg-cerulean-blue-900/40 border border-gray-100 dark:border-white/10 hover:border-bright-sun-600/30 dark:hover:border-bright-sun-300/30 transition-all group shadow-sm">
                                             <div>

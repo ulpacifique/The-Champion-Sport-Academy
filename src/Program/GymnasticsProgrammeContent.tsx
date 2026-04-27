@@ -228,7 +228,7 @@ export const GymnasticsProgrammeContent = ({
                     <SectionTitle n="4.">Development Model (LTAD-Based)</SectionTitle>
                     <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                         The programme follows a <strong className="text-cerulean-blue-900 dark:text-white">Long-Term Athlete Development (LTAD)</strong> framework,
-                        ensuring:
+                        organizing children into clear age and level pathways for safe, effective progression.
                     </p>
                     <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700 dark:text-gray-200">
                         <li>Age-appropriate training</li>
@@ -242,41 +242,34 @@ export const GymnasticsProgrammeContent = ({
                     <div className="space-y-6">
                         <StageCard
                             dotClass="bg-blue-500"
-                            title="Stage 1: Active Start"
-                            age="Ages 3–5"
-                            focus={['Fun and safe movement exploration', 'Basic motor skills (running, jumping, rolling)']}
-                            outcomes={['Enjoyment of physical activity', 'Confidence in movement']}
+                            title="Active Start"
+                            age="Ages 3–6"
+                            focus={['Physical literacy and pre-gymnastics', 'Fun and safe movement exploration', 'Basic motor skills (running, jumping, rolling)']}
+                            outcomes={['Enjoyment of physical activity', 'Confidence in movement', 'Readiness for structured gymnastics']}
                         />
                         <StageCard
                             dotClass="bg-emerald-500"
-                            title="Stage 2: Fundamentals"
-                            age="Ages 6–8"
-                            focus={['Basic gymnastics skills on floor', 'Coordination and flexibility development']}
-                            outcomes={['Development of physical literacy', 'Introduction to simple apparatus']}
+                            title="Beginner Level"
+                            age="Ages 7–17"
+                            focus={['Core gymnastics foundations', 'Coordination, flexibility, balance, and safe landing techniques']}
+                            outcomes={['Technical basics', 'Body awareness and training discipline']}
                         />
                         <StageCard
                             dotClass="bg-amber-400"
-                            title="Stage 3: Learn to Train"
-                            age="Ages 9–11"
+                            title="Intermediate Level"
+                            age="Ages 7–17"
                             focus={[
-                                'Structured skill learning',
+                                'Progressive skill development',
                                 'Introduction to apparatus: Girls — Beam & Bars; Boys — Bars & strength-based elements',
                             ]}
-                            outcomes={['Technical foundations', 'Body control and discipline']}
+                            outcomes={['Improved technical control', 'Strength, confidence, and consistency']}
                         />
                         <StageCard
                             dotClass="bg-orange-500"
-                            title="Stage 4: Train to Train"
-                            age="Ages 12–14"
-                            focus={['Strength and conditioning', 'Skill refinement and combinations']}
-                            outcomes={['Improved performance capacity', 'Consistency in training']}
-                        />
-                        <StageCard
-                            dotClass="bg-red-500"
-                            title="Stage 5: Train to Perform"
-                            age="Ages 15–17"
-                            focus={['Advanced skills and routines', 'Optional competition pathway']}
-                            outcomes={['Performance readiness', 'Leadership and mentoring']}
+                            title="Advanced Level"
+                            age="Ages 7–17"
+                            focus={['Advanced skills and routines', 'Strength and conditioning', 'Optional competition pathway']}
+                            outcomes={['Performance readiness', 'Leadership and mentoring', 'Long-term athlete development']}
                         />
                     </div>
                 </motion.div>
