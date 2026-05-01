@@ -307,16 +307,7 @@ const Gymnastics = () => {
                 </section>
 
                 {/* Gallery Section */}
-                <section className="py-32 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
-                    <div className="max-w-7xl mx-auto text-center mb-24 px-4">
-                        <motion.div {...fadeInUp}>
-                            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 italic text-cerulean-blue-900 dark:text-white underline decoration-bright-sun-600 dark:decoration-bright-sun-300 underline-offset-8 decoration-8">
-                                Action <span className="text-bright-sun-600 dark:text-bright-sun-300">Gallery</span>
-                            </h2>
-                            <p className="text-lg text-gray-500 dark:text-gray-400 font-bold uppercase tracking-[0.3em]">Excellence in Motion.</p>
-                        </motion.div>
-                    </div>
-
+                <section className="px-4 pb-32 pt-0 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-white/[0.02] border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
                     <div className="max-w-[1600px] mx-auto">
                         {loadingGallery ? (
                             <div className="flex justify-center py-20">

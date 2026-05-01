@@ -14,16 +14,9 @@ const BASE = import.meta.env.BASE_URL;
 const EVENTS_HOSTING_SPOTLIGHT_EMBED =
     "https://www.youtube.com/embed/OdhBViMDGGk?rel=0&modestbranding=1&loop=1&playlist=OdhBViMDGGk&playsinline=1";
 const EVENTS_HOSTING_SPOTLIGHT_WATCH = "https://youtu.be/OdhBViMDGGk?si=zPCOfuPcKQ_mffzJ";
-/**
- * Gymnastics 2026 hero — dates (update when federation / academy confirms).
- */
-const UPCOMING_EVENTS_FLYER_ITEMS = [
-    { label: "National Gymnastics Festival", date: "14–15 June 2026", icon: IconTrophy },
-    { label: "Summer Camp", date: "7 July – 15 August 2026", icon: IconCalendarEvent },
-    { label: "Level Grading & Competition", date: "November 2026", icon: IconSparkles },
-] as const;
 const SUMMER_CAMP_VIDEOS = [`${BASE}athletes/k1.mp4`, `${BASE}athletes/k2.mp4`, `${BASE}athletes/k3.mp4`] as const;
 const ISHOW_VIDEO_SRC = `${BASE}athletes/ishow.mp4`;
+const FESTIVAL_FLYER_SRC = `${BASE}athletes/Festival.jpeg`;
 /** Transparent PNG — used as a soft watermark behind Upcoming Events (same spirit as the large “2026” motif) */
 const GYMNASTICS_SILHOUETTE_SRC = `${BASE}athletes/gymanstics.png`;
 
@@ -123,43 +116,12 @@ const Event = () => (
                                 >
                                     <div className="h-full w-full origin-center bg-[conic-gradient(from_0deg,#fbbf24_0deg,#0ea5e9_120deg,#f59e0b_220deg,#0369a1_300deg,#fbbf24_360deg)] motion-safe:animate-flyer-border-cw motion-reduce:animate-none dark:bg-[conic-gradient(from_0deg,#fcd34d_0deg,#38bdf8_120deg,#fbbf24_220deg,#0ea5e9_300deg,#fcd34d_360deg)]" />
                                 </div>
-                                <div className="relative z-10 overflow-hidden rounded-[10px] border border-white/80 bg-white/95 shadow-inner shadow-cerulean-blue-900/5 ring-1 ring-bright-sun-300/30 dark:border-bright-sun-400/25 dark:bg-gradient-to-b dark:from-cerulean-blue-950 dark:to-[#0f1f4d] dark:shadow-black/40 dark:ring-bright-sun-400/15 sm:rounded-[14px]">
-                                    <div className="border-b border-bright-sun-400/25 bg-gradient-to-r from-cerulean-blue-900 via-cerulean-blue-800 to-cerulean-blue-900 px-5 py-4 dark:from-cerulean-blue-950 dark:via-[#1a2d6e] dark:to-cerulean-blue-950">
-                                        <p className="text-center text-[10px] font-black uppercase tracking-[0.28em] text-bright-sun-200 sm:text-[11px]">
-                                            Save the dates
-                                        </p>
-                                        <p className="mt-1 text-center text-sm font-black uppercase italic tracking-tight text-white sm:text-base">
-                                            Upcoming events · 2026
-                                        </p>
-                                    </div>
-                                    <ul className="space-y-2.5 px-4 py-5 sm:px-5 sm:py-6">
-                                        {UPCOMING_EVENTS_FLYER_ITEMS.map(({ label, date, icon: Icon }) => (
-                                            <li
-                                                key={label}
-                                                className="group rounded-xl border border-cerulean-blue-100/90 bg-white px-3.5 py-3 shadow-sm transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-white/[0.06]"
-                                            >
-                                                <div className="flex items-start gap-3">
-                                                    <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 text-white shadow-md shadow-bright-sun-600/25 dark:from-bright-sun-500 dark:to-bright-sun-700">
-                                                        <Icon size={20} stroke={1.75} aria-hidden />
-                                                    </span>
-                                                    <div className="min-w-0 flex-1 pt-0.5">
-                                                        <p className="text-sm font-black leading-snug text-cerulean-blue-900 dark:text-white sm:text-[15px]">
-                                                            {label}
-                                                        </p>
-                                                        <p className="mt-1.5 inline-flex items-center gap-1.5 rounded-lg bg-bright-sun-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-bright-sun-800 ring-1 ring-bright-sun-300/40 dark:bg-bright-sun-400/10 dark:text-bright-sun-200 dark:ring-bright-sun-400/30 sm:text-xs">
-                                                            <IconCalendarEvent
-                                                                size={14}
-                                                                className="shrink-0 opacity-90"
-                                                                stroke={2}
-                                                                aria-hidden
-                                                            />
-                                                            {date}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <div className="relative z-10 overflow-hidden rounded-[10px] border border-white/80 bg-white/95 shadow-inner shadow-cerulean-blue-900/5 ring-1 ring-bright-sun-300/30 dark:border-bright-sun-400/25 dark:bg-cerulean-blue-950 dark:shadow-black/40 dark:ring-bright-sun-400/15 sm:rounded-[14px]">
+                                    <img
+                                        src={FESTIVAL_FLYER_SRC}
+                                        alt="Champions Gymnastics Programme upcoming events 2026 flyer"
+                                        className="block h-auto w-full"
+                                    />
                                 </div>
                             </div>
                         </div>
