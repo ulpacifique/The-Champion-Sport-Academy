@@ -1,10 +1,15 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
     IconCalendarEvent,
     IconFlag,
     IconSparkles,
     IconTrophy,
     IconWorld,
+    IconX,
+    IconChevronLeft,
+    IconChevronRight,
+    IconZoomIn,
 } from "@tabler/icons-react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -16,8 +21,8 @@ const EVENTS_HOSTING_SPOTLIGHT_EMBED =
 const EVENTS_HOSTING_SPOTLIGHT_WATCH = "https://youtu.be/OdhBViMDGGk?si=zPCOfuPcKQ_mffzJ";
 const SUMMER_CAMP_VIDEOS = [`${BASE}athletes/k1.mp4`, `${BASE}athletes/k2.mp4`, `${BASE}athletes/k3.mp4`] as const;
 const ISHOW_VIDEO_SRC = `${BASE}athletes/ishow.mp4`;
-const FESTIVAL_FLYER_SRC = `${BASE}athletes/Festival.jpeg`;
-/** Transparent PNG — used as a soft watermark behind Upcoming Events (same spirit as the large “2026” motif) */
+const FLYER_IMAGES = [`${BASE}flyer1.jpeg`, `${BASE}flyer2.jpeg`, `${BASE}flyer3.jpeg`] as const;
+/** Transparent PNG — used as a soft watermark behind Upcoming Events (same spirit as the large "2026" motif) */
 const GYMNASTICS_SILHOUETTE_SRC = `${BASE}athletes/gymanstics.png`;
 
 const fadeUp = {
@@ -30,305 +35,434 @@ const fadeUp = {
 const sectionTitle =
     "text-2xl font-black uppercase italic tracking-tighter text-cerulean-blue-900 dark:text-white sm:text-3xl md:text-4xl";
 
-const Event = () => (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50/90 via-white to-white font-['Poppins'] transition-colors duration-300 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-900">
-        <Header />
+// Image Modal Component with proper TypeScript types
+interface ImageModalProps {
+    src: string;
+    alt: string;
+    index: number;
+    totalImages: number;
+    onClose: () => void;
+    onPrevious: () => void;
+    onNext: () => void;
+}
 
-        <main className="mx-auto max-w-6xl px-4 pb-14 pt-20 sm:px-5 md:pb-16 md:pt-24">
-            {/* Hero — Gymnastics 2026 (white · gold · blue) */}
-            <motion.section
-                {...fadeUp}
-                aria-labelledby="upcoming-events-flyer-heading"
-                className="relative z-0 mx-auto mb-10 md:mb-14"
+const ImageModal = ({ 
+    src, 
+    alt, 
+    index, 
+    totalImages, 
+    onClose, 
+    onPrevious, 
+    onNext 
+}: ImageModalProps) => {
+    // Handle keyboard events
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowLeft' && onPrevious) onPrevious();
+            if (e.key === 'ArrowRight' && onNext) onNext();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'unset';
+        };
+    }, [onClose, onPrevious, onNext]);
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8"
+                onClick={onClose}
             >
-                <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
-                    <div
-                        className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/15"
-                        aria-hidden
-                    />
-                    <div
-                        className="pointer-events-none absolute -bottom-28 -left-16 h-80 w-80 rounded-full bg-cerulean-blue-400/20 blur-3xl dark:bg-cerulean-blue-500/20"
-                        aria-hidden
-                    />
-                    <div
-                        className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[80%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.85)_0%,transparent_65%)] opacity-60 dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06)_0%,transparent_60%)]"
-                        aria-hidden
-                    />
+                <motion.div
+                    initial={{ scale: 0.85, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.85, opacity: 0, y: 20 }}
+                    transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                    className="relative max-w-6xl w-full"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {/* Close button */}
+                    <button
+                        onClick={onClose}
+                        className="absolute -top-14 right-0 text-white/80 hover:text-white transition-colors text-sm font-medium flex items-center gap-2 z-10 bg-black/20 hover:bg-black/40 rounded-full px-4 py-2 backdrop-blur-sm"
+                        aria-label="Close modal"
+                    >
+                        <IconX size={20} stroke={2} />
+                        <span className="hidden sm:inline">Close</span>
+                    </button>
 
-                    {/* Gymnastics silhouette — faint watermark; transparent areas show the card gradient through */}
-                    <div
-                        className="pointer-events-none absolute inset-0 z-[1] bg-[length:min(85vw,400px)] bg-[position:left_4%_bottom_6%] bg-no-repeat opacity-[0.13] dark:opacity-[0.3] md:bg-[length:min(42vw,520px)] md:bg-[position:left_6%_bottom_10%]"
-                        style={{ backgroundImage: `url('${GYMNASTICS_SILHOUETTE_SRC}')` }}
-                        aria-hidden
-                    />
-
-                    <div className="relative z-10 grid gap-8 p-6 sm:p-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-10 md:p-10 lg:p-12 lg:gap-12">
-                        <div className="relative flex flex-col justify-center text-center md:text-left">
-                            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-cerulean-blue-800 dark:text-bright-sun-200/90 sm:text-[11px]">
-                                The Champions Sports Academy
-                            </p>
-                            <h2
-                                id="upcoming-events-flyer-heading"
-                                className="mt-3 text-3xl font-black uppercase italic leading-[1.05] tracking-tight text-cerulean-blue-900 dark:text-white sm:text-4xl md:text-[2.65rem] lg:text-[2.85rem]"
-                            >
-                                Champions{" "}
-                                <span className="bg-gradient-to-r from-bright-sun-500 via-bright-sun-600 to-bright-sun-500 bg-clip-text text-transparent dark:from-bright-sun-300 dark:via-bright-sun-400 dark:to-bright-sun-300">
-                                    Gymnastics
-                                </span>
-                                <span className="block text-2xl not-italic text-cerulean-blue-800 dark:text-white/95 sm:text-3xl md:inline md:text-[2.65rem]">
-                                    {" "}
-                                    Programme
-                                </span>
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-cerulean-blue-800/85 dark:text-cerulean-blue-100/90 md:mx-0 md:max-w-none md:text-base">
-                                Flagship{" "}
-                                <span className="font-bold text-bright-sun-700 dark:text-bright-sun-300">2026</span> events —
-                                save the dates and join us for festival, camp, and grading.
-                            </p>
-                            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                                <span className="inline-flex items-center rounded-full border-2 border-white bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-cerulean-blue-900 shadow-md shadow-cerulean-blue-900/10 dark:border-bright-sun-400/40 dark:bg-cerulean-blue-950/80 dark:text-white dark:shadow-black/30 sm:text-sm">
-                                    Season 2026
-                                </span>
-                                <span className="hidden text-bright-sun-500 dark:text-bright-sun-400 sm:inline" aria-hidden>
-                                    ·
-                                </span>
-                                <span className="text-xs font-bold uppercase tracking-widest text-bright-sun-700 dark:text-bright-sun-300">
-                                    Kigali, Rwanda
-                                </span>
+                    {/* Image container */}
+                    <div className="relative overflow-hidden rounded-2xl bg-cerulean-blue-950/50 shadow-2xl">
+                        <img
+                            src={src}
+                            alt={alt}
+                            className="w-full h-auto max-h-[80vh] object-contain"
+                        />
+                        
+                        {/* Bottom info bar */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
+                            <div className="flex items-center justify-between text-white">
+                                <div>
+                                    <p className="text-sm font-medium opacity-90">
+                                        Flyer {index + 1} of {totalImages}
+                                    </p>
+                                    <p className="text-xs opacity-70 mt-1">
+                                        Champions Gymnastics · Upcoming Events 2026
+                                    </p>
+                                </div>
+                                
+                                {/* Navigation arrows */}
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (onPrevious) onPrevious();
+                                        }}
+                                        className="rounded-full bg-white/10 hover:bg-white/20 transition-colors p-3 backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                                        disabled={index === 0}
+                                        aria-label="Previous image"
+                                    >
+                                        <IconChevronLeft size={20} stroke={2} />
+                                    </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (onNext) onNext();
+                                        }}
+                                        className="rounded-full bg-white/10 hover:bg-white/20 transition-colors p-3 backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                                        disabled={index === totalImages - 1}
+                                        aria-label="Next image"
+                                    >
+                                        <IconChevronRight size={20} stroke={2} />
+                                    </button>
+                                </div>
                             </div>
-                            <p
-                                className="pointer-events-none absolute -bottom-2 right-0 hidden select-none text-[6.5rem] font-black leading-none text-bright-sun-200/35 dark:text-bright-sun-400/10 md:block lg:text-[7.5rem]"
-                                aria-hidden
-                            >
-                                2026
-                            </p>
                         </div>
+                    </div>
+                </motion.div>
+            </motion.div>
+        </AnimatePresence>
+    );
+};
 
-                        <div className="relative mx-auto w-full max-w-md pb-1 pt-0.5 md:mx-0 md:max-w-none">
-                            <div
-                                className="pointer-events-none absolute -inset-4 -z-10 rounded-[1.5rem] bg-gradient-to-br from-bright-sun-300/45 via-white/45 to-cerulean-blue-400/35 opacity-95 blur-3xl dark:from-bright-sun-400/20 dark:via-transparent dark:to-cerulean-blue-500/30"
-                                aria-hidden
-                            />
-                            <div className="relative -translate-y-1 overflow-hidden rounded-xl p-[3px] shadow-[0_26px_55px_-22px_rgba(30,58,138,0.48),0_14px_32px_-18px_rgba(15,23,42,0.22),0_4px_12px_-4px_rgba(251,191,36,0.18)] transition-[transform,box-shadow] duration-300 ease-out sm:rounded-2xl sm:-translate-y-1.5 dark:shadow-[0_32px_64px_-18px_rgba(0,0,0,0.72),0_16px_40px_-20px_rgba(0,0,0,0.55),0_0_48px_-12px_rgba(251,191,36,0.14)] hover:-translate-y-2 hover:shadow-[0_32px_60px_-20px_rgba(30,58,138,0.52),0_18px_36px_-16px_rgba(15,23,42,0.25),0_6px_16px_-4px_rgba(251,191,36,0.22)] dark:hover:shadow-[0_36px_72px_-16px_rgba(0,0,0,0.78),0_0_56px_-8px_rgba(251,191,36,0.18)]">
+const Event = () => {
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+    const handleImageClick = (index: number) => {
+        setSelectedImageIndex(index);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedImageIndex(null);
+    };
+
+    const handlePrevious = () => {
+        if (selectedImageIndex !== null && selectedImageIndex > 0) {
+            setSelectedImageIndex(selectedImageIndex - 1);
+        }
+    };
+
+    const handleNext = () => {
+        if (selectedImageIndex !== null && selectedImageIndex < FLYER_IMAGES.length - 1) {
+            setSelectedImageIndex(selectedImageIndex + 1);
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-gray-50/90 via-white to-white font-['Poppins'] transition-colors duration-300 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-900">
+            <Header />
+
+            <main className="mx-auto max-w-6xl px-4 pb-14 pt-20 sm:px-5 md:pb-16 md:pt-24">
+                {/* Hero — Gymnastics 2026 (white · gold · blue) */}
+                <motion.section
+                    {...fadeUp}
+                    aria-labelledby="upcoming-events-flyer-heading"
+                    className="relative z-0 mx-auto mb-10 md:mb-14 max-w-5xl"
+                >
+                    <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
+                        
+                        {/* Decorative blobs */}
+                        <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/15" aria-hidden />
+                        <div className="pointer-events-none absolute -bottom-28 -left-16 h-80 w-80 rounded-full bg-cerulean-blue-400/20 blur-3xl dark:bg-cerulean-blue-500/20" aria-hidden />
+                        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[80%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.85)_0%,transparent_65%)] opacity-60 dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06)_0%,transparent_60%)]" aria-hidden />
+
+                        {/* Gymnastics silhouette watermark */}
+                        <div
+                            className="pointer-events-none absolute inset-0 z-[1] bg-[length:min(85vw,400px)] bg-[position:left_4%_bottom_6%] bg-no-repeat opacity-[0.13] dark:opacity-[0.3] md:bg-[length:min(42vw,520px)] md:bg-[position:left_6%_bottom_10%]"
+                            style={{ backgroundImage: `url('${GYMNASTICS_SILHOUETTE_SRC}')` }}
+                            aria-hidden
+                        />
+
+                        <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12">
+                            {/* Images grid - optimized for perfect fit */}
+                            <div className="relative mx-auto w-full">
                                 <div
-                                    className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[200%] max-w-none -translate-x-1/2 -translate-y-1/2"
+                                    className="pointer-events-none absolute -inset-4 -z-10 rounded-[1.5rem] bg-gradient-to-br from-bright-sun-300/45 via-white/45 to-cerulean-blue-400/35 opacity-95 blur-3xl dark:from-bright-sun-400/20 dark:via-transparent dark:to-cerulean-blue-500/30"
                                     aria-hidden
-                                >
-                                    <div className="h-full w-full origin-center bg-[conic-gradient(from_0deg,#fbbf24_0deg,#0ea5e9_120deg,#f59e0b_220deg,#0369a1_300deg,#fbbf24_360deg)] motion-safe:animate-flyer-border-cw motion-reduce:animate-none dark:bg-[conic-gradient(from_0deg,#fcd34d_0deg,#38bdf8_120deg,#fbbf24_220deg,#0ea5e9_300deg,#fcd34d_360deg)]" />
-                                </div>
-                                <div className="relative z-10 overflow-hidden rounded-[10px] border border-white/80 bg-white/95 shadow-inner shadow-cerulean-blue-900/5 ring-1 ring-bright-sun-300/30 dark:border-bright-sun-400/25 dark:bg-cerulean-blue-950 dark:shadow-black/40 dark:ring-bright-sun-400/15 sm:rounded-[14px]">
-                                    <img
-                                        src={FESTIVAL_FLYER_SRC}
-                                        alt="Champions Gymnastics Programme upcoming events 2026 flyer"
-                                        className="block h-auto w-full"
-                                    />
+                                />
+                                
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                                    {FLYER_IMAGES.map((src, index) => (
+                                        <motion.div 
+                                            key={src} 
+                                            className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl group cursor-pointer"
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            onClick={() => handleImageClick(index)}
+                                        >
+                                            {/* Image container with fixed aspect ratio */}
+                                            <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl bg-cerulean-blue-100/30 dark:bg-cerulean-blue-800/30">
+                                                <img
+                                                    src={src}
+                                                    alt={`Champions Gymnastics Programme upcoming events 2026 flyer ${index + 1}`}
+                                                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                            
+                                            {/* Hover overlay with zoom icon */}
+                                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
+                                                <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                                                    <IconZoomIn className="w-8 h-8 text-white" stroke={2} />
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Image number badge */}
+                                            <div className="absolute top-3 left-3 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm">
+                                                {index + 1}/{FLYER_IMAGES.length}
+                                            </div>
+                                        </motion.div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <p className="mt-4 text-center text-[10px] font-black uppercase tracking-[0.22em] text-cerulean-blue-700 dark:text-bright-sun-300/90 sm:text-xs">
-                    Champions Gymnastics · Upcoming Events 2026
-                </p>
-            </motion.section>
-
-            {/* Sports Events Organization & Management — required copy */}
-            <motion.section {...fadeUp} className="relative mb-10 overflow-hidden rounded-[1.75rem] border border-cerulean-blue-100/80 bg-gradient-to-br from-white via-white to-bright-sun-50/40 p-6 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.12)] dark:border-white/10 dark:from-cerulean-blue-900/90 dark:via-cerulean-blue-900/70 dark:to-bright-sun-900/20 dark:shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-7 md:mb-12 md:rounded-[2rem] md:p-8">
-                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/10" aria-hidden />
-                <div className="pointer-events-none absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-cerulean-blue-400/15 blur-3xl dark:bg-white/5" aria-hidden />
-
-                <div className="relative flex flex-col gap-4 md:gap-5">
-                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-bright-sun-500/25 bg-bright-sun-500/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-bright-sun-700 dark:border-bright-sun-300/30 dark:bg-bright-sun-300/10 dark:text-bright-sun-200">
-                        <IconSparkles size={14} className="shrink-0" stroke={1.75} />
-                        Events &amp; programmes
-                    </div>
-                    <h1 className="text-3xl font-black leading-[1.1] tracking-tight text-cerulean-blue-900 dark:text-white sm:text-4xl md:text-[2.75rem]">
-                        Sports Events{" "}
-                        <span className="bg-gradient-to-r from-bright-sun-600 to-bright-sun-500 bg-clip-text text-transparent dark:from-bright-sun-300 dark:to-bright-sun-400">
-                            Organization &amp; Management
-                        </span>
-                    </h1>
-                    <p className="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-200 md:text-lg">
-                        We organize, host, and manage high-quality sports events at national, regional, and international levels. Our services include
-                        competitions, camps, coaching clinics, and educational programmes—designed to promote excellence, talent development, and social impact
-                        through sport.
+                    
+                    <p className="mt-4 text-center text-[10px] font-black uppercase tracking-[0.22em] text-cerulean-blue-700 dark:text-bright-sun-300/90 sm:text-xs">
+                        Champions Gymnastics · Upcoming Events 2026
                     </p>
-                    <div className="flex flex-wrap gap-3 pt-1 text-xs font-bold uppercase tracking-wide text-cerulean-blue-800/90 dark:text-cerulean-blue-100/90">
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
-                            <IconTrophy size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
-                            Competitions
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
-                            <IconCalendarEvent size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
-                            Camps &amp; clinics
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
-                            <IconWorld size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
-                            National to international
-                        </span>
-                    </div>
-                </div>
-            </motion.section>
+                </motion.section>
 
-            <div className="space-y-10 md:space-y-12">
-                {/* Summer Camp */}
-                <motion.section {...fadeUp} className="relative">
-                    <div className="mb-5 flex flex-col gap-2 sm:mb-6 md:flex-row md:items-end md:justify-between">
-                        <div>
-                            <p className="mb-1.5 text-[10px] font-black uppercase tracking-[0.25em] text-bright-sun-600 dark:text-bright-sun-300">
-                                The Champions Sports Academy
-                            </p>
-                            <h2 className={sectionTitle}>
-                                The Champions <span className="text-bright-sun-600 dark:text-bright-sun-300">Summer Camp</span>
-                            </h2>
+                {/* Sports Events Organization & Management — required copy */}
+                <motion.section {...fadeUp} className="relative mb-10 overflow-hidden rounded-[1.75rem] border border-cerulean-blue-100/80 bg-gradient-to-br from-white via-white to-bright-sun-50/40 p-6 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.12)] dark:border-white/10 dark:from-cerulean-blue-900/90 dark:via-cerulean-blue-900/70 dark:to-bright-sun-900/20 dark:shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-7 md:mb-12 md:rounded-[2rem] md:p-8">
+                    <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/10" aria-hidden />
+                    <div className="pointer-events-none absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-cerulean-blue-400/15 blur-3xl dark:bg-white/5" aria-hidden />
+
+                    <div className="relative flex flex-col gap-4 md:gap-5">
+                        <div className="inline-flex w-fit items-center gap-2 rounded-full border border-bright-sun-500/25 bg-bright-sun-500/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-bright-sun-700 dark:border-bright-sun-300/30 dark:bg-bright-sun-300/10 dark:text-bright-sun-200">
+                            <IconSparkles size={14} className="shrink-0" stroke={1.75} />
+                            Events &amp; programmes
                         </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-cerulean-blue-100/90 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-cerulean-blue-900/40 md:p-5">
-                        <p className="mb-4 text-center text-sm font-black uppercase tracking-tight text-cerulean-blue-800 dark:text-cerulean-blue-100 md:mb-5 md:text-base">
-                            The Champions National Children Karate Training
+                        <h1 className="text-3xl font-black leading-[1.1] tracking-tight text-cerulean-blue-900 dark:text-white sm:text-4xl md:text-[2.75rem]">
+                            Sports Events{" "}
+                            <span className="bg-gradient-to-r from-bright-sun-600 to-bright-sun-500 bg-clip-text text-transparent dark:from-bright-sun-300 dark:to-bright-sun-400">
+                                Organization &amp; Management
+                            </span>
+                        </h1>
+                        <p className="max-w-3xl text-base leading-relaxed text-gray-700 dark:text-gray-200 md:text-lg">
+                            We organize, host, and manage high-quality sports events at national, regional, and international levels. Our services include
+                            competitions, camps, coaching clinics, and educational programmes—designed to promote excellence, talent development, and social impact
+                            through sport.
                         </p>
-                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-3 md:gap-4">
-                            {SUMMER_CAMP_VIDEOS.map((src, index) => (
-                                <div
-                                    key={src}
-                                    className="group relative mx-auto w-full max-w-[min(100%,280px)] overflow-hidden rounded-xl border-2 border-cerulean-blue-200/90 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/15 dark:shadow-black/30 dark:ring-white/5 sm:max-w-none"
-                                >
-                                    <div className="absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
-                                    <video
-                                        src={src}
-                                        controls
-                                        playsInline
-                                        preload="metadata"
-                                        className="mx-auto block max-h-[min(70vh,480px)] w-full bg-black object-contain sm:max-h-[min(75vh,520px)]"
-                                        aria-label={`National children karate training clip ${index + 1}`}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <div className="mx-auto mt-6 max-w-5xl md:mt-8">
-                            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-6 lg:gap-8">
-                                <div className="min-w-0">
-                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
-                                        <iframe
-                                            className="absolute inset-0 h-full w-full border-0"
-                                            src="https://www.youtube.com/embed/Ayj1lSBqvbs?rel=0&modestbranding=1&loop=1&playlist=Ayj1lSBqvbs"
-                                            title="The Champions National Children Karate Training — YouTube"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            referrerPolicy="strict-origin-when-cross-origin"
-                                            allowFullScreen
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <p className="mt-3 text-center">
-                                        <a
-                                            href="https://youtu.be/Ayj1lSBqvbs?si=Gw3mf1hjAuXck7sC"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
-                                        >
-                                            Open on YouTube
-                                        </a>
-                                    </p>
-                                </div>
-                                <div className="min-w-0">
-                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
-                                        <iframe
-                                            className="absolute inset-0 h-full w-full border-0"
-                                            src={EVENTS_HOSTING_SPOTLIGHT_EMBED}
-                                            title="The Champions Sports Academy — events spotlight"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            referrerPolicy="strict-origin-when-cross-origin"
-                                            allowFullScreen
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <p className="mt-3 text-center">
-                                        <a
-                                            href={EVENTS_HOSTING_SPOTLIGHT_WATCH}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
-                                        >
-                                            Open on YouTube
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
+                        <div className="flex flex-wrap gap-3 pt-1 text-xs font-bold uppercase tracking-wide text-cerulean-blue-800/90 dark:text-cerulean-blue-100/90">
+                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
+                                <IconTrophy size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
+                                Competitions
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
+                                <IconCalendarEvent size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
+                                Camps &amp; clinics
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 px-2.5 py-1.5 shadow-sm ring-1 ring-cerulean-blue-900/5 dark:bg-white/10 dark:ring-white/10">
+                                <IconWorld size={16} className="text-bright-sun-600 dark:text-bright-sun-300" stroke={1.5} />
+                                National to international
+                            </span>
                         </div>
                     </div>
                 </motion.section>
 
-                {/* Events Hosting */}
-                <motion.section {...fadeUp} className="relative">
-                    <div className="mb-5 sm:mb-6">
-                        <h2 className={`${sectionTitle} text-center`}>
-                            The Champions <span className="text-bright-sun-600 dark:text-bright-sun-300">Events Hosting</span>
-                        </h2>
-                        <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-gray-600 dark:text-gray-400">
-                            From national showcases to international standards—experience our hosting in action.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        {/* National */}
-                        <div className="flex flex-col overflow-hidden rounded-2xl border border-cerulean-blue-100 bg-white/70 shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/50">
-                            <div className="flex items-center gap-2 border-b border-cerulean-blue-100/80 bg-gradient-to-r from-bright-sun-500/10 to-transparent px-4 py-3 dark:border-white/10 dark:from-bright-sun-400/10">
-                                <IconFlag className="text-bright-sun-600 dark:text-bright-sun-300" size={22} stroke={1.5} />
-                                <h3 className="text-lg font-black uppercase italic tracking-tight text-cerulean-blue-900 dark:text-white md:text-xl">
-                                    National Level
-                                </h3>
-                            </div>
-                            <div className="p-3 md:p-4">
-                                <div className="overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-inner dark:border-white/15">
-                                    <video
-                                        src={ISHOW_VIDEO_SRC}
-                                        controls
-                                        playsInline
-                                        preload="metadata"
-                                        className="mx-auto block max-h-[min(70vh,520px)] w-full bg-black object-contain"
-                                        aria-label="National level sports event hosting"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* International */}
-                        <div className="flex flex-col overflow-hidden rounded-2xl border border-cerulean-blue-100 bg-white/70 shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/50">
-                            <div className="flex items-center gap-2 border-b border-cerulean-blue-100/80 bg-gradient-to-r from-cerulean-blue-500/10 to-transparent px-4 py-3 dark:border-white/10 dark:from-white/5">
-                                <IconWorld className="text-bright-sun-600 dark:text-bright-sun-300" size={22} stroke={1.5} />
-                                <h3 className="text-lg font-black uppercase italic tracking-tight text-cerulean-blue-900 dark:text-white md:text-xl">
-                                    International Level
-                                </h3>
-                            </div>
-                            <div className="flex flex-1 flex-col justify-center gap-4 p-5 md:p-6">
-                                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base">
-                                    We bring international best practices to every event—coordination with federations, technical standards, and athlete-centred
-                                    experiences that reflect Rwanda&apos;s place on the global sport map.
+                <div className="space-y-10 md:space-y-12">
+                    {/* Summer Camp */}
+                    <motion.section {...fadeUp} className="relative">
+                        <div className="mb-5 flex flex-col gap-2 sm:mb-6 md:flex-row md:items-end md:justify-between">
+                            <div>
+                                <p className="mb-1.5 text-[10px] font-black uppercase tracking-[0.25em] text-bright-sun-600 dark:text-bright-sun-300">
+                                    The Champions Sports Academy
                                 </p>
-                                <ul className="space-y-2.5 text-sm text-gray-600 dark:text-gray-400">
-                                    <li className="flex gap-2">
-                                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
-                                        Cross-border competitions and training exchanges
-                                    </li>
-                                    <li className="flex gap-2">
-                                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
-                                        Alignment with international rules and safe sport
-                                    </li>
-                                    <li className="flex gap-2">
-                                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
-                                        Programmes that build pathways for elite and grassroots athletes
-                                    </li>
-                                </ul>
+                                <h2 className={sectionTitle}>
+                                    The Champions <span className="text-bright-sun-600 dark:text-bright-sun-300">Summer Camp</span>
+                                </h2>
                             </div>
                         </div>
-                    </div>
-                </motion.section>
-            </div>
-        </main>
 
-        <Footer />
-    </div>
-);
+                        <div className="rounded-2xl border border-cerulean-blue-100/90 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-cerulean-blue-900/40 md:p-5">
+                            <p className="mb-4 text-center text-sm font-black uppercase tracking-tight text-cerulean-blue-800 dark:text-cerulean-blue-100 md:mb-5 md:text-base">
+                                The Champions National Children Karate Training
+                            </p>
+                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-3 md:gap-4">
+                                {SUMMER_CAMP_VIDEOS.map((src, index) => (
+                                    <div
+                                        key={src}
+                                        className="group relative mx-auto w-full max-w-[min(100%,280px)] overflow-hidden rounded-xl border-2 border-cerulean-blue-200/90 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:border-white/15 dark:shadow-black/30 dark:ring-white/5 sm:max-w-none"
+                                    >
+                                        <div className="absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
+                                        <video
+                                            src={src}
+                                            controls
+                                            playsInline
+                                            preload="metadata"
+                                            className="mx-auto block max-h-[min(70vh,480px)] w-full bg-black object-contain sm:max-h-[min(75vh,520px)]"
+                                            aria-label={`National children karate training clip ${index + 1}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="mx-auto mt-6 max-w-5xl md:mt-8">
+                                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-6 lg:gap-8">
+                                    <div className="min-w-0">
+                                        <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
+                                            <iframe
+                                                className="absolute inset-0 h-full w-full border-0"
+                                                src="https://www.youtube.com/embed/Ayj1lSBqvbs?rel=0&modestbranding=1&loop=1&playlist=Ayj1lSBqvbs"
+                                                title="The Champions National Children Karate Training — YouTube"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                referrerPolicy="strict-origin-when-cross-origin"
+                                                allowFullScreen
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <p className="mt-3 text-center">
+                                            <a
+                                                href="https://youtu.be/Ayj1lSBqvbs?si=Gw3mf1hjAuXck7sC"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                                            >
+                                                Open on YouTube
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div className="min-w-0">
+                                        <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-1 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/30 dark:ring-white/5">
+                                            <iframe
+                                                className="absolute inset-0 h-full w-full border-0"
+                                                src={EVENTS_HOSTING_SPOTLIGHT_EMBED}
+                                                title="The Champions Sports Academy — events spotlight"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                referrerPolicy="strict-origin-when-cross-origin"
+                                                allowFullScreen
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <p className="mt-3 text-center">
+                                            <a
+                                                href={EVENTS_HOSTING_SPOTLIGHT_WATCH}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-xs font-bold uppercase tracking-widest text-bright-sun-600 underline-offset-4 hover:underline dark:text-bright-sun-300"
+                                            >
+                                                Open on YouTube
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.section>
+
+                    {/* Events Hosting */}
+                    <motion.section {...fadeUp} className="relative">
+                        <div className="mb-5 sm:mb-6">
+                            <h2 className={`${sectionTitle} text-center`}>
+                                The Champions <span className="text-bright-sun-600 dark:text-bright-sun-300">Events Hosting</span>
+                            </h2>
+                            <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-gray-600 dark:text-gray-400">
+                                From national showcases to international standards—experience our hosting in action.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+                            {/* National */}
+                            <div className="flex flex-col overflow-hidden rounded-2xl border border-cerulean-blue-100 bg-white/70 shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/50">
+                                <div className="flex items-center gap-2 border-b border-cerulean-blue-100/80 bg-gradient-to-r from-bright-sun-500/10 to-transparent px-4 py-3 dark:border-white/10 dark:from-bright-sun-400/10">
+                                    <IconFlag className="text-bright-sun-600 dark:text-bright-sun-300" size={22} stroke={1.5} />
+                                    <h3 className="text-lg font-black uppercase italic tracking-tight text-cerulean-blue-900 dark:text-white md:text-xl">
+                                        National Level
+                                    </h3>
+                                </div>
+                                <div className="p-3 md:p-4">
+                                    <div className="overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-inner dark:border-white/15">
+                                        <video
+                                            src={ISHOW_VIDEO_SRC}
+                                            controls
+                                            playsInline
+                                            preload="metadata"
+                                            className="mx-auto block max-h-[min(70vh,520px)] w-full bg-black object-contain"
+                                            aria-label="National level sports event hosting"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* International */}
+                            <div className="flex flex-col overflow-hidden rounded-2xl border border-cerulean-blue-100 bg-white/70 shadow-md dark:border-white/10 dark:bg-cerulean-blue-900/50">
+                                <div className="flex items-center gap-2 border-b border-cerulean-blue-100/80 bg-gradient-to-r from-cerulean-blue-500/10 to-transparent px-4 py-3 dark:border-white/10 dark:from-white/5">
+                                    <IconWorld className="text-bright-sun-600 dark:text-bright-sun-300" size={22} stroke={1.5} />
+                                    <h3 className="text-lg font-black uppercase italic tracking-tight text-cerulean-blue-900 dark:text-white md:text-xl">
+                                        International Level
+                                    </h3>
+                                </div>
+                                <div className="flex flex-1 flex-col justify-center gap-4 p-5 md:p-6">
+                                    <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 md:text-base">
+                                        We bring international best practices to every event—coordination with federations, technical standards, and athlete-centred
+                                        experiences that reflect Rwanda&apos;s place on the global sport map.
+                                    </p>
+                                    <ul className="space-y-2.5 text-sm text-gray-600 dark:text-gray-400">
+                                        <li className="flex gap-2">
+                                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
+                                            Cross-border competitions and training exchanges
+                                        </li>
+                                        <li className="flex gap-2">
+                                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
+                                            Alignment with international rules and safe sport
+                                        </li>
+                                        <li className="flex gap-2">
+                                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-bright-sun-500" />
+                                            Programmes that build pathways for elite and grassroots athletes
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.section>
+                </div>
+            </main>
+
+            <Footer />
+
+            {/* Modal */}
+            <AnimatePresence>
+                {selectedImageIndex !== null && (
+                    <ImageModal
+                        src={FLYER_IMAGES[selectedImageIndex]}
+                        alt={`Flyer ${selectedImageIndex + 1}`}
+                        index={selectedImageIndex}
+                        totalImages={FLYER_IMAGES.length}
+                        onClose={handleCloseModal}
+                        onPrevious={handlePrevious}
+                        onNext={handleNext}
+                    />
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
 
 export default Event;
