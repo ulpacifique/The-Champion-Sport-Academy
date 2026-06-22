@@ -46,14 +46,14 @@ interface ImageModalProps {
     onNext: () => void;
 }
 
-const ImageModal = ({ 
-    src, 
-    alt, 
-    index, 
-    totalImages, 
-    onClose, 
-    onPrevious, 
-    onNext 
+const ImageModal = ({
+    src,
+    alt,
+    index,
+    totalImages,
+    onClose,
+    onPrevious,
+    onNext
 }: ImageModalProps) => {
     // Handle keyboard events
     useEffect(() => {
@@ -105,7 +105,7 @@ const ImageModal = ({
                             alt={alt}
                             className="w-full h-auto max-h-[80vh] object-contain"
                         />
-                        
+
                         {/* Bottom info bar */}
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
                             <div className="flex items-center justify-between text-white">
@@ -117,7 +117,7 @@ const ImageModal = ({
                                         Champions Gymnastics · Upcoming Events 2026
                                     </p>
                                 </div>
-                                
+
                                 {/* Navigation arrows */}
                                 <div className="flex gap-2">
                                     <button
@@ -152,8 +152,52 @@ const ImageModal = ({
     );
 };
 
+const TypewriterText = ({ text }: { text: string }) => {
+    const [animationKey, setAnimationKey] = useState(0);
+
+    useEffect(() => {
+        // Slower typing speed: takes ~22 seconds to type out completely.
+        // Resets after 35 seconds to give plenty of time to read before restarting.
+        const interval = setInterval(() => {
+            setAnimationKey(prev => prev + 1);
+        }, 35000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <motion.div 
+            key={animationKey}
+            className="text-left whitespace-pre-wrap text-sm sm:text-base font-semibold tracking-wide text-cerulean-blue-900 dark:text-white mb-6 sm:mb-8 md:mb-10 min-h-[2rem] bg-white/60 dark:bg-cerulean-blue-900/60 p-5 sm:p-6 rounded-[1.5rem] shadow-md border border-bright-sun-300/40"
+            initial="hidden"
+            animate="visible"
+            variants={{
+                visible: { transition: { staggerChildren: 0.03 } },
+                hidden: {}
+            }}
+        >
+            {text.split("").map((char, index) => (
+                <motion.span
+                    key={index}
+                    variants={{
+                        visible: { opacity: 1, display: "inline" },
+                        hidden: { opacity: 0, display: "none" }
+                    }}
+                >
+                    {char}
+                </motion.span>
+            ))}
+            <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-1.5 sm:w-2 h-4 sm:h-5 bg-bright-sun-500 ml-1 sm:ml-1.5 align-middle"
+            />
+        </motion.div>
+    );
+};
+
 const Event = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+    const [carouselActiveIndex, setCarouselActiveIndex] = useState<number>(1);
 
     const handleImageClick = (index: number) => {
         setSelectedImageIndex(index);
@@ -186,8 +230,26 @@ const Event = () => {
                     aria-labelledby="upcoming-events-flyer-heading"
                     className="relative z-0 mx-auto mb-10 md:mb-14 max-w-5xl"
                 >
+                    <TypewriterText text={`Please note that the Gymnastics Summer Camp 2026 flyer has been updated.
+
+📍 Venue: École Notre Dame des Anges, Remera, Kigali
+📅 Programme Period: 30 June – 5 September 2026
+📝 Registration & Prepayment: 23 June – 29 June 2026
+⏰ Training Schedule: Monday–Friday, 08:00 AM – 12:00 PM
+🏅 Weekend Programme: Continues as usual (10:00 AM–12:00 PM and 03:00 PM–05:00 PM)
+💳 Payment: Mobile Money 997885 – The Champions Sports Academy
+
+✅ Full 2-month package includes:
+* Summer Camp
+* Gymnastics Level Grading Test Fee
+* Access to weekend sessions when a child misses a weekday training session
+
+🎉 Special 20% discount available for families who pay for the full programme.
+
+Thank you for your understanding and continued support.`} />
+                    
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
-                        
+
                         {/* Decorative blobs */}
                         <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-bright-sun-400/25 blur-3xl dark:bg-bright-sun-400/15" aria-hidden />
                         <div className="pointer-events-none absolute -bottom-28 -left-16 h-80 w-80 rounded-full bg-cerulean-blue-400/20 blur-3xl dark:bg-cerulean-blue-500/20" aria-hidden />
@@ -201,50 +263,76 @@ const Event = () => {
                         />
 
                         <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12">
-                            {/* Images grid - optimized for perfect fit */}
-                            <div className="relative mx-auto w-full">
+                            {/* Images Carousel - 3D Effect */}
+                            <div className="relative mx-auto w-full max-w-4xl h-[380px] sm:h-[450px] md:h-[550px] flex items-center justify-center">
                                 <div
                                     className="pointer-events-none absolute -inset-4 -z-10 rounded-[1.5rem] bg-gradient-to-br from-bright-sun-300/45 via-white/45 to-cerulean-blue-400/35 opacity-95 blur-3xl dark:from-bright-sun-400/20 dark:via-transparent dark:to-cerulean-blue-500/30"
                                     aria-hidden
                                 />
                                 
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-                                    {FLYER_IMAGES.map((src, index) => (
-                                        <motion.div 
-                                            key={src} 
-                                            className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl group cursor-pointer"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            onClick={() => handleImageClick(index)}
+                                {FLYER_IMAGES.map((src, index) => {
+                                    let position = 0;
+                                    if (index === carouselActiveIndex) {
+                                        position = 0;
+                                    } else if (index === (carouselActiveIndex + 1) % FLYER_IMAGES.length) {
+                                        position = 1;
+                                    } else {
+                                        position = -1;
+                                    }
+
+                                    const isCenter = position === 0;
+
+                                    return (
+                                        <motion.div
+                                            key={src}
+                                            className="absolute w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] aspect-[3/4] origin-center cursor-pointer overflow-hidden rounded-2xl shadow-2xl"
+                                            style={{ left: 0, right: 0, margin: 'auto' }}
+                                            initial={false}
+                                            animate={{
+                                                x: `${position * 65}%`,
+                                                scale: isCenter ? 1 : 0.8,
+                                                opacity: isCenter ? 1 : 0.6,
+                                                zIndex: isCenter ? 20 : 10,
+                                            }}
+                                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                                            onClick={() => {
+                                                if (isCenter) {
+                                                    handleImageClick(index);
+                                                } else {
+                                                    setCarouselActiveIndex(index);
+                                                }
+                                            }}
+                                            whileHover={{ scale: isCenter ? 1.02 : 0.82 }}
                                         >
-                                            {/* Image container with fixed aspect ratio */}
-                                            <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl bg-cerulean-blue-100/30 dark:bg-cerulean-blue-800/30">
-                                                <img
-                                                    src={src}
-                                                    alt={`Champions Gymnastics Programme upcoming events 2026 flyer ${index + 1}`}
-                                                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                            
+                                            <img
+                                                src={src}
+                                                alt={`Champions Gymnastics Programme upcoming events 2026 flyer ${index + 1}`}
+                                                className="h-full w-full object-cover object-center"
+                                                loading="lazy"
+                                            />
+
                                             {/* Hover overlay with zoom icon */}
-                                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
-                                                <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                                                    <IconZoomIn className="w-8 h-8 text-white" stroke={2} />
+                                            {isCenter && (
+                                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100 flex items-center justify-center">
+                                                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-90 hover:scale-100 transition-transform duration-300">
+                                                        <IconZoomIn className="w-8 h-8 text-white" stroke={2} />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            
+                                            )}
+
                                             {/* Image number badge */}
-                                            <div className="absolute top-3 left-3 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm">
-                                                {index + 1}/{FLYER_IMAGES.length}
-                                            </div>
+                                            {isCenter && (
+                                                <div className="absolute top-3 left-3 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur-sm z-30">
+                                                    {index + 1}/{FLYER_IMAGES.length}
+                                                </div>
+                                            )}
                                         </motion.div>
-                                    ))}
-                                </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
-                    
+
                     <p className="mt-4 text-center text-[10px] font-black uppercase tracking-[0.22em] text-cerulean-blue-700 dark:text-bright-sun-300/90 sm:text-xs">
                         Champions Gymnastics · Upcoming Events 2026
                     </p>
@@ -317,7 +405,7 @@ const Event = () => {
                                             src={src}
                                             controls
                                             playsInline
-                                            preload="metadata"
+                                            preload="none"
                                             className="mx-auto block max-h-[min(70vh,480px)] w-full bg-black object-contain sm:max-h-[min(75vh,520px)]"
                                             aria-label={`National children karate training clip ${index + 1}`}
                                         />
@@ -403,7 +491,7 @@ const Event = () => {
                                             src={ISHOW_VIDEO_SRC}
                                             controls
                                             playsInline
-                                            preload="metadata"
+                                            preload="none"
                                             className="mx-auto block max-h-[min(70vh,520px)] w-full bg-black object-contain"
                                             aria-label="National level sports event hosting"
                                         />

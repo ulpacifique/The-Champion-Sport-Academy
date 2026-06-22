@@ -67,9 +67,15 @@ const NavLinks = () => {
 
                     const LinkContent = (
                         <div className="relative flex flex-col items-center justify-center h-full px-1.5 md:px-2 lg:px-2.5 xl:px-3 group cursor-pointer">
-                            <span className={`text-[11px] sm:text-xs lg:text-sm xl:text-[15px] font-bold tracking-tight transition-all duration-300 whitespace-nowrap ${isActive ? "text-bright-sun-600 dark:text-bright-sun-300" : "text-gray-500 dark:text-gray-300 group-hover:text-cerulean-blue-900 dark:group-hover:text-white"
+                            <span className={`text-[11px] sm:text-xs lg:text-sm xl:text-[15px] font-bold tracking-tight transition-all duration-300 whitespace-nowrap flex items-center gap-1.5 ${isActive ? "text-bright-sun-600 dark:text-bright-sun-300" : "text-gray-500 dark:text-gray-300 group-hover:text-cerulean-blue-900 dark:group-hover:text-white"
                                 }`}>
                                 {link.name}
+                                {link.name === "Events" && (
+                                    <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 -mt-2.5 sm:-mt-3">
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                        <span className="relative inline-flex h-full w-full rounded-full bg-red-500"></span>
+                                    </span>
+                                )}
                             </span>
 
                             {/* Modern Bottom Indicator */}
@@ -139,7 +145,15 @@ const NavLinks = () => {
                                             ? "bg-bright-sun-100 dark:bg-bright-sun-300/10 text-bright-sun-600 dark:text-bright-sun-300 border border-bright-sun-200 dark:border-bright-sun-300/20"
                                             : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-cerulean-blue-900 dark:hover:text-white border border-transparent"
                                         }`}>
-                                        <span className="font-bold tracking-tight">{link.name}</span>
+                                        <span className="font-bold tracking-tight flex items-center gap-2">
+                                            {link.name}
+                                            {link.name === "Events" && (
+                                                <span className="relative flex h-2 w-2">
+                                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                                    <span className="relative inline-flex h-full w-full rounded-full bg-red-500"></span>
+                                                </span>
+                                            )}
+                                        </span>
                                         {isActive && <div className="w-1.5 h-1.5 rounded-full bg-bright-sun-300 shadow-[0_0_8px_rgba(255,191,0,0.6)]" />}
                                     </div>
                                 );

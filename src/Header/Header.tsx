@@ -181,10 +181,10 @@ const Header = () => {
 
                 <Link
                     to="/schedule"
-                    className="inline-flex shrink-0 items-center justify-center rounded-full border-2 border-bright-sun-400/80 bg-bright-sun-300 px-3 py-2 text-[10px] font-black uppercase tracking-wide text-cerulean-blue-950 shadow-md shadow-bright-sun-500/25 transition-all hover:bg-bright-sun-400 hover:shadow-lg hover:shadow-bright-sun-500/35 active:scale-95 dark:border-bright-sun-300 dark:bg-bright-sun-300 dark:text-cerulean-blue-950 dark:shadow-bright-sun-400/20 dark:hover:bg-bright-sun-400 sm:px-4 sm:text-[11px] md:text-xs"
+                    className="hidden sm:flex shrink-0 flex-col items-center justify-center rounded-xl sm:rounded-2xl border border-bright-sun-400/80 bg-bright-sun-300 px-2 py-1 text-[8px] sm:text-[9px] font-black uppercase leading-none tracking-wider text-cerulean-blue-950 shadow-sm transition-all hover:bg-bright-sun-400 hover:shadow active:scale-95 dark:border-bright-sun-300 dark:bg-bright-sun-300 dark:text-cerulean-blue-950 lg:px-3 lg:py-1.5 lg:text-[10px]"
                 >
-                    Programmes
-                    <br/> Updates
+                    <span>Programmes</span>
+                    <span>Updates</span>
                 </Link>
 
                 {/* Theme Toggle Button */}
