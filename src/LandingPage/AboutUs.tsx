@@ -119,8 +119,7 @@ const AboutUs = () => {
               <span className="h-px min-w-[48px] flex-1 bg-gradient-to-r from-transparent to-bright-sun-500 dark:from-transparent dark:to-bright-sun-400 md:min-w-[72px]" aria-hidden />
               <div className="relative shrink-0 rounded-full p-[3px] shadow-lg shadow-black/10 ring-2 ring-bright-sun-400/90 dark:ring-bright-sun-400/80 dark:shadow-black/30">
                 <div className="h-24 w-24 overflow-hidden rounded-full bg-cerulean-blue-900 md:h-28 md:w-28">
-                  <img
-                    src={`${import.meta.env.BASE_URL}champion-logo.png`}
+                  <img loading="lazy" src={`${import.meta.env.BASE_URL}champion-logo.png`}
                     alt="The Champions Sports Academy"
                     className="h-full w-full object-contain p-1.5"
                   />
@@ -163,7 +162,7 @@ const AboutUs = () => {
                   </div>
                   <div className="flex justify-center bg-sky-50 px-4 pb-3 pt-5 dark:bg-cerulean-blue-800/35">
                     <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-sky-200/90 bg-white shadow-sm ring-2 ring-sky-100 dark:h-28 dark:w-28 dark:border-cerulean-blue-400/40 dark:bg-cerulean-blue-900/50 dark:ring-cerulean-blue-600/25">
-                      <img src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
+                      <img loading="lazy" src={value.avatar} alt={value.name} className="h-full w-full object-cover" />
                     </div>
                   </div>
                   <div className="flex min-h-[3.75rem] flex-1 items-start justify-center border-t border-gray-100 bg-gray-50/80 px-3 pb-5 pt-3 text-center dark:border-white/10 dark:bg-cerulean-blue-900/35">
@@ -207,8 +206,7 @@ const AboutUs = () => {
                 className="relative w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10"
                 style={{ aspectRatio: "16 / 9" }}
               >
-                <iframe
-                  className="absolute left-0 top-0 h-full w-full border-0"
+                <iframe loading="lazy" className="absolute left-0 top-0 h-full w-full border-0"
                   src="https://www.youtube-nocookie.com/embed/KE73WmQVILM?rel=0&modestbranding=1&playsinline=1"
                   title="Testimony of Athletes and Coaches"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -304,8 +302,7 @@ const AboutUs = () => {
                 className="relative w-full overflow-hidden rounded-xl border-2 border-cerulean-blue-200/80 bg-black shadow-lg shadow-cerulean-blue-900/10 ring-2 ring-cerulean-blue-900/5 dark:border-white/15 dark:shadow-black/40 dark:ring-white/10"
                 style={{ aspectRatio: "16/9" }}
               >
-                <iframe
-                  className="absolute left-0 top-0 h-full w-full border-0"
+                <iframe loading="lazy" className="absolute left-0 top-0 h-full w-full border-0"
                   src="https://www.youtube-nocookie.com/embed/5ra6d8S61F8?rel=0&modestbranding=1&playsinline=1"
                   title="International athlete Medals(performance)"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

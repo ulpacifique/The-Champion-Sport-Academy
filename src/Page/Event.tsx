@@ -21,7 +21,7 @@ const EVENTS_HOSTING_SPOTLIGHT_EMBED =
 const EVENTS_HOSTING_SPOTLIGHT_WATCH = "https://youtu.be/OdhBViMDGGk?si=zPCOfuPcKQ_mffzJ";
 const SUMMER_CAMP_VIDEOS = [`${BASE}athletes/k1.mp4`, `${BASE}athletes/k2.mp4`, `${BASE}athletes/k3.mp4`] as const;
 const ISHOW_VIDEO_SRC = `${BASE}athletes/ishow.mp4`;
-const FLYER_IMAGES = [`${BASE}flyer1.jpeg`, `${BASE}flyer2.jpeg`, `${BASE}flyer3.jpeg`] as const;
+const FLYER_IMAGES = [`${BASE}flyer11.webp`, `${BASE}flyerTR.webp`, `${BASE}flyer.webp`] as const;
 /** Transparent PNG — used as a soft watermark behind Upcoming Events (same spirit as the large "2026" motif) */
 const GYMNASTICS_SILHOUETTE_SRC = `${BASE}athletes/gymanstics.png`;
 
@@ -100,8 +100,7 @@ const ImageModal = ({
 
                     {/* Image container */}
                     <div className="relative overflow-hidden rounded-2xl bg-cerulean-blue-950/50 shadow-2xl">
-                        <img
-                            src={src}
+                        <img loading="lazy" src={src}
                             alt={alt}
                             className="w-full h-auto max-h-[80vh] object-contain"
                         />
@@ -165,7 +164,7 @@ const TypewriterText = ({ text }: { text: string }) => {
     }, []);
 
     return (
-        <motion.div 
+        <motion.div
             key={animationKey}
             className="text-left whitespace-pre-wrap text-sm sm:text-base font-semibold tracking-wide text-cerulean-blue-900 dark:text-white mb-6 sm:mb-8 md:mb-10 min-h-[2rem] bg-white/60 dark:bg-cerulean-blue-900/60 p-5 sm:p-6 rounded-[1.5rem] shadow-md border border-bright-sun-300/40"
             initial="hidden"
@@ -230,24 +229,20 @@ const Event = () => {
                     aria-labelledby="upcoming-events-flyer-heading"
                     className="relative z-0 mx-auto mb-10 md:mb-14 max-w-5xl"
                 >
-                    <TypewriterText text={`Please note that the Gymnastics Summer Camp 2026 flyer has been updated.
+                    <TypewriterText text={`Dear Champions Family, Our Gymnastics Summer Camp 2026 has officially begun! For full details, please see the flyer below.
 
 📍 Venue: École Notre Dame des Anges, Remera, Kigali
-📅 Programme Period: 30 June – 5 September 2026
-📝 Registration & Prepayment: 23 June – 29 June 2026
-⏰ Training Schedule: Monday–Friday, 08:00 AM – 12:00 PM
-🏅 Weekend Programme: Continues as usual (10:00 AM–12:00 PM and 03:00 PM–05:00 PM)
+📅 Dates: 30 June – 5 September 2026
+📝 Registration: 23 – 29 June 2026
+⏰ Training: Mon–Fri, 8:00 AM – 12:00 PM
+🏅 Weekends: 10:00 AM–12:00 PM & 3:00 PM–5:00 PM
 💳 Payment: Mobile Money 997885 – The Champions Sports Academy
 
-✅ Full 2-month package includes:
-* Summer Camp
-* Gymnastics Level Grading Test Fee
-* Access to weekend sessions when a child misses a weekday training session
+✅ 2-month package includes: Summer Camp, Grading Test Fee, & weekend catch-up sessions.
+🎉 20% discount for full-package families.
 
-🎉 Special 20% discount available for families who pay for the full programme.
+Thank you for your support!`} />
 
-Thank you for your understanding and continued support.`} />
-                    
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
 
                         {/* Decorative blobs */}
@@ -269,7 +264,7 @@ Thank you for your understanding and continued support.`} />
                                     className="pointer-events-none absolute -inset-4 -z-10 rounded-[1.5rem] bg-gradient-to-br from-bright-sun-300/45 via-white/45 to-cerulean-blue-400/35 opacity-95 blur-3xl dark:from-bright-sun-400/20 dark:via-transparent dark:to-cerulean-blue-500/30"
                                     aria-hidden
                                 />
-                                
+
                                 {FLYER_IMAGES.map((src, index) => {
                                     let position = 0;
                                     if (index === carouselActiveIndex) {

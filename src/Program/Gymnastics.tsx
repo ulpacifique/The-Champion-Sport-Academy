@@ -164,7 +164,7 @@ const Gymnastics = () => {
                                     loop
                                     playsInline
                                     autoPlay
-                                    preload="auto"
+                                    preload="none"
                                     aria-label="Artistic gymnastics programme highlight"
                                 />
                             </div>
@@ -325,8 +325,7 @@ const Gymnastics = () => {
                                         className="relative group rounded-[2.5rem] overflow-hidden cursor-pointer bg-gray-900/50 border-[6px] border-white dark:border-cerulean-blue-900 shadow-xl"
                                         onClick={() => setSelectedImageIndex(i)}
                                     >
-                                        <img
-                                            src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
+                                        <img loading="lazy" src={image.imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${image.imageUrl}` : image.imageUrl}
                                             alt={image.title}
                                             className="w-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                                             onError={(e) => {
@@ -419,8 +418,7 @@ const Gymnastics = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="relative w-full h-[75vh] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 bg-black/40">
-                                <img
-                                    src={galleryImages[selectedImageIndex].imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${galleryImages[selectedImageIndex].imageUrl}` : galleryImages[selectedImageIndex].imageUrl}
+                                <img loading="lazy" src={galleryImages[selectedImageIndex].imageUrl?.startsWith('/') ? `${ASSET_BASE_URL}${galleryImages[selectedImageIndex].imageUrl}` : galleryImages[selectedImageIndex].imageUrl}
                                     alt={galleryImages[selectedImageIndex].title}
                                     className="w-full h-full object-contain"
                                     onError={(e) => {

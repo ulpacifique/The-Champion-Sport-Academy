@@ -11,6 +11,8 @@ import {
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
+const BASE = import.meta.env.BASE_URL;
+
 const MAPS_URL =
     "https://www.google.com/maps/place/Notre-Dame+des+Anges+Primary+School/@-1.9565098,30.1165394,724m/data=!3m1!1e3!4m6!3m5!1s0x19dca707371711d7:0x1e0a32fbe53778a3!8m2!3d-1.956495!4d30.1191044!16s%2Fg%2F1jkwl0txl";
 
@@ -51,40 +53,34 @@ type Slot = {
 const weekdaySlots: Slot[] = [
     {
         day: "Monday – Friday",
-        title: "Home classes (individual / group)",
-        note: "By appointment",
-        icon: IconHome,
+        title: "Summer Camp Training",
+        note: "08:00 AM – 12:00 PM",
+        icon: IconSun,
     },
 ];
 
 const weekendSlots: Slot[] = [
     {
         day: "Saturday",
-        title: "Gymnastics morning training",
-        sessions: [
-            { group: "Ages 7–17", time: "09:30 – 11:30" },
-            { group: "Ages 3–6 (Active Start)", time: "10:30 – 12:00" },
-        ],
+        title: "Morning training",
+        time: "10:00 – 12:00",
         icon: IconSun,
     },
     {
         day: "Saturday",
-        title: "Afternoon training (all children)",
+        title: "Afternoon training",
         time: "15:00 – 17:00",
         icon: IconSun,
     },
     {
         day: "Sunday",
-        title: "Gymnastics morning training",
-        sessions: [
-            { group: "Ages 7–17", time: "09:30 – 11:30" },
-            { group: "Ages 3–6 (Active Start)", time: "10:30 – 12:00" },
-        ],
+        title: "Morning training",
+        time: "10:00 – 12:00",
         icon: IconSun,
     },
     {
         day: "Sunday",
-        title: "Afternoon training (all children)",
+        title: "Afternoon training",
         time: "15:00 – 17:00",
         icon: IconSun,
     },
@@ -104,7 +100,15 @@ const breatheTransition = (delay: number) => ({
 });
 
 const Schedule = () => (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#e8eef5] bg-gradient-to-b from-gray-50/90 via-white to-white font-['Poppins'] transition-colors duration-500 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-900">
+    <div className="relative z-0 min-h-screen overflow-x-hidden bg-[#e8eef5] bg-gradient-to-b from-gray-50/90 via-white to-white font-['Poppins'] transition-colors duration-500 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-900">
+        {/* Background Image */}
+        <motion.div 
+            className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-60 dark:opacity-50"
+            style={{ backgroundImage: `url('${BASE}flyer.webp')` }}
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
+        />
         {/* Soft mesh — light: airy; dark: site cerulean blues */}
         <div
             className="pointer-events-none fixed inset-0 -z-10 opacity-90 dark:opacity-100"
@@ -139,7 +143,7 @@ const Schedule = () => (
                     </span>
                 </h1>
                 <p className="mx-auto mt-3 max-w-md text-sm font-medium text-cerulean-blue-900/70 dark:text-gray-300 md:text-base">
-                    Plan your week — home sessions on weekdays, LTAD-aligned weekend training at École Notre-Dame des Anges.
+                    Plan your week — Summer Camp training on weekdays, and our usual weekend training at École Notre-Dame des Anges.
                 </p>
             </motion.header>
 

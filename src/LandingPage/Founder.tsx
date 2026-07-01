@@ -222,8 +222,7 @@ const Founder = () => {
                                 <div className="absolute inset-0 rounded-full bg-bright-sun-400/30 dark:bg-bright-sun-300/20 blur-2xl scale-110 group-hover:scale-125 transition-transform duration-700" aria-hidden />
                                 <div className="relative w-72 sm:w-80 aspect-square rounded-full p-2 bg-gradient-to-br from-bright-sun-400 to-bright-sun-600 dark:from-bright-sun-300 dark:to-bright-sun-500 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[1.02]">
                                     <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-cerulean-blue-900/80 bg-white dark:bg-cerulean-blue-900 shadow-inner">
-                                        <img
-                                            src={`${import.meta.env.BASE_URL}athletes/Noel.jpg`}
+                                        <img loading="lazy" src={`${import.meta.env.BASE_URL}athletes/Noel.jpg`}
                                             alt="Noël Nkuranyabahizi"
                                             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                         />
@@ -489,7 +488,7 @@ const Founder = () => {
                         {/* 1: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/IM1.jfif`} alt="Team coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/IM1.jfif`} alt="Team coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Noël Nkuranyabahizi is an International Elite Sports Coach, coach developer, and sport development leader specializing in multi-sport athlete development, particularly in Karate and Gymnastics.</p>
@@ -499,7 +498,7 @@ const Founder = () => {
                         {/* 2: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/championn.jpeg`} alt="Team Rwanda" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/championn.jpeg`} alt="Team Rwanda" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He is the Founder and Chief Executive Officer of The Champions Sports Academy in Kigali, Rwanda, an organization dedicated to promoting physical literacy, Olympic values, and long-term athlete development for children and youth.</p>
@@ -509,7 +508,7 @@ const Founder = () => {
                         {/* 3: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/team rwanda.jpeg`} alt="Elite coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/team rwanda.jpeg`} alt="Elite coaching" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>A 4th Dan Black Belt in Karate, Noël served as Head Coach of the Rwanda National Karate Team (2015–2023), where he led national athlete development programmes and prepared athletes for regional and continental competitions.</p>
@@ -519,7 +518,7 @@ const Founder = () => {
                         {/* 4: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/team.jfif`} alt="In camp" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/team.jfif`} alt="In camp" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>His work focuses on elite coaching, grassroots sport development, and coach education, supporting both athletes and coaches through structured development pathways.</p>
@@ -529,7 +528,7 @@ const Founder = () => {
                         {/* 5: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/award.jfif`} alt="In stade" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/award.jfif`} alt="In stade" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He is the recipient of the National Sport Coaching Award (2020) from the Rwanda National Olympic and Sports Committee in recognition of his contribution to sport development in Rwanda.</p>
@@ -539,7 +538,7 @@ const Founder = () => {
                         {/* 6: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/International olyompics.jpeg`} alt="Award" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/International olyompics.jpeg`} alt="Award" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He also received an Olympic Solidarity Scholarship for Coaches, which enabled him to attend the CYSél – Cycle International du Sport d'Elite programme in Lausanne, Switzerland, an advanced international programme for elite sport coaches.</p>
@@ -549,7 +548,7 @@ const Founder = () => {
                         {/* 7: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/developing.jpeg`} alt="Team" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/developing.jpeg`} alt="Team" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Through his leadership and international engagement, Noël contributes to strengthening coaching systems, athlete development, and values-based sport education.</p>
@@ -559,7 +558,7 @@ const Founder = () => {
                         {/* 8: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}coahing/IN.jpeg`} alt="Graduation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}coahing/IN.jpeg`} alt="Graduation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese.</p>
@@ -589,7 +588,7 @@ const Founder = () => {
                         {/* 1: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}SocialWork/global Dialogue.jfif`} alt="Sport International Symposium" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}SocialWork/global Dialogue.jfif`} alt="Sport International Symposium" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Noël Nkuranyabahizi is a Professional Social Worker in Sport whose work focuses on the use of sport as a tool for youth development, psychosocial well-being, and positive social change. With a Bachelor's Degree in Social Work, he integrates social work principles with sport coaching and athlete development to support the holistic well-being of children, youth, athletes, and coaches.</p>
@@ -599,7 +598,7 @@ const Founder = () => {
                         {/* 2: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}SocialWork/Sport International Symposium.jfif`} alt="Global dialogue on sport and social development" className="w-full rounded-2xl shadow-xl object-cover aspect-[3/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}SocialWork/Sport International Symposium.jfif`} alt="Global dialogue on sport and social development" className="w-full rounded-2xl shadow-xl object-cover aspect-[3/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Through his professional engagement in the field of sport and social work, he became a member of the Alliance of Social Workers in Sport (ASWIS) based in the United States, an international network dedicated to advancing social work practice in sport environments.</p>
@@ -609,7 +608,7 @@ const Founder = () => {
                         {/* 3: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}SocialWork/member Of Alliance.jfif`} alt="Member of Alliance of Social Workers in Sport" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}SocialWork/member Of Alliance.jfif`} alt="Member of Alliance of Social Workers in Sport" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Noël has contributed to the global dialogue on sport and social development through international academic presentations. In 2019, he presented at the Social Work in Sport International Symposium in Denver, Colorado, where he delivered a presentation on "The Role of Karate in Improving Children's Self-Esteem," highlighting how martial arts can contribute to confidence building, discipline, and psychosocial development among young participants.</p>
@@ -619,7 +618,7 @@ const Founder = () => {
                         {/* 4: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}SocialWork/highLevelDegree.jfif`} alt="High level degree and expertise" className="w-full rounded-2xl shadow-xl object-cover aspect-[2/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}SocialWork/highLevelDegree.jfif`} alt="High level degree and expertise" className="w-full rounded-2xl shadow-xl object-cover aspect-[2/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
                                 <p>He also presented at the Social Work in Sport International Symposium held at Tulane University in New Orleans, Louisiana, where he shared research on "The Impact of Elite Sport Coaching Activities on the Coaches' Mental Well-being in Rwanda." His work examined the psychological pressures experienced by elite sport coaches and emphasized the importance of supportive systems that protect the mental health and well-being of coaching professionals.</p>
@@ -641,7 +640,7 @@ const Founder = () => {
                         {/* 1: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/EVENT3.jfif`} alt="Sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/EVENT3.jfif`} alt="Sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Noël Nkuranyabahizi is a Sport Events Manager and International Elite Sports Coach with significant experience in the organization and management of national and international sport events. </p>
@@ -651,7 +650,7 @@ const Founder = () => {
                         {/* 2: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/metre.jpeg`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/metre.jpeg`} alt="Event organisation" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He has managed and coordinated major national and international sport events, contributing to event planning, technical coordination, and operational management. Notably, he served as Event Manager for the African Rhythmic Gymnastics Championships held in Rwanda, supporting the successful organization of this continental competition.</p>
@@ -661,7 +660,7 @@ const Founder = () => {
                         {/* 3: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/masterDegree.jpeg`} alt="Event management" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/masterDegree.jpeg`} alt="Event management" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>He is currently pursuing a Master's Degree in Olympic Studies, Olympic Education, Organization and Management of Olympic Events at the International Olympic Academy and the University of Peloponnese, further strengthening his expertise in sport event management and Olympic sport systems.</p>
@@ -671,7 +670,7 @@ const Founder = () => {
                         {/* 4: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/EVENT8.jfif`} alt="Sport events at CSA" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/EVENT8.jfif`} alt="Sport events at CSA" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Event planning, technical coordination, and operational management are at the heart of delivering successful competitions and programmes for athletes and communities.</p>
@@ -681,7 +680,7 @@ const Founder = () => {
                         {/* 5: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/EVENTS.jfif`} alt="Championships and competitions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/EVENTS.jfif`} alt="Championships and competitions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>From local programmes to continental events like the African Rhythmic Gymnastics Championships, the academy contributes to sport development at every level.</p>
@@ -691,7 +690,7 @@ const Founder = () => {
                         {/* 6: photo left, words right */}
                         <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/EVENT9.jfif`} alt="Olympic and sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/EVENT9.jfif`} alt="Olympic and sport events" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Olympic values and event management expertise combine to create lasting impact in youth sport and elite competition.</p>
@@ -701,7 +700,7 @@ const Founder = () => {
                         {/* 7: words left, photo right */}
                         <div className="flex flex-col md:flex-row-reverse gap-5 md:gap-8 items-center">
                             <div className="w-full md:w-2/5 shrink-0">
-                                <img src={`${import.meta.env.BASE_URL}Events/kk.jpeg`} alt="Events at The Champions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
+                                <img loading="lazy" src={`${import.meta.env.BASE_URL}Events/kk.jpeg`} alt="Events at The Champions" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3] border border-gray-200 dark:border-white/10" />
                             </div>
                             <div className="flex-1 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Through sport events, The Champions Sports Academy builds bridges between communities, athletes, and the broader sport system.Excellence in sport event management—supporting athletes, coaches, and the next generation of leaders in sport</p>
