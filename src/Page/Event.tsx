@@ -229,19 +229,18 @@ const Event = () => {
                     aria-labelledby="upcoming-events-flyer-heading"
                     className="relative z-0 mx-auto mb-10 md:mb-14 max-w-5xl"
                 >
-                    <TypewriterText text={`Dear Champions Family, Our Gymnastics Summer Camp 2026 has officially begun! For full details, please see the flyer below.
+                    <TypewriterText text={`Dear Champions Family,
 
-📍 Venue: École Notre Dame des Anges, Remera, Kigali
-📅 Dates: 30 June – 5 September 2026
-📝 Registration: 23 – 29 June 2026
-⏰ Training: Mon–Fri, 8:00 AM – 12:00 PM
-🏅 Weekends: 10:00 AM–12:00 PM & 3:00 PM–5:00 PM
-💳 Payment: Mobile Money 997885 – The Champions Sports Academy
+We are pleased to invite all Weekend Programme and Summer Camp gymnasts to our Annual Gymnastics Level Grading & Competition.
 
-✅ 2-month package includes: Summer Camp, Grading Test Fee, & weekend catch-up sessions.
-🎉 20% discount for full-package families.
+📅 22 August 2026
+⏰ 9:00 AM – 1:00 PM
+📍 École Notre Dame des Anges
+📝 Registration: 14–20 August
 
-Thank you for your support!`} />
+Parents, family members, and friends are warmly invited to attend and support our young Champions.
+
+We Are The Champions for Life!`} />
 
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
 
