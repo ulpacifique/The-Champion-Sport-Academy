@@ -50,14 +50,7 @@ type Slot = {
     icon: typeof IconHome;
 };
 
-const weekdaySlots: Slot[] = [
-    {
-        day: "Monday – Friday",
-        title: "Summer Camp Training",
-        note: "08:00 AM – 12:00 PM",
-        icon: IconSun,
-    },
-];
+const weekdaySlots: Slot[] = [];
 
 const weekendSlots: Slot[] = [
     {
@@ -102,7 +95,7 @@ const breatheTransition = (delay: number) => ({
 const Schedule = () => (
     <div className="relative z-0 min-h-screen overflow-x-hidden bg-[#e8eef5] bg-gradient-to-b from-gray-50/90 via-white to-white font-['Poppins'] transition-colors duration-500 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-cerulean-blue-900">
         {/* Background Image */}
-        <motion.div 
+        <motion.div
             className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-60 dark:opacity-50"
             style={{ backgroundImage: `url('${BASE}flyer.webp')` }}
             animate={{ scale: [1, 1.08, 1] }}
@@ -143,7 +136,7 @@ const Schedule = () => (
                     </span>
                 </h1>
                 <p className="mx-auto mt-3 max-w-md text-sm font-medium text-cerulean-blue-900/70 dark:text-gray-300 md:text-base">
-                    Plan your week — Summer Camp training on weekdays, and our usual weekend training at École Notre-Dame des Anges.
+                    Plan your week —  our usual weekend training at École Notre-Dame des Anges.
                 </p>
             </motion.header>
 
@@ -153,43 +146,47 @@ const Schedule = () => (
                 animate="show"
                 className="space-y-4"
             >
-                <motion.h2
-                    variants={itemUp}
-                    className="px-1 text-[11px] font-black uppercase tracking-[0.28em] text-cerulean-blue-800/80 dark:text-bright-sun-300/90"
-                >
-                    Weekdays
-                </motion.h2>
-                {weekdaySlots.map((slot) => (
-                    <motion.article key={slot.title} variants={itemUp} className="will-change-transform">
-                        <motion.div
-                            className={`${glassCard} p-5 sm:p-6`}
-                            animate={{ y: [...breatheY], scale: [...breatheScale] }}
-                            transition={breatheTransition(0)}
-                            whileHover={{ scale: 1.03, y: -4 }}
-                            whileTap={{ scale: 0.98 }}
+                {weekdaySlots.length > 0 && (
+                    <>
+                        <motion.h2
+                            variants={itemUp}
+                            className="px-1 text-[11px] font-black uppercase tracking-[0.28em] text-cerulean-blue-800/80 dark:text-bright-sun-300/90"
                         >
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-bright-sun-400/90 to-bright-sun-600/80 text-white shadow-lg shadow-bright-sun-500/25 dark:from-bright-sun-400 dark:to-amber-600">
-                                    <slot.icon size={24} stroke={1.5} />
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                    <p className="text-xs font-black uppercase tracking-wider text-bright-sun-700 dark:text-bright-sun-300">
-                                        {slot.day}
-                                    </p>
-                                    <h3 className="mt-1 text-lg font-bold text-cerulean-blue-950 dark:text-white">
-                                        {slot.title}
-                                    </h3>
-                                    {slot.note && (
-                                        <p className="mt-2 flex items-center gap-2 text-sm font-semibold text-cerulean-blue-800/85 dark:text-gray-300">
-                                            <IconClock size={18} className="shrink-0 text-bright-sun-600 dark:text-bright-sun-400" />
-                                            {slot.note}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.article>
-                ))}
+                            Weekdays
+                        </motion.h2>
+                        {weekdaySlots.map((slot) => (
+                            <motion.article key={slot.title} variants={itemUp} className="will-change-transform">
+                                <motion.div
+                                    className={`${glassCard} p-5 sm:p-6`}
+                                    animate={{ y: [...breatheY], scale: [...breatheScale] }}
+                                    transition={breatheTransition(0)}
+                                    whileHover={{ scale: 1.03, y: -4 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-bright-sun-400/90 to-bright-sun-600/80 text-white shadow-lg shadow-bright-sun-500/25 dark:from-bright-sun-400 dark:to-amber-600">
+                                            <slot.icon size={24} stroke={1.5} />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-xs font-black uppercase tracking-wider text-bright-sun-700 dark:text-bright-sun-300">
+                                                {slot.day}
+                                            </p>
+                                            <h3 className="mt-1 text-lg font-bold text-cerulean-blue-950 dark:text-white">
+                                                {slot.title}
+                                            </h3>
+                                            {slot.note && (
+                                                <p className="mt-2 flex items-center gap-2 text-sm font-semibold text-cerulean-blue-800/85 dark:text-gray-300">
+                                                    <IconClock size={18} className="shrink-0 text-bright-sun-600 dark:text-bright-sun-400" />
+                                                    {slot.note}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </motion.article>
+                        ))}
+                    </>
+                )}
 
                 <motion.h2
                     variants={itemUp}

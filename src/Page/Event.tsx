@@ -231,16 +231,16 @@ const Event = () => {
                 >
                     <TypewriterText text={`Dear Champions Family,
 
-We are pleased to invite all Weekend Programme and Summer Camp gymnasts to our Annual Gymnastics Level Grading & Competition.
+We would like to inform you that our Gymnastics Programme will continue as usual this Saturday and Sunday.
 
-📅 22 August 2026
-⏰ 9:00 AM – 1:00 PM
-📍 École Notre Dame des Anges
-📝 Registration: 14–20 August
+ Morning Session: 10:00 AM – 12:00 PM
+Afternoon Session: 3:00 PM – 5:00 PM
 
-Parents, family members, and friends are warmly invited to attend and support our young Champions.
+Please check the attached flyers for some changes to our programme.
 
-We Are The Champions for Life!`} />
+Thank you for your continued support.
+
+The Champions Sports Academy`} />
 
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
 
