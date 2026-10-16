@@ -21,7 +21,7 @@ const EVENTS_HOSTING_SPOTLIGHT_EMBED =
 const EVENTS_HOSTING_SPOTLIGHT_WATCH = "https://youtu.be/OdhBViMDGGk?si=zPCOfuPcKQ_mffzJ";
 const SUMMER_CAMP_VIDEOS = [`${BASE}athletes/k1.mp4`, `${BASE}athletes/k2.mp4`, `${BASE}athletes/k3.mp4`] as const;
 const ISHOW_VIDEO_SRC = `${BASE}athletes/ishow.mp4`;
-const FLYER_IMAGES = [`${BASE}flyer11.webp`, `${BASE}flyerTR.webp`, `${BASE}flyer.webp`] as const;
+const FLYER_IMAGES = [`${BASE}flyer11.webp`, `${BASE}flyerTR.webp`, `${BASE}new venue.webp`] as const;
 /** Transparent PNG — used as a soft watermark behind Upcoming Events (same spirit as the large "2026" motif) */
 const GYMNASTICS_SILHOUETTE_SRC = `${BASE}athletes/gymanstics.png`;
 
@@ -231,16 +231,24 @@ const Event = () => {
                 >
                     <TypewriterText text={`Dear Champions Family,
 
-We would like to inform you that our Gymnastics Programme will continue as usual this Saturday and Sunday.
+We would like to inform you that this weekend,our Gymnastics Programme will continue as scheduled, with the following adjustments:
 
- Morning Session: 10:00 AM – 12:00 PM
-Afternoon Session: 3:00 PM – 5:00 PM
+🔹 Little Champions (Ages 2–6)
+📍 New Venue: Remera Corner Building, 2nd Floor, Gisimenti.
+🕒 Saturday & Sunday:
+Morning: 10:15–11:45 AM
+Afternoon: 3:15–4:45 PM
 
-Please check the attached flyers for some changes to our programme.
+🔹 Youth Gymnastics (Ages 7–17)
+📍 Venue and schedule remain unchanged.
+🕒 Saturday & Sunday:
+Morning: 10:00 AM–12:00 PM
+Afternoon: 3:00–5:00 PM
 
-Thank you for your continued support.
+Thank you for your continued trust and cooperation.
 
-The Champions Sports Academy`} />
+The Champions Sports Academy
+We Are the Champions for Life!`} />
 
                     <div className="relative overflow-hidden rounded-[1.75rem] border border-bright-sun-300/40 bg-gradient-to-br from-white via-bright-sun-50/90 to-cerulean-blue-100/50 shadow-[0_28px_80px_-28px_rgba(34,59,134,0.35),0_0_0_1px_rgba(251,191,36,0.2)] dark:border-bright-sun-400/25 dark:from-cerulean-blue-950 dark:via-cerulean-blue-900 dark:to-[#152a62] dark:shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)] md:rounded-[2.25rem]">
 
